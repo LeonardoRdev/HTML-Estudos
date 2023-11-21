@@ -13,6 +13,17 @@ let divFotos = document.querySelector("div#main");
 // CSS
 botaoOrganizarFotos.style.display = "none";
 
+header.style.display = "flex";
+header.style.alignItems = "center";
+header.style.justifyContent = "center";
+header.style.padding = "10px 0 0 0";
+
+botaoMostrarFotos.style.fontSize = "2em";
+botaoOrganizarFotos.style.fontSize = "2em";
+
+divFotos.style.padding = "30px 20px";
+
+
 // JavaScript "de verdade":
 botaoMostrarFotos.onclick = function () {
     divFotos.innerHTML = "";
@@ -28,8 +39,16 @@ botaoMostrarFotos.onclick = function () {
 botaoOrganizarFotos.onclick = function () {
     for (let i = 1; i < 6; i++) {
         imagens = document.querySelector(`#imagem${i}`);
-        imagens.style.width = "250px";
-        imagens.style.height = "170px"
-        imagens.style.border = "2px solid violet";
+        
+        //CSS
+        imagens.style.width = "300px";
+        imagens.style.height = "200px"
+        imagens.style.border = "2px solid #ccc";
+        imagens.style.borderRadius = "5px"
     }
+    // CSS
+    divFotos.style.display = "flex";
+    divFotos.style.gap = "20px 25px";
+    divFotos.style.flexWrap = "wrap";
+    divFotos.style.justifyContent = "space-around";
 }
