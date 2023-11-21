@@ -13,6 +13,9 @@ let divFotos = document.querySelector("div#main");
 // CSS
 botaoOrganizarFotos.style.display = "none";
 
+body.style.background = "linear-gradient(160deg, #c342ff75, #a621ffA5 32%)"
+body.style.backgroundAttachment = "fixed";
+
 header.style.display = "flex";
 header.style.alignItems = "center";
 header.style.justifyContent = "center";
