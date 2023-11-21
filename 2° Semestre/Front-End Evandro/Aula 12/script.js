@@ -17,7 +17,7 @@ botaoOrganizarFotos.style.display = "none";
 botaoMostrarFotos.onclick = function () {
     divFotos.innerHTML = "";
     for (let i = 1; i < 6; i++) {
-        divFotos.innerHTML += `<img src='imagens/imagem${i}.png' alt='Imagem ${i}'></img>`;
+        divFotos.innerHTML += `<img id='imagem${i}' src='imagens/imagem${i}.png' alt='Imagem ${i}'></img>`;
     }
 
     // Faz uma "troca" de botões:
@@ -26,5 +26,10 @@ botaoMostrarFotos.onclick = function () {
 }
 
 botaoOrganizarFotos.onclick = function () {
-    alert("mudou!");
+    for (let i = 1; i < 6; i++) {
+        imagens = document.querySelector(`#imagem${i}`);
+        imagens.style.width = "250px";
+        imagens.style.height = "170px"
+        imagens.style.border = "2px solid violet";
+    }
 }
