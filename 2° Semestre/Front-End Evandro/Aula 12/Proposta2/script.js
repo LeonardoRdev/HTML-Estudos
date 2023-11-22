@@ -1,3 +1,5 @@
+// Criando variáveis que são tags no HTML
+
 let resolver = document.querySelector("input#resolver");
 let tabuada = document.querySelector("div#tabuada");
 
@@ -36,13 +38,20 @@ resolver.style.padding = "6px 0";
 tabuada.style.marginTop = "30px";
 tabuada.style.fontSize = "1.6em";
 
+
+// JavaScript
 resolver.onclick = function() {
     let numeroEscolhido = document.querySelector("input#numero_escolhido");
     if(numeroEscolhido.value <= 0) {
         numeroEscolhido.value = 1;
     }
     tabuada.innerHTML = "";
-    for(let i = 1; i < 11 ; i++) {
-        tabuada.innerHTML += `${numeroEscolhido.value} x ${i} = ${Math.round(numeroEscolhido.value * i)}<br>`
+    for(let i = 1; i < 11 ; i++) { // Quando i for = 11, ele pará o loop
+        tabuada.innerHTML += `<p class="numero_da_tabuada${i}">${numeroEscolhido.value} x ${i} = ${Math.round(numeroEscolhido.value * i)}</p>`
+        
+        let numeros_da_tabuada = document.querySelector(`p.numero_da_tabuada${i}`);
+        numeros_da_tabuada.style.margin = "5px 0";
+        numeros_da_tabuada.style.fontFamily = "sans-serif";
+        numeros_da_tabuada.style.fontSize = "1.12em";
     }
 }
