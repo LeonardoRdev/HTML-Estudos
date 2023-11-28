@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <style>
+        body {
+            background-color: gray;
+            color: black;
+        }
+
+        .container {
+            margin: 0 auto;
+            text-align: center;
+            max-width: 1000px;
+        }
+
+        button {
+            height: 2.5em;
+            width: 5.5em;
+            border: none;
+            color: black;
+            border: 2px solid rgb(0, 0, 0);
+            cursor: pointer
+        }
+
+        .init-btn {
+            background-color: rgb(21, 228, 21);
+        }
+
+        .pause-btn {
+            background-color: rgb(211, 235, 0);
+        }
+
+        .clear-btn {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 id="watch">00:00:00</h1>
+        <button class="init-btn" onclick="init()">Iniciar</button>
+        <button class="pause-btn" onclick="pause()">Pausar</button>
+        <button class="clear-btn" onclick="clearAll()">Zerar</button>
+    </div>
+
+    <script>
+
+        const watchDocument = document.querySelector("#watch");
+        let seconds = 0;
+        let minutes = 0;
+        let hours = 0;
+        let interval;
+        let timer;
+        let start = 0
+
+        function init() {
+            if (start === 0) {
+                start = 1
+                watch();
+                interval = setInterval(watch, 1000);
+
+            }
+        }
+
+        const pause = () => {
+            clearInterval(interval);
+            start = 0
+        }
+
+        const clearAll = () => {
+            clearInterval(interval);
+            seconds = 0;
+            minutes = 0;
+            hours = 0;
+            start = 0
+            watchDocument.innerHTML = "00:00:00"
+        }
+
+        const digitZero = (digit) => {
+            if (digit < 10) {
+                return `0${digit}`;
+            } else {
+                return digit;
+            }
+        }
+
+        function watch() {
+            seconds++;
+
+            if (seconds === 60) {
+                minutes++;
+                seconds = 0;
+            }
+
+            if (minutes === 60) {
+                hours++;
+                minutes = 0;
+            }
+
+            watchDocument.innerHTML =
+                `${digitZero(hours)}:${digitZero(minutes)}:${digitZero(seconds)}`
+        }
+
+    </script>
+
+</body>
+
+</html>
