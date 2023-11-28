@@ -1,6 +1,6 @@
 * {
-    padding: 0;
-    margin: 0;
+    /* padding: 0;
+    margin: 0; */
     box-sizing: border-box;
 }
 
@@ -8,22 +8,39 @@ body {
     background-color: antiquewhite;
 }
 
-h1#titulo_aula{
-    padding: 5px;
-    border: solid 2px black;
+h1#titulo_aula {
+    margin: 0;
     font-size: 2.8em;
-    margin-top: 15px;
     text-align: center;
 }
 
-header, main{
+header, main {
+    padding: 15px;
     margin: 15px auto 0;
     width: 80%;
     border: solid 2px black;
-    height: 10vh;
     background-color: rgb(198, 172, 138);
 }
 
-main{
-    height: 60vh;
+header {
+    background-image: url("http://source.unsplash.com/800x200/?white");
+    background-size: cover;
+}
+
+main {
+    display: flex;
+    background-image: url("https://source.unsplash.com/2500x1500/?white,food");
+    background-size: cover;
+}
+
+div {
+    margin: 0 auto;
+}
+
+.cardapio li {
+    list-style-type: square;
+}
+
+li.maior {
+    font-size: 30px;
 }
