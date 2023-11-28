@@ -1,0 +1,48 @@
+main {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+#bloco {
+    background-color: #d13842;
+    padding: 3px;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+}
+
+.numeros {
+    padding: 20px 27px;
+    background-color: #f542e9;
+    border: 2px solid;
+    font-size: 1.6em;
+
+    display: grid;
+    place-content: center;
+    border-radius: 12px;
+    transition: transform 2s;
+}
+
+.numeros:active {
+    cursor: pointer;
+    background-color: #22b6c9;
+    transform: rotateZ(3600deg) translateY(600px)
+}
+
+
+.n1 {
+    grid-row: 3 / 4;
+    grid-column: 4 / 5;
+}
+
+.n9 {
+    grid-row: 1;
+    grid-column: 2;
+}
+
+.n10 {
+    grid-row: 1 / 4;
+    /* grid-column: 3 / 4; */
+}
