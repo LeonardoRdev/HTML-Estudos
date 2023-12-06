@@ -1,3 +1,40 @@
+header {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 340px;
+    /* background-color: red; */
+}
+
+form div.informacoes {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+form div label {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+form div input {
+    width: 250px;
+    font-size: 1.15em;
+    margin: 0;
+    padding: 3px;
+}
+
+form #armazenar {
+    padding: 5px 10px;
+    margin-top: 10px;
+    font-size: 1.4em;
+}
+
 main {
     text-align: center;
 }
