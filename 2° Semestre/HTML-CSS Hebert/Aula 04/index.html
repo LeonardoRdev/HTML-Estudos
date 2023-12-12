@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Aula 4 - 26/10</title>
+
+</head>
+<h1>Formulário - By Vitor Henrique</h1> <!-- Não salvei o meu código da aula, então peguei de um amigo -->
+
+<form name="form" method="post" action="http://hebertphp.awardspace.us/recebe.php">
+    <fieldset>
+        <legend>Cadastro</legend>
+        <!--placeholder aparece o nome de fundo no formulario-->
+        <labe for="Login">Login <input type="text" name="Login" id="Login" placeholder="Digita o usuario" required>*<br>
+            <br>
+            <!--required serve para deixar o asteristico na cor vermelha significando que é obrigatório-->
+            <labe for="Senha">Senha </label><input type="password" name="Senha" id="Senha"
+                    placeholder="Digite sua Senha" required>*<br>
+                <!--campo obrigatório não pode ser vazio ele tem que ser preenchido-->
+                *Campo(s) obrigatório(s)
+                <br>
+                <input type="hidden" name="idioma" value="pt-br">
+
+
+    </fieldset>
+    <br>
+    <fieldset>
+        <legend>linguage de programação</legend>
+        <input type="checkbox" name="ling[]" value="javascript" checked> Javascript <br>
+        <!--checked marca todas as opções marcada-->
+        <!--checkbox signifiva quadrados para marcações-->
+        <input type="checkbox" name="ling[]" value="PHP"> PHP<br>
+        <input type="checkbox" name="ling[]" value="Python"> Python <br>
+        <br>
+        <fieldset>
+            <!--radio seleciona apenas uma questão o radio pode ser valores diferentes mas tem que ser valores iguais ou seja tem que ter o name igual-->
+            <!---->
+            <legend>Qual dia d semana da disciplina HTML-CSS 2023-1</legend>
+            <input type="radio" name="semana" value="Segunda-Feira">Segunda-Feira<br>
+            <input type="radio" name="semana" value="Terça-Feira">Terça-Feira<br>
+            <input type="radio" name="semana" value="Quarta-Feira">Quarta-Feira<br>
+            <input type="radio" name="semana" value="Quinta-Feira">Quinta-Feira<br>
+            <input type="radio" name="semana" value="Sexta-Feira">Sexta-Feira<br>
+        </fieldset>
+        <input type="submit" value="Enviar!!!!!!">
+        <input type="reset" value="Limpar">
+        <button type="button">Clique aqui!</button>
+
+    </fieldset>
+</form>
+
+<body>
+
+</body>
+
+</html>
