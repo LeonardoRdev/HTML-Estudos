@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: lightslategray;
+}
+
+
+main {
+    margin: 2% 0 0 5%;
+    width: 380px;
+    height: 620px;
+    border: solid black 2px;
+}
+
+#resultado {
+    height: 230px;
+    background-color: lightcoral;
+}
+
+#operacoes {
+    height: calc(100% - 230px);
+    background-color: aquamarine;
+}
