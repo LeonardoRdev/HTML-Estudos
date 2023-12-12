@@ -22,6 +22,24 @@ main {
 }
 
 #operacoes {
+    padding: 8px;
     height: calc(100% - 230px);
     background-color: aquamarine;
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+}
+
+.botoes_da_calculadora {
+    border: solid 2px black;
+    border-radius: 10px;
+    background-color: lightgreen;
+    display: grid;
+    place-content: center;
+}
+
+.botoes_da_calculadora p {
+    font-weight: 600;
+    font-family: sans-serif;
 }
