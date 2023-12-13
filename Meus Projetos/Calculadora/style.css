@@ -16,30 +16,46 @@ main {
     border: solid black 2px;
 }
 
-#resultado {
+div#resultado {
+    padding: 8px;
+    display: grid;
+    place-content: center right;
     height: 230px;
-    background-color: lightcoral;
+    background-color: #202020;
+}
+
+p#resultado_numero {
+    /* background-color: rgba(255, 154, 154, 0.651); */
+    font-size: 3.5em;
+    font-weight: 600;
+    font-family: sans-serif;
+    color: #fff;
 }
 
 #operacoes {
     padding: 8px;
     height: calc(100% - 230px);
-    background-color: aquamarine;
+    background-color: #202020;
     display: grid;
-    gap: 5px;
+    gap: 2px;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(6, 1fr);
 }
 
 .botoes_da_calculadora {
     border: solid 2px black;
-    border-radius: 10px;
-    background-color: lightgreen;
+    border-radius: 5px;
+    background-color: #3b3b3b;
     display: grid;
     place-content: center;
+}
+
+#botao1, #botao2, #botao3, #botao4, #botao5, #botao6, #botao7, #botao8, #botao12, #botao16, #botao20 {
+    background-color: #323232;  
 }
 
 .botoes_da_calculadora p {
     font-weight: 600;
     font-family: sans-serif;
+    color: #fff;
 }
