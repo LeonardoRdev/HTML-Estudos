@@ -50,12 +50,33 @@ p#resultado_numero {
     place-content: center;
 }
 
+.botoes_da_calculadora:hover {
+    cursor: default;
+    background-color: #323232;
+}
+
 #botao1, #botao2, #botao3, #botao4, #botao5, #botao6, #botao7, #botao8, #botao12, #botao16, #botao20 {
     background-color: #323232;  
+}
+
+#botao1:hover, #botao2:hover, #botao3:hover, #botao4:hover, #botao5:hover, #botao6:hover, #botao7:hover, #botao8:hover, #botao12:hover, #botao16:hover, #botao20:hover{
+    background-color: #3b3b3b;
+}
+
+.botoes_da_calculadora:last-child {
+    background-color: #848381;
+}
+
+.botoes_da_calculadora:last-child:hover {
+    background-color: #797877;
 }
 
 .botoes_da_calculadora p {
     font-weight: 600;
     font-family: sans-serif;
     color: #fff;
+}
+
+.botoes_da_calculadora:last-child p {
+    color: #252424;
 }
