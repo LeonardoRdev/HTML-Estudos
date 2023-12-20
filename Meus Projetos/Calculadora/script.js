@@ -2,6 +2,7 @@ let resultadoNumero = document.querySelector("#resultado_numero");
 let botoesDaCalculadora = [];
 
 let numerosSelecionados = []; // Lista com todos os números que estão sendo mostrados.
+let numeroResultante = ""; // É a lista de cima toda junta em um único número;
 
 
 for (let i = 1; i <= 24; i++) {
@@ -13,16 +14,18 @@ let selecionarNumero = function(numeroEscolhido) { // Lê toda a lista de númer
     if (numeroEscolhido === 0 && numerosSelecionados.length === 0 || numerosSelecionados.length === 11 || numeroEscolhido === "," && numerosSelecionados.indexOf(",") >= 0) { // não pode 000 e limite de 11 números
         return;
     }
-    if (numeroEscolhido === "," && numerosSelecionados.length === 0) {
-        numerosSelecionados.push(0); // Se caso o usuário clicar no "," antes de qualquer outra coisa
-    }
+    // if (numeroEscolhido === "," && numerosSelecionados.length === 0) {
+    //     numerosSelecionados.push(0); // Se caso o usuário clicar no "," antes de qualquer outra coisa
+    // }
+
     resultadoNumero.innerHTML = "";
+    numeroResultante = ""; // Precisamos definir como string para os números não se somarem, e sim aparecerem um após o outro
     numerosSelecionados.push(numeroEscolhido);
     for (numero of numerosSelecionados) {
-        resultadoNumero.innerHTML += numero;
+        numeroResultante += numero;
     }
-    console.log(numerosSelecionados);
-    console.log(numerosSelecionados.length);
+    numeroResultante = parseInt(numeroResultante); // Agora sim o resultado é um número de verdade
+    resultadoNumero.innerHTML = numeroResultante;
 }
 
 
@@ -74,7 +77,8 @@ botoesDaCalculadora[18].onclick = function() { // Botão "3"
 }
 
 botoesDaCalculadora[20].onclick = function() { // Botão "+/-"
-    resultadoNumero.innerHTML = "eita";
+    numeroResultante *= -1;
+    resultadoNumero.innerHTML = numeroResultante;
 }
 
 botoesDaCalculadora[21].onclick = function() { // Botão "0"
@@ -82,5 +86,5 @@ botoesDaCalculadora[21].onclick = function() { // Botão "0"
 }
 
 botoesDaCalculadora[22].onclick = function() { // Botão ","
-    selecionarNumero(",");
+    // selecionarNumero(",");
 }
