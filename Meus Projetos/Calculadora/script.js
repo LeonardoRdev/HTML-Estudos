@@ -10,11 +10,14 @@ for (let i = 1; i <= 24; i++) {
 
 
 let selecionarNumero = function(numeroEscolhido) { // Lê toda a lista de números selecionados e mostra no resultadoNumero
-    if (numeroEscolhido === 0 && numerosSelecionados.length === 0 || numerosSelecionados.length === 11) { // não pode 000 e limite de 11 números
+    if (numeroEscolhido === 0 && numerosSelecionados.length === 0 || numerosSelecionados.length === 11 || numeroEscolhido === "," && numerosSelecionados.indexOf(",") >= 0) { // não pode 000 e limite de 11 números
         return;
     }
-    numerosSelecionados.push(numeroEscolhido);
+    if (numeroEscolhido === "," && numerosSelecionados.length === 0) {
+        numerosSelecionados.push(0); // Se caso o usuário clicar no "," antes de qualquer outra coisa
+    }
     resultadoNumero.innerHTML = "";
+    numerosSelecionados.push(numeroEscolhido);
     for (numero of numerosSelecionados) {
         resultadoNumero.innerHTML += numero;
     }
@@ -79,5 +82,5 @@ botoesDaCalculadora[21].onclick = function() { // Botão "0"
 }
 
 botoesDaCalculadora[22].onclick = function() { // Botão ","
-    resultadoNumero.innerHTML += ",";
+    selecionarNumero(",");
 }
