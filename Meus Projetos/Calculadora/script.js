@@ -1,76 +1,79 @@
 let resultadoNumero = document.querySelector("#resultado_numero");
-let botoesCalculadora = [];
-let resultadoLista = [0];
+let botoesDaCalculadora = [];
 
-// Tá funcionando +/- como você quer, só criar uma função (24:30) para fazer ele botar numa array e depois rodar a array toda e botar
-// em uma variavel a array rodada e botar isso como inner HTML de resultadoNumero 
+let numerosSelecionados = []; // Lista com todos os números que estão sendo mostrados.
+
 
 for (let i = 1; i <= 24; i++) {
-    botoesCalculadora.push(document.querySelector("#botao" + i ));
-}
-
-// Transformar "resultado.innerhtml = array"
-
-botoesCalculadora[1].onclick = function() { // Botão "CE"
-    resultadoLista = [0];
-    resultadoNumero.innerHTML = 0;
-}
-
-botoesCalculadora[2].onclick = function() { // Botão "C"
-    resultadoNumero.innerHTML = 0;
+    botoesDaCalculadora.push(document.querySelector("#botao" + i ));
 }
 
 
-botoesCalculadora[8].onclick = function() { // Botão "7"
-    resultadoLista.push(7);
-    console.log(resultadoLista)
-    let isso = ""
-    for (elemento of resultadoLista) {
-        isso += elemento;
+let selecionarNumero = function(numeroEscolhido) { // Lê toda a lista de números selecionados e mostra no resultadoNumero
+    numerosSelecionados.push(numeroEscolhido);
+    resultadoNumero.innerHTML = "";
+    for (numero of numerosSelecionados) {
+        resultadoNumero.innerHTML += numero;
     }
-    resultadoNumero.innerHTML = isso;
+    console.log(numerosSelecionados);
 }
 
-botoesCalculadora[9].onclick = function() { // Botão "8"
-    resultadoNumero.innerHTML += 8;
+
+botoesDaCalculadora[1].onclick = function() { // Botão "CE"
+    numerosSelecionados = [];
+    resultadoNumero.innerHTML = 0;
 }
 
-botoesCalculadora[10].onclick = function() { // Botão "9"
-    resultadoNumero.innerHTML += 9;
+botoesDaCalculadora[2].onclick = function() { // Botão "C"
+    numerosSelecionados = [];
+    resultadoNumero.innerHTML = 0;
 }
 
-botoesCalculadora[12].onclick = function() { // Botão "4"
-    resultadoNumero.innerHTML += 4;
+
+botoesDaCalculadora[8].onclick = function() { // Botão "7"
+    selecionarNumero(7);
 }
 
-botoesCalculadora[13].onclick = function() { // Botão "5"
-    resultadoNumero.innerHTML += 5;
+botoesDaCalculadora[9].onclick = function() { // Botão "8"
+    selecionarNumero(8);
 }
 
-botoesCalculadora[14].onclick = function() { // Botão "6"
-    resultadoNumero.innerHTML += 6;
+botoesDaCalculadora[10].onclick = function() { // Botão "9"
+    selecionarNumero(9);
 }
 
-botoesCalculadora[16].onclick = function() { // Botão "1"
-    resultadoNumero.innerHTML += 1;
+botoesDaCalculadora[12].onclick = function() { // Botão "4"
+    selecionarNumero(4);
 }
 
-botoesCalculadora[17].onclick = function() { // Botão "2"
-    resultadoNumero.innerHTML += 2;
+botoesDaCalculadora[13].onclick = function() { // Botão "5"
+    selecionarNumero(5);
 }
 
-botoesCalculadora[18].onclick = function() { // Botão "3"
-    resultadoNumero.innerHTML += 3;
+botoesDaCalculadora[14].onclick = function() { // Botão "6"
+    selecionarNumero(6);
 }
 
-botoesCalculadora[20].onclick = function() { // Botão "+/-"
+botoesDaCalculadora[16].onclick = function() { // Botão "1"
+    selecionarNumero(1);
+}
+
+botoesDaCalculadora[17].onclick = function() { // Botão "2"
+    selecionarNumero(2);
+}
+
+botoesDaCalculadora[18].onclick = function() { // Botão "3"
+    selecionarNumero(3);
+}
+
+botoesDaCalculadora[20].onclick = function() { // Botão "+/-"
     resultadoNumero.innerHTML = "eita";
 }
 
-botoesCalculadora[21].onclick = function() { // Botão "0"
+botoesDaCalculadora[21].onclick = function() { // Botão "0"
     resultadoNumero.innerHTML += 0;
 }
 
-botoesCalculadora[22].onclick = function() { // Botão ","
+botoesDaCalculadora[22].onclick = function() { // Botão ","
     resultadoNumero.innerHTML += ",";
 }
