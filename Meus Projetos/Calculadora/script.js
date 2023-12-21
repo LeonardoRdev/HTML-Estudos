@@ -10,7 +10,7 @@ for (let i = 1; i <= 24; i++) {
 }
 
 
-let selecionarNumero = function(numeroEscolhido) { // Lê toda a lista de números selecionados e mostra no resultadoNumero
+const selecionarNumero = function(numeroEscolhido) { // Lê toda a lista de números selecionados e mostra no resultadoNumero
     if (numeroEscolhido === 0 && numerosSelecionados.length === 0 || numerosSelecionados.length === 11 || numeroEscolhido === "." && numerosSelecionados.indexOf(".") >= 0) { // não pode 000 e limite de 11 números
         return;
     }
@@ -18,27 +18,41 @@ let selecionarNumero = function(numeroEscolhido) { // Lê toda a lista de númer
         numerosSelecionados.push(0); // Se caso o usuário clicar no "," antes de qualquer outra coisa
     }
 
-    resultadoNumero.innerHTML = "";
-    numeroResultante = ""; // Precisamos definir como string para os números não se somarem, e sim aparecerem um após o outro
     numerosSelecionados.push(numeroEscolhido);
+
+    rodarArray();
+}
+
+const rodarArray = function() {
+    // resultadoNumero.innerHTML = "";
+    numeroResultante = ""; // Precisamos definir como string para os números não se somarem, e sim aparecerem um após o outro
+
     for (numero of numerosSelecionados) {
         numeroResultante += numero;
     }
+    
     numeroResultante = parseFloat(numeroResultante); // Agora sim o resultado é um número de verdade
     resultadoNumero.innerHTML = numeroResultante;
 }
 
 
 botoesDaCalculadora[1].onclick = function() { // Botão "CE"
-    numerosSelecionados = [];
-    resultadoNumero.innerHTML = 0;
+    numerosSelecionados = [0];
+    rodarArray();
 }
 
 botoesDaCalculadora[2].onclick = function() { // Botão "C"
-    numerosSelecionados = [];
-    resultadoNumero.innerHTML = 0;
+    numerosSelecionados = [0];
+    rodarArray();
 }
 
+botoesDaCalculadora[3].onclick = function() { // Botão "Apagar"
+    numerosSelecionados.pop();
+    if (numerosSelecionados.length === 0) {
+        numerosSelecionados = [0];
+    }
+    rodarArray();
+}
 
 botoesDaCalculadora[8].onclick = function() { // Botão "7"
     selecionarNumero(7);
