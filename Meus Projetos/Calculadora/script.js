@@ -3,6 +3,8 @@ let botoesDaCalculadora = [];
 
 let numerosSelecionados = []; // Lista com todos os números que estão sendo mostrados.
 let numeroResultante = ""; // É a lista de cima toda junta em um único número;
+let numerosSelecionadosOperacao = [];
+let numeroResultanteOperacao = "";
 
 
 for (let i = 1; i <= 24; i++) {
@@ -10,7 +12,7 @@ for (let i = 1; i <= 24; i++) {
 }
 
 
-const selecionarNumero = function(numeroEscolhido) { // Lê toda a lista de números selecionados e mostra no resultadoNumero
+const selecionarNumero = function(numeroEscolhido, operacao = false) { // Lê toda a lista de números selecionados e mostra no resultadoNumero
     if (numeroEscolhido === 0 && numerosSelecionados.length === 0 || numerosSelecionados.length === 11 || numeroEscolhido === "." && numerosSelecionados.indexOf(".") >= 0) { // não pode 000 e limite de 11 números
         return;
     }
@@ -18,8 +20,12 @@ const selecionarNumero = function(numeroEscolhido) { // Lê toda a lista de núm
         numerosSelecionados.push(0); // Se caso o usuário clicar no "," antes de qualquer outra coisa
     }
 
+    if (operacao === true) {
+        realizandoOperacao();
+        return;
+    }
+    
     numerosSelecionados.push(numeroEscolhido);
-
     rodarArray();
 }
 
@@ -35,6 +41,7 @@ const rodarArray = function() {
     resultadoNumero.innerHTML = numeroResultante;
 }
 
+// BOTÕES -> LIMPAR
 
 botoesDaCalculadora[1].onclick = function() { // Botão "CE"
     numerosSelecionados = [0];
@@ -54,6 +61,25 @@ botoesDaCalculadora[3].onclick = function() { // Botão "Apagar"
     rodarArray();
 }
 
+
+// BOTÕES -> CÁLCULOS
+botoesDaCalculadora[7].onclick = function() { // Botão "/"
+
+}
+botoesDaCalculadora[11].onclick = function() { // Botão "X"
+    numeroResultante *= 2;
+    resultadoNumero.innerHTML = numeroResultante;
+    // Tem que fazer com que ele rode a função "selecionarNumero" até que o botão "=" ou "C" ou "CE" seja pressionado
+}
+botoesDaCalculadora[15].onclick = function() { //Botão "-"
+
+}
+botoesDaCalculadora[19].onclick = function() { // Botão "+"
+
+}
+
+
+// BOTÕES -> NÚMEROS
 botoesDaCalculadora[8].onclick = function() { // Botão "7"
     selecionarNumero(7);
 }
