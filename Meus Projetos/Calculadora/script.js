@@ -1,4 +1,5 @@
 let resultadoNumero = document.querySelector("#resultado_numero");
+let operacao = document.querySelector("#operacao");
 let botoesDaCalculadora = [];
 
 let numerosSelecionados = []; // Lista com todos os números que estão sendo mostrados.
@@ -30,7 +31,6 @@ const selecionarNumero = function(numeroEscolhido, operacao = false) { // Lê to
 }
 
 const rodarArray = function() {
-    // resultadoNumero.innerHTML = "";
     numeroResultante = ""; // Precisamos definir como string para os números não se somarem, e sim aparecerem um após o outro
 
     for (numero of numerosSelecionados) {
@@ -51,6 +51,7 @@ botoesDaCalculadora[1].onclick = function() { // Botão "CE"
 botoesDaCalculadora[2].onclick = function() { // Botão "C"
     numerosSelecionados = [0];
     rodarArray();
+    operacao.innerHTML = "";
 }
 
 botoesDaCalculadora[3].onclick = function() { // Botão "Apagar"
@@ -66,11 +67,12 @@ botoesDaCalculadora[3].onclick = function() { // Botão "Apagar"
 botoesDaCalculadora[7].onclick = function() { // Botão "/"
 
 }
+
 botoesDaCalculadora[11].onclick = function() { // Botão "X"
-    numeroResultante *= 2;
-    resultadoNumero.innerHTML = numeroResultante;
     // Tem que fazer com que ele rode a função "selecionarNumero" até que o botão "=" ou "C" ou "CE" seja pressionado
+    operacao.innerHTML = `${numeroResultante} x`
 }
+
 botoesDaCalculadora[15].onclick = function() { //Botão "-"
 
 }

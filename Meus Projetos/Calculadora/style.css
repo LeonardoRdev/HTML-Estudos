@@ -19,13 +19,21 @@ main {
 div#resultado {
     padding: 8px;
     display: grid;
-    place-content: center right;
+    grid-template-rows: 1fr 1fr;
     height: 230px;
     background-color: #202020;
 }
 
+p#operacao {
+    margin-left: auto;
+    margin-top: auto;
+    color: #fff;
+    font-weight: 600;
+    font-family: sans-serif;
+}
+
 p#resultado_numero {
-    /* background-color: rgba(255, 154, 154, 0.651); */
+    margin-left: auto;
     font-size: 3.5em;
     font-weight: 600;
     font-family: sans-serif;
