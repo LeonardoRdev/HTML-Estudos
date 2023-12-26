@@ -6,7 +6,8 @@ let numerosSelecionados = []; // Lista com todos os números que estão sendo mo
 let numeroResultante = ""; // É a lista de cima toda junta em um único número;
 let numerosSelecionadosOperacao = [];
 let numeroResultanteOperacao = "";
-
+let numeroGuardadoOperacao;
+let operadorMatematico;
 
 for (let i = 1; i <= 24; i++) {
     botoesDaCalculadora.push(document.querySelector("#botao" + i ));
@@ -65,21 +66,47 @@ botoesDaCalculadora[3].onclick = function() { // Botão "Apagar"
 
 // BOTÕES -> CÁLCULOS
 botoesDaCalculadora[7].onclick = function() { // Botão "/"
-
+    operadorMatematico = "/";
+    operacao.innerHTML = `${numeroResultante} /`;
+    numeroGuardadoOperacao = numeroResultante;
 }
 
 botoesDaCalculadora[11].onclick = function() { // Botão "X"
-    // Tem que fazer com que ele rode a função "selecionarNumero" até que o botão "=" ou "C" ou "CE" seja pressionado
-    operacao.innerHTML = `${numeroResultante} x`
+    operadorMatematico = "*";
+    operacao.innerHTML = `${numeroResultante} x`;
+    numeroGuardadoOperacao = numeroResultante;
 }
 
 botoesDaCalculadora[15].onclick = function() { //Botão "-"
-
+    operadorMatematico = "-";
+    operacao.innerHTML = `${numeroResultante} -`;
+    numeroGuardadoOperacao = numeroResultante;
 }
 botoesDaCalculadora[19].onclick = function() { // Botão "+"
-
+    operadorMatematico = "+"
+    operacao.innerHTML = `${numeroResultante} +`;
+    numeroGuardadoOperacao = numeroResultante;
 }
 
+botoesDaCalculadora[23].onclick = function() { // Botão "="
+    if (operadorMatematico === "/") {
+        numeroResultante = numeroGuardadoOperacao / numeroResultante;
+    }
+
+    else if (operadorMatematico === "*") {
+        numeroResultante = numeroGuardadoOperacao * numeroResultante;
+    }
+
+    else if (operadorMatematico === "-") {
+        numeroResultante = numeroGuardadoOperacao - numeroResultante;
+    }
+
+    else if (operadorMatematico === "+") {
+        numeroResultante = numeroGuardadoOperacao + numeroResultante;
+    }
+
+    resultadoNumero.innerHTML = numeroResultante;
+}
 
 // BOTÕES -> NÚMEROS
 botoesDaCalculadora[8].onclick = function() { // Botão "7"
