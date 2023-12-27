@@ -14,17 +14,13 @@ for (let i = 1; i <= 24; i++) {
 }
 
 
-const selecionarNumero = function(numeroEscolhido, operacao = false) { // Lê toda a lista de números selecionados e mostra no resultadoNumero
+
+const selecionarNumero = function(numeroEscolhido) { // Lê toda a lista de números selecionados e mostra no resultadoNumero
     if (numeroEscolhido === 0 && numerosSelecionados.length === 0 || numerosSelecionados.length === 11 || numeroEscolhido === "." && numerosSelecionados.indexOf(".") >= 0) { // não pode 000 e limite de 11 números
         return;
     }
     if (numeroEscolhido === "." && numerosSelecionados.length === 0) {
         numerosSelecionados.push(0); // Se caso o usuário clicar no "," antes de qualquer outra coisa
-    }
-
-    if (operacao === true) {
-        realizandoOperacao();
-        return;
     }
     
     numerosSelecionados.push(numeroEscolhido);
@@ -42,17 +38,21 @@ const rodarArray = function() {
     resultadoNumero.innerHTML = numeroResultante;
 }
 
+
+
 // BOTÕES -> LIMPAR
 
 botoesDaCalculadora[1].onclick = function() { // Botão "CE"
     numerosSelecionados = [0];
     rodarArray();
+    operacao.innerHTML = "";
 }
 
 botoesDaCalculadora[2].onclick = function() { // Botão "C"
     numerosSelecionados = [0];
     rodarArray();
     operacao.innerHTML = "";
+    operadorMatematico = "";
 }
 
 botoesDaCalculadora[3].onclick = function() { // Botão "Apagar"
@@ -64,31 +64,38 @@ botoesDaCalculadora[3].onclick = function() { // Botão "Apagar"
 }
 
 
+
 // BOTÕES -> CÁLCULOS
 botoesDaCalculadora[7].onclick = function() { // Botão "/"
     operadorMatematico = "/";
     operacao.innerHTML = `${numeroResultante} /`;
     numeroGuardadoOperacao = numeroResultante;
+    numerosSelecionados = [0];
 }
 
 botoesDaCalculadora[11].onclick = function() { // Botão "X"
     operadorMatematico = "*";
     operacao.innerHTML = `${numeroResultante} x`;
     numeroGuardadoOperacao = numeroResultante;
+    numerosSelecionados = [0];
 }
 
 botoesDaCalculadora[15].onclick = function() { //Botão "-"
     operadorMatematico = "-";
     operacao.innerHTML = `${numeroResultante} -`;
     numeroGuardadoOperacao = numeroResultante;
+    numerosSelecionados = [0];
 }
+
 botoesDaCalculadora[19].onclick = function() { // Botão "+"
     operadorMatematico = "+"
     operacao.innerHTML = `${numeroResultante} +`;
     numeroGuardadoOperacao = numeroResultante;
+    numerosSelecionados = [0];
 }
 
 botoesDaCalculadora[23].onclick = function() { // Botão "="
+    operacao.innerHTML = `? ${operadorMatematico} ${numeroResultante} =` // PRECISA criar uma váriavel com o "?" provavelmente.
     if (operadorMatematico === "/") {
         numeroResultante = numeroGuardadoOperacao / numeroResultante;
     }
@@ -105,8 +112,14 @@ botoesDaCalculadora[23].onclick = function() { // Botão "="
         numeroResultante = numeroGuardadoOperacao + numeroResultante;
     }
 
+    else {
+        return;
+    }
+
     resultadoNumero.innerHTML = numeroResultante;
 }
+
+
 
 // BOTÕES -> NÚMEROS
 botoesDaCalculadora[8].onclick = function() { // Botão "7"
