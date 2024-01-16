@@ -6,7 +6,7 @@ let numerosSelecionados = []; // Lista com todos os números que estão sendo mo
 let numeroResultante = ""; // É a lista de cima toda junta em um único número;
 let numerosSelecionadosOperacao = [];
 let numeroResultanteOperacao = "";
-let numeroGuardadoOperacao;
+let primeiroNumeroOperacao;
 let operadorMatematico;
 
 for (let i = 1; i <= 24; i++) {
@@ -67,58 +67,73 @@ botoesDaCalculadora[3].onclick = function() { // Botão "Apagar"
 
 // BOTÕES -> CÁLCULOS
 botoesDaCalculadora[7].onclick = function() { // Botão "/"
+    if (operacao.innerHTML !== "") {
+        botaoResultado();
+    }
     operadorMatematico = "/";
     operacao.innerHTML = `${numeroResultante} /`;
-    numeroGuardadoOperacao = numeroResultante;
+    primeiroNumeroOperacao = numeroResultante;
     numerosSelecionados = [0];
 }
 
 botoesDaCalculadora[11].onclick = function() { // Botão "X"
+    if (operacao.innerHTML !== "") {
+        botaoResultado();
+    }
     operadorMatematico = "*";
     operacao.innerHTML = `${numeroResultante} x`;
-    numeroGuardadoOperacao = numeroResultante;
+    primeiroNumeroOperacao = numeroResultante;
     numerosSelecionados = [0];
 }
 
 botoesDaCalculadora[15].onclick = function() { //Botão "-"
+    if (operacao.innerHTML !== "") {
+        botaoResultado();
+    }
     operadorMatematico = "-";
     operacao.innerHTML = `${numeroResultante} -`;
-    numeroGuardadoOperacao = numeroResultante;
+    primeiroNumeroOperacao = numeroResultante;
     numerosSelecionados = [0];
 }
 
 botoesDaCalculadora[19].onclick = function() { // Botão "+"
-    operadorMatematico = "+"
+    if (operacao.innerHTML !== "") {
+        botaoResultado();
+    }
+    operadorMatematico = "+";
     operacao.innerHTML = `${numeroResultante} +`;
-    numeroGuardadoOperacao = numeroResultante;
+    primeiroNumeroOperacao = numeroResultante;
     numerosSelecionados = [0];
 }
 
-botoesDaCalculadora[23].onclick = function() { // Botão "="
-    operacao.innerHTML = `? ${operadorMatematico} ${numeroResultante} =` // PRECISA criar uma váriavel com o "?" provavelmente.
+const botaoResultado = function() { // Botão "="
+    operacao.innerHTML = `${primeiroNumeroOperacao} ${operadorMatematico} ${numeroResultante} =`;
     if (operadorMatematico === "/") {
-        numeroResultante = numeroGuardadoOperacao / numeroResultante;
+        numeroResultante = primeiroNumeroOperacao / numeroResultante;
     }
 
     else if (operadorMatematico === "*") {
-        numeroResultante = numeroGuardadoOperacao * numeroResultante;
+        numeroResultante = primeiroNumeroOperacao * numeroResultante;
     }
 
     else if (operadorMatematico === "-") {
-        numeroResultante = numeroGuardadoOperacao - numeroResultante;
+        numeroResultante = primeiroNumeroOperacao - numeroResultante;
     }
 
     else if (operadorMatematico === "+") {
-        numeroResultante = numeroGuardadoOperacao + numeroResultante;
+        numeroResultante = primeiroNumeroOperacao + numeroResultante;
     }
 
     else {
         return;
     }
-
+    
     resultadoNumero.innerHTML = numeroResultante;
 }
 
+botoesDaCalculadora[23].onclick = function() {
+    botaoResultado();
+}
 
 
 // BOTÕES -> NÚMEROS
