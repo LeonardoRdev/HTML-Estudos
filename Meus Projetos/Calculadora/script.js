@@ -1,13 +1,20 @@
+// COISAS PARA ARRUMAR:
+// 5 - -
+// 9 / 2 = 4.5 x 2
+// 9 * / (é pra burro esse, nao deve ser dificil de arrumar)
+
 let resultadoNumero = document.querySelector("#resultado_numero");
 let operacao = document.querySelector("#operacao");
 let botoesDaCalculadora = [];
 
 let numerosSelecionados = []; // Lista com todos os números que estão sendo mostrados.
-let numeroResultante = ""; // É a lista de cima toda junta em um único número;
+let numeroResultante = 0; // É a lista de cima toda junta em um único número;
 let numerosSelecionadosOperacao = [];
 let numeroResultanteOperacao = "";
-let primeiroNumeroOperacao;
-let operadorMatematico;
+let primeiroNumeroOperacao = "";
+let segundoNumeroOperacao = "";
+let operadorMatematico = "";
+let mudarSegundoNumeroOperacao = true;
 
 for (let i = 1; i <= 24; i++) {
     botoesDaCalculadora.push(document.querySelector("#botao" + i ));
@@ -46,6 +53,7 @@ botoesDaCalculadora[1].onclick = function() { // Botão "CE"
     numerosSelecionados = [0];
     rodarArray();
     operacao.innerHTML = "";
+    primeiroNumeroOperacao = 0;
 }
 
 botoesDaCalculadora[2].onclick = function() { // Botão "C"
@@ -53,6 +61,8 @@ botoesDaCalculadora[2].onclick = function() { // Botão "C"
     rodarArray();
     operacao.innerHTML = "";
     operadorMatematico = "";
+    primeiroNumeroOperacao = 0;
+    segundoNumeroOperacao = "";
 }
 
 botoesDaCalculadora[3].onclick = function() { // Botão "Apagar"
@@ -67,6 +77,7 @@ botoesDaCalculadora[3].onclick = function() { // Botão "Apagar"
 
 // BOTÕES -> CÁLCULOS
 botoesDaCalculadora[7].onclick = function() { // Botão "/"
+    mudarSegundoNumeroOperacao = true;
     if (operacao.innerHTML !== "") {
         botaoResultado();
     }
@@ -77,6 +88,7 @@ botoesDaCalculadora[7].onclick = function() { // Botão "/"
 }
 
 botoesDaCalculadora[11].onclick = function() { // Botão "X"
+    mudarSegundoNumeroOperacao = true;
     if (operacao.innerHTML !== "") {
         botaoResultado();
     }
@@ -87,6 +99,7 @@ botoesDaCalculadora[11].onclick = function() { // Botão "X"
 }
 
 botoesDaCalculadora[15].onclick = function() { //Botão "-"
+    mudarSegundoNumeroOperacao = true;
     if (operacao.innerHTML !== "") {
         botaoResultado();
     }
@@ -97,6 +110,7 @@ botoesDaCalculadora[15].onclick = function() { //Botão "-"
 }
 
 botoesDaCalculadora[19].onclick = function() { // Botão "+"
+    mudarSegundoNumeroOperacao = true;
     if (operacao.innerHTML !== "") {
         botaoResultado();
     }
@@ -107,27 +121,34 @@ botoesDaCalculadora[19].onclick = function() { // Botão "+"
 }
 
 const botaoResultado = function() { // Botão "="
-    operacao.innerHTML = `${primeiroNumeroOperacao} ${operadorMatematico} ${numeroResultante} =`;
+    if (mudarSegundoNumeroOperacao === true) {
+        segundoNumeroOperacao = numeroResultante;
+        mudarSegundoNumeroOperacao = false;
+    }
+
+    operacao.innerHTML = `${primeiroNumeroOperacao} ${operadorMatematico} ${segundoNumeroOperacao} =`;
+
     if (operadorMatematico === "/") {
-        numeroResultante = primeiroNumeroOperacao / numeroResultante;
+        numeroResultante = primeiroNumeroOperacao / segundoNumeroOperacao;
     }
 
     else if (operadorMatematico === "*") {
-        numeroResultante = primeiroNumeroOperacao * numeroResultante;
+        numeroResultante = primeiroNumeroOperacao * segundoNumeroOperacao;
     }
 
     else if (operadorMatematico === "-") {
-        numeroResultante = primeiroNumeroOperacao - numeroResultante;
+        numeroResultante = primeiroNumeroOperacao - segundoNumeroOperacao;
     }
 
     else if (operadorMatematico === "+") {
-        numeroResultante = primeiroNumeroOperacao + numeroResultante;
+        numeroResultante = primeiroNumeroOperacao + segundoNumeroOperacao;
     }
 
     else {
         return;
     }
-    
+
+    primeiroNumeroOperacao = numeroResultante
     resultadoNumero.innerHTML = numeroResultante;
 }
 
