@@ -1,6 +1,12 @@
 // COISAS PARA ARRUMAR:
-// 5 - -
+// Criar função para tamanho, aí você bota ela depois no selecionarNumero() e na hora de realizar operações:
+// if numerosSelecionados.lenght > 8 { diminuir fonte }
 // 9 / 2 = 4.5 x 2
+// 0 / 0
+// 10 * 3 - 5 / 2
+
+// RESOLVIDOS
+// 5 - -
 // 9 * / (é pra burro esse, nao deve ser dificil de arrumar)
 
 let resultadoNumero = document.querySelector("#resultado_numero");
@@ -63,6 +69,7 @@ botoesDaCalculadora[2].onclick = function() { // Botão "C"
     operadorMatematico = "";
     primeiroNumeroOperacao = 0;
     segundoNumeroOperacao = "";
+    console.clear();
 }
 
 botoesDaCalculadora[3].onclick = function() { // Botão "Apagar"
@@ -77,10 +84,10 @@ botoesDaCalculadora[3].onclick = function() { // Botão "Apagar"
 
 // BOTÕES -> CÁLCULOS
 botoesDaCalculadora[7].onclick = function() { // Botão "/"
-    mudarSegundoNumeroOperacao = true;
-    if (operacao.innerHTML !== "") {
+    if (operacao.innerHTML !== "" && numerosSelecionados != 0) {
         botaoResultado();
     }
+    mudarSegundoNumeroOperacao = true;
     operadorMatematico = "/";
     operacao.innerHTML = `${numeroResultante} /`;
     primeiroNumeroOperacao = numeroResultante;
@@ -88,10 +95,10 @@ botoesDaCalculadora[7].onclick = function() { // Botão "/"
 }
 
 botoesDaCalculadora[11].onclick = function() { // Botão "X"
-    mudarSegundoNumeroOperacao = true;
-    if (operacao.innerHTML !== "") {
+    if (operacao.innerHTML !== "" && numerosSelecionados != 0) {
         botaoResultado();
     }
+    mudarSegundoNumeroOperacao = true;
     operadorMatematico = "*";
     operacao.innerHTML = `${numeroResultante} x`;
     primeiroNumeroOperacao = numeroResultante;
@@ -99,10 +106,10 @@ botoesDaCalculadora[11].onclick = function() { // Botão "X"
 }
 
 botoesDaCalculadora[15].onclick = function() { //Botão "-"
-    mudarSegundoNumeroOperacao = true;
-    if (operacao.innerHTML !== "") {
+    if (operacao.innerHTML !== "" && numerosSelecionados != 0) {
         botaoResultado();
     }
+    mudarSegundoNumeroOperacao = true;
     operadorMatematico = "-";
     operacao.innerHTML = `${numeroResultante} -`;
     primeiroNumeroOperacao = numeroResultante;
@@ -110,10 +117,10 @@ botoesDaCalculadora[15].onclick = function() { //Botão "-"
 }
 
 botoesDaCalculadora[19].onclick = function() { // Botão "+"
-    mudarSegundoNumeroOperacao = true;
-    if (operacao.innerHTML !== "") {
+    if (operacao.innerHTML !== "" && numerosSelecionados != 0) {
         botaoResultado();
     }
+    mudarSegundoNumeroOperacao = true;
     operadorMatematico = "+";
     operacao.innerHTML = `${numeroResultante} +`;
     primeiroNumeroOperacao = numeroResultante;
@@ -148,13 +155,16 @@ const botaoResultado = function() { // Botão "="
         return;
     }
 
-    primeiroNumeroOperacao = numeroResultante
+    primeiroNumeroOperacao = numeroResultante;
     resultadoNumero.innerHTML = numeroResultante;
+
+    numerosSelecionados = [0];
 }
 
 botoesDaCalculadora[23].onclick = function() {
     botaoResultado();
 }
+
 
 
 // BOTÕES -> NÚMEROS
