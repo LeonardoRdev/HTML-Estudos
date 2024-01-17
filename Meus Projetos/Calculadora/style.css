@@ -51,7 +51,6 @@ p#resultado_numero {
 }
 
 .botoes_da_calculadora {
-    border: solid 2px black;
     border-radius: 5px;
     background-color: #3b3b3b;
     display: grid;
@@ -69,6 +68,10 @@ p#resultado_numero {
 
 #botao1:hover, #botao2:hover, #botao3:hover, #botao4:hover, #botao5:hover, #botao6:hover, #botao7:hover, #botao8:hover, #botao12:hover, #botao16:hover, #botao20:hover{
     background-color: #3b3b3b;
+}
+
+#botao16, #botao24 {
+    font-size: 1.5em;
 }
 
 .botoes_da_calculadora:last-child {

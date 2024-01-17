@@ -1,13 +1,14 @@
-// COISAS PARA ARRUMAR:
+// PRECISA ARRUMAR:
 // Criar função para tamanho, aí você bota ela depois no selecionarNumero() e na hora de realizar operações:
 // if numerosSelecionados.lenght > 8 { diminuir fonte }
-// 9 / 2 = 4.5 x 2
 // 0 / 0
-// 10 * 3 - 5 / 2
+// CE guarda o número aparentemente certo, porém o primeiroNumeroOperacao não funciona.
+// Botão %
 
-// RESOLVIDOS
-// 5 - -
-// 9 * / (é pra burro esse, nao deve ser dificil de arrumar)
+// RESOLVIDOS:
+// 10 * 3 - 5 / 2
+// 9 / 2 = 4.5 x 2
+// 9 * / (Simples de arrumar)
 
 let resultadoNumero = document.querySelector("#resultado_numero");
 let operacao = document.querySelector("#operacao");
@@ -29,7 +30,7 @@ for (let i = 1; i <= 24; i++) {
 
 
 const selecionarNumero = function(numeroEscolhido) { // Lê toda a lista de números selecionados e mostra no resultadoNumero
-    if (numeroEscolhido === 0 && numerosSelecionados.length === 0 || numerosSelecionados.length === 11 || numeroEscolhido === "." && numerosSelecionados.indexOf(".") >= 0) { // não pode 000 e limite de 11 números
+    if (numeroEscolhido === 0 && numerosSelecionados.length === 0 || numerosSelecionados.length === 11 || numeroEscolhido === "." && numerosSelecionados.indexOf(".") >= 0) { // não pode 000, limite de 11 números e não pode mais de 1 vírgula.
         return;
     }
     if (numeroEscolhido === "." && numerosSelecionados.length === 0) {
@@ -82,7 +83,33 @@ botoesDaCalculadora[3].onclick = function() { // Botão "Apagar"
 
 
 
-// BOTÕES -> CÁLCULOS
+// BOTÕES -> CÁLCULOS (FUNÇÔES)
+
+// botoesDaCalculadora[0].onclick = function() { // Botâo "%"
+//     segundoNumeroOperacao = numeroResultante / 100;
+// }
+
+botoesDaCalculadora[4].onclick = function() { // Botâo "1/x"
+    numeroResultante = 1 / numeroResultante;
+    resultadoNumero.innerHTML = numeroResultante;
+}
+
+botoesDaCalculadora[5].onclick = function() { // Botâo "x²"
+    numeroResultante *= numeroResultante;
+    resultadoNumero.innerHTML = numeroResultante;
+}
+
+botoesDaCalculadora[6].onclick = function() { // Botâo "²/x"
+    numeroResultante = Math.sqrt(numeroResultante);
+    resultadoNumero.innerHTML = numeroResultante;
+}
+
+// ESPAÇO LIVRE ABAIXO
+
+
+
+// BOTOÊS -> CÁLCULOS (OPERADORES)
+
 botoesDaCalculadora[7].onclick = function() { // Botão "/"
     if (operacao.innerHTML !== "" && numerosSelecionados != 0) {
         botaoResultado();
@@ -136,6 +163,10 @@ const botaoResultado = function() { // Botão "="
     operacao.innerHTML = `${primeiroNumeroOperacao} ${operadorMatematico} ${segundoNumeroOperacao} =`;
 
     if (operadorMatematico === "/") {
+        if (primeiroNumeroOperacao === 0 && segundoNumeroOperacao === 0) {
+            resultadoNumero.innerHTML = "Resultado indefinido";
+            return;
+        }
         numeroResultante = primeiroNumeroOperacao / segundoNumeroOperacao;
     }
 
@@ -168,6 +199,7 @@ botoesDaCalculadora[23].onclick = function() {
 
 
 // BOTÕES -> NÚMEROS
+
 botoesDaCalculadora[8].onclick = function() { // Botão "7"
     selecionarNumero(7);
 }
