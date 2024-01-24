@@ -10,7 +10,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #555;
+    background-color: #000;
 }
 
 main {
@@ -19,22 +19,22 @@ main {
 
 .item1 {
     width: 70px;
-    height: 310px;
-    background-color: rgb(255, 0, 0);
-    transform: translateX(-100px);
+    height: 420px;
+    background-color: #b1060f;
+    transform: translateX(-45px);
 }
 
 .item2 {
     width: 70px;
-    height: 310px;
-    background-color: rgb(255, 0, 0);
-    transform: translateX(50px);
+    height: 420px;
+    background-color: #b1060f;
+    transform: translateX(40px);
 }
 
 .item3 {
     width: 70px;
-    height: 310px;
-    background-color: rgb(255, 0, 0);
-    rotate: 320deg;
-    translate: -110px;
+    height: 490px;
+    background-color: #e50914;
+    rotate: 340deg;
+    translate: -110px -40px;
 }
