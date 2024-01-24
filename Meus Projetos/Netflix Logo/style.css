@@ -3,3 +3,38 @@
     margin: 0;
     box-sizing: border-box;
 }
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #555;
+}
+
+main {
+    display: flex;
+}
+
+.item1 {
+    width: 70px;
+    height: 310px;
+    background-color: rgb(255, 0, 0);
+    transform: translateX(-100px);
+}
+
+.item2 {
+    width: 70px;
+    height: 310px;
+    background-color: rgb(255, 0, 0);
+    transform: translateX(50px);
+}
+
+.item3 {
+    width: 70px;
+    height: 310px;
+    background-color: rgb(255, 0, 0);
+    rotate: 320deg;
+    translate: -110px;
+}
