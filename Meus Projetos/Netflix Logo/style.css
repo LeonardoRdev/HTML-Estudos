@@ -15,6 +15,10 @@ body {
 
 main {
     display: flex;
+    height: 426px;
+    /* border: solid 2px white; */
+    padding-left: 80px;
+    overflow: hidden;
 }
 
 .item1 {
@@ -37,4 +41,5 @@ main {
     background-color: #e50914;
     rotate: 340deg;
     translate: -110px -40px;
+    /* box-shadow: 0 0 4px 1px; */
 }
