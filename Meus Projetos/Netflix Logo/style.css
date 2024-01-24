@@ -10,7 +10,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #000;
+    flex-direction: column;
 }
 
 main {
@@ -42,4 +42,19 @@ main {
     rotate: 340deg;
     translate: -110px -40px;
     /* box-shadow: 0 0 4px 1px; */
+}
+
+button {
+    margin-top: 100px;
+    padding: 5px 15px;
+    font-size: 1.5em;
+    background-color: rgb(41, 240, 240);
+    border: solid white 2px;
+    transition: transform 0.05s;
+    border-radius: 20px;
+}
+
+button:hover {
+    cursor: pointer;
+    transform: scale(1.05);
 }
