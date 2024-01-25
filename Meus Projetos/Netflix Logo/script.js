@@ -3,6 +3,8 @@ let corpo = document.querySelector("body");
 let curvatura = document.querySelector(".item4");
 
 corpo.style.backgroundColor = "#fff";
+corpo.style.transition = "0.8s"
+curvatura.style.transition = "0.8s"
 // botao.style.border = "solid 2px black";
 
 corpo.onclick = () => {
