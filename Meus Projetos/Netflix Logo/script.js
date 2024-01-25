@@ -1,17 +1,20 @@
-let botao = document.querySelector("#mudarTema");
+// let botao = document.querySelector("#mudarTema");
 let corpo = document.querySelector("body");
+let curvatura = document.querySelector(".item4");
 
 corpo.style.backgroundColor = "#fff";
-botao.style.border = "solid 2px black";
+// botao.style.border = "solid 2px black";
 
-botao.onclick = () => {
+corpo.onclick = () => {
     console.log(corpo.style.backgroundColor)
     if(corpo.style.backgroundColor == "rgb(255, 255, 255)") {
         corpo.style.backgroundColor = "#111";
-        botao.style.border = "solid 2px white";
+        curvatura.style.backgroundColor = "#111"
+        // botao.style.border = "solid 2px white";
     }
     else {
         corpo.style.backgroundColor = "#fff";
-        botao.style.border = "solid 2px black";
+        curvatura.style.backgroundColor = "#fff"
+        // botao.style.border = "solid 2px black";
     }
 }

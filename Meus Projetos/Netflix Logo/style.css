@@ -15,10 +15,11 @@ body {
 
 main {
     display: flex;
-    height: 426px;
-    /* border: solid 2px white; */
-    padding-left: 80px;
+    height: 424px;
+    padding-left: 45px;
     overflow: hidden;
+    position: absolute;
+    /* border: solid 2px white; */
 }
 
 .item1 {
@@ -41,10 +42,19 @@ main {
     background-color: #e50914;
     rotate: 340deg;
     translate: -110px -40px;
-    /* box-shadow: 0 0 4px 1px; */
 }
 
-button {
+.item4 {
+    width: 280px;
+    height: 50px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 100%;
+    position: absolute;
+    top: 410px;
+    right: 0;
+}
+
+/* button {
     margin-top: 100px;
     padding: 5px 15px;
     font-size: 1.5em;
@@ -57,4 +67,4 @@ button {
 button:hover {
     cursor: pointer;
     transform: scale(1.05);
-}
+} */
