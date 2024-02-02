@@ -19,7 +19,6 @@ main {
     padding-left: 45px;
     overflow: hidden;
     position: absolute;
-    /* border: solid 2px white; */
 }
 
 .item1 {
@@ -53,18 +52,3 @@ main {
     top: 410px;
     right: 0;
 }
-
-/* button {
-    margin-top: 100px;
-    padding: 5px 15px;
-    font-size: 1.5em;
-    background-color: rgb(41, 240, 240);
-    border: solid white 2px;
-    transition: transform 0.05s;
-    border-radius: 20px;
-}
-
-button:hover {
-    cursor: pointer;
-    transform: scale(1.05);
-} */
