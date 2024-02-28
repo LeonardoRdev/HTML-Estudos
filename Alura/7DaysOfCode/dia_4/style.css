@@ -2,6 +2,17 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: "Anta", sans-serif;
+    text-align: center;
+}
+
+body {
+    background: linear-gradient(20deg, #d154f0, #f4f768);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
 }
 
 main {
@@ -11,13 +22,48 @@ main {
     align-items: center;
 }
 
+main h1 {
+    margin-bottom: 10vh;
+    font-size: 3rem;
+}
+
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+form label {
+    font-size: 2rem;
+}
+
+form input {
+    margin-top: 8px;
+    font-size: 1.7rem;
+    width: 120%;
+    height: 45px;
+    padding: 0 10px;
+}
+
+p#msg-tentativas-restantes {
+    margin-right: auto;
+}
+
 #enviar {
-    margin-top: 15px;
-    width: 60%;
+    margin-top: 25px;
+    padding: 15px 25px;
+    border-radius: 5px;
+    border: solid 2px #000;
+    font-size: 1.5rem;
+}
+
+#enviar:hover {
+    cursor: pointer;
+    background-color: rgb(160, 160, 240);
+}
+
+#resultado-chute {
+    margin-top: 60px;
+    font-size: 3rem;
+    text-shadow: 1px 1px 3px #000;
 }

@@ -5,17 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dia 4 | 7 days of code</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet">
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <main>
+        <h1>Pensei em um número de 1 a 10...</h1>
         <form>
             <label for="chute">Em qual número estou pensando??</label>
             <input name="chute" id="chute" type="text">
-            <button id="enviar">Chutar</button>
+            <p id="msg-tentativas-restantes">0/3 tentativas restantes</p>
+            <button type="button" id="enviar">Chutar</button>
         </form>
+        <p id="resultado-chute"></p>
     </main>
 </body>
 
