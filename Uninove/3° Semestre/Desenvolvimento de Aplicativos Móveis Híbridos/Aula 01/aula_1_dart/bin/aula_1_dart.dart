@@ -3,9 +3,10 @@ void main() {
   String curso = "ADS";
   int qtdAlunos = 53;
   print(curso);
-  print("o curso de " + curso + " tem 82 alunos");
+  
+  //print("o curso de " + curso + " tem 82 alunos");
 
-  print("O curso de " + curso + " tem " + qtdAlunos.toString() + " alunos");
+  //print("O curso de " + curso + " tem " + qtdAlunos.toString() + " alunos");
 
   print("O curso de $curso tem $qtdAlunos alunos\n\n");
 
@@ -27,7 +28,7 @@ void main() {
 // Exercicio 2:
   String data = "24/09/2004";
 
-  print("\n\nData de Nascimento: ${data}\n");
+  print("\n\nData de Nascimento: $data\n");
 
   print("Dia: ${data.substring(0, 2)}");
   print("Mês: ${data.substring(3, 5)}");
