@@ -12,11 +12,20 @@
 
 main()
 {
-    int i, fim;
+    int i, inicio, fim;
+    int numerosPrimosEncontrados = 0;
 
-    fim = 50;
+    printf("Mostrador de Numeros Primos\n\n");
+    
+    printf("Digite o valor inicial do intervalo desejado: ");
+    scanf("%d", &inicio);
 
-    for (i = 1; i <= 50; i++)
+    printf("Digite o valor maximo que eu devo buscar pelos numeros primos: ");
+    scanf("%d", &fim);
+
+    printf("\nTodos os numeros primos encontrados entre 1 a %d:\n", fim);
+
+    for (i = inicio; i <= fim; i++)
     {
         int numeroAtual = i;
         int j;
@@ -28,9 +37,11 @@ main()
                 divisivelPorTantasVezes++;
             }
         }
-        if (divisivelPorTantasVezes <= 2 && numeroAtual != 1)
+        if (divisivelPorTantasVezes <= 2 && numeroAtual > 1)
         {
-            printf("%d\n", numeroAtual);
+            printf("-> %d\n", numeroAtual);
+            numerosPrimosEncontrados++;
         }
     }
+    printf("\nForam encontados %d numeros primos!", numerosPrimosEncontrados);
 }
