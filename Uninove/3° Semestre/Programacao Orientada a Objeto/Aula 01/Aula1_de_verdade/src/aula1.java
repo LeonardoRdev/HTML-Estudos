@@ -1,19 +1,19 @@
-public class Main{public static void main(String[] args) {
+// public class Main{public static void main(String[] args) {
 
-    System.out.println("Aula muito zica");
-    System.out.print("Linha number 23/02/2077");
-    System.out.println(" <- é verdade esse ano");
-    System.out.println("1 + 2077");
+//     System.out.println("Aula muito zica");
+//     System.out.print("Linha number 23/02/2077");
+//     System.out.println(" <- é verdade esse ano");
+//     System.out.println("1 + 2077");
 
-}}
+// }}
 
-public class Main {
-    public static void main(String[] args) {
-        boolean goodOrBado = true; // Pode inserir true ou false
-        System.out.print("Leonardo é bom no Terraria? = " + goodOrBado);
-}}
+// public class Main {
+//     public static void main(String[] args) {
+//         boolean goodOrBado = true; // Pode inserir true ou false
+//         System.out.print("Leonardo é bom no Terraria? = " + goodOrBado);
+// }}
 
-public class Main {
+public class aula1 {
     public static void main(String[] args) {
         //**OPERADORES ARITMÉTICOS**
         //Adição (+), Subtração (-), Divisão(/), Multiplicação(*)
