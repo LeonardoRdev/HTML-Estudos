@@ -36,7 +36,7 @@ por exemplo: **<input id="q" type="text" name="q"></input>**
 
 ---
 
-Na próxima aula, utilizaremos o AJAX (biblioteca
+Na próxima aula, utilizaremos o AJAX (biblioteca)
 
 https://cdnjs.com/libraries/jquery
 
