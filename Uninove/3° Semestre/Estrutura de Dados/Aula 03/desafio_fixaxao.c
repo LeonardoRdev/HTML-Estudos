@@ -22,7 +22,7 @@ int main() {
             printf("| DIFICULDADE 'DIFICIL' SELECIONADA |\n\n");
         }
         else if (dificuldadeEscolhida == 4) {
-            tentativasRestantes = 2;
+            tentativasRestantes = 3;
             printf("| DIFICULDADE 'EXTREMO' SELECIONADA |\n\n");
         }
         else {
@@ -62,7 +62,8 @@ int main() {
             }
             printf("\nTENTATIVAS RESTANTES: %d/%d\n\n", tentativasRestantes, tentativasTOTAIS);
             if (tentativasRestantes == 0) {
-                printf("\nTentativas esgotadas! Mais sorte na proxima vez!\n");
+                printf("\nTentativas esgotadas! Mais sorte na proxima vez!");
+                printf("\nO numero secreto era %d\n\n", numeroSecreto);
             }
         }
     }
