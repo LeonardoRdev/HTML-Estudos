@@ -3,6 +3,8 @@ let bebidas = [];
 let congelados = [];
 let doces = [];
 
+let todasListas = [frutas, bebidas, congelados, doces];
+
 const comprasTexto = document.querySelector("#comprastexto");
 
 const inserirItem = function() {
@@ -34,15 +36,30 @@ const inserirItem = function() {
 }
 
 const removerItem = function() {
-alert(`LISTA ATUAL:\nFRUTAS: ${frutas}\nBEBIDAS: ${bebidas}\nCONGELADOS: ${congelados}\nDOCES: ${doces}`);
+    let removerEsteItem = prompt(`LISTA ATUAL:\nFRUTAS: ${frutas}\nBEBIDAS: ${bebidas}\nCONGELADOS: ${congelados}\nDOCES: ${doces}\nO que deseja remover?`);
+    let itemEncontado = false;
+    for(let i = 0; i < todasListas.length; i++) {
+        if (todasListas[i].includes(removerEsteItem)) {
+            alert("ACHEI O ITEM E REMOVI NA LISTA: " + todasListas[i]);
+            itemEncontado = true;
+        }
+    }
+    if (itemEncontado == false) {
+        alert("NÃO ACHEI O ITEM");
+    }
+    return; 
 }
 
 
 do {
     if (frutas.length == 0 && bebidas.length == 0 && congelados.length == 0 && doces.length == 0) {
-        var desejaAdicionar = prompt("Deseja adicionar uma comida na sua lista de compras?\n>Sim\nou\n>Não");
-        if (desejaAdicionar == "s" || desejaAdicionar == "sim" || desejaAdicionar == "Sim" || desejaAdicionar == "S") {
+        var desejaAdicionar = prompt("Deseja adicionar uma comida na sua lista de compras?\n[1] Sim\n[2] Não");
+        if (desejaAdicionar == 1) {
             inserirItem();
+        }
+        else if (desejaAdicionar == 2) {
+            // Gambiarra pra sair se digitar "2" na primeira rodada.
+            desejaAdicionar = 3;
         }
     }
     else {
@@ -59,7 +76,7 @@ do {
             break;
         }
     }
-} while (desejaAdicionar != "n");
+} while (desejaAdicionar != 3);
 
 
 comprasTexto.innerHTML = `
