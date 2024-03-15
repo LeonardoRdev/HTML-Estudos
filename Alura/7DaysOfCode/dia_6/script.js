@@ -36,16 +36,17 @@ const inserirItem = function() {
 }
 
 const removerItem = function() {
-    let removerEsteItem = prompt(`LISTA ATUAL:\nFRUTAS: ${frutas}\nBEBIDAS: ${bebidas}\nCONGELADOS: ${congelados}\nDOCES: ${doces}\nO que deseja remover?`);
+    let removerEsteItem = prompt(`LISTA ATUAL:\n\nFrutas.............: ${frutas}\nBebidas.........: ${bebidas}\nCongelados.: ${congelados}\nDoces.............: ${doces}\n\nQue item deseja remover?`);
     let itemEncontado = false;
     for(let i = 0; i < todasListas.length; i++) {
         if (todasListas[i].includes(removerEsteItem)) {
-            alert("ACHEI O ITEM E REMOVI NA LISTA: " + todasListas[i]);
+            alert(`ITEM ENCONTRADO!\n\nItem "${removerEsteItem}" removido com sucesso!`);
+            todasListas[i].splice(todasListas[i].indexOf(removerEsteItem), 1)
             itemEncontado = true;
         }
     }
     if (itemEncontado == false) {
-        alert("NÃO ACHEI O ITEM");
+        alert(`Item "${removerEsteItem}" não encontrado D:`);
     }
     return; 
 }
@@ -60,6 +61,10 @@ do {
         else if (desejaAdicionar == 2) {
             // Gambiarra pra sair se digitar "2" na primeira rodada.
             desejaAdicionar = 3;
+        }
+        else {
+            alert("FAVOR INSERIR UMA OPÇÃO VÁLIDA!!");
+            desejaAdicionar = 0;
         }
     }
     else {
