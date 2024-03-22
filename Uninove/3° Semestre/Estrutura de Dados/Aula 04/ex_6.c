@@ -21,6 +21,8 @@ int main()
     int tentativas = 5;
     int existeNaPalavra = 0;
     char underlinePalavraSecreta[20];
+    char letrasErradas[20] = "";
+    int tamanhoPalavraChute;
 
     system("cls");
 
@@ -33,35 +35,52 @@ int main()
     strcpy(underlinePalavraSecreta, palavraSecreta);
     
     for (int i = 0; i < tamanhoPalavraSecreta; i++) {
-        underlinePalavraSecreta[i] = '_'; // Atribuindo o caractere 'a' a cada posição
+        underlinePalavraSecreta[i] = '_'; // Atribuindo o caractere '_' a cada posição
         printf("underlinesPalavraSecreta: %c\n", underlinePalavraSecreta[i]);
     }
 
 
-    while (strcmp(chutePalavra, palavraSecreta) != 0 && tentativas >= 0) {
     system("cls");
+    while (strcmp(chutePalavra, palavraSecreta) != 0 && tentativas >= 0) {
         existeNaPalavra = 0;
         
-        printf("\n[JOGADOR 2]:\nChute uma LETRA ou a PALAVRA INTEIRA\n*OBS: chutar a palavra inteira consome todas as chances\n\nPALAVRA: %s\n\nTentativas restantes: %d/5\nChute: ",underlinePalavraSecreta ,tentativas);
+        printf("[JOGADOR 2]:\nChute uma LETRA ou a PALAVRA INTEIRA\n*OBS: chutar a palavra inteira consome todas as chances! Tome cuidado.\n\nPALAVRA: %s\nLetras Erradas: %s\n\nTentativas restantes: %d/5\nChute: ",underlinePalavraSecreta, letrasErradas ,tentativas);
         scanf(" %s", &chutePalavra);
 
-        if (strcmp(chutePalavra, palavraSecreta) == 0) {
-            break;
-        }
+        tamanhoPalavraChute = strlen(chutePalavra);
+        if (tamanhoPalavraChute == 1) {
+            if (strcmp(chutePalavra, palavraSecreta) == 0) {
+                break;
+            }
 
-        for (int i = 0; i < tamanhoPalavraSecreta; i++) {
-            if (palavraSecreta[i] == chutePalavra[0]) {
-                printf("\nA posicao %d esta correta! A letra eh: %c\n", i, palavraSecreta[i]);
-                underlinePalavraSecreta[i] = palavraSecreta[i];
+            for (int i = 0; i < tamanhoPalavraSecreta; i++) {
+                if (palavraSecreta[i] == chutePalavra[0]) {
+                    printf("\nA posicao %d esta correta! A letra eh: %c\n", i, palavraSecreta[i]);
+                    underlinePalavraSecreta[i] = palavraSecreta[i];
 
-                existeNaPalavra = 1;
+                    existeNaPalavra = 1;
+                }
+            }
+            
+            if (existeNaPalavra == 0) {
+                // Lista com letras que não têm na "palavraSecreta"
+                // exemplo: Letras erradas -> "E", "J", "L".
+                strcat(letrasErradas, chutePalavra);
+                tentativas--;
             }
         }
-        
-        if (existeNaPalavra == 0) {
-            tentativas--;
+        else {
+            tentativas = -1;
         }
+        system("cls");
     }
 
-    printf("\n\nFIM DE JOGO!!");
+    if (strcmp(palavraSecreta, chutePalavra) == 0) {
+        printf("\nVOCE VENCEU!! ACERTOU A PALAVRA: %s", palavraSecreta);
+    }
+    else {
+        printf("\nNAO FOI DESSA VEZ! A PALAVRA ERA: %s", palavraSecreta);
+    }
+
+    printf("\n\nFIM DE JOGO\n\n");
 }
