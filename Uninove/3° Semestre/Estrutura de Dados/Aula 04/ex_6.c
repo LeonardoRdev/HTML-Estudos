@@ -18,24 +18,43 @@ int main()
 
     char palavraSecreta[20];
     char chutePalavra[20];
+    int tentativas = 5;
+
+    system("cls");
 
     printf("[JOGADOR 1]:\nDigite a palavra secreta: ");
     scanf(" %[^\n]", &palavraSecreta);
 
+    int tamanhoPalavraSecreta = strlen(palavraSecreta);
+
     system("cls");
     
-    printf("[JOGADOR 2]:\nChute uma LETRA ou a PALAVRA INTEIRA\n*OBS: chutar a palavra inteira consome todas as chances\n\nChute: ");
-    scanf(" %s", &chutePalavra);
+    // MOSTRA CADA LETRA DA PALAVRA SECRETA
+    // for (int i = 0; i <= tamanhoPalavraSecreta; i++) {
+    //     printf("\n%c", palavraSecreta[i]);
+    // }
 
-    printf("\nPALAVRA SECRETA: %s\nCHUTE PALAVRA: %s", palavraSecreta, chutePalavra);
+    while (chutePalavra != palavraSecreta && tentativas > 0) {
+        printf("\n[JOGADOR 2]:\nChute uma LETRA ou a PALAVRA INTEIRA\n*OBS: chutar a palavra inteira consome todas as chances\n\nChute: ");
+        scanf(" %s", &chutePalavra);
 
-    if(strstr(palavraSecreta, chutePalavra) != NULL) {
-        printf("\nTEM ISSO NA PALAVRA!");
-        // O problema atual é que cada caractere do char "palavraSecreta" precisa ser um item de uma lista,
-        // e isso vai dar um trabalho.
-        printf(strstr(palavraSecreta, chutePalavra));
+        for (int i = 0; i < tamanhoPalavraSecreta; i++) {
+            if (palavraSecreta[i] == chutePalavra[0]) {
+                printf("\nA posicao %d esta correta! A letra eh: %c\n", i, palavraSecreta[i]);
+            }
+        }
+        
+        //printf("\nPALAVRA SECRETA: %s\nCHUTE PALAVRA: %s\n", palavraSecreta, chutePalavra);
+        tentativas--;
     }
-
-    // FAZER EM CASA:
-    //  [https://pt.stackoverflow.com/questions/95977/jogo-da-forca-com-funções-em-c](https://pt.stackoverflow.com/questions/95977/jogo-da-forca-com-fun%C3%A7%C3%B5es-em-c)
 }
+
+// Inicializa a lista vazia
+    //struct Node* head = NULL;
+
+    // Adiciona elementos à lista usando a função append
+    //append(&head, 1);
+    //append(&head, 2);
+    //append(&head, 3);
+
+    // Agora a lista contém os elementos 1, 2 e 3
