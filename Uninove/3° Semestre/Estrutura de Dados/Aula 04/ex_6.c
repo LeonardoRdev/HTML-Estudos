@@ -19,6 +19,8 @@ int main()
     char palavraSecreta[20];
     char chutePalavra[20];
     int tentativas = 5;
+    int existeNaPalavra = 0;
+    char underlinePalavraSecreta[20];
 
     system("cls");
 
@@ -27,34 +29,39 @@ int main()
 
     int tamanhoPalavraSecreta = strlen(palavraSecreta);
 
-    system("cls");
+    // Criando os _ _ _ _ _ _
+    strcpy(underlinePalavraSecreta, palavraSecreta);
     
-    // MOSTRA CADA LETRA DA PALAVRA SECRETA
-    // for (int i = 0; i <= tamanhoPalavraSecreta; i++) {
-    //     printf("\n%c", palavraSecreta[i]);
-    // }
+    for (int i = 0; i < tamanhoPalavraSecreta; i++) {
+        underlinePalavraSecreta[i] = '_'; // Atribuindo o caractere 'a' a cada posição
+        printf("underlinesPalavraSecreta: %c\n", underlinePalavraSecreta[i]);
+    }
 
-    while (chutePalavra != palavraSecreta && tentativas > 0) {
-        printf("\n[JOGADOR 2]:\nChute uma LETRA ou a PALAVRA INTEIRA\n*OBS: chutar a palavra inteira consome todas as chances\n\nChute: ");
+
+    while (strcmp(chutePalavra, palavraSecreta) != 0 && tentativas >= 0) {
+    system("cls");
+        existeNaPalavra = 0;
+        
+        printf("\n[JOGADOR 2]:\nChute uma LETRA ou a PALAVRA INTEIRA\n*OBS: chutar a palavra inteira consome todas as chances\n\nPALAVRA: %s\n\nTentativas restantes: %d/5\nChute: ",underlinePalavraSecreta ,tentativas);
         scanf(" %s", &chutePalavra);
+
+        if (strcmp(chutePalavra, palavraSecreta) == 0) {
+            break;
+        }
 
         for (int i = 0; i < tamanhoPalavraSecreta; i++) {
             if (palavraSecreta[i] == chutePalavra[0]) {
                 printf("\nA posicao %d esta correta! A letra eh: %c\n", i, palavraSecreta[i]);
+                underlinePalavraSecreta[i] = palavraSecreta[i];
+
+                existeNaPalavra = 1;
             }
         }
         
-        //printf("\nPALAVRA SECRETA: %s\nCHUTE PALAVRA: %s\n", palavraSecreta, chutePalavra);
-        tentativas--;
+        if (existeNaPalavra == 0) {
+            tentativas--;
+        }
     }
+
+    printf("\n\nFIM DE JOGO!!");
 }
-
-// Inicializa a lista vazia
-    //struct Node* head = NULL;
-
-    // Adiciona elementos à lista usando a função append
-    //append(&head, 1);
-    //append(&head, 2);
-    //append(&head, 3);
-
-    // Agora a lista contém os elementos 1, 2 e 3
