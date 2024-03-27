@@ -6,30 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo da Forca</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </head>
 
 <body>
 
     <main>
-        <div id="resultado-chute">
-            <div id="ilustracao-forca">
-                <img src="https://static.vecteezy.com/ti/vetor-gratis/p1/10313723-forca-estrutura-de-madeira-para-execucao-cartoon-ilustracao-medieval-justica-lugar-da-morte-assassinato-e-castigo-corda-com-um-laco-vetor.jpg"
-                    alt="Ilustração da forca">
+        <div id="tela-inicial">
+            <div id="titulo-jogo">
+                <h1>JOGO DA FORCA</h1>
             </div>
-            <div id="chutes-errados">
-                <p>*letras erradas</p>
+            <div id="menu-opcoes">
+                <button id="botao-jogar">JOGAR</button>
             </div>
-        </div>
-        <div id="palavra-escondida">
-            <p>*palavra escondida</p>
         </div>
 
-        <div id="input-chute">
-            <form>
-                <input type="text" id="chute" name="chute" placeholder="Faça seu chute!" autocomplete="off">
-                <button id="enviar">Enviar</button>
-            </form>
+        <div id="interface-jogo">
+            <div id="resultado-chute">
+                <div id="ilustracao-forca">
+                    <img src="https://static.vecteezy.com/ti/vetor-gratis/p1/10313723-forca-estrutura-de-madeira-para-execucao-cartoon-ilustracao-medieval-justica-lugar-da-morte-assassinato-e-castigo-corda-com-um-laco-vetor.jpg"
+                        alt="Ilustração da forca">
+                </div>
+                <div id="chutes-errados">
+                    <p>*letras erradas</p>
+                </div>
+            </div>
+            <div id="palavra-escondida">
+                <p>*palavra escondida</p>
+            </div>
+
+            <div id="input-chute">
+                <form>
+                    <input type="text" id="chute" name="chute" placeholder="Faça seu chute!" autocomplete="off">
+                    <button id="enviar">Enviar</button>
+                </form>
+            </div>
         </div>
     </main>
 </body>
