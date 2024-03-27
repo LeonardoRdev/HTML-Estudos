@@ -23,9 +23,12 @@ main #tela-inicial {
 
 #menu-opcoes {
     margin-top: 35vh;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
 }
 
-#botao-jogar {
+#menu-opcoes button {
     font-size: 1.5em;
     border: solid 4px #000;
     border-radius: 5px;
@@ -34,7 +37,7 @@ main #tela-inicial {
     transition: scale 0.2s;
 }
 
-#botao-jogar:hover {
+#menu-opcoes button:hover {
     cursor: pointer;
     scale: 1.15;
 }
