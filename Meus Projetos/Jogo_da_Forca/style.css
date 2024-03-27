@@ -15,7 +15,7 @@ main #tela-inicial {
 }
 
 #titulo-jogo {
-    padding-top: 4vh;
+    padding-top: 7vh;
     font-size: 1.8em;
     color: white;
     font-family: sans-serif;
@@ -30,10 +30,13 @@ main #tela-inicial {
     border: solid 4px #000;
     border-radius: 5px;
     padding: 15px 30px;
+    background-color: #17c7e6;
+    transition: scale 0.2s;
 }
 
 #botao-jogar:hover {
     cursor: pointer;
+    scale: 1.15;
 }
 
 
@@ -41,7 +44,7 @@ main #tela-inicial {
 
 /* INTERFACE JOGO */
 main #interface-jogo {
-    display: none; /*flex*/
+    display: none; /*flex quando iniciar o jogo*/
     flex-direction: column;
     gap: 15vh 0;
 }
