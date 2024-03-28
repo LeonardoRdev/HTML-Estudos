@@ -22,9 +22,10 @@ main #tela-inicial {
 }
 
 #menu-opcoes {
-    margin-top: 35vh;
+    margin-top: 18vh;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 2em;
 }
 
@@ -33,7 +34,7 @@ main #tela-inicial {
     border: solid 4px #000;
     border-radius: 5px;
     padding: 15px 30px;
-    background-color: #17c7e6;
+    background-color: #2FE0AA;
     transition: scale 0.2s;
 }
 

@@ -16,23 +16,35 @@ botaoJogar.addEventListener("click", () => { // BOTAO JOGAR
 
         doisJogadores.addEventListener("click", () => { // Botão "2 Jogadores"
             menuOpcoes.innerHTML = `
-            <h3>Jogador 1</h3>
+            <h3 id="jogador-um-titulo-input">Jogador 1</h3>
             <form id="form-palavra-secreta">
-                <label for="palavra-secreta">Digite a palavra secreta:</label>
-                <input id="palavra-secreta" name="palavra-secreta" placeholder="Ex: esqueleto"></input>
+                <label for="palavra-secreta" id="label-palavra-secreta">Digite a palavra secreta:</label>
+                <input id="input-palavra-secreta" name="palavra-secreta" placeholder="Ex: esqueleto" autocomplete="off"></input>
                 <button id="botao-comecar-jogo">Começar Jogo</button>
             </form>`
 
             const formPalavraSecreta = document.querySelector("#form-palavra-secreta");
-            const botaoComecarJogo = document.querySelector("#botao-comecar-jogo");
             cancelarEnvioFormulario(formPalavraSecreta); // Previne o form de atualizar a página
+            const botaoComecarJogo = document.querySelector("#botao-comecar-jogo");
+            const jogadorUmTituloInput = document.querySelector("#jogador-um-titulo-input");
+            const labelPalavraSecreta = document.querySelector("#label-palavra-secreta");
+            const inputPalavraSecreta = document.querySelector("#input-palavra-secreta");
 
             formPalavraSecreta.style.display = "flex";
             formPalavraSecreta.style.flexDirection = "column";
-            botaoComecarJogo.style.marginTop = "2em";
+            formPalavraSecreta.style.alignItems = "center";
+            botaoComecarJogo.style.marginTop = "2.5em";
+            jogadorUmTituloInput.style.fontSize = "2em";
+            jogadorUmTituloInput.style.color = "#E0B02F";
+            jogadorUmTituloInput.style.textShadow = "1px 1px 2px #000";
+            labelPalavraSecreta.style.fontSize = "1.5em";
+            inputPalavraSecreta.style.fontSize = "1.8em";
+            inputPalavraSecreta.style.padding = " 0.2em 0 0.2em 0.3em";
+            inputPalavraSecreta.style.marginTop = ".2em";
 
             // Botão "Começar Jogo"
             botaoComecarJogo.addEventListener("click", () => {
+                salvarPalavraSecreta(inputPalavraSecreta.value);
                 telaInicial.style.display = "none";
                 interfaceJogo.style.display = "flex";
             })
@@ -40,7 +52,9 @@ botaoJogar.addEventListener("click", () => { // BOTAO JOGAR
 
 });
 
-
+function salvarPalavraSecreta(palavraSecreta) {
+    alert("Palavra secreta salva")
+}
 
 
 // Para o form não atualizar a página
