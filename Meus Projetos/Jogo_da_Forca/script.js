@@ -18,8 +18,8 @@ botaoJogar.addEventListener("click", () => { // BOTAO JOGAR
             menuOpcoes.innerHTML = `
             <h3 id="jogador-um-titulo-input">Jogador 1</h3>
             <form id="form-palavra-secreta">
-                <label for="palavra-secreta" id="label-palavra-secreta">Digite a palavra secreta:</label>
-                <input id="input-palavra-secreta" name="palavra-secreta" placeholder="Ex: esqueleto" autocomplete="off"></input>
+                <label for="input-palavra-secreta" id="label-palavra-secreta">Digite a palavra secreta:</label>
+                <input id="input-palavra-secreta" name="palavraSecreta" placeholder="Ex: esqueleto" autocomplete="off"></input>
                 <button id="botao-comecar-jogo">Começar Jogo</button>
             </form>`
 
@@ -52,8 +52,22 @@ botaoJogar.addEventListener("click", () => { // BOTAO JOGAR
 
 });
 
+// Função para salvar a palvra secreta e criar o "_ _ _ _ _ _"
 function salvarPalavraSecreta(palavraSecreta) {
-    alert("Palavra secreta salva")
+    var arrayPalavraSecreta = palavraSecreta.split('');
+    var progressoPalavraSecreto = arrayPalavraSecreta;
+    for (let i in progressoPalavraSecreto) {
+        progressoPalavraSecreto[i] = "_ ";
+    }
+    function percorrerPalavraSecreta() {
+        let palavraSecretaCompleta = "";
+        for (caractere of progressoPalavraSecreto) {
+            palavraSecretaCompleta += caractere;
+        }
+        return palavraSecretaCompleta;
+    }
+    const underlinePalavraEscondida = document.querySelector("#underline-palavra-escondida");
+    underlinePalavraEscondida.innerHTML = percorrerPalavraSecreta();
 }
 
 
@@ -70,5 +84,7 @@ function cancelarEnvioFormulario(form) {
 // Botão enviar (chute)
 const botaoEnviar = document.querySelector("#enviar");
 botaoEnviar.addEventListener("click", () => {
-    alert("enviado");
+    const inputChute = document.querySelector("#chute");
+    // FAZER CONDIÇÃO, letra estiver na palavra secreta OU palavra secreta inteira.
+    inputChute.value = "";    
 });
