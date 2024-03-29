@@ -48,20 +48,49 @@ botaoJogar.addEventListener("click", () => { // BOTAO JOGAR
                 telaInicial.style.display = "none";
                 interfaceJogo.style.display = "flex";
             })
+
+            // Botão enviar (chute)
+            const botaoEnviar = document.querySelector("#enviar");
+            botaoEnviar.addEventListener("click", () => {
+                const inputChute = document.querySelector("#chute");
+                // FAZER CONDIÇÃO, letra estiver na palavra secreta OU palavra secreta inteira.
+                
+                let arrayPalavraSecreta = inputPalavraSecreta.value.split('');
+                let progressoPalavraSecreto = arrayPalavraSecreta.slice();
+                for (let i in progressoPalavraSecreto) {
+                    progressoPalavraSecreto[i] = "_ ";
+                }
+
+                for (let i in arrayPalavraSecreta) {
+                    if (arrayPalavraSecreta[i] == inputChute.value) {
+                        alert("FOI IGUAL");
+                        progressoPalavraSecreto[i] = inputChute.value;
+                    }
+                }
+                console.log(progressoPalavraSecreto);
+                let palavraSecretaCompleta = "";
+                for (let caractere of progressoPalavraSecreto) {
+                    palavraSecretaCompleta += caractere;
+                }
+                const underlinePalavraEscondida = document.querySelector("#underline-palavra-escondida");
+                underlinePalavraEscondida.innerHTML = palavraSecretaCompleta;
+                inputChute.value = "";    
+            });
+
         })
 
 });
 
 // Função para salvar a palvra secreta e criar o "_ _ _ _ _ _"
 function salvarPalavraSecreta(palavraSecreta) {
-    var arrayPalavraSecreta = palavraSecreta.split('');
-    var progressoPalavraSecreto = arrayPalavraSecreta;
+    let arrayPalavraSecreta = palavraSecreta.split('');
+    let progressoPalavraSecreto = arrayPalavraSecreta.slice();
     for (let i in progressoPalavraSecreto) {
         progressoPalavraSecreto[i] = "_ ";
     }
     function percorrerPalavraSecreta() {
         let palavraSecretaCompleta = "";
-        for (caractere of progressoPalavraSecreto) {
+        for (let caractere of progressoPalavraSecreto) {
             palavraSecretaCompleta += caractere;
         }
         return palavraSecretaCompleta;
@@ -80,11 +109,3 @@ function cancelarEnvioFormulario(form) {
         e.preventDefault();
     });
 }
-
-// Botão enviar (chute)
-const botaoEnviar = document.querySelector("#enviar");
-botaoEnviar.addEventListener("click", () => {
-    const inputChute = document.querySelector("#chute");
-    // FAZER CONDIÇÃO, letra estiver na palavra secreta OU palavra secreta inteira.
-    inputChute.value = "";    
-});
