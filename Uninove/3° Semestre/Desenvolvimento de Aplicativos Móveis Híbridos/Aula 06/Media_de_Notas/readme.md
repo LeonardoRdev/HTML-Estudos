@@ -2,7 +2,11 @@
 
 [**Flutter**]
 
-Faltam adicionar os pesos de cada nota*
+Falta apenas adicionar o peso para cada curso:
+Curso A -> 3
+Curso B -> 4
+Curso C -> 5
+Curso D -> 2
 
 ```
 // ignore_for_file: library_private_types_in_public_api
@@ -30,6 +34,12 @@ class _HomeState extends State<Home> {
   TextEditingController notaQuatroController = TextEditingController();
   double _media = 0;
   String _resultado = "";
+  String _situacaoMedia = "";
+
+  String _dropdownValueUm = "dropUm";
+  String _dropdownValueDois = "dropUm";
+  String _dropdownValueTres = "dropUm";
+  String _dropdownValueQuatro = "dropUm";
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -41,6 +51,7 @@ class _HomeState extends State<Home> {
       notaQuatroController.text = "";
       _media = 0;
       _resultado = "";
+      _situacaoMedia = "";
       _formKey = GlobalKey<FormState>();
     });
   }
@@ -56,7 +67,12 @@ class _HomeState extends State<Home> {
 
     setState(() {
       _media = ((varNotaUm + varNotaDois + varNotaTres + varNotaQuatro) / 4);
-      _resultado = "Média: ${_media}";
+      _resultado = "Média: $_media";
+      if (_media >= 6) {
+        _situacaoMedia = "Aprovado";
+      } else {
+        _situacaoMedia = "Reprovado";
+      }
     });
   }
 
@@ -96,53 +112,190 @@ class _HomeState extends State<Home> {
               const Icon(
                 Icons.calculate,
                 size: 80,
+                color: Colors.blue,
               ),
-              TextFormField(
-                controller: notaUmController,
-                textAlign: TextAlign.center,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                    labelText: "Primeira Nota",
-                    labelStyle: TextStyle(
-                      fontSize: 20,
-                    )),
-                style: const TextStyle(fontSize: 25),
-              ),
-              TextFormField(
-                controller: notaDoisController,
-                textAlign: TextAlign.center,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                    labelText: "Segunda Nota",
-                    labelStyle: TextStyle(
-                      fontSize: 20,
-                    )),
-                style: const TextStyle(fontSize: 25),
-              ),
-              TextFormField(
-                controller: notaTresController,
-                textAlign: TextAlign.center,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                    labelText: "Terceira Nota",
-                    labelStyle: TextStyle(
-                      fontSize: 20,
-                    )),
-                style: const TextStyle(fontSize: 25),
-              ),
-              TextFormField(
-                controller: notaQuatroController,
-                textAlign: TextAlign.center,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                    labelText: "Quarta Nota",
-                    labelStyle: TextStyle(
-                      fontSize: 20,
-                    )),
-                style: const TextStyle(fontSize: 25),
-              ),
+              Row(children: <Widget>[
+                Expanded(
+                  child: TextFormField(
+                    controller: notaUmController,
+                    textAlign: TextAlign.center,
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                        labelText: "Primeira Nota",
+                        labelStyle: TextStyle(
+                          fontSize: 20,
+                        )),
+                    style: const TextStyle(fontSize: 25),
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(45, 15, 60, 0),
+                    child: DropdownButton<String>(
+                        value: _dropdownValueUm,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            _dropdownValueUm = newValue!;
+                          });
+                        },
+                        items: const [
+                          DropdownMenuItem<String>(
+                            value: "dropUm",
+                            child: Text("A"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "dropDois",
+                            child: Text("B"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "dropTres",
+                            child: Text("C"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "dropQuatro",
+                            child: Text("D"),
+                          ),
+                        ]),
+                  ),
+                ),
+              ]),
+              Row(children: <Widget>[
+                Expanded(
+                  child: TextFormField(
+                    controller: notaDoisController,
+                    textAlign: TextAlign.center,
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                        labelText: "Segunda Nota",
+                        labelStyle: TextStyle(
+                          fontSize: 20,
+                        )),
+                    style: const TextStyle(fontSize: 25),
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(45, 15, 60, 0),
+                    child: DropdownButton<String>(
+                        value: _dropdownValueDois,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            _dropdownValueDois = newValue!;
+                          });
+                        },
+                        items: const [
+                          DropdownMenuItem<String>(
+                            value: "dropUm",
+                            child: Text("A"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "dropDois",
+                            child: Text("B"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "dropTres",
+                            child: Text("C"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "dropQuatro",
+                            child: Text("D"),
+                          ),
+                        ]),
+                  ),
+                ),
+              ]),
+              Row(children: <Widget>[
+                Expanded(
+                  child: TextFormField(
+                    controller: notaTresController,
+                    textAlign: TextAlign.center,
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                        labelText: "Terceira Nota",
+                        labelStyle: TextStyle(
+                          fontSize: 20,
+                        )),
+                    style: const TextStyle(fontSize: 25),
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(45, 15, 60, 0),
+                    child: DropdownButton<String>(
+                        value: _dropdownValueTres,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            _dropdownValueTres = newValue!;
+                          });
+                        },
+                        items: const [
+                          DropdownMenuItem<String>(
+                            value: "dropUm",
+                            child: Text("A"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "dropDois",
+                            child: Text("B"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "dropTres",
+                            child: Text("C"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "dropQuatro",
+                            child: Text("D"),
+                          ),
+                        ]),
+                  ),
+                ),
+              ]),
+              Row(children: <Widget>[
+                Expanded(
+                  child: TextFormField(
+                    controller: notaQuatroController,
+                    textAlign: TextAlign.center,
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                        labelText: "Quarta Nota",
+                        labelStyle: TextStyle(
+                          fontSize: 20,
+                        )),
+                    style: const TextStyle(fontSize: 25),
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(45, 15, 60, 0),
+                    child: DropdownButton<String>(
+                        value: _dropdownValueQuatro,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            _dropdownValueQuatro = newValue!;
+                          });
+                        },
+                        items: const [
+                          DropdownMenuItem<String>(
+                            value: "dropUm",
+                            child: Text("A"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "dropDois",
+                            child: Text("B"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "dropTres",
+                            child: Text("C"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "dropQuatro",
+                            child: Text("D"),
+                          ),
+                        ]),
+                  ),
+                ),
+              ]),
               Padding(
-                padding: const EdgeInsets.fromLTRB(75, 40, 75, 30),
+                padding: const EdgeInsets.fromLTRB(75, 25, 75, 15),
                 child: SizedBox(
                   height: 60,
                   child: RawMaterialButton(
@@ -157,6 +310,11 @@ class _HomeState extends State<Home> {
               ),
               Text(
                 _resultado,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 25),
+              ),
+              Text(
+                _situacaoMedia,
                 textAlign: TextAlign.center,
                 style: const TextStyle(fontSize: 30),
               )
