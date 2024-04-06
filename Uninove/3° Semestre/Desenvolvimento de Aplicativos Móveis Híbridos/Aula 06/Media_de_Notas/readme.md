@@ -2,7 +2,7 @@
 
 [**Flutter**]
 
-Falta apenas adicionar o peso para cada curso:
+Fazer a lógica do peso das notas:
 Curso A -> 3
 Curso B -> 4
 Curso C -> 5
@@ -36,10 +36,19 @@ class _HomeState extends State<Home> {
   String _resultado = "";
   String _situacaoMedia = "";
 
-  String _dropdownValueUm = "dropUm";
-  String _dropdownValueDois = "dropUm";
-  String _dropdownValueTres = "dropUm";
-  String _dropdownValueQuatro = "dropUm";
+  // Mapas que associam cada opção do dropdown aos valores desejados
+  Map<String, double> dropdownValues = {
+    "A": 3,
+    "B": 4,
+    "C": 5,
+    "D": 2,
+  };
+
+  // Valor inicial dos dropdowns
+  String _dropdownValueUm = "A";
+  String _dropdownValueDois = "A";
+  String _dropdownValueTres = "A";
+  String _dropdownValueQuatro = "A";
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -52,6 +61,12 @@ class _HomeState extends State<Home> {
       _media = 0;
       _resultado = "";
       _situacaoMedia = "";
+
+      _dropdownValueUm = "A";
+      _dropdownValueDois = "A";
+      _dropdownValueTres = "A";
+      _dropdownValueQuatro = "A";
+
       _formKey = GlobalKey<FormState>();
     });
   }
@@ -65,7 +80,18 @@ class _HomeState extends State<Home> {
     double varNotaQuatro =
         double.parse(notaQuatroController.text.replaceAll(",", "."));
 
+    // Obter os valores selecionados nos dropdowns
+    // essa linha de código está atribuindo o valor associado à opção
+    // selecionada no primeiro dropdown à variável dropdownValueUm, 
+    // e se essa opção não estiver presente no mapa, atribui 0 a
+    // dropdownValueUm.
+    double dropdownValueUm = dropdownValues[_dropdownValueUm] ?? 0;
+    double dropdownValueDois = dropdownValues[_dropdownValueDois] ?? 0;
+    double dropdownValueTres = dropdownValues[_dropdownValueTres] ?? 0;
+    double dropdownValueQuatro = dropdownValues[_dropdownValueQuatro] ?? 0;
+
     setState(() {
+      varNotaUm = varNotaUm * dropdownValueUm; // Nota com peso * 3
       _media = ((varNotaUm + varNotaDois + varNotaTres + varNotaQuatro) / 4);
       _resultado = "Média: $_media";
       if (_media >= 6) {
@@ -132,30 +158,20 @@ class _HomeState extends State<Home> {
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(45, 15, 60, 0),
                     child: DropdownButton<String>(
-                        value: _dropdownValueUm,
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            _dropdownValueUm = newValue!;
-                          });
-                        },
-                        items: const [
-                          DropdownMenuItem<String>(
-                            value: "dropUm",
-                            child: Text("A"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "dropDois",
-                            child: Text("B"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "dropTres",
-                            child: Text("C"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "dropQuatro",
-                            child: Text("D"),
-                          ),
-                        ]),
+                      value: _dropdownValueUm,
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          _dropdownValueUm = newValue!;
+                        });
+                      },
+                      // essa parte do código cria uma lista de DropdownMenuItem com base nas chaves do mapa dropdownValues, onde cada item tem seu valor e texto definidos pelas chaves do mapa.
+                      items: dropdownValues.keys.map((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
                   ),
                 ),
               ]),
@@ -177,30 +193,19 @@ class _HomeState extends State<Home> {
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(45, 15, 60, 0),
                     child: DropdownButton<String>(
-                        value: _dropdownValueDois,
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            _dropdownValueDois = newValue!;
-                          });
-                        },
-                        items: const [
-                          DropdownMenuItem<String>(
-                            value: "dropUm",
-                            child: Text("A"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "dropDois",
-                            child: Text("B"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "dropTres",
-                            child: Text("C"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "dropQuatro",
-                            child: Text("D"),
-                          ),
-                        ]),
+                      value: _dropdownValueDois,
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          _dropdownValueDois = newValue!;
+                        });
+                      },
+                      items: dropdownValues.keys.map((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
                   ),
                 ),
               ]),
@@ -222,30 +227,19 @@ class _HomeState extends State<Home> {
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(45, 15, 60, 0),
                     child: DropdownButton<String>(
-                        value: _dropdownValueTres,
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            _dropdownValueTres = newValue!;
-                          });
-                        },
-                        items: const [
-                          DropdownMenuItem<String>(
-                            value: "dropUm",
-                            child: Text("A"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "dropDois",
-                            child: Text("B"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "dropTres",
-                            child: Text("C"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "dropQuatro",
-                            child: Text("D"),
-                          ),
-                        ]),
+                      value: _dropdownValueTres,
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          _dropdownValueTres = newValue!;
+                        });
+                      },
+                      items: dropdownValues.keys.map((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
                   ),
                 ),
               ]),
@@ -267,30 +261,19 @@ class _HomeState extends State<Home> {
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(45, 15, 60, 0),
                     child: DropdownButton<String>(
-                        value: _dropdownValueQuatro,
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            _dropdownValueQuatro = newValue!;
-                          });
-                        },
-                        items: const [
-                          DropdownMenuItem<String>(
-                            value: "dropUm",
-                            child: Text("A"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "dropDois",
-                            child: Text("B"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "dropTres",
-                            child: Text("C"),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "dropQuatro",
-                            child: Text("D"),
-                          ),
-                        ]),
+                      value: _dropdownValueQuatro,
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          _dropdownValueQuatro = newValue!;
+                        });
+                      },
+                      items: dropdownValues.keys.map((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
                   ),
                 ),
               ]),
