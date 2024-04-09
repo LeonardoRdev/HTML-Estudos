@@ -2,12 +2,6 @@
 
 [**Flutter**]
 
-Fazer a lógica do peso das notas:
-Curso A -> 3
-Curso B -> 4
-Curso C -> 5
-Curso D -> 2
-
 ```
 // ignore_for_file: library_private_types_in_public_api
 
@@ -50,6 +44,8 @@ class _HomeState extends State<Home> {
   String _dropdownValueTres = "A";
   String _dropdownValueQuatro = "A";
 
+  double _somaDosPesos = 0;
+
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   void _reset() {
@@ -67,6 +63,8 @@ class _HomeState extends State<Home> {
       _dropdownValueTres = "A";
       _dropdownValueQuatro = "A";
 
+      _somaDosPesos = 0;
+
       _formKey = GlobalKey<FormState>();
     });
   }
@@ -81,18 +79,30 @@ class _HomeState extends State<Home> {
         double.parse(notaQuatroController.text.replaceAll(",", "."));
 
     // Obter os valores selecionados nos dropdowns
-    // essa linha de código está atribuindo o valor associado à opção
-    // selecionada no primeiro dropdown à variável dropdownValueUm, 
-    // e se essa opção não estiver presente no mapa, atribui 0 a
-    // dropdownValueUm.
+    // essa linha de código está atribuindo o valor associado à opção selecionada no primeiro dropdown à variável dropdownValueUm, e se essa opção não estiver presente no mapa, atribui 0 a dropdownValueUm.
     double dropdownValueUm = dropdownValues[_dropdownValueUm] ?? 0;
     double dropdownValueDois = dropdownValues[_dropdownValueDois] ?? 0;
     double dropdownValueTres = dropdownValues[_dropdownValueTres] ?? 0;
     double dropdownValueQuatro = dropdownValues[_dropdownValueQuatro] ?? 0;
 
     setState(() {
-      varNotaUm = varNotaUm * dropdownValueUm; // Nota com peso * 3
-      _media = ((varNotaUm + varNotaDois + varNotaTres + varNotaQuatro) / 4);
+      varNotaUm = varNotaUm * dropdownValueUm;
+      varNotaDois = varNotaDois * dropdownValueDois;
+      varNotaTres = varNotaTres * dropdownValueTres;
+      varNotaQuatro = varNotaQuatro * dropdownValueQuatro;
+
+      _somaDosPesos = dropdownValueUm +
+          dropdownValueDois +
+          dropdownValueTres +
+          dropdownValueQuatro;
+
+      _media = ((varNotaUm + varNotaDois + varNotaTres + varNotaQuatro) /
+          _somaDosPesos);
+      // A divisão da média ( / _somaDosPesos) é a soma dos pesos das notas.
+
+      // Faz com que as notas só apareçam em um intervalo de 0.5 em 0.5
+      _media = (_media / 0.5).round() * 0.5;
+
       _resultado = "Média: $_media";
       if (_media >= 6) {
         _situacaoMedia = "Aprovado";
