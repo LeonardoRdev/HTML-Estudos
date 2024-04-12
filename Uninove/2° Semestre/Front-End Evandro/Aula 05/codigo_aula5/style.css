@@ -1,0 +1,79 @@
+header{
+    width: 90%;
+    border: solid #23b1d8 2px;
+    background-color: #edf5f7;
+    padding: 10px 35px;
+    box-sizing: border-box; /*Serve pro padding não aumentar o tamanho da caixa*/
+    margin: 15px auto; /*Centraliza o elemento e dá margen de 15px*/
+    border-radius: 20px;
+    text-align: center;
+    display: flex;
+}
+
+header h1{
+    transition: 0.25s;
+}
+
+header h1:hover{
+    cursor: pointer;
+    text-decoration: underline;
+    color: rgb(233, 164, 36);
+    transform: scale(1.025);
+    transition: 0.25s;
+}
+
+main{
+    display: flex;
+    flex-direction: row; /*Coloca o div#caixaPequena e div#caixaGrande um à direita do outro*/
+    /* flex-direction: row = é o padrão do display: flex; */
+    width: 90%;
+    margin: 15px auto;
+    /* box-shadow: 5px 5px 15px 0px rgb(0,0,0, 0.6);  Direita, Baixo, blur, extensão*/
+    box-sizing: border-box;
+    border-radius: 65px;
+} 
+
+div#caixaPequena img{
+    width: 90%;
+    height: 25%;
+    margin: 7px 0px;
+    box-shadow: 2px 5px 6px 2px;
+    border-radius: 25px;
+    background-color: gray;
+    transition: 0.25s;
+}
+
+div#caixaPequena img:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: 0.25s;
+}
+
+div#caixaGrande img{
+    width: 95%;
+    height: 95%;
+    box-shadow: 5px 10px 30px 2px rgba(0,0,0,0.8); /*Direita, Baixo, blur, extensão e rgba(preto, 80% opacidade)*/
+    border-radius: 38px;
+    background: linear-gradient(160deg, rgb(236, 142, 33),rgb(97, 93, 93)) /*Degradê de plano de fundo de 160° graus*/
+}
+
+div#caixaPequena{
+    display: flex; /*Ativa as propriedades flex-box */
+    flex-direction: column; /*Coloca as imagens do div#caixaPequena uma em baixo da outra */
+    flex: 18%; /*Quando se utiliza display: flex; em vez de se utilizar width: se utiliza flex:
+    Normalmente acontece quando se tem um container dentro de outro que possui a propriedade display:flex*/
+    /*exemplo: div#caixaPequena tá dentro do main do qual o main é display:flex;*/
+    padding: 15px;
+}
+
+div#caixaGrande{
+    flex: 82%;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+* {
+    margin: 0 auto;
+}

@@ -1,0 +1,76 @@
+* {
+    margin: 0px auto;
+}
+
+body {
+    margin: 0px;
+    background-image: url("planodefundo.jpg");
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+nav {
+    margin: 0px auto;
+    width: 100%;
+    background: linear-gradient(0deg,rgba(253, 174, 174, 0.8), rgba(0, 0, 0, 0.3));
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+nav:hover{
+    background: linear-gradient(180deg,rgba(126, 0, 245, 0.6),rgba(255, 162, 162, 0.6));
+}
+
+nav div.icon{
+    padding: 5px;
+    height: 85px;
+}
+
+nav span{
+    margin: 10px 0px 50px 0px;
+    font-size: 3.5em;
+    font-weight: bold;
+    transition: 0.20s;
+}
+
+nav span:hover{
+    cursor: pointer;
+    font-size: 4em;
+    transition: 0.15s;
+}
+
+div.menu{
+    display: none; /*Oculta ou esconde o menu*/
+}
+
+div.menu a{
+    display: block; /*Aloca uma linha em baixo da outra*/
+    color: rgb(253, 253, 253);
+    text-decoration: none;
+    font-size: 1.7em;
+    width: 105px;
+    border: black solid 2px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 3px black;
+    margin: 15px auto;
+    padding: 8px;
+    background: linear-gradient(60deg, rgb(194, 65, 65), rgb(255, 86, 86));
+    transition: 0.55s;
+}
+
+div.menu a:hover{
+    color: rgb(233, 250, 1);
+    transform: scale(1.10);
+    transition: 0.05s;
+    text-decoration: underline;
+}
+
+/*configuração para celular com tela até 700px de largura:*/
+@media only screen and (max-width: 700px){
+
+    div.menu{
+        flex-direction: column;
+    }
+}

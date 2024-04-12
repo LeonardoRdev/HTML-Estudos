@@ -1,0 +1,395 @@
+/*  
+Tag Descoberta:
+z-index: 1;
+- O z-index muda a camada em que um elemento se encontra na página, o padrão é z-index: 0,
+    E se você defini-lo como 1, por exemplo, ele ficará sempre 1 camada a frente de todos os outros elementos.
+*/
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #dedef9;
+}
+
+/* Barra de menu */
+
+header {
+    width: 100vw;
+    height: 60px;
+    position: fixed;
+    padding: 15px 0px;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+    border-bottom: solid 4px black;
+    background-color: #4d6775;
+}
+
+header a {
+    font-size: 2.6em;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    transition: 0.2s;
+    z-index: 1;
+}
+
+header a:hover {
+    transition: 0.25s;
+    transform: scale(1.10);
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    height: 200px;
+    padding: 20px 0;
+    border: solid 4px black;
+    box-shadow: 2px 2px 5px;
+    width: 50vw;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transform: translateY(-180px);
+    transition: transform 1.5s;
+    background-color: #2fafe2;
+}
+
+nav a {
+    margin: 10px 0;
+    font-size: 2em;
+    color: rgb(255, 255, 255);
+    text-decoration: dashed;
+    transition: transform 0.2s;
+}
+
+nav a:hover {
+    text-decoration: underline;
+    transform: scale(1.05);
+    transition: transform 0.25s;
+}
+
+
+
+
+
+/* Estilização dos Signos*/
+body#body_signo {
+    background-color: rgba(0, 238, 255, 0.32);
+}
+
+main#main_signo {
+    margin-top: -150px;
+}
+
+main#main_signo h1 {
+    padding: 10px;
+    margin: 30px auto;
+    width: 55vw;
+    background-color: #3D348B;
+    border: solid 4px white;
+    border-radius: 25px;
+    color: rgb(255, 230, 0);
+    box-shadow: 2px 2px 6px black;
+    text-align: center;
+    font-size: 2.6em;
+    font-family: 'Roboto', sans-serif;
+}
+
+div#todos_signos {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 25px;
+}
+
+section.signos_caixa {
+    display: flex;
+    flex-direction: column;
+}
+
+section#descricaoSigno {
+    display: none;
+    height: 210px;
+    width: 350px;
+    background-color: rgb(214, 148, 25);
+    border: solid 4px black;
+    text-align: center;
+    box-shadow: 3px 3px 7px;
+    padding: 15px;
+    font-size: 1.5em;
+}
+
+img.signo {
+    margin: 25px auto 0;
+    border: solid 4px black;
+    box-shadow: 0 0 6px 1px;
+    background-color: rgb(245, 170, 30);
+    height: 210px;
+    width: 350px;
+}
+
+img.sexto_signo {
+    margin-bottom: 30px;
+}
+
+/* 
+Espaçamento
+Espaçamento 
+Espaçamento 
+Espaçamento 
+Espaçamento 
+*/
+
+/* Estilização do QUIZ */
+main#main_quiz {
+    margin-top: -150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main#main_quiz h1#descubra {
+    width: 55vw;
+    background-color: #3D348B;
+    padding: 15px;
+    color: rgb(255, 230, 0);
+    border-radius: 25px;
+    border: solid 4px white;
+    box-shadow: 2px 2px 6px black;
+    text-align: center;
+    font-size: 2.6em;
+    font-family: 'Roboto', sans-serif;
+}
+
+main#main_quiz form {
+    width: 70vw;
+    background-color: rgb(174, 179, 252);
+    border: solid 4px black;
+    border-radius: 25px;
+}
+
+form div.pergunta {
+    margin: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.pergunta h2 {
+    margin: 0;
+    font-size: 2.8em;
+}
+
+.pergunta h3 {
+    margin: 0;
+    font-size: 2em;
+    margin-left: 15px;
+}
+
+form p.alternativas {
+    margin-left: 15px;
+    font-family: 'Roboto', sans-serif;
+}
+
+main#main_quiz form p {
+    font-size: 1.1em;
+}
+
+form input#enviar {
+    display: flex;
+    padding: 10px 15px;
+    font-size: 2.5em;
+    margin: 50px auto;
+    background-color: aqua;
+    border: solid 4px black;
+    box-shadow: 2px 2px 5px black;
+    transition: 0.25s transform;
+}
+
+form input#enviar:hover {
+    transform: scale(1.05);
+    transition: transform 0.35s;
+    cursor: pointer;
+}
+
+form input#enviar:active {
+    background-color: rgb(0, 228, 228);
+}
+
+#sua_vocacao {
+    display: none;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
+#resultado {
+    display: none;
+    border-top: 4px solid black;
+    background-color: #9589ffb4;
+    padding: 15px 5px;
+    border-radius: 0 0 20px 20px;
+    font-size: 3em;
+}
+
+#resultado p {
+    text-align: center;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+#rating {
+    width: 65vw;
+    margin: 25px 0 30px;
+    display: flex;
+}
+
+#rating p {
+    margin: 0 auto;
+    font-size: 1.7em;
+    text-align: center;
+}
+
+
+
+
+
+/* Configuração para celular com tela até 530px de largura: */
+@media only screen and (max-width: 1060px){
+
+    img.signo {
+        height: 105px;
+        width: 175px;
+    }
+
+    section#descricaoSigno {
+        height: 105px;
+        width: 150px;
+        font-size: 1.1em;
+    }
+
+}
+
+@media only screen and (max-width: 660px){
+
+    img.signo {
+        height: 63px;
+        width: 105px;
+    }
+
+    section#descricaoSigno {
+        height: 135px;
+        width: 105px;
+        font-size: 0.8em;
+    }
+
+    img.sexto_signo {
+        margin-bottom: 85px;
+    }
+
+}
+
+@media only screen and (max-width: 630px){
+
+    header a {
+        font-size: 2.3em;
+    }
+
+    nav {
+        width: 97.6vw;
+        border-left: 0px;
+        border-right: 0px;
+    }
+
+    nav a {
+        font-size: 1.6em;
+        text-decoration: underline;
+    }
+
+    main#main_quiz h1#descubra {
+        font-size: 2em;
+    }
+
+    .pergunta h2 {
+        font-size: 2.2em;
+    }
+    
+    .pergunta h3 {
+        font-size: 1.5em;
+    }
+    
+    main#main_quiz form p {
+        font-size: 0.9em;
+    }
+
+    form input#enviar {
+        font-size: 1.8em;
+    }
+
+    #resultado {
+        font-size: 2.5em;
+    }
+
+    #rating p {
+        font-size: 1.5em;
+    }
+
+}
+
+@media only screen and (max-width: 480px){
+
+    img.signo {
+        height: 38px;
+        width: 63px;
+    }
+
+    section#descricaoSigno {
+        height: 67px;
+        width: 70px;
+        font-size: 0.55em;
+    }
+
+    img.sexto_signo {
+        margin-bottom: 45px;
+    }
+
+    div#todos_signos {
+        padding: 10px;
+    }
+
+
+    main#main_quiz h1#descubra {
+        font-size: 1.7em;
+    }
+
+    .pergunta h2 {
+        font-size: 1.7em;
+    }
+    
+    .pergunta h3 {
+        font-size: 1.1em;
+    }
+    
+    main#main_quiz form p {
+        font-size: 0.8em;
+    }
+
+    form input#enviar {
+        font-size: 1.6em;
+    }
+
+    #rating p {
+        font-size: 1.2em;
+    }
+
+
+}
+
+@media only screen and (max-width: 300px){
+
+    nav a {
+        font-size: 1.2em;
+        text-align: center;
+    }
+
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 20/09/2023</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>UNINOVE</h1>
+        <form name="login">
+            <label for="user">Usuário:</label>
+            <input type="text" name="user" id="user" placeholder="Nome de Usuário">
+            <label for="password">Senha:</label>
+            <input type="password" name="password" id="password" maxlength="12" placeholder="Digite sua Senha">
+            <input type="button" value="Entrar" onclick="validar()">
+        </form>
+        <a href="#" onclick="lembrar()">Lembrar Senha</a>
+    </header>
+
+    <nav>
+        <a href="#" onclick="missao()">&#127919 Missão</a>
+        <a href="#" onclick="jogos()">&#127918 Jogos</a>
+        <a href="#" onclick="limpar_mensagem()" id="limpar">Limpar</a>
+        <a href="#" onclick="esportes()">&#127944 Esportes</a>
+        <a href="#" onclick="curso()">&#128218 Cursos</a>
+    </nav>
+
+    <main>
+        <p id="mensagem_main"></p>
+    </main>
+
+    <footer>
+        <button onclick="mudaTema()">Surpresa</button>
+        <p>Desenvolvido por Leonardo Rocha 🤓</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

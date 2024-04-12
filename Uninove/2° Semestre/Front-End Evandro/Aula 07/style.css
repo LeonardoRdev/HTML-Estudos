@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header, footer{
+    width: 80%;
+    background-color: azure;
+    border: solid #c0c0c0 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto 0;
+    padding: 10px;
+}
+
+header h1, header form{
+    margin: 0 auto;
+}
+
+form input{
+    padding: 5px;
+    margin-right: 15px;
+}
+
+header a{
+    margin-right: 40px;
+    font-size: 1.1rem;
+    color: blue;
+    transition: 0.2s;
+}
+
+header a:hover{
+    transform: scale(1.05);
+    transition: 0.1s;
+    color: rgb(231, 31, 31);
+}
+
+header a:active{
+    color: rgb(255, 103, 103);
+}
+
+nav {
+    width: 80%;
+    margin: 15px auto 0;
+    padding: 10px;
+    background-color: aliceblue;
+    border: solid #c0c0c0 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav a {
+    font-size: 1.2rem;
+    margin: 0 auto;
+    color: black;
+    text-decoration: none;
+    transition: 0.15s;
+}
+
+nav a:hover {
+    transform: scale(1.10);
+    transition: 0.25s;
+    color: red;
+}
+
+nav a#limpar{
+    padding: 8px;
+    background-color: aliceblue;
+    border: solid 2px rgb(228, 38, 38);
+    border-radius: 50px;
+    font-size: 1.35rem;
+    color: rgb(228, 38, 38);
+}
+
+nav a#limpar:active {
+    transition: 0.05s;
+    background-color: rgb(225, 225, 225);
+}
+
+main{
+    background-image: url("img/fundo_main.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 80%;
+    height: 400px;
+    margin: 15px auto 0;
+    background-color: rgb(219, 208, 192);
+    border: solid #c0c0c0 2px;
+    display: flex;
+    padding: 25px;
+    align-items: center;
+}
+
+main p#mensagem_main{
+    display: none;
+    flex-direction: column;
+    font-size: 3.0rem;
+    text-decoration: underline;
+    text-shadow: 2px 2px 4px black;
+    margin: 25px auto;
+    text-align: center;
+    cursor: default;
+    background-color: rgba(182, 127, 207, 0.45);
+    border-radius: 50px;
+    padding: 25px;
+}
+
+footer{
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+footer button{
+    padding: 4px;
+}

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Vocacional</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
+    <link rel="icon" href="imagens/icone_quiz.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<!-- Barra de menu -->
+<body>
+    <header>
+        <a href="#" id="menuIcon"><b>| | |</b></a>
+    </header>
+    <nav>
+        <a target="_blank" href="https://www.youtube.com/@ToddyComMococa/videos">Canal no Youtube</a>
+        <a href="quiz.html">Quiz vocacional</a>
+        <a href="index.html">Descubra os Signos</a>
+        <a target="_blank" href="https://github.com/LeonardoRdev/Projeto_Evandro-HTML">Repositório Github</a>
+    </nav>
+
+    <!-- QUIZ -->
+    <main id="main_quiz">
+        <h1 id="descubra">Descubra a sua Vocação</h1>
+        <form name="quiz" id="quiz">
+            <div class="pergunta"> <!-- Primeira pergunta-->
+                <h2>1)</h2>
+                <h3>A característica que mais me representa é:</h3> <!-- Título da Primeira pergunta-->
+            </div>
+            <p class="alternativas">
+                <input type="radio" name="q1" id="q1_alt1"> <!-- Alternativa 1-->
+                <label for="q1_alt1">Criatividade</label> <!-- Texto da alternativa 1-->
+            </p>
+            <p class="alternativas">
+                <input type="radio" name="q1" id="q1_alt2">
+                <label for="q1_alt2">Lógica</label>
+            </p>
+            <p class="alternativas">
+                <input type="radio" name="q1" id="q1_alt3">
+                <label for="q1_alt3">Precaução</label>
+            </p>
+            <p class="alternativas">
+                <input type="radio" name="q1" id="q1_alt4">
+                <label for="q1_alt4">Flexibilidade</label>
+            </p>
+
+            <div class="pergunta"> <!-- Segunda pergunta-->
+                <h2>2)</h2>
+                <h3>Meu animal favorito é:</h3>
+            </div>
+            <p class="alternativas">
+                <input type="radio" name="q2" id="q2_alt1">
+                <label for="q2_alt1">Coelho</label>
+            </p>
+            <p class="alternativas">
+                <input type="radio" name="q2" id="q2_alt2">
+                <label for="q2_alt2">Gato</label>
+            </p>
+            <p class="alternativas">
+                <input type="radio" name="q2" id="q2_alt3">
+                <label for="q2_alt3">Cachorro</label>
+            </p>
+            <p class="alternativas">
+                <input type="radio" name="q2" id="q2_alt4">
+                <label for="q2_alt4">periquito</label>
+            </p>
+
+            <div class="pergunta"> <!-- Terceira pergunta-->
+                <h2>3)</h2>
+                <h3>Qual destas palavras você acha mais atraente?</h3>
+            </div>
+            <p class="alternativas">
+                <input type="radio" name="q3" id="q3_alt1">
+                <label for="q3_alt1">Cores</label>
+            </p>
+            <p class="alternativas">
+                <input type="radio" name="q3" id="q3_alt2">
+                <label for="q3_alt2">Algoritmos</label>
+            </p>
+            <p class="alternativas">
+                <input type="radio" name="q3" id="q3_alt3">
+                <label for="q3_alt3">Criptografia</label>
+            </p>
+            <p class="alternativas">
+                <input type="radio" name="q3" id="q3_alt4">
+                <label for="q3_alt4">Roteadores</label>
+            </p>
+
+            <div class="pergunta"> <!-- Quarta pergunta-->
+                <h2>4)</h2>
+                <h3>Qual sua cor preferida?</h3>
+            </div>
+            <p class="alternativas">
+                <input type="radio" name="q4" id="q4_alt1">
+                <label for="q4_alt1">Colorido</label>
+            </p>
+            <p class="alternativas">
+                <input type="radio" name="q4" id="q4_alt2">
+                <label for="q4_alt2">Preto</label>
+            </p>
+            <p class="alternativas">
+                <input type="radio" name="q4" id="q4_alt3">
+                <label for="q4_alt3">Azul</label>
+            </p>
+            <p class="alternativas">
+                <input type="radio" name="q4" id="q4_alt4">
+                <label for="q4_alt4">Amarelo</label>
+            </p>
+
+            <div class="pergunta"> <!-- Quinta pergunta-->
+                <h2>5)</h2>
+                <h3>O que você mais gosta de fazer em seu tempo livre?</h3>
+            </div>
+            <p class="alternativas">
+                <input type="radio" name="q5" id="q5_alt1">
+                <label for="q5_alt1">Criar arte digital ou projetos visuais</label>
+            </p>
+            <p class="alternativas">
+                <input type="radio" name="q5" id="q5_alt2">
+                <label for="q5_alt2">Codificar ou criar programas</label>
+            </p>
+            <p class="alternativas">
+                <input type="radio" name="q5" id="q5_alt3">
+                <label for="q5_alt3">Ler sobre segurança cibernética e aprender sobre ameaças virtuais</label>
+            </p>
+            <p class="alternativas">
+                <input type="radio" name="q5" id="q5_alt4">
+                <label for="q5_alt4">Explorar novas tecnologias de rede</label>
+            </p>
+
+            <p>
+                <input type="button" name="enviar" id="enviar" value="Finalizar Quiz"> <!-- Botão pra finalizar o quiz -->
+            </p>
+
+            <p id="sua_vocacao">A sua vocação é...</p>
+            <div id="resultado">
+                <p></p> <!-- Aqui vai estar escrito a sua vocação (resultado do quiz) -->
+            </div>
+        </form>
+        <div id="rating">
+            <p></p> <!-- Aqui vai estar escrito uma dedscrição da sua vocação -->
+        </div>
+    </main>
+</body>
+
+</html>

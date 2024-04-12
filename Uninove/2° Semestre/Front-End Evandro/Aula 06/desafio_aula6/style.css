@@ -1,0 +1,108 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: burlywood;
+}
+
+#interface h1{
+    font-size: 2.5em;
+    color: #19e2e6;
+    border: solid 5px;
+    border-radius: 50px;
+    padding: 15px;
+    text-shadow: 3px 3px 5px black;
+    box-shadow: 3px 2px 6px rgba(0,0,0,0.4);
+}
+
+#interface {
+    background-color: #9b2fed;
+    border-radius: 75px;
+    max-width: 30%;
+    margin: 50px auto 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 35px 0px;
+}
+
+#informations {
+    padding: 25px;
+}
+
+.name_password {
+    font-size: 1.5em;
+    color: white;
+    padding: 10px;
+}
+
+
+.name_password input {
+    border: solid;
+    border-radius: 15px;
+    display: flex;
+    width: 225px;
+    height: 30px;
+    font-size: 1.2em;
+    padding: 6px;
+    box-shadow: 5px 5px 2px 0px;
+}
+
+#acess_denied {
+    display: none;
+    margin-bottom: 30px;
+    padding: 5px;
+    text-align: center;
+    font-size: 1.9em;
+    color: #eb2121;
+    text-shadow: 2px 2px 4px black;
+    font-family: sans-serif;
+}
+
+#button {
+    font-size: 1.2em;
+    padding: 15px 25px;
+    background-color: hsl(120,70%,60%);
+    border-radius: 25px;
+    transition: 0.5s;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.65);
+}
+
+#button:hover{
+    cursor: pointer;
+    transform: scale(1.20);
+    transition: 0.35s;
+}
+
+#corpo{
+    background: linear-gradient(185deg ,rgb(195, 0, 255), rgba(255, 0, 179, 0.5));
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#secreto{
+    display: flex;
+    margin: 250px auto;
+    padding: 25px 20px;
+    background-color: #10dfdf;
+    width: 30%;
+    align-items: center;
+    justify-content: center;
+    border: solid black;
+    border-radius: 65px;
+    box-shadow: 5px 5px 10px;
+    transition: 1.25s;
+}
+
+#secreto:hover{
+    background-color: #00ffff;
+    transform: scale(1.25);
+    transition: 1s;
+    cursor: pointer;
+}
+
+#secreto p{
+    font-size: 2.5em;
+}

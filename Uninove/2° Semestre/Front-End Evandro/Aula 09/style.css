@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+}
+
+header button {
+    padding: 10px 30px;
+    cursor: pointer;
+    background-color: rgb(0, 221, 184);
+    color: white;
+    border-radius: 25px;
+    border: 2px black solid;
+    box-shadow: 2px 2px 4px 1px black;
+    font-size: 1.4em;
+    transition: 0.2s;
+}
+
+header button:hover {
+    transform: scale(1.08);
+    transition: transform 0.25s;
+}
+
+header button:active {
+    background-color: rgb(0, 196, 163);
+}
+
+main {
+    width: 100vw;
+    height: 85vh;
+    background-image: url("imagens/fundo_animado.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    transform: translateX(-102vw);
+    transition: transform 2s ease;
+
+}
+
+main p {
+    text-align: center;
+    color: white;
+    font-size: 2em;
+}

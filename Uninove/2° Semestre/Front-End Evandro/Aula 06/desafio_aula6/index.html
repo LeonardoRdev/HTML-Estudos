@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login em um site</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="interface">
+        <h1>Faça seu Login</h1>
+        <div id="informations">
+            <div class="name_password">
+                <label for="nome">Nome:</label>
+                <input type="text" name="nome" id="nome" placeholder="José">
+            </div>
+            <div class="name_password">
+                <label for="senha">Senha:</label> <br>
+                <input type="password" name="senha" id="senha" placeholder="123">
+            </div>
+        </div>
+        <p id="acess_denied">ACESSO NEGADO</p>
+        <p id="button" onclick="enviar()">ENVIAR</p>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
