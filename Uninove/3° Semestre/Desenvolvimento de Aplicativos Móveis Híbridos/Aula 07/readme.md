@@ -8,7 +8,7 @@ Também realizamos um exercício para fixarmos o que aprendemos.
 
 **[Calcular o IMC]**
 
-```
+```DART
 // Aplicativo de cálculo de combustível
 // ignore_for_file: library_private_types_in_public_api
 
@@ -177,7 +177,7 @@ class _HomeState extends State<Home> {
 
 ---
 
-**[Média Pendurada]**
+**[Média Ponderada]**
 
 .* Está faltando a interface
 

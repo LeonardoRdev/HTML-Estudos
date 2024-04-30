@@ -38,12 +38,31 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   // Lógica da Aplicação | Back
+
+  // Variáveis:
+  String qtdMoeda1 = '1';
+  String qtdMoeda2 = '1';
+
+  // Controllers:
+  final TextEditingController _moeda1QtdController =
+      TextEditingController(text: '1');
+
+  final TextEditingController _moeda2QtdController =
+      TextEditingController(text: '1');
+
+  final TextEditingController _moeda1Controller =
+      TextEditingController(text: 'USD-BRL');
+
+  final TextEditingController _moeda2Controller =
+      TextEditingController(text: 'BRL-USD');
+
+  // Mais variáveis
   String converterMoeda1 = "USD-BRL"; // Dólar para Real
   // O valor abaixo era pra ser "DOUBLE", mas o programa não funciona de outro jeito.
-  String valorCotacaoMoeda1 = "0";
+  String valorCotacaoMoeda1 = "1";
   String converterMoeda2 = "BRL-USD"; // Real para Dolar
   // O valor abaixo era pra ser "DOUBLE", mas o programa não funciona de outro jeito.
-  String valorCotacaoMoeda2 = "0";
+  String valorCotacaoMoeda2 = "1";
   Map<String, dynamic> data = {};
   String errorMessage = '';
 
@@ -61,16 +80,25 @@ class _HomePageState extends State<HomePage> {
           print('Data 1[bid]: ${data['bid']}');
           if (moedaChamada == converterMoeda1) {
             valorCotacaoMoeda1 = '${data['bid']}';
+            // se for a moeda 1, alterar a qtd moeda2:
+            qtdMoeda2 =
+                (double.parse(valorCotacaoMoeda1) * double.parse(qtdMoeda1))
+                    .toString();
+            // Sempre que mudar a moeda, ele atualiza a quantidade também
+            _moeda2QtdController.text = (double.parse(valorCotacaoMoeda1) *
+                    double.parse(qtdMoeda1.isEmpty ? '1' : qtdMoeda1))
+                .toStringAsFixed(2);
           } else {
             valorCotacaoMoeda2 = '${data['bid']}';
+            // se for a moeda 2, alterar a qtd moeda1:
+            qtdMoeda1 =
+                (double.parse(valorCotacaoMoeda2) * double.parse(qtdMoeda2))
+                    .toString();
+            // Sempre que mudar a moeda, ele atualiza a quantidade também
+            _moeda1QtdController.text = (double.parse(valorCotacaoMoeda2) *
+                    double.parse(qtdMoeda2.isEmpty ? '1' : qtdMoeda2))
+                .toStringAsFixed(2);
           }
-          // void main() async {
-          //   // Espera 1 segundo
-          //   await Future.delayed(Duration(seconds: 1));
-          //   valorCotacaoMoeda1 = data['bid'];
-          // }
-
-          main();
         });
       } else {
         throw Exception('Falha ao carregar os dados');
@@ -87,19 +115,38 @@ class _HomePageState extends State<HomePage> {
     print("Mensagem de Erro: " + errorMessage);
   }
 
+  // Para carregar a API ao iniciar o APP
+  @override
+  void initState() {
+    super.initState();
+    fetchData(converterMoeda1);
+    fetchData(converterMoeda2);
+  }
+
   // Interface | Front-end:
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cotação de Moedas'),
+        title: const Text(
+          'Cotação de Moedas',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: const Color(0xFF5800DB),
       ),
       body: SingleChildScrollView(
+        padding: const EdgeInsets.fromLTRB(40, 20, 40, 0),
         child: Column(
           children: [
-            const Text("Informe a 1° Moeda:"),
-            const SizedBox(height: 20),
+            // PRIMEIRA MOEDA:
             TextField(
+              controller: _moeda1Controller,
+              textAlign: TextAlign.center,
+              decoration: const InputDecoration(
+                  labelText: 'Informe a 1° Moeda:',
+                  labelStyle: TextStyle(fontSize: 25)),
+              style: const TextStyle(fontSize: 30),
               onChanged: (value) {
                 setState(() {
                   converterMoeda1 = value;
@@ -107,9 +154,35 @@ class _HomePageState extends State<HomePage> {
                 });
               },
             ),
-            const Text("Informe a 2° Moeda:"),
-            const SizedBox(height: 20),
+            // Quantidade da primeira moeda:
             TextField(
+              controller: _moeda1QtdController,
+              textAlign: TextAlign.center,
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                  hintText: '1',
+                  labelText: 'Quantidade:',
+                  labelStyle: TextStyle(fontSize: 20)),
+              style: const TextStyle(fontSize: 25),
+              onChanged: (value) {
+                setState(() {
+                  qtdMoeda1 = value;
+                  _moeda2QtdController.text =
+                      (double.parse(valorCotacaoMoeda1) *
+                              double.parse(qtdMoeda1.isEmpty ? '1' : qtdMoeda1))
+                          .toStringAsFixed(2);
+                });
+              },
+            ),
+            // SEGUNDA MOEDA:
+            const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+            TextField(
+              controller: _moeda2Controller,
+              textAlign: TextAlign.center,
+              decoration: const InputDecoration(
+                  labelText: 'Informe a 2° Moeda:',
+                  labelStyle: TextStyle(fontSize: 25)),
+              style: const TextStyle(fontSize: 30),
               onChanged: (value) {
                 setState(() {
                   converterMoeda2 = value;
@@ -117,14 +190,37 @@ class _HomePageState extends State<HomePage> {
                 });
               },
             ),
-            Text("Moeda 1: " + converterMoeda1),
-            Text('Valor m1: $valorCotacaoMoeda1'),
-            Text("Moeda 2: " + converterMoeda2),
-            Text('Valor m2: $valorCotacaoMoeda2'),
-            Text('COTAÇÃO: ${data['bid']}'),
-
-            // O Teste abaixo faz a multiplicação da variável "valor1":
-            Text('\nTeste: ${double.parse(valorCotacaoMoeda1) * 3}'),
+            // Quantidade da segunda moeda:
+            TextField(
+              controller: _moeda2QtdController,
+              textAlign: TextAlign.center,
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                  hintText: '1',
+                  labelText: 'Quantidade:',
+                  labelStyle: TextStyle(fontSize: 20)),
+              style: const TextStyle(fontSize: 25),
+              onChanged: (value) {
+                setState(() {
+                  qtdMoeda2 = value;
+                  _moeda1QtdController.text =
+                      (double.parse(valorCotacaoMoeda2) *
+                              double.parse(qtdMoeda2.isEmpty ? '1' : qtdMoeda2))
+                          .toStringAsFixed(2);
+                });
+              },
+            ),
+            // Testes abaixo:
+            // Text('Moeda 1: $converterMoeda1'),
+            // Text('Valor m1: $valorCotacaoMoeda1'),
+            // Text('Moeda 2: $converterMoeda2'),
+            // Text('Valor m2: $valorCotacaoMoeda2'),
+            // Text('COTAÇÃO: ${data['bid']}'),
+            // Text('Quantidade moeda 1 -> $qtdMoeda1'),
+            // Text('Quantidade moeda 2 -> $qtdMoeda2'),
+            // // O Teste abaixo faz a multiplicação da variável "valor1":
+            // Text(
+            //     '\nTeste: ${double.parse(valorCotacaoMoeda1) * double.parse(qtdMoeda1.isEmpty ? '1' : qtdMoeda1)}'),
           ],
         ),
       ),
