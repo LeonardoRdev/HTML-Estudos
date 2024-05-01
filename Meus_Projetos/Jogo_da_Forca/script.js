@@ -4,6 +4,8 @@ const menuOpcoes = document.querySelector("#menu-opcoes");
 const telaInicial = document.querySelector("main #tela-inicial");
 const interfaceJogo = document.querySelector("main #interface-jogo");
 botaoJogar.addEventListener("click", () => { // BOTAO JOGAR
+    var tentativas = 6;
+
     menuOpcoes.innerHTML = `
     <button id="um-jogador">1 JOGADOR</button>
     <button id="dois-jogadores">2 JOGADORES</button>`;
@@ -42,62 +44,86 @@ botaoJogar.addEventListener("click", () => { // BOTAO JOGAR
             inputPalavraSecreta.style.padding = " 0.2em 0 0.2em 0.3em";
             inputPalavraSecreta.style.marginTop = ".2em";
 
+
             // Botão "Começar Jogo"
             botaoComecarJogo.addEventListener("click", () => {
-                salvarPalavraSecreta(inputPalavraSecreta.value);
+                const inputPalavraSecreta = document.querySelector("#input-palavra-secreta");
+                var arrayPalavraSecreta = inputPalavraSecreta.value.toUpperCase().split('');
+                var progressoPalavraSecreto = arrayPalavraSecreta.slice();
+                for (let i in progressoPalavraSecreto) {
+                    progressoPalavraSecreto[i] = "_ ";
+                }
+                function percorrerPalavraSecreta() {
+                    let palavraSecretaCompleta = "";
+                    for (let caractere of progressoPalavraSecreto) {
+                        palavraSecretaCompleta += caractere;
+                    }
+                    return palavraSecretaCompleta;
+                }
+                const underlinePalavraEscondida = document.querySelector("#underline-palavra-escondida");
+                underlinePalavraEscondida.innerHTML = percorrerPalavraSecreta();
+
                 telaInicial.style.display = "none";
                 interfaceJogo.style.display = "flex";
-            })
+
 
             // Botão enviar (chute)
             const botaoEnviar = document.querySelector("#enviar");
             botaoEnviar.addEventListener("click", () => {
                 const inputChute = document.querySelector("#chute");
-                // FAZER CONDIÇÃO, letra estiver na palavra secreta OU palavra secreta inteira.
-                
-                let arrayPalavraSecreta = inputPalavraSecreta.value.split('');
-                let progressoPalavraSecreto = arrayPalavraSecreta.slice();
-                for (let i in progressoPalavraSecreto) {
-                    progressoPalavraSecreto[i] = "_ ";
-                }
 
-                for (let i in arrayPalavraSecreta) {
-                    if (arrayPalavraSecreta[i] == inputChute.value) {
-                        alert("FOI IGUAL");
-                        progressoPalavraSecreto[i] = inputChute.value;
+                // FAZER CONDIÇÃO, se letra estiver na palavra secreta OU palavra secreta inteira estiver correta.
+
+                let temNaPalavra = 0;
+                // Verifica se a palavra não é um espaço vazio: " ";
+                if (inputChute.value.toUpperCase().replace(/\s/g, "") !== "") {
+                    for (let i in arrayPalavraSecreta) {
+                        if (arrayPalavraSecreta[i] == inputChute.value.toUpperCase()) {
+                            progressoPalavraSecreto[i] = inputChute.value.toUpperCase();
+                            console.log("Tem na palavra!\n");
+                            temNaPalavra++;
+                        }
+                    }
+    
+                    // CASO ERRAR:
+                    console.log(`TEM_NA_PALAVRA: ${temNaPalavra}\n`)
+                    if (temNaPalavra == 0) {
+                        let chutesErrados = document.querySelector("#chutes-errados p");
+                        chutesErrados.innerHTML += `${inputChute.value.toUpperCase()} | `;
+                        console.log("Não tem na palavra\n");
+                        let ilustracaoForca = document.querySelector("#ilustracao-forca img");
+
+                        // (tentativas-7) * -1) faz com que o contador suba em vez de descer: 1, 2, 3... até 6.
+                        ilustracaoForca.setAttribute("src", `imagens/forca${(tentativas-7 )*-1}.png`)
+                        ilustracaoForca.setAttribute("alt", `forca ${(tentativas-7)*-1}/6`)
+                        tentativas--;
                     }
                 }
+                else {
+                    console.log("Usuário tentou enviar ' ' ");
+                }
+
+                // Se acabarem as tentativas:
+                if (tentativas == 0) {
+                    alert("Tentativas Esgotadas!");
+                }
+
                 console.log(progressoPalavraSecreto);
                 let palavraSecretaCompleta = "";
                 for (let caractere of progressoPalavraSecreto) {
-                    palavraSecretaCompleta += caractere;
+                    palavraSecretaCompleta += `${caractere} `;
                 }
                 const underlinePalavraEscondida = document.querySelector("#underline-palavra-escondida");
                 underlinePalavraEscondida.innerHTML = palavraSecretaCompleta;
                 inputChute.value = "";    
             });
 
-        })
+            });
+
+        });
 
 });
 
-// Função para salvar a palvra secreta e criar o "_ _ _ _ _ _"
-function salvarPalavraSecreta(palavraSecreta) {
-    let arrayPalavraSecreta = palavraSecreta.split('');
-    let progressoPalavraSecreto = arrayPalavraSecreta.slice();
-    for (let i in progressoPalavraSecreto) {
-        progressoPalavraSecreto[i] = "_ ";
-    }
-    function percorrerPalavraSecreta() {
-        let palavraSecretaCompleta = "";
-        for (let caractere of progressoPalavraSecreto) {
-            palavraSecretaCompleta += caractere;
-        }
-        return palavraSecretaCompleta;
-    }
-    const underlinePalavraEscondida = document.querySelector("#underline-palavra-escondida");
-    underlinePalavraEscondida.innerHTML = percorrerPalavraSecreta();
-}
 
 
 // Para o form não atualizar a página
