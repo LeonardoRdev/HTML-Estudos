@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-header {
+main {
     margin-top: 15vh;
     display: flex;
     flex-direction: column;

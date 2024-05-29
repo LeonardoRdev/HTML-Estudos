@@ -4,6 +4,10 @@
     padding: 0;
 }
 
+/* Seta Voltar */
+header img {
+    position: absolute;
+}
 
 /* TELA INICIAL */
 main #tela-inicial {

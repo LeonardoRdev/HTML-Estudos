@@ -6,7 +6,12 @@
     text-align: center;
 }
 
-body {
+header {
+    position: absolute;
+}
+
+
+#fundo {
     background: linear-gradient(20deg, #d154f0, #f4f768);
     background-size: cover;
     background-repeat: no-repeat;

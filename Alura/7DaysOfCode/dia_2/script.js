@@ -18,5 +18,5 @@ else if (gostaOuNao == 2) {
 }
 
 else {
-    textoTitulo.innerHTML = `${nome}, as opções eram ou 1 ou 2, não tem outro jeito, agora dá F5 e refaz tudo`
+    textoTitulo.innerHTML = `"${nome}", as opções eram ou 1 ou 2, não tem outro jeito, agora dá F5 e refaz tudo`
 }
