@@ -4,7 +4,8 @@ div#imagensPequenas{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 5px 20px;
+    justify-content: center;
+    padding: 5px 80px;
     background-color: rgb(255, 190, 183);
     margin-left: -50px;
 }
@@ -45,7 +46,7 @@ div#coverScrem{
 }
 
 * {
-    margin: 5px auto;
+    margin: 0px auto;
 }
 
 body{

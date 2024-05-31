@@ -1,4 +1,5 @@
-header {
+main {
+    padding: 15px 0 5px 0;
     background-color: rgb(9, 126, 18);
     width: 80%;
     display: flex;
@@ -8,11 +9,12 @@ header {
 }
 
 * {
-    margin: 15px auto;
+    margin: 0 auto;
     margin-bottom: 10px;
 }
 
 div {
+    padding: 15px 0 5px 0;
     width: 80%;
     display: flex;
     text-align: center;

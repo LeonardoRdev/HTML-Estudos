@@ -1,5 +1,5 @@
-header{
-    width: 90%;
+nav{
+    width: 85%;
     border: solid #23b1d8 2px;
     background-color: #edf5f7;
     padding: 10px 35px;
@@ -10,11 +10,11 @@ header{
     display: flex;
 }
 
-header h1{
+nav h1{
     transition: 0.25s;
 }
 
-header h1:hover{
+nav h1:hover{
     cursor: pointer;
     text-decoration: underline;
     color: rgb(233, 164, 36);
@@ -76,4 +76,9 @@ div#caixaGrande{
 
 * {
     margin: 0 auto;
+}
+
+header {
+    position: absolute;
+    top: 0;
 }

@@ -1,12 +1,16 @@
 body {
+    background-color: #b8b8f375;
+    font-family: 'Roboto', sans-serif;
+}
+
+#pagina-principal {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
     padding: 0;
     box-sizing: border-box;
-    background-color: #b8b8f375;
-    font-family: 'Roboto', sans-serif;
+    margin-bottom: 50px;
 }
 
 h1#title {
@@ -19,12 +23,19 @@ h1#title {
     padding: 10px;
     border-radius: 20px;
     background-color: #3D348B;
+    margin-bottom: 25px;
+}
+
+form p, form h2, form h3, form input {
+    margin: 5px;
+    padding: 5px;
 }
 
 form#quiz {
     width: 70vw;
     background-color: #B8B8F3;
     border: solid 4px black;
+    margin-bottom: 40px;
 }
 
 div.question {
@@ -54,11 +65,12 @@ form#quiz p {
 
 input#submit {
     display: flex;
-    margin: 0 auto;
+    margin: 25px auto;
     font-size: 2em;
     font-family: "Roboto";
     background-color: rgba(0, 255, 255, 0.8);
     transition: 0.4s;
+    border-radius: 5px;
 }
 
 input#submit:hover{

@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-header, footer{
+#cabecalho, footer{
     width: 80%;
     background-color: azure;
     border: solid #c0c0c0 2px;
@@ -15,7 +15,7 @@ header, footer{
     padding: 10px;
 }
 
-header h1, header form{
+#cabecalho h1, #cabecalho form{
     margin: 0 auto;
 }
 
@@ -24,20 +24,20 @@ form input{
     margin-right: 15px;
 }
 
-header a{
+#cabecalho a{
     margin-right: 40px;
     font-size: 1.1rem;
     color: blue;
     transition: 0.2s;
 }
 
-header a:hover{
+#cabecalho a:hover{
     transform: scale(1.05);
     transition: 0.1s;
     color: rgb(231, 31, 31);
 }
 
-header a:active{
+#cabecalho a:active{
     color: rgb(255, 103, 103);
 }
 

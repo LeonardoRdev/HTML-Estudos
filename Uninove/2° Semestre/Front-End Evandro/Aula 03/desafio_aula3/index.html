@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exibir curriculos</title>
+    <link rel="stylesheet" href="../../../../../Meus_Projetos/Arquivos_pagina_inicial/seta_voltar.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -12,13 +13,23 @@
     <script src="index.js">
     </script>
 
+    <!-- Seta Voltar -->
     <header>
-        <h1 class="names" onclick="showPedro()">Pedro</h1>
-        <h1 class="names" onclick="showHelena()">Helena</h1>
-        <h1 class="names" onclick="showJorge()">Jorge</h1>
+        <a href="../aula3.html">
+            <img src="../../../../../Meus_Projetos/Arquivos_pagina_inicial/imagens/seta_voltar.png"
+                alt="Seta voltar página">
+        </a>
     </header>
-    <div id="informationsBox">
-        <p id="informationAppear">As informações apareceram aqui!! </p>
+
+    <div id="tela-principal">
+        <main>
+            <h1 class="names" onclick="showPedro()">Pedro</h1>
+            <h1 class="names" onclick="showHelena()">Helena</h1>
+            <h1 class="names" onclick="showJorge()">Jorge</h1>
+        </main>
+        <div id="informationsBox">
+            <p id="informationAppear">As informações apareceram aqui!! </p>
+        </div>
     </div>
 
 </body>

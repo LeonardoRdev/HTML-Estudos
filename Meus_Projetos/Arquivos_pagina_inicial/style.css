@@ -30,6 +30,7 @@
 /* Projetos */
 #containerComProjetos {
     margin-top: 8vh;
+    margin-bottom: 6vh;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;

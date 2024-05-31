@@ -1,28 +1,28 @@
-header{
+main{
     width: 80%;
     background-color: aqua;
     display: flex;
     margin-bottom: 12px;
-    
+    justify-content: space-around;
 }
 
-header h1.names:hover{
+main, div {
+    padding: 15px 5px;
+}
+
+main h1.names:hover{
     cursor: pointer;
     color: rgb(230, 255, 2);
     background-color: black;
     text-decoration: underline;
 }
 
-header h1.names:active{
+main h1.names:active{
     color: rgb(255, 254, 254);
 }
 
-header h1.names{
+main h1.names{
     padding: 6px 12px;
-}
-
-* {
-    margin: 15px auto;
 }
 
 div#informationsBox{
@@ -30,6 +30,7 @@ div#informationsBox{
     width: 80%;
     background-color: red;
     display: flex;
+    justify-content: center;
     color: white;
 }
 
@@ -44,4 +45,11 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+}
+
+#tela-principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
 }

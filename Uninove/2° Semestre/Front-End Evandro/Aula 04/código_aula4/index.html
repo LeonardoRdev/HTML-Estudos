@@ -5,18 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>"Curriculum"</title>
+    <link rel="stylesheet" href="../../../../../Meus_Projetos/Arquivos_pagina_inicial/seta_voltar.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <header>
-        <p onclick="showCurriculum('Gustavo', 'Gustavo é estagiário na empresa')">Gustavo</p>
-        <p onclick="showCurriculum('Vitor', 'Vitor Gosta de tirar um cochilo')">Vitor</p>
-        <p onclick="showCurriculum('Marcelo', 'Marcelo Gosta de jogar um mine com os amigos')">Marcelo</p>
-    </header>
-    <main id="curriculum">
 
-    </main>
+    <!-- Seta Voltar -->
+    <header>
+        <a href="../aula4.html">
+            <img src="../../../../../Meus_Projetos/Arquivos_pagina_inicial/imagens/seta_voltar.png"
+                alt="Seta voltar página">
+        </a>
+    </header>
+
+    <div id="pagina-principal">
+        <nav>
+            <p onclick="showCurriculum('Gustavo', 'Gustavo é estagiário na empresa')">Gustavo</p>
+            <p onclick="showCurriculum('Vitor', 'Vitor Gosta de tirar um cochilo')">Vitor</p>
+            <p onclick="showCurriculum('Marcelo', 'Marcelo Gosta de jogar um mine com os amigos')">Marcelo</p>
+        </nav>
+        <main id="curriculum">
+        </main>
+    </div>
 
     <script src="index.js">
     </script>

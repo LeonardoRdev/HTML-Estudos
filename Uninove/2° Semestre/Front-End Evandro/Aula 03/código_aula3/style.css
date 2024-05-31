@@ -1,16 +1,12 @@
-header {
+main {
     background-color: rgb(9, 126, 18);
     width: 80%;
     display: flex;
     align-items: center;
+    justify-content: center;
     color: white;
     margin-bottom: 0px;
     text-align: center;
-}
-
-* {
-    margin: 15px auto;
-    margin-bottom: 10px;
 }
 
 div {
@@ -23,20 +19,21 @@ div {
     padding-bottom: 15px;
     margin-top: 3px;
     align-items: center;
+    justify-content: center;
 }
 
-header h1.showHand{
+main h1.showHand{
     cursor:pointer;
     padding: 5px 15px;
 }
 
-header h1.showHand:hover{
+main h1.showHand:hover{
     color: rgb(37, 230, 79);
     background-color: rgb(0, 0, 0);
     text-decoration: underline;
 }
 
-header h1{
+main h1{
     cursor: default;
     padding: 20px;
     /*5px em cima e embaixo e 30px na esquerda e na direita
@@ -57,19 +54,23 @@ p#explain a:hover{
 }
 
 
-
 p#explain a:active{
     color: rgb(252, 8, 8);
 }
 
 
-
-
+#tela-principal {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center
+}
 
 /*configuração para celular com tela até 700px de largura:*/
 @media only screen and (max-width: 700px){
 
-    header{
+    main{
         flex-direction: column;
     }
 

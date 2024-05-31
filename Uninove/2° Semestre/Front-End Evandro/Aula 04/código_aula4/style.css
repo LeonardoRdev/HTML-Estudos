@@ -1,30 +1,26 @@
-header{
+nav{
     background-color: salmon;
     width: 80%;
     border: solid brown 5px;
     display: flex;
     align-items: center; /*Centraliza na Vertical*/
     flex-direction: row; /*Coloca os elementos em linha (um a direita do outro)*/
-    justify-content: center; /*Centraliza na Horizontal*/
+    justify-content: space-around; /*Centraliza na Horizontal*/
     margin-top: 10px;
     padding: 10px;
 }
 
-header p{
+nav p{
     padding: 20px 120px; /*5 px Cima&Baixo e 120 px Esquerda&Direita*/
     font-size: 1.9em; /*Aumenta o tamanho da letra em 90%*/
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-header p:hover{
+nav p:hover{
 background-color: rgb(197, 186, 173);
 cursor: pointer; /*Mãozinha de clicar*/
 color: rgb(41, 21, 19);
 transform: scaleX(1.06);
-}
-
-*{
-    margin: 15px auto;
 }
 
 main{
@@ -42,4 +38,10 @@ main{
 
 body{
     background-color: burlywood;
+}
+
+#pagina-principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

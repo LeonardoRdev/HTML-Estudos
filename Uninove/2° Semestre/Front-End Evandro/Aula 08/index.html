@@ -6,90 +6,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz de JavaScript</title>
     <link rel="icon" href="imagens/icone.png">
+    <link rel="stylesheet" href="../../../../Meus_Projetos/Arquivos_pagina_inicial/seta_voltar.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,700;1,400;1,700&display=swap"
         rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
 
 <body>
-    <h1 id="title">Teste seu conhecimendo sobre <i>JavaScript</i></h1>
-    <form name="quiz" id="quiz">
-        <div class="question">
-            <h2>1)</h2>
-            <h3>Qual comando captura um elemento da página HTML de id = "dados"?</h3>
-        </div>
-        <p>
-            <input type="radio" name="q1"> document.getName("dados")
-        </p>
-        <p>
-            <input type="radio" name="q1"> application.getId("dados")
-        </p>
-        <p>
-            <input type="radio" name="q1"> document.getElementById("dados")
-        </p>
-        <p>
-            <input type="radio" name="q1"> document.getTagById("dados")
-        </p>
-        <p>
-            <input type="radio" name="q1"> documento.getElementById("dados")
-        </p>
-        <div class="question">
-            <h2>2)</h2>
-            <h3>O comando alert serve para:</h3>
-        </div>
-        <p>
-            <input type="radio" name="q2" id=""> Exibir algum conteúdo em uma janela pop-up.
-        </p>
-        <p>
-            <input type="radio" name="q2" id=""> Exibir erros automaticamente.
-        </p>
-        <p>
-            <input type="radio" name="q2" id=""> Solicitar um valor ao usuário.
-        </p>
-        <p>
-            <input type="radio" name="q2" id=""> Criar animações.
-        </p>
-        <p>
-            <input type="radio" name="q2"> Alertar o usuário sobre erros.
-        </p>
-        <div class="question">
-            <h2>3)</h2>
-            <h3>O comando console.log() tem qual a finalidade de:</h3>
-        </div>
-        <p>
-            <input type="radio" name="q3"> Logar em um console especifíco.
-        </p>
-        <p>
-            <input type="radio" name="q3"> Escrever algum conteúdo no console.
-        </p>
-        <p>
-            <input type="radio" name="q3"> Pegar o IP atual da máquina.
-        </p>
-        <p>
-            <input type="radio" name="q3"> Solicitar um valor ao usuário.
-        </p>
-        <p>
-            <input type="radio" name="q3"> Criar uma função JavaScript.
-        </p>
 
-        <p>
-            <input type="button" value="Finalizar Quiz" onclick="checkAnswers()" id="submit">
-        </p>
+    <!-- Seta Voltar -->
+    <header>
+        <a href="../front-end.html">
+            <img src="../../../../Meus_Projetos/Arquivos_pagina_inicial/imagens/seta_voltar.png"
+                alt="Seta voltar página">
+        </a>
+    </header>
 
-        <div id="results">
-            <p></p>
-        </div>
+    <div id="pagina-principal">
 
-    </form>
+        <h1 id="title">Teste seu conhecimendo sobre <i>JavaScript</i></h1>
+        <form name="quiz" id="quiz">
+            <div class="question">
+                <h2>1)</h2>
+                <h3>Qual comando captura um elemento da página HTML de id = "dados"?</h3>
+            </div>
+            <p>
+                <input type="radio" name="q1"> document.getName("dados")
+            </p>
+            <p>
+                <input type="radio" name="q1"> application.getId("dados")
+            </p>
+            <p>
+                <input type="radio" name="q1"> document.getElementById("dados")
+            </p>
+            <p>
+                <input type="radio" name="q1"> document.getTagById("dados")
+            </p>
+            <p>
+                <input type="radio" name="q1"> documento.getElementById("dados")
+            </p>
+            <div class="question">
+                <h2>2)</h2>
+                <h3>O comando alert serve para:</h3>
+            </div>
+            <p>
+                <input type="radio" name="q2" id=""> Exibir algum conteúdo em uma janela pop-up.
+            </p>
+            <p>
+                <input type="radio" name="q2" id=""> Exibir erros automaticamente.
+            </p>
+            <p>
+                <input type="radio" name="q2" id=""> Solicitar um valor ao usuário.
+            </p>
+            <p>
+                <input type="radio" name="q2" id=""> Criar animações.
+            </p>
+            <p>
+                <input type="radio" name="q2"> Alertar o usuário sobre erros.
+            </p>
+            <div class="question">
+                <h2>3)</h2>
+                <h3>O comando console.log() tem qual a finalidade de:</h3>
+            </div>
+            <p>
+                <input type="radio" name="q3"> Logar em um console especifíco.
+            </p>
+            <p>
+                <input type="radio" name="q3"> Escrever algum conteúdo no console.
+            </p>
+            <p>
+                <input type="radio" name="q3"> Pegar o IP atual da máquina.
+            </p>
+            <p>
+                <input type="radio" name="q3"> Solicitar um valor ao usuário.
+            </p>
+            <p>
+                <input type="radio" name="q3"> Criar uma função JavaScript.
+            </p>
 
-    <footer>
-        <p id="rating"></p>
-    </footer>
+            <p>
+                <input type="button" value="Finalizar Quiz" onclick="checkAnswers()" id="submit">
+            </p>
+
+            <div id="results">
+                <p></p>
+            </div>
+
+        </form>
+
+        <footer>
+            <p id="rating"></p>
+        </footer>
+
+    </div>
 
 </body>
 

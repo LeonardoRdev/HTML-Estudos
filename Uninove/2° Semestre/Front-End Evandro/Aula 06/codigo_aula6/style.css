@@ -2,6 +2,10 @@
     margin: 0px auto;
 }
 
+header {
+    position: absolute;
+}
+
 body {
     margin: 0px;
     background-image: url("planodefundo.jpg");
