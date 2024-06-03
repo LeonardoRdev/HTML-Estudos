@@ -3,13 +3,11 @@
     margin: 0;
     box-sizing: border-box;
     font-family: "Anta", sans-serif;
-    text-align: center;
 }
 
-header {
+#seta-voltar-pagina {
     position: absolute;
 }
-
 
 #fundo {
     background: linear-gradient(20deg, #d154f0, #f4f768);

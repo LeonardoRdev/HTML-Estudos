@@ -1,6 +1,13 @@
 // Criando o "HTML" da página
 let body = document.querySelector("body");
-body.innerHTML = "<header></header><div id='main'></div>";
+body.innerHTML = `
+<div id="seta-voltar-pagina">
+<a href="../aula12.html">
+    <img src="../../../../../Meus_Projetos/Arquivos_pagina_inicial/imagens/seta_voltar.png"
+        alt="Seta voltar página">
+</a>
+</div>
+<header></header><div id='main'></div>`;
 
 let header = document.querySelector("header");
 header.innerHTML = "<button id='mostrar_fotos'>Mostrar Fotos</button><button id='organizar_fotos'>Organizar Fotos</button>";

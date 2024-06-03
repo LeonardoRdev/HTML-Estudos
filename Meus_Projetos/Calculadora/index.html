@@ -5,101 +5,103 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora</title>
+    <link rel="stylesheet" href="../Arquivos_pagina_inicial/seta_voltar.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/d3bfbe9a81.js" crossorigin="anonymous"></script>
     <script src="script.js" defer></script>
-    <link rel="stylesheet" href="../Arquivos_pagina_inicial/seta_voltar.css">
 </head>
 
 <body>
 
     <!-- Seta Voltar -->
-    <header>
+    <div id="seta-voltar-pagina">
         <a href="../meus_projetos.html">
             <img src="../Arquivos_pagina_inicial/imagens/seta_voltar.png" alt="Seta voltar página">
         </a>
-    </header>
+    </div>
 
-    <main>
-        <div id="resultado">
-            <p id="operacao"></p>
-            <p id="resultado_numero">0</p>
-        </div>
-        <div id="operacoes">
-            <div class="botoes_da_calculadora" id="botao1">
-                <p>%</p>
+    <div id="corpo-da-pagina">
+        <main>
+            <div id="resultado">
+                <p id="operacao"></p>
+                <p id="resultado_numero">0</p>
             </div>
-            <div class="botoes_da_calculadora" id="botao2">
-                <p>CE</p>
+            <div id="operacoes">
+                <div class="botoes_da_calculadora" id="botao1">
+                    <p>%</p>
+                </div>
+                <div class="botoes_da_calculadora" id="botao2">
+                    <p>CE</p>
+                </div>
+                <div class="botoes_da_calculadora" id="botao3">
+                    <p>C</p>
+                </div>
+                <div class="botoes_da_calculadora" id="botao4">
+                    <p><i class="fa-solid fa-delete-left"></i></p>
+                </div>
+                <div class="botoes_da_calculadora" id="botao5">
+                    <p>1/x</p>
+                </div>
+                <div class="botoes_da_calculadora" id="botao6">
+                    <p>x²</p>
+                </div>
+                <div class="botoes_da_calculadora" id="botao7">
+                    <p>²/x</p>
+                </div>
+                <div class="botoes_da_calculadora" id="botao8">
+                    <p>/</p>
+                </div>
+                <div class="botoes_da_calculadora" id="botao9">
+                    <p>7</p>
+                </div>
+                <div class="botoes_da_calculadora" id="botao10">
+                    <p>8</p>
+                </div>
+                <div class="botoes_da_calculadora" id="botao11">
+                    <p>9</p>
+                </div>
+                <div class="botoes_da_calculadora" id="botao12">
+                    <p>X</p>
+                </div>
+                <div class="botoes_da_calculadora" id="botao13">
+                    <p>4</p>
+                </div>
+                <div class="botoes_da_calculadora" id="botao14">
+                    <p>5</p>
+                </div>
+                <div class="botoes_da_calculadora" id="botao15">
+                    <p>6</p>
+                </div>
+                <div class="botoes_da_calculadora" id="botao16">
+                    <p>-</p>
+                </div>
+                <div class="botoes_da_calculadora" id="botao17">
+                    <p>1</p>
+                </div>
+                <div class="botoes_da_calculadora" id="botao18">
+                    <p>2</p>
+                </div>
+                <div class="botoes_da_calculadora" id="botao19">
+                    <p>3</p>
+                </div>
+                <div class="botoes_da_calculadora" id="botao20">
+                    <p>+</p>
+                </div>
+                <div class="botoes_da_calculadora" id="botao21">
+                    <p>+/-</p>
+                </div>
+                <div class="botoes_da_calculadora" id="botao22">
+                    <p>0</p>
+                </div>
+                <div class="botoes_da_calculadora" id="botao23">
+                    <p>,</p>
+                </div>
+                <div class="botoes_da_calculadora" id="botao24">
+                    <p>=</p>
+                </div>
             </div>
-            <div class="botoes_da_calculadora" id="botao3">
-                <p>C</p>
-            </div>
-            <div class="botoes_da_calculadora" id="botao4">
-                <p><i class="fa-solid fa-delete-left"></i></p>
-            </div>
-            <div class="botoes_da_calculadora" id="botao5">
-                <p>1/x</p>
-            </div>
-            <div class="botoes_da_calculadora" id="botao6">
-                <p>x²</p>
-            </div>
-            <div class="botoes_da_calculadora" id="botao7">
-                <p>²/x</p>
-            </div>
-            <div class="botoes_da_calculadora" id="botao8">
-                <p>/</p>
-            </div>
-            <div class="botoes_da_calculadora" id="botao9">
-                <p>7</p>
-            </div>
-            <div class="botoes_da_calculadora" id="botao10">
-                <p>8</p>
-            </div>
-            <div class="botoes_da_calculadora" id="botao11">
-                <p>9</p>
-            </div>
-            <div class="botoes_da_calculadora" id="botao12">
-                <p>X</p>
-            </div>
-            <div class="botoes_da_calculadora" id="botao13">
-                <p>4</p>
-            </div>
-            <div class="botoes_da_calculadora" id="botao14">
-                <p>5</p>
-            </div>
-            <div class="botoes_da_calculadora" id="botao15">
-                <p>6</p>
-            </div>
-            <div class="botoes_da_calculadora" id="botao16">
-                <p>-</p>
-            </div>
-            <div class="botoes_da_calculadora" id="botao17">
-                <p>1</p>
-            </div>
-            <div class="botoes_da_calculadora" id="botao18">
-                <p>2</p>
-            </div>
-            <div class="botoes_da_calculadora" id="botao19">
-                <p>3</p>
-            </div>
-            <div class="botoes_da_calculadora" id="botao20">
-                <p>+</p>
-            </div>
-            <div class="botoes_da_calculadora" id="botao21">
-                <p>+/-</p>
-            </div>
-            <div class="botoes_da_calculadora" id="botao22">
-                <p>0</p>
-            </div>
-            <div class="botoes_da_calculadora" id="botao23">
-                <p>,</p>
-            </div>
-            <div class="botoes_da_calculadora" id="botao24">
-                <p>=</p>
-            </div>
-        </div>
-    </main>
+        </main>
+    </div>
 </body>
 
 </html>

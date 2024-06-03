@@ -2,7 +2,7 @@ const show = document.querySelector("#show");
 
 show.onclick= function() {
     let imagem = document.querySelector("main")
-    let textoBotao = document.querySelector("header button")
+    let textoBotao = document.querySelector("nav button")
     if (textoBotao.innerHTML == "Mostrar") {
         textoBotao.innerHTML = "Esconder"
         imagem.style.transform = "translateX(0px)";

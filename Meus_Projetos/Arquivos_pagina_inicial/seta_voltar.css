@@ -6,8 +6,13 @@
 }
 
 
-/* Header | Seta Voltar*/
-header img {
+/* Div | Seta Voltar */
+#seta-voltar-pagina {
+    position: sticky;
+    top: 0;
+}
+
+#seta-voltar-pagina img {
     width: 3.8em;
     padding: 0.5em;
     border: solid 0.2em #000;
@@ -18,7 +23,7 @@ header img {
     background-color: #fff;
 }
 
-header img:hover {
+#seta-voltar-pagina img:hover {
     cursor: pointer;
     scale: 1.1;
 }

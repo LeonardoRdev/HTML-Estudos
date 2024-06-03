@@ -8,9 +8,20 @@ body {
     background-color: lightslategray;
 }
 
+#seta-voltar-pagina {
+    position: absolute;
+}
+
+#corpo-da-pagina {
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 main {
-    margin: 2% 0 0 5%;
     width: 380px;
     height: 620px;
     border: solid black 2px;

@@ -5,6 +5,11 @@ z-index: 1;
     E se você defini-lo como 1, por exemplo, ele ficará sempre 1 camada a frente de todos os outros elementos.
 */
 
+#seta-voltar-pagina {
+    position: absolute;
+    z-index: 2;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -16,7 +21,7 @@ body {
 
 header {
     width: 100vw;
-    height: 60px;
+    height: 100px;
     position: fixed;
     padding: 15px 0px;
     display: flex;
@@ -43,7 +48,7 @@ nav {
     position: sticky;
     top: 0;
     height: 200px;
-    padding: 20px 0;
+    padding: 120px 0;
     border: solid 4px black;
     box-shadow: 2px 2px 5px;
     width: 50vw;
@@ -144,7 +149,7 @@ Espaçamento
 
 /* Estilização do QUIZ */
 main#main_quiz {
-    margin-top: -150px;
+    margin-top: -100px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -161,6 +166,7 @@ main#main_quiz h1#descubra {
     text-align: center;
     font-size: 2.6em;
     font-family: 'Roboto', sans-serif;
+    margin-bottom: 20px;
 }
 
 main#main_quiz form {

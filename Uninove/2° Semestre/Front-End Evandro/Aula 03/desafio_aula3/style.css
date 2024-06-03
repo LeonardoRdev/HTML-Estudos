@@ -6,7 +6,7 @@ main{
     justify-content: space-around;
 }
 
-main, div {
+main, div.div-programa {
     padding: 15px 5px;
 }
 

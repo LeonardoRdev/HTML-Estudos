@@ -9,7 +9,7 @@ main {
     text-align: center;
 }
 
-div {
+div.div-programa {
     width: 80%;
     display: flex;
     text-align: center;
