@@ -52,7 +52,7 @@ Pesquisar no google padrão MVC
 
 M - Model >>>>> Modelo
 V - View >>>>>>>>>>>> Visualização
-C -  Controller >>>>>>> Controlador
+C - Controller >>>>>>> Controlador
 
 Manipulação dos dados ( model )
 Interação do usuário ( view )
