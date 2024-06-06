@@ -139,4 +139,33 @@ form #enviar:hover {
 
 #fim-de-jogo {
     display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
+
+#fim-de-jogo h2 {
+    font-size: 2.5em;
+}
+
+#fim-de-jogo p {
+    font-size: 1.6em;
+}
+
+#fim-de-jogo button {
+    margin-top: 2em;
+    font-size: 2em;
+    background-color: rebeccapurple;
+    padding: 0.2em 0.4em;
+    color: #fff;
+    border: solid 2px #000;
+    box-shadow: 2px 2px 3px #000600;
+    border-radius: 0.3em;
+    transition: scale 0.15s;
+
+}
+
+#fim-de-jogo button:hover {
+    cursor: pointer;
+    scale: 1.05;
 }
