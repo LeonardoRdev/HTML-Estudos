@@ -11,7 +11,7 @@
 
 /* TELA INICIAL */
 main #tela-inicial {
-    background-color: rebeccapurple;
+    background: linear-gradient(160deg, #610acc, #5c378a);
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -21,7 +21,8 @@ main #tela-inicial {
 #titulo-jogo {
     padding-top: 7vh;
     font-size: 1.8em;
-    color: white;
+    text-shadow: 3px 3px 5px #000B;
+    color: #fff;
     font-family: sans-serif;
 }
 
@@ -155,7 +156,7 @@ form #enviar:hover {
 #fim-de-jogo button {
     margin-top: 2em;
     font-size: 2em;
-    background-color: rebeccapurple;
+    background: linear-gradient(160deg, #610acc, #5c378a);
     padding: 0.2em 0.4em;
     color: #fff;
     border: solid 2px #000;

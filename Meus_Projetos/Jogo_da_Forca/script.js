@@ -37,10 +37,13 @@ botaoJogar.addEventListener("click", () => { // BOTAO JOGAR
         formPalavraSecreta.style.flexDirection = "column";
         formPalavraSecreta.style.alignItems = "center";
         botaoComecarJogo.style.marginTop = "2.5em";
-        jogadorUmTituloInput.style.fontSize = "2em";
+        jogadorUmTituloInput.style.fontSize = "2.1em";
         jogadorUmTituloInput.style.color = "#E0B02F";
         jogadorUmTituloInput.style.textShadow = "1px 1px 2px #000";
         labelPalavraSecreta.style.fontSize = "1.5em";
+        labelPalavraSecreta.style.color = "#fff";
+        labelPalavraSecreta.style.marginBottom = "0.15em";
+        labelPalavraSecreta.style.textShadow = "3px 3px 4px #000A";
         inputPalavraSecreta.style.fontSize = "1.8em";
         inputPalavraSecreta.style.padding = " 0.2em 0 0.2em 0.3em";
         inputPalavraSecreta.style.marginTop = ".2em";
@@ -51,9 +54,12 @@ botaoJogar.addEventListener("click", () => { // BOTAO JOGAR
             const inputPalavraSecreta = document.querySelector("#input-palavra-secreta");
             var arrayPalavraSecreta = inputPalavraSecreta.value.toUpperCase().split('');
             var progressoPalavraSecreto = arrayPalavraSecreta.slice();
+            let listaChutesErrados = [];
+
             for (let i in progressoPalavraSecreto) {
                 progressoPalavraSecreto[i] = "_ ";
             }
+
             function percorrerPalavraSecreta() {
                 let palavraSecretaCompleta = "";
                 for (let caractere of progressoPalavraSecreto) {
@@ -61,6 +67,7 @@ botaoJogar.addEventListener("click", () => { // BOTAO JOGAR
                 }
                 return palavraSecretaCompleta;
             }
+
             const underlinePalavraEscondida = document.querySelector("#underline-palavra-escondida");
             underlinePalavraEscondida.innerHTML = percorrerPalavraSecreta();
 
@@ -90,14 +97,20 @@ botaoJogar.addEventListener("click", () => { // BOTAO JOGAR
                     console.log(`TEM_NA_PALAVRA: ${temNaPalavra}\n`)
                     if (temNaPalavra == 0) {
                         let chutesErrados = document.querySelector("#chutes-errados p");
-                        chutesErrados.innerHTML += `${inputChute.value.toUpperCase()} | `;
-                        console.log("Não tem na palavra\n");
-                        let ilustracaoForca = document.querySelector("#ilustracao-forca img");
 
-                        // (tentativas-7) * -1) faz com que o contador suba em vez de descer: 1, 2, 3... até 6.
-                        ilustracaoForca.setAttribute("src", `imagens/forca${(tentativas - 7) * -1}.png`)
-                        ilustracaoForca.setAttribute("alt", `forca ${(tentativas - 7) * -1}/6`)
-                        tentativas--;
+                        // Caso chutar a mesma letra mais de 1 vez:
+                        if (listaChutesErrados.indexOf(inputChute.value.toUpperCase()) === -1 ) {
+                            listaChutesErrados.push(inputChute.value.toUpperCase());
+                            chutesErrados.innerHTML += `${inputChute.value.toUpperCase()} | `;
+                            console.log("Não tem na palavra\n");
+                            let ilustracaoForca = document.querySelector("#ilustracao-forca img");
+    
+                            // (tentativas-7) * -1) faz com que o contador suba em vez de descer: 1, 2, 3... até 6.
+                            ilustracaoForca.setAttribute("src", `imagens/forca${(tentativas - 7) * -1}.png`)
+                            ilustracaoForca.setAttribute("alt", `forca ${(tentativas - 7) * -1}/6`)
+                            tentativas--;
+                        }
+
                     }
                 }
                 else {
@@ -110,10 +123,10 @@ botaoJogar.addEventListener("click", () => { // BOTAO JOGAR
                     const underlinePalavraEscondida = document.querySelector("#underline-palavra-escondida");
                     let respostaPalavraSecreta = "";
                     for (letra of arrayPalavraSecreta) {
-                        respostaPalavraSecreta += letra;
+                        respostaPalavraSecreta += `${letra} `;
                     }
                     underlinePalavraEscondida.innerHTML = respostaPalavraSecreta;
-                    underlinePalavraEscondida.style.color = "#f00";
+                    underlinePalavraEscondida.style.color = "#e82e3e";
                     let inputChuteDiv = document.querySelector("#input-chute");
                     inputChuteDiv.style.display = "none";
                     fimDeJogo = document.querySelector("#fim-de-jogo");
@@ -134,7 +147,6 @@ botaoJogar.addEventListener("click", () => { // BOTAO JOGAR
                 // Se descobrir a palavra toda (vencer):
                 console.log(`Palavra secreta: ${inputPalavraSecreta.value.toUpperCase()}`)
                 console.log('Digitada: ' + inputChute.value.toUpperCase().replace(/\s/g, ""));
-                alert(`${inputPalavraSecreta.value.toUpperCase() == inputChute.value.toUpperCase().replace(/\s/g, "") ? 'engal' : 'diferente'}`)
 
                 if (progressoPalavraSecreto.indexOf("_ ") === -1 || inputPalavraSecreta.value.toUpperCase() == inputChute.value.toUpperCase().replace(/\s/g, "")) {
                     let inputChuteDiv = document.querySelector("#input-chute");
@@ -145,6 +157,12 @@ botaoJogar.addEventListener("click", () => { // BOTAO JOGAR
                     fimDeJogoH2.innerHTML = "😎 Você Venceu! 😁";
                     fimDeJogoParagrafo = document.querySelector("#fim-de-jogo p");
                     fimDeJogoParagrafo.innerHTML = "Parabéns por adivinhar a palavra!";
+                
+                    // Imagem da forca de vitória:
+                    let ilustracaoForca = document.querySelector("#ilustracao-forca img");
+                    ilustracaoForca.setAttribute("src", `imagens/forca_salvado.png`)
+                    ilustracaoForca.setAttribute("alt", `Menino fora da forca e sorridente`)
+
                 }
 
                 inputChute.value = "";
