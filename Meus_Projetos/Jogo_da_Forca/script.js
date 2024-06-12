@@ -52,7 +52,9 @@ botaoJogar.addEventListener("click", () => { // BOTAO JOGAR
         // Botão "Começar Jogo"
         botaoComecarJogo.addEventListener("click", () => {
             const inputPalavraSecreta = document.querySelector("#input-palavra-secreta");
-            var arrayPalavraSecreta = inputPalavraSecreta.value.toUpperCase().split('');
+            // A palavra secreta é transformada em maiúscula, não tem acentos, os espaços antes e depois da palavra são removidos, os espaços são trocados por "-", e é transformado em um array:
+            var arrayPalavraSecreta = inputPalavraSecreta.value.toUpperCase().normalize("NFD").trim().replace(/[\u0300-\u036f]/g, "").replace(/ /g, "-").split('');
+
             var progressoPalavraSecreto = arrayPalavraSecreta.slice();
             let listaChutesErrados = [];
 
@@ -82,26 +84,35 @@ botaoJogar.addEventListener("click", () => { // BOTAO JOGAR
 
                 // FAZER CONDIÇÃO, se letra estiver na palavra secreta OU palavra secreta inteira estiver correta.
 
-                let temNaPalavra = 0;
+                let temNaPalavra = false;
                 // Verifica se a palavra não é um espaço vazio: " ";
-                if (inputChute.value.toUpperCase().replace(/\s/g, "") !== "") {
+                // função trim() -> remove os espaços antes e depois da palavra digitada, para evitar erros.
+                if (inputChute.value.toUpperCase().replace(/\s/g, "").trim() !== "") {
                     for (let i in arrayPalavraSecreta) {
-                        if (arrayPalavraSecreta[i] == inputChute.value.toUpperCase()) {
-                            progressoPalavraSecreto[i] = inputChute.value.toUpperCase();
+                        if (arrayPalavraSecreta[i] == inputChute.value.toUpperCase().trim()) {
+                            progressoPalavraSecreto[i] = inputChute.value.toUpperCase().trim();
                             console.log("Tem na palavra!\n");
-                            temNaPalavra++;
+                            temNaPalavra = true;
                         }
                     }
 
                     // CASO ERRAR:
                     console.log(`TEM_NA_PALAVRA: ${temNaPalavra}\n`)
-                    if (temNaPalavra == 0) {
+                    if (temNaPalavra == false) {
                         let chutesErrados = document.querySelector("#chutes-errados p");
 
-                        // Caso chutar a mesma letra mais de 1 vez:
-                        if (listaChutesErrados.indexOf(inputChute.value.toUpperCase()) === -1 ) {
-                            listaChutesErrados.push(inputChute.value.toUpperCase());
-                            chutesErrados.innerHTML += `${inputChute.value.toUpperCase()} | `;
+                        // Caso a palavra chutada tenha sido chutada erroniamente pela 1° vez:
+                        if (listaChutesErrados.indexOf(inputChute.value.toUpperCase().trim()) === -1 ) {
+                            listaChutesErrados.push(inputChute.value.toUpperCase().trim());
+
+                            // Lista de chute em uma única variável String:
+                            let varTodosChutesErrados = "";
+                            for (chute of listaChutesErrados) {
+                                varTodosChutesErrados += `${chute} | `;
+                            }
+
+                            chutesErrados.innerHTML = `${varTodosChutesErrados}`;
+
                             console.log("Não tem na palavra\n");
                             let ilustracaoForca = document.querySelector("#ilustracao-forca img");
     
@@ -119,12 +130,13 @@ botaoJogar.addEventListener("click", () => { // BOTAO JOGAR
 
                 // Se acabarem as tentativas:
                 if (tentativas == 0) {
-                    //interfaceJogo.style.display = "none";
                     const underlinePalavraEscondida = document.querySelector("#underline-palavra-escondida");
                     let respostaPalavraSecreta = "";
+
                     for (letra of arrayPalavraSecreta) {
                         respostaPalavraSecreta += `${letra} `;
                     }
+
                     underlinePalavraEscondida.innerHTML = respostaPalavraSecreta;
                     underlinePalavraEscondida.style.color = "#e82e3e";
                     let inputChuteDiv = document.querySelector("#input-chute");
@@ -143,6 +155,7 @@ botaoJogar.addEventListener("click", () => { // BOTAO JOGAR
                     const underlinePalavraEscondida = document.querySelector("#underline-palavra-escondida");
                     underlinePalavraEscondida.innerHTML = palavraSecretaCompleta;
                 }
+
 
                 // Se descobrir a palavra toda (vencer):
                 console.log(`Palavra secreta: ${inputPalavraSecreta.value.toUpperCase()}`)
@@ -163,6 +176,24 @@ botaoJogar.addEventListener("click", () => { // BOTAO JOGAR
                     ilustracaoForca.setAttribute("src", `imagens/forca_salvado.png`)
                     ilustracaoForca.setAttribute("alt", `Menino fora da forca e sorridente`)
 
+
+                    // Se vencer por chutar a palavra inteira, mostrar a palavra:
+                    let respostaPalavraSecreta = "";
+                    for (letra of arrayPalavraSecreta) {
+                        respostaPalavraSecreta += `${letra} `;
+                    }
+                    underlinePalavraEscondida.innerHTML = respostaPalavraSecreta;
+
+                    // E não marcar a palavra chutada como erro:
+                    let chutesErrados = document.querySelector("#chutes-errados p");
+                    
+                    let varTodosChutesErrados = "";
+                    listaChutesErrados.pop();
+                    for (chute of listaChutesErrados) {
+                        varTodosChutesErrados += `${chute} | `;
+                    }
+
+                    chutesErrados.innerHTML = `${varTodosChutesErrados}`;
                 }
 
                 inputChute.value = "";
