@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="p-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Afazeres</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <h1 id="titulo">Lista de Afazeres</h1>
+
+    <!-- Adicionar tarefa -->
+    <form id="adicionar-tarefa">
+        <div id="inputs-form">
+            <input type="text" placeholder="Passear o cachorro" id="input-tarefa">
+            <input type="number" placeholder="Tempo da tarefa (minutos)" id="input-tempo-tarefa">
+        </div>
+        <button type="button" id="botao-enviar">Enviar</button>
+    </form>
+
+    <!-- Tarefas adicionadas -->
+    <form id="tarefas">
+        <div class="tarefa-a-fazer">
+            <div id="tarefa">
+                <input type="radio" id="tarefa0">
+                <label for="tarefa0">tarefa legal legal demais</label>
+            </div>
+            <div id="tempo-tarefa">
+                <p>24</p>
+                <button type="button">X</button>
+            </div>
+        </div>
+    </form>
+
+</body>
+
+</html>

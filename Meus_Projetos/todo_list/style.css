@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
+}
+
+#titulo {
+    font-size: 2.5em;
+    text-align: center;
+    margin: 1em 0;
+}
+
+/* Form | Adicionar tarefa */
+form#adicionar-tarefa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8em;
+}
+
+div#inputs-form {
+    display: flex;
+    justify-content: center;
+    gap: 0.5em;
+}
+
+div#inputs-form input {
+    font-size: 1.4em;
+}
+
+form#adicionar-tarefa button {
+    font-size: 1.3em;
+}
+
+/* Form | Tarefas adicionadas */
+
+form#tarefas {
+    margin-top: 3em;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Tarefa a fazer */
+div.tarefa-a-fazer {
+    width: 20em;
+    
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* [ x ] e descrição tarefa */
+div#tarefa {
+    background-color: #f002;
+    padding: 5px;
+
+}
+
+
+/* Tempo e excluir tarefa */
+div#tempo-tarefa {
+    background-color: #00f2;
+    padding: 5px;
+
+    gap: 0.5em;
+    display: flex;
+}
+
+/* div#tempo-tarefa p {
+
+} */
+
+div#tempo-tarefa button {
+    background-color: #f008;
+    font-size: 1.3em;
+}
