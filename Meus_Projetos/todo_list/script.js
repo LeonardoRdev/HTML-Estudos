@@ -5,7 +5,7 @@ const botaoEnviar = document.querySelector("#botao-enviar");
 
 
 // Form | Tarefas adicionadas
-const formTarefas = document.querySelector("form#tarefas");
+const divTarefas = document.querySelector("div#tarefas")
 let idTarefa = 1;
 
 botaoEnviar.addEventListener("click", () => {
@@ -13,17 +13,19 @@ botaoEnviar.addEventListener("click", () => {
         return;
     }
 
-    formTarefas.innerHTML += `
-        <div class="tarefa-a-fazer">
-            <div id="tarefa">
-                <input type="radio" id="tarefa${idTarefa}">
-                <label for="tarefa${idTarefa}">${inputTarefa.value}</label>
-            </div>
-        <div id="tempo-tarefa">
-            <p>${inputTempoTarefa.value} minutos</p>
-            <button>X</button>
-            </div>
-        </div>
+    divTarefas.innerHTML += `
+                <div class="tarefa" id="tarefa${idTarefa}">
+                    <input type="radio" id="tarefa${idTarefa}">
+                    <label for="tarefa${idTarefa}">${inputTarefa.value}</label>
+                    <p>${inputTempoTarefa.value}</p>
+
+                    <button class="excluir-tarefa" id="tarefa${idTarefa}" type="button" onclick="excluirTarefa(${idTarefa})">X</button>
+                </div>
     `;
     idTarefa++;
-})
+});
+
+function excluirTarefa(idTarefa) {
+    let tarefaX = document.querySelector(`#tarefa${idTarefa}`);
+    tarefaX.style.display = "none";
+}
