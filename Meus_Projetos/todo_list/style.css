@@ -77,3 +77,35 @@ div#tempo-tarefa button {
     background-color: #f008;
     font-size: 1.3em;
 }
+
+
+
+table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1.4em;
+    min-width: 700px;
+}
+
+table thead tr {
+    background-color: #009879;
+    font-weight: bold;
+    color: #fff;
+    text-align: left;
+}
+
+table tbody tr {
+    border-bottom: 2px solid #ddd;
+}
+
+table th, table td {
+    padding: 12px 15px;
+}
+
+table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+table tbody tr:last-of-type {
+    border-bottom: 3px solid #009879;
+}
