@@ -84,3 +84,20 @@ form#adicionar-tarefa button {
     position: absolute;
     right: 13vw;
 }
+
+/* Horário fim das atividades */
+#horario-fim-atividades {
+    margin-top: 3em;
+
+    display: none;
+    align-items: center;
+    flex-direction: column;
+}
+
+#horario-fim-atividades #horario {
+    font-size: 2em;
+    padding: 0.2em;
+    border: solid 4px #000;
+    border-radius: 0.15em;
+    box-shadow: 0 0 0.4em #0005;
+}
