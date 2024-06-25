@@ -16,9 +16,15 @@
 
     <!-- Adicionar tarefa -->
     <form id="adicionar-tarefa">
-        <div id="inputs-form">
-            <input type="text" placeholder="Passear o cachorro" id="input-tarefa">
-            <input type="number" placeholder="Tempo da tarefa (minutos)" id="input-tempo-tarefa">
+        <div id="divs-com-inputs">
+            <div class="inputs-form">
+                <label for="input-tarefa">Tarefa</label>
+                <input type="text" placeholder="Passear o cachorro" id="input-tarefa">
+            </div>
+            <div class="inputs-form">
+                <label for="input-tempo-tarefa">Tempo até conclusão (minutos)</label>
+                <input type="number" placeholder="15" id="input-tempo-tarefa">
+            </div>
         </div>
         <button type="button" id="botao-enviar">Enviar</button>
     </form>
@@ -37,20 +43,19 @@
             <div id="tarefas">
 
                 <div class="tarefa" id="tarefa0">
-                    <input type="radio" id="tarefa0">
-                    <label for="tarefa0">tarefa legal legal demais</label>
-                    <p>24</p>
+                    <input type="checkbox" id="input-tarefa0">
+                    <label for="input-tarefa0">tarefa legal legal demais</label>
+                    <p>24 minutos</p>
 
                     <button class="excluir-tarefa" id="tarefa0" type="button" onclick="excluirTarefa(0)">X</button>
                 </div>
-
             </div>
         </div>
 
     </form>
 
     <div id="horario-fim-atividades">
-        <p>Fim das atividades</p>
+        <p>Fim das atividades   </p>
         <h2 id="horario"></h2>
     </div>
 

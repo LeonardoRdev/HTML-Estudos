@@ -19,18 +19,43 @@ form#adicionar-tarefa {
     gap: 0.8em;
 }
 
-div#inputs-form {
+div#divs-com-inputs {
     display: flex;
     justify-content: center;
-    gap: 0.5em;
+    gap: 2em;
 }
 
-div#inputs-form input {
+div.inputs-form {
+    display: flex;
+    flex-direction: column;
+}
+
+div.inputs-form input {
     font-size: 1.4em;
+    padding: 0.2em 0 0.15em 0.4em;
+}
+
+div.inputs-form label {
+    margin-left: 0.5em;
 }
 
 form#adicionar-tarefa button {
     font-size: 1.3em;
+    padding: 0.2em 0.3em;
+    border: solid 2px #000;
+    box-shadow: 0 0 1em #0005;
+    border-radius: 0.5em;
+    transition: scale 0.15s, box-shadow 0.15s;
+}
+
+form#adicionar-tarefa button:hover {
+    scale: 1.1;
+    box-shadow: 0 0 1em #0003;
+    cursor: pointer;
+}
+
+form#adicionar-tarefa button:active {
+    background-color: #00D3;
 }
 
 /* Form | Tarefas adicionadas */
@@ -46,48 +71,75 @@ form#adicionar-tarefa button {
 #tarefas-a-fazer {
     width: 65vw;
 
-    background-color: #0ff3;
     padding: 10px;
-    border-radius: 10px 10px 0 0;
 }
 
 /* Cabeçalho com tarefas */
 #header-lista-tarefas {
     display: flex;
     justify-content: space-around;
+    padding: 0.3em 0;
     font-size: 1.4em;
-    margin-bottom: 1.4em;
+    border-radius: 10px 10px 0 0;
+    background-color: #9b34eb;
+    color: #FAFAFA;
 }
 
 /* Aqui ficarão as tarefas adicionadas */
 #tarefas {
-    background-color: #03f3;
-    padding: 10px;
+
 
     display: flex;
     flex-direction: column;
-    gap: 1.3em;
 }
 
 /* Estilização de cada tarefa */
 .tarefa {
     display: flex;
+    padding: 0.7em 0;
     justify-content: space-around;
-    background-color: #2594;
+    align-items: center;
+    font-size: 1.4em;
+    width: 100%;
+    text-align: center;
+    border-bottom: solid 0.15em #0008;
 }
 
-.tarefa label {
+.tarefa:nth-of-type(even) {
+    background-color: #9b34eb40;
+}
+
+.tarefa:last-of-type {
+    border-bottom: solid 0.25em #9b34eb;
+}
+
+.tarefa label, .tarefa input, .tarefa p {
     width: 33.3%;
 }
 
 .excluir-tarefa {
     position: absolute;
-    right: 13vw;
+    right: 14vw;
+
+    color: #fff;
+    box-shadow: 0 0 0.5em #0005;
+    background-color: #ed323b;
+    border: solid 3px #000;
+    border-radius: 15%;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 0.1em 0.32em;
+    transition: scale 0.2s;
+}
+
+.excluir-tarefa:hover {
+    cursor: pointer;
+    scale: 1.1;
 }
 
 /* Horário fim das atividades */
 #horario-fim-atividades {
-    margin-top: 3em;
+    margin: 3em 0;
 
     display: none;
     align-items: center;

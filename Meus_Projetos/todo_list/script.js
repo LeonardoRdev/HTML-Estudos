@@ -34,15 +34,15 @@ botaoEnviar.addEventListener("click", () => {
     horarioFimAtividades.innerHTML = horarioAtual;
     divHorarioFimAtividades.style.display = "flex";
 
-    if (inputTarefa.value == "" || inputTempoTarefa.value == "") {
+    if (inputTarefa.value == "" || inputTempoTarefa.value == "" || inputTempoTarefa.value < 1) {
         return;
     }
 
     divTarefas.innerHTML += `
                 <div class="tarefa" id="tarefa${idTarefa}">
-                    <input type="radio" id="tarefa${idTarefa}">
-                    <label for="tarefa${idTarefa}">${inputTarefa.value}</label>
-                    <p>${inputTempoTarefa.value}</p>
+                    <input type="checkbox" id="input-tarefa${idTarefa}">
+                    <label for="input-tarefa${idTarefa}">${inputTarefa.value}</label>
+                    <p>${inputTempoTarefa.value} minutos</p>
 
                     <button class="excluir-tarefa" id="tarefa${idTarefa}" type="button" onclick="excluirTarefa(${idTarefa})">X</button>
                 </div>
