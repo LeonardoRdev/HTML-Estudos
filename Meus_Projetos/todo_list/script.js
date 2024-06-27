@@ -10,12 +10,20 @@ const horarioFimAtividades = document.querySelector("#horario-fim-atividades #ho
 // Form | Tarefas adicionadas
 const divTarefas = document.querySelector("div#tarefas")
 let idTarefa = 1;
+let somaMinutos = 0
 
 botaoEnviar.addEventListener("click", () => {
     let dataDia = new Date();
     let dataHora = adicionarZero(dataDia.getHours());
     let dataMinuto = adicionarZero(dataDia.getMinutes());
     let dataSegundo = adicionarZero(dataDia.getSeconds());
+    
+    if (inputTarefa.value == "" || inputTempoTarefa.value == "" || inputTempoTarefa.value < 1) {
+        return;
+    }
+
+    somaMinutos = parseInt(inputTempoTarefa.value);
+    dataMinuto += somaMinutos;
     
     // Se as tarefas passarem de 59 minutos, adicionar 1 hora:
     if (dataMinuto > 59) {
@@ -34,9 +42,6 @@ botaoEnviar.addEventListener("click", () => {
     horarioFimAtividades.innerHTML = horarioAtual;
     divHorarioFimAtividades.style.display = "flex";
 
-    if (inputTarefa.value == "" || inputTempoTarefa.value == "" || inputTempoTarefa.value < 1) {
-        return;
-    }
 
     divTarefas.innerHTML += `
                 <div class="tarefa" id="tarefa${idTarefa}">
