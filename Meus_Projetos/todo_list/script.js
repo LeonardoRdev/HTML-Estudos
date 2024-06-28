@@ -9,6 +9,7 @@ const horarioFimAtividades = document.querySelector("#horario-fim-atividades #ho
 
 // Form | Tarefas adicionadas
 const divTarefas = document.querySelector("div#tarefas")
+let listaIdTarefas = [];
 let idTarefa = 1;
 let somaMinutos = 0
 
@@ -42,6 +43,8 @@ botaoEnviar.addEventListener("click", () => {
     horarioFimAtividades.innerHTML = horarioAtual;
     divHorarioFimAtividades.style.display = "flex";
 
+    listaIdTarefas[idTarefa] = parseInt(inputTempoTarefa.value);
+
 
     divTarefas.innerHTML += `
                 <div class="tarefa" id="tarefa${idTarefa}">
@@ -49,19 +52,21 @@ botaoEnviar.addEventListener("click", () => {
                     <label for="input-tarefa${idTarefa}">${inputTarefa.value}</label>
                     <p>${inputTempoTarefa.value} minutos</p>
 
-                    <button class="excluir-tarefa" id="tarefa${idTarefa}" type="button" onclick="excluirTarefa(${idTarefa})">X</button>
+                    <button class="excluir-tarefa" id="tarefa${idTarefa}" type="button" onclick="excluirTarefa(${idTarefa}, ${listaIdTarefas[idTarefa]})">X</button>
                 </div>
     `;
     idTarefa++;
 });
 
-function excluirTarefa(idTarefa) {
+function excluirTarefa(idTarefa, tempoTarefa) {
     let tarefaX = document.querySelector(`#tarefa${idTarefa}`);
     tarefaX.style.display = "none";
+    // Atualiza o tempo sem os minutos dessa tarefa excluida
+    minutos -=  tempoTarefa
 }
 
 function adicionarZero(horario) {
-    return horario < 10 ? `0${horario}` : horario;
+    return horario < 10 ? parseInt(`0${horario}`) : parseInt(horario);
 }
 
 function transformarEmHoras(minutos) {
