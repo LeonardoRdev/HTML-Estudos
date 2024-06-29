@@ -23,7 +23,7 @@ botaoEnviar.addEventListener("click", () => {
         return;
     }
 
-    somaMinutos = parseInt(inputTempoTarefa.value);
+    somaMinutos += parseInt(inputTempoTarefa.value);
     dataMinuto += somaMinutos;
     
     // Se as tarefas passarem de 59 minutos, adicionar 1 hora:
@@ -52,21 +52,24 @@ botaoEnviar.addEventListener("click", () => {
                     <label for="input-tarefa${idTarefa}">${inputTarefa.value}</label>
                     <p>${inputTempoTarefa.value} minutos</p>
 
-                    <button class="excluir-tarefa" id="tarefa${idTarefa}" type="button" onclick="excluirTarefa(${idTarefa}, ${listaIdTarefas[idTarefa]})">X</button>
+                    <button class="excluir-tarefa" id="tarefa${idTarefa}" type="button" onclick="excluirTarefa(${idTarefa}, ${listaIdTarefas[idTarefa]},${dataHora},${dataMinuto},${dataSegundo})">X</button>
                 </div>
     `;
     idTarefa++;
 });
 
-function excluirTarefa(idTarefa, tempoTarefa) {
+function excluirTarefa(idTarefa, tempoTarefa, horas, minutos, segundos) {
     let tarefaX = document.querySelector(`#tarefa${idTarefa}`);
     tarefaX.style.display = "none";
     // Atualiza o tempo sem os minutos dessa tarefa excluida
     minutos -=  tempoTarefa
+
+    let horarioAtual = `${horas}:${minutos}:${segundos}`;
+    horarioFimAtividades.innerHTML = horarioAtual;
 }
 
 function adicionarZero(horario) {
-    return horario < 10 ? parseInt(`0${horario}`) : parseInt(horario);
+    return horario < 10 ? `0${horario}` : horario;
 }
 
 function transformarEmHoras(minutos) {
