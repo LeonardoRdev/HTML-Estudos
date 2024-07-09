@@ -40,6 +40,7 @@ div.inputs-form label {
 }
 
 form#adicionar-tarefa button {
+    margin-top: 0.6em;
     font-size: 1.3em;
     padding: 0.2em 0.3em;
     border: solid 2px #000;
@@ -115,6 +116,10 @@ form#adicionar-tarefa button:active {
 
 .tarefa label, .tarefa input, .tarefa p {
     width: 33.3%;
+}
+
+.tarefa input:hover {
+    cursor: pointer;
 }
 
 .excluir-tarefa {

@@ -11,7 +11,7 @@ const horarioFimAtividades = document.querySelector("#horario-fim-atividades #ho
 const divTarefas = document.querySelector("div#tarefas")
 let listaIdTarefas = [];
 let idTarefa = 1;
-let somaMinutos = 0
+let somaMinutos = 0;
 
 botaoEnviar.addEventListener("click", () => {
     let dataDia = new Date();
@@ -55,6 +55,11 @@ botaoEnviar.addEventListener("click", () => {
                     <button class="excluir-tarefa" id="tarefa${idTarefa}" type="button" onclick="excluirTarefa(${idTarefa}, ${listaIdTarefas[idTarefa]},${dataHora},${dataMinuto},${dataSegundo})">X</button>
                 </div>
     `;
+
+    // a fazer:
+    // a função "excluirTarefa()" precisa retornar o valor "tempoTarefa" e depois diminuir o tempo total real.
+    // Você não está excluindo as tarefas de verdade, apenas escondendo elas, então o ID continua existindo, logo a estilização de cor sim cor não, não funciona.
+
     idTarefa++;
 });
 
@@ -63,6 +68,8 @@ function excluirTarefa(idTarefa, tempoTarefa, horas, minutos, segundos) {
     tarefaX.style.display = "none";
     // Atualiza o tempo sem os minutos dessa tarefa excluida
     minutos -=  tempoTarefa
+
+    console.log(`tarefa feita no minuto:\n${minutos}`)
 
     let horarioAtual = `${adicionarZero(horas)}:${adicionarZero(minutos)}:${adicionarZero(segundos)}`;
     horarioFimAtividades.innerHTML = horarioAtual;
