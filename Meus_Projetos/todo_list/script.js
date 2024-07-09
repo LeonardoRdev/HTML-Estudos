@@ -64,7 +64,7 @@ function excluirTarefa(idTarefa, tempoTarefa, horas, minutos, segundos) {
     // Atualiza o tempo sem os minutos dessa tarefa excluida
     minutos -=  tempoTarefa
 
-    let horarioAtual = `${horas}:${minutos}:${segundos}`;
+    let horarioAtual = `${adicionarZero(horas)}:${adicionarZero(minutos)}:${adicionarZero(segundos)}`;
     horarioFimAtividades.innerHTML = horarioAtual;
 }
 
