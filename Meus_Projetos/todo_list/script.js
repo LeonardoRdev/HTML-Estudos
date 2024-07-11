@@ -19,8 +19,6 @@ let dataMinuto = dataDia.getMinutes();
 let dataSegundo = dataDia.getSeconds();
 
 botaoEnviar.addEventListener("click", () => {
-    
-    alert(`data minuto: ${dataMinuto}`)
 
     if (inputTarefa.value == "" || inputTempoTarefa.value == "" || inputTempoTarefa.value < 1) {
         return;
@@ -57,7 +55,7 @@ botaoEnviar.addEventListener("click", () => {
                     <label for="input-tarefa${idTarefa}">${inputTarefa.value}</label>
                     <p>${inputTempoTarefa.value} minutos</p>
 
-                    <button class="excluir-tarefa" id="tarefa${idTarefa}" type="button" onclick="excluirTarefa(${idTarefa}, ${listaIdTarefas[idTarefa]},${dataHora},${dataMinuto},${dataSegundo})">X</button>
+                    <button class="excluir-tarefa" type="button" onclick="excluirTarefa(${idTarefa}, ${listaIdTarefas[idTarefa]},${dataHora},${dataMinuto},${dataSegundo})">X</button>
                 </div>
     `;
 
@@ -78,6 +76,12 @@ botaoEnviar.addEventListener("click", () => {
             // Atualizada o tempo com o novo tempo da tarefa exluída:
             dataMinuto -= parseInt(tempoTarefa);
 
+            if (dataMinuto < 0) {
+                let resultado = diminuirHoras(dataMinuto);
+                dataHora -= resultado.removerHoras;
+                dataMinuto = resultado.novosMinutos;
+            }
+
             // Mostra o horário do fim das atividades:
             let dataDia = new Date();
             let dataSegundo = dataDia.getSeconds();
@@ -85,7 +89,6 @@ botaoEnviar.addEventListener("click", () => {
             horarioFimAtividades.innerHTML = horarioAtual;
         })
     }
-
 
     // a fazer:
     // Você não está excluindo as tarefas de verdade, apenas escondendo elas, então o ID continua existindo, logo a estilização de cor sim cor não, não funciona.
@@ -96,11 +99,9 @@ botaoEnviar.addEventListener("click", () => {
 
 function excluirTarefa(idTarefa, tempoTarefa, horas, minutos, segundos) {
     let tarefaX = document.querySelector(`#tarefa${idTarefa}`);
-    tarefaX.style.display = "none";
-
+    tarefaX.remove();
     
     console.log(`tarefa feita no minuto:\n${minutos}`)
-    
     // Atualiza o tempo sem os minutos dessa tarefa excluida
     //minutos -=  tempoTarefa
 
@@ -119,4 +120,13 @@ function transformarEmHoras(minutos) {
     // alert(`adicionar Horas: ${adicionarHoras}\nNovos Minutos: ${novosMinutos}`);
 
     return {adicionarHoras, novosMinutos} ;
+}
+
+function diminuirHoras(minutos) {
+    let removerHoras = 1; // arruma isso, se for mais de 120 minutos dá ruim.
+
+    // Aqui também, se for + 120 dá ruim
+    let novosMinutos = (60 + minutos); // minutos são negativos
+
+    return {removerHoras, novosMinutos}
 }
