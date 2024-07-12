@@ -18,6 +18,8 @@ let dataHora = dataDia.getHours();
 let dataMinuto = dataDia.getMinutes();
 let dataSegundo = dataDia.getSeconds();
 
+
+// Botão "ENVIAR" tarefa:
 botaoEnviar.addEventListener("click", () => {
 
     if (inputTarefa.value == "" || inputTempoTarefa.value == "" || inputTempoTarefa.value < 1) {
@@ -55,7 +57,7 @@ botaoEnviar.addEventListener("click", () => {
                     <label for="input-tarefa${idTarefa}">${inputTarefa.value}</label>
                     <p>${inputTempoTarefa.value} minutos</p>
 
-                    <button class="excluir-tarefa" type="button" onclick="excluirTarefa(${idTarefa}, ${listaIdTarefas[idTarefa]},${dataHora},${dataMinuto},${dataSegundo})">X</button>
+                    <button class="excluir-tarefa" type="button" onclick="excluirTarefa(${idTarefa})">X</button>
                 </div>
     `;
 
@@ -80,6 +82,10 @@ botaoEnviar.addEventListener("click", () => {
                 let resultado = diminuirHoras(dataMinuto);
                 dataHora -= resultado.removerHoras;
                 dataMinuto = resultado.novosMinutos;
+
+                if (dataHora < 0) {
+                    dataHora = 24 + (dataHora % 24);
+                }
             }
 
             // Mostra o horário do fim das atividades:
@@ -90,23 +96,12 @@ botaoEnviar.addEventListener("click", () => {
         })
     }
 
-    // a fazer:
-    // Você não está excluindo as tarefas de verdade, apenas escondendo elas, então o ID continua existindo, logo a estilização de cor sim cor não, não funciona.
-    // Minutos negativos precisam subtrair a -1 de "hora", além de ficarem positivos. Exemplo: (-4 min não pode).
-
     idTarefa++;
 });
 
-function excluirTarefa(idTarefa, tempoTarefa, horas, minutos, segundos) {
+function excluirTarefa(idTarefa) {
     let tarefaX = document.querySelector(`#tarefa${idTarefa}`);
     tarefaX.remove();
-    
-    console.log(`tarefa feita no minuto:\n${minutos}`)
-    // Atualiza o tempo sem os minutos dessa tarefa excluida
-    //minutos -=  tempoTarefa
-
-    // let horarioAtual = `${adicionarZero(horas)}:${adicionarZero(minutos)}:${adicionarZero(segundos)}`;
-    // horarioFimAtividades.innerHTML = horarioAtual;
 }
 
 function adicionarZero(horario) {
@@ -117,16 +112,25 @@ function transformarEmHoras(minutos) {
     let adicionarHoras = parseInt(minutos / 60);
     let novosMinutos = minutos % 60;
 
-    // alert(`adicionar Horas: ${adicionarHoras}\nNovos Minutos: ${novosMinutos}`);
-
     return {adicionarHoras, novosMinutos} ;
 }
 
 function diminuirHoras(minutos) {
-    let removerHoras = 1; // arruma isso, se for mais de 120 minutos dá ruim.
+    // minutos: a quantidade negativa que vai ser subtraida
 
-    // Aqui também, se for + 120 dá ruim
-    let novosMinutos = (60 + minutos); // minutos são negativos
+    let minutosEmHoras = 1;
+    
+    /* Os minutos são negativos por padrão, então 1 hora sempre será subtraida
+    Porém se forem subtraidos mais de 60 min, significa que 2 horas precisam ser subtraidas */
+
+    // Se o tempo removido for mair ou igual a 120 minutos:
+    if ((-minutos) > 60) {
+        minutosEmHoras += parseInt(-minutos / 60);
+    }
+
+    let removerHoras = minutosEmHoras;
+
+    let novosMinutos = (60 - (-minutos % 60)); // minutos são negativos
 
     return {removerHoras, novosMinutos}
 }
