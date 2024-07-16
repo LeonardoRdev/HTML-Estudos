@@ -53,7 +53,11 @@ botaoEnviar.addEventListener("click", () => {
 
     divTarefas.innerHTML += `
                 <div class="tarefa" id="tarefa${idTarefa}">
-                    <input type="checkbox" id="input-tarefa${idTarefa}">
+                    <div id="div-checkbox">
+                        <div>
+                            <input type="checkbox" id="input-tarefa${idTarefa}">
+                        </div>
+                    </div>
                     <label for="input-tarefa${idTarefa}">${inputTarefa.value}</label>
                     <p>${inputTempoTarefa.value} minutos</p>
 

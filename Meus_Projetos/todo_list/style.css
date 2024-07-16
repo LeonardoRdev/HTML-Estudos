@@ -114,12 +114,65 @@ form#adicionar-tarefa button:active {
     border-bottom: solid 0.25em #9b34eb;
 }
 
-.tarefa label, .tarefa input, .tarefa p {
+.tarefa label, #div-checkbox, .tarefa p {
     width: 33.3%;
 }
 
-.tarefa input:hover {
+#div-checkbox div, #div-checkbox {
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
+
+.tarefa input[type="checkbox"] {
+    width: 35px;
+    height: 35px;
+    background-color: #ccc;
+    border-radius: .3rem;
+    border: 3px solid #000c;
+    appearance: none;
+}
+
+.tarefa input[type="checkbox"]:checked {
+    background-color: #0f0c;
+    border-radius: .3rem;
+
+}
+
+.tarefa input[type="checkbox"]:hover {
     cursor: pointer;
+}
+
+.tarefa input[type="checkbox"]::before {
+    content: '';
+    position: absolute;
+    width: 7px;
+    height: 14px;
+    border: 5px solid transparent;
+    border-left: none;
+    border-top: none;
+    top: 4px;
+    right: 11px;
+    transform: rotate(45deg) scale(1);
+}
+
+.tarefa input[type="checkbox"]:checked::before {
+    border-color: #fff;
+    animation: animacaoCheckbox .25s;
+}
+
+@keyframes animacaoCheckbox {
+    0% {
+        transform: rotate(45deg) scale(0);
+    }
+
+    80% {
+        transform: rotate(45deg) scale(1.2);
+    }
+
+    100% {
+        transform: rotate(45deg) scale(1);
+    }
 }
 
 .excluir-tarefa {
