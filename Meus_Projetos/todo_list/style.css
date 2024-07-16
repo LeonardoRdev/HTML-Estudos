@@ -134,7 +134,7 @@ form#adicionar-tarefa button:active {
 }
 
 .tarefa input[type="checkbox"]:checked {
-    background-color: #0f0c;
+    background-color: #40e373;
     border-radius: .3rem;
 
 }

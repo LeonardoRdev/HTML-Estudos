@@ -9,7 +9,6 @@ const horarioFimAtividades = document.querySelector("#horario-fim-atividades #ho
 
 // Form | Tarefas adicionadas
 const divTarefas = document.querySelector("div#tarefas")
-let listaIdTarefas = [];
 let idTarefa = 1;
 
 // Declarando o tempo inicial:
@@ -17,6 +16,7 @@ let dataDia = new Date();
 let dataHora = dataDia.getHours();
 let dataMinuto = dataDia.getMinutes();
 let dataSegundo = dataDia.getSeconds();
+// ^ BOTÃO DE REFRESH SÓ PRECISA REDEFINIR ISSO ^
 
 
 // Botão "ENVIAR" tarefa:
@@ -48,64 +48,67 @@ botaoEnviar.addEventListener("click", () => {
     horarioFimAtividades.innerHTML = horarioAtual;
     divHorarioFimAtividades.style.display = "flex";
 
+    const novaTarefa = document.createElement("div");
+    novaTarefa.classList.add("tarefa");
+    novaTarefa.id = `tarefa${idTarefa}`;
 
-    listaIdTarefas[idTarefa] = parseInt(inputTempoTarefa.value);
-
-    divTarefas.innerHTML += `
-                <div class="tarefa" id="tarefa${idTarefa}">
-                    <div id="div-checkbox">
-                        <div>
-                            <input type="checkbox" id="input-tarefa${idTarefa}">
-                        </div>
-                    </div>
-                    <label for="input-tarefa${idTarefa}">${inputTarefa.value}</label>
-                    <p>${inputTempoTarefa.value} minutos</p>
-
-                    <button class="excluir-tarefa" type="button" onclick="excluirTarefa(${idTarefa})">X</button>
-                </div>
+    novaTarefa.innerHTML = `
+        <div id="div-checkbox">
+            <div>
+                <input type="checkbox" id="input-tarefa${idTarefa}">
+            </div>
+        </div>
+        <label for="input-tarefa${idTarefa}">${inputTarefa.value}</label>
+        <p>${inputTempoTarefa.value} minutos</p>
     `;
 
+    // O botão "excluirTarefa" vai passar na função "excluirTarefa" a própria tarefa em que ele se encontra.
+    const botaoExcluirTarefa = document.createElement("button");
+    botaoExcluirTarefa.classList.add("excluir-tarefa");
+    botaoExcluirTarefa.type = "button";
+    botaoExcluirTarefa.textContent = "X";
+    botaoExcluirTarefa.addEventListener("click", () => excluirTarefa(novaTarefa));
+
+    novaTarefa.appendChild(botaoExcluirTarefa);
+    divTarefas.appendChild(novaTarefa);
+
     // Diminui o tempo total, reduzindo de acordo com a tarefa excluída:
-    let botoesExcluirTarefa = document.querySelectorAll(".excluir-tarefa");
-    for (i=1; i < botoesExcluirTarefa.length; i++) {
-        botoesExcluirTarefa[i].addEventListener("click", (event) => {
+    botaoExcluirTarefa.addEventListener("click", (event) => {
 
-            // Elemento pai do botão:
-            let tarefaDiv = event.target.parentElement;
+        // Elemento pai do botão:
+        let tarefaDiv = event.target.parentElement;
 
-            // Pega o <p> da div pai, que possui o tempo da tarefa:
-            let pElement = tarefaDiv.querySelector("p");
+        // Pega o <p> da div pai, que possui o tempo da tarefa:
+        let pElement = tarefaDiv.querySelector("p");
 
-            // Pega o conteúdo de <p> (o tempo da tarefa):
-            let tempoTarefa = pElement.textContent;
+        // Pega o conteúdo de <p> (o tempo da tarefa):
+        let tempoTarefa = pElement.textContent;
 
-            // Atualizada o tempo com o novo tempo da tarefa exluída:
-            dataMinuto -= parseInt(tempoTarefa);
+        // Atualizada o tempo com o novo tempo da tarefa exluída:
+        dataMinuto -= parseInt(tempoTarefa);
 
-            if (dataMinuto < 0) {
-                let resultado = diminuirHoras(dataMinuto);
-                dataHora -= resultado.removerHoras;
-                dataMinuto = resultado.novosMinutos;
+        if (dataMinuto < 0) {
+            let resultado = diminuirHoras(dataMinuto);
+            dataHora -= resultado.removerHoras;
+            dataMinuto = resultado.novosMinutos;
 
-                if (dataHora < 0) {
-                    dataHora = 24 + (dataHora % 24);
-                }
+            if (dataHora < 0) { 
+                dataHora = 24 + (dataHora % 24);
             }
+        }
 
-            // Mostra o horário do fim das atividades:
-            let dataDia = new Date();
-            let dataSegundo = dataDia.getSeconds();
-            let horarioAtual = `${adicionarZero(dataHora)}:${adicionarZero(dataMinuto)}:${adicionarZero(dataSegundo)}`;
-            horarioFimAtividades.innerHTML = horarioAtual;
-        })
-    }
+        // Mostra o horário do fim das atividades:
+        let dataDia = new Date();
+        let dataSegundo = dataDia.getSeconds();
+        let horarioAtual = `${adicionarZero(dataHora)}:${adicionarZero(dataMinuto)}:${adicionarZero(dataSegundo)}`;
+        horarioFimAtividades.innerHTML = horarioAtual;
+    })
 
     idTarefa++;
 });
 
-function excluirTarefa(idTarefa) {
-    let tarefaX = document.querySelector(`#tarefa${idTarefa}`);
-    tarefaX.remove();
+function excluirTarefa(tarefa) {
+    divTarefas.removeChild(tarefa)
 }
 
 function adicionarZero(horario) {
