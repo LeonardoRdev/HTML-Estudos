@@ -8,7 +8,7 @@ const divHorarioFimAtividades = document.querySelector("div#horario-fim-atividad
 const horarioFimAtividades = document.querySelector("#horario-fim-atividades #horario");
 
 // Form | Tarefas adicionadas
-const divTarefas = document.querySelector("div#tarefas")
+const divTarefas = document.querySelector("div#tarefas");
 let idTarefa = 1;
 
 // Declarando o tempo inicial:
@@ -31,17 +31,8 @@ botaoEnviar.addEventListener("click", () => {
     somaMinutos += parseInt(inputTempoTarefa.value);
     dataMinuto += somaMinutos;
     
-    // Se as tarefas passarem de 59 minutos, adicionar 1 hora:
-    if (dataMinuto > 59) {
-        let resultado = transformarEmHoras(dataMinuto);
-        dataHora += resultado.adicionarHoras;
-        dataMinuto = resultado.novosMinutos;
-    }
-    
-    // Se as tarefas passarem de 23:59, resetar para 00:00
-    if (dataHora > 23) {
-        dataHora = dataHora % 24;
-    }
+    // V TRANSFORMAR EM FUNÇÃO V
+    ajustarMinutosHoras();
 
     // Mostra o horário do fim das atividades:
     let horarioAtual = `${adicionarZero(dataHora)}:${adicionarZero(dataMinuto)}:${adicionarZero(dataSegundo)}`;
@@ -62,6 +53,7 @@ botaoEnviar.addEventListener("click", () => {
         <p>${inputTempoTarefa.value} minutos</p>
     `;
 
+    const inputCheckbox = novaTarefa.querySelector(`#input-tarefa${idTarefa}`);
     // O botão "excluirTarefa" vai passar na função "excluirTarefa" a própria tarefa em que ele se encontra.
     const botaoExcluirTarefa = document.createElement("button");
     botaoExcluirTarefa.classList.add("excluir-tarefa");
@@ -72,43 +64,84 @@ botaoEnviar.addEventListener("click", () => {
     novaTarefa.appendChild(botaoExcluirTarefa);
     divTarefas.appendChild(novaTarefa);
 
-    // Diminui o tempo total, reduzindo de acordo com a tarefa excluída:
-    botaoExcluirTarefa.addEventListener("click", (event) => {
 
-        // Elemento pai do botão:
-        let tarefaDiv = event.target.parentElement;
+    // Diminui o tempo total, reduzindo de acordo com a tarefa excluída:
+    inputCheckbox.addEventListener("click", (event) => {
+        diminuirTempoTarefaConcluida(event.target, "input");
+
+    });
+
+    botaoExcluirTarefa.addEventListener("click", (event) => {
+        diminuirTempoTarefaConcluida(event.target, "button");
+
+    })
+
+    function diminuirTempoTarefaConcluida(event, acao) {
+        // Elemento da div (no caso, a div .tarefa):
+        let tarefaDiv = event.closest('.tarefa');
 
         // Pega o <p> da div pai, que possui o tempo da tarefa:
         let pElement = tarefaDiv.querySelector("p");
+        let inputCheckboxElement = tarefaDiv.querySelector("div input");
+
+        console.log(`EVENTO: ${acao}
+        \nCaixa marcada: ${inputCheckboxElement.checked}
+        \n=============`);
 
         // Pega o conteúdo de <p> (o tempo da tarefa):
         let tempoTarefa = pElement.textContent;
 
+        // Caso o checkbox esteja ativo, não diminuir o tempo novamente:
+        if (acao === "button" && inputCheckboxElement.checked) {
+            return;
+        }
+
+        // Volta o tempo da tarefa já marcada como concluída:
+        if (acao === "input" && !inputCheckboxElement.checked) {
+            dataMinuto += (parseInt(tempoTarefa) * 2);
+        }
+
         // Atualizada o tempo com o novo tempo da tarefa exluída:
         dataMinuto -= parseInt(tempoTarefa);
 
-        if (dataMinuto < 0) {
-            let resultado = diminuirHoras(dataMinuto);
-            dataHora -= resultado.removerHoras;
-            dataMinuto = resultado.novosMinutos;
-
-            if (dataHora < 0) { 
-                dataHora = 24 + (dataHora % 24);
-            }
-        }
+        ajustarMinutosHoras();
 
         // Mostra o horário do fim das atividades:
         let dataDia = new Date();
         let dataSegundo = dataDia.getSeconds();
         let horarioAtual = `${adicionarZero(dataHora)}:${adicionarZero(dataMinuto)}:${adicionarZero(dataSegundo)}`;
         horarioFimAtividades.innerHTML = horarioAtual;
-    })
+    }
 
     idTarefa++;
 });
 
+function ajustarMinutosHoras() {
+    // Se as tarefas passarem de 59 minutos, adicionar 1 hora:
+    if (dataMinuto > 59) {
+        let resultado = transformarEmHoras(dataMinuto);
+        dataHora += resultado.adicionarHoras;
+        dataMinuto = resultado.novosMinutos;
+    }
+    
+    // Se as tarefas passarem de 23:59, resetar para 00:00
+    if (dataHora > 23) {
+        dataHora = dataHora % 24;
+    }
+
+    if (dataMinuto < 0) {
+        let resultado = diminuirHoras(dataMinuto);
+        dataHora -= resultado.removerHoras;
+        dataMinuto = resultado.novosMinutos;
+
+        if (dataHora < 0) { 
+            dataHora = 24 + (dataHora % 24);
+        }
+    }
+}
+
 function excluirTarefa(tarefa) {
-    divTarefas.removeChild(tarefa)
+    divTarefas.removeChild(tarefa);
 }
 
 function adicionarZero(horario) {
