@@ -16,8 +16,32 @@ let dataDia = new Date();
 let dataHora = dataDia.getHours();
 let dataMinuto = dataDia.getMinutes();
 let dataSegundo = dataDia.getSeconds();
-// ^ BOTÃO DE REFRESH SÓ PRECISA REDEFINIR ISSO ^
 
+// Botão de atualizar o timer (refresh):
+// TRANSFORMAR EM UMA FUNÇÃO, FAZENDO COM QUE O BOTÃO ATIVE A FUNÇÃO "REFRESH"
+const botaoRefresh = document.querySelector("#botao-refresh");
+botaoRefresh.addEventListener("click", () => {
+    let dataDia = new Date();
+    let dataHora = dataDia.getHours();
+    let dataMinuto = dataDia.getMinutes();
+    let dataSegundo = dataDia.getSeconds();
+
+    let somaMinutosDaLista = 0;
+
+    for (let i = 0; i < divTarefas.children.length; i++) {
+        // Pega o valor do P e junto tudo numa variável e joga todos os minutos em dataMinuto.
+
+        let tarefa = divTarefas.children[i]
+        let textoComMinutosTarefa = tarefa.querySelector("p").textContent;
+        let MinutosTarefa = parseInt(textoComMinutosTarefa.split(" ")[0]);
+
+        somaMinutosDaLista += MinutosTarefa;
+    }
+
+    dataMinuto += somaMinutosDaLista;
+
+    ajustarMinutosHoras(dataHora, dataMinuto, dataSegundo);
+});
 
 // Botão "ENVIAR" tarefa:
 botaoEnviar.addEventListener("click", () => {
@@ -31,12 +55,8 @@ botaoEnviar.addEventListener("click", () => {
     somaMinutos += parseInt(inputTempoTarefa.value);
     dataMinuto += somaMinutos;
     
-    // V TRANSFORMAR EM FUNÇÃO V
-    ajustarMinutosHoras();
-
     // Mostra o horário do fim das atividades:
-    let horarioAtual = `${adicionarZero(dataHora)}:${adicionarZero(dataMinuto)}:${adicionarZero(dataSegundo)}`;
-    horarioFimAtividades.innerHTML = horarioAtual;
+    ajustarMinutosHoras(dataHora, dataMinuto, dataSegundo);
     divHorarioFimAtividades.style.display = "flex";
 
     const novaTarefa = document.createElement("div");
@@ -82,14 +102,15 @@ botaoEnviar.addEventListener("click", () => {
 
         // Pega o <p> da div pai, que possui o tempo da tarefa:
         let pElement = tarefaDiv.querySelector("p");
+        // Pega o conteúdo de <p> (o tempo da tarefa):
+        let tempoTarefa = pElement.textContent;
+
         let inputCheckboxElement = tarefaDiv.querySelector("div input");
 
         console.log(`EVENTO: ${acao}
         \nCaixa marcada: ${inputCheckboxElement.checked}
         \n=============`);
 
-        // Pega o conteúdo de <p> (o tempo da tarefa):
-        let tempoTarefa = pElement.textContent;
 
         // Caso o checkbox esteja ativo, não diminuir o tempo novamente:
         if (acao === "button" && inputCheckboxElement.checked) {
@@ -104,40 +125,42 @@ botaoEnviar.addEventListener("click", () => {
         // Atualizada o tempo com o novo tempo da tarefa exluída:
         dataMinuto -= parseInt(tempoTarefa);
 
-        ajustarMinutosHoras();
-
         // Mostra o horário do fim das atividades:
         let dataDia = new Date();
         let dataSegundo = dataDia.getSeconds();
-        let horarioAtual = `${adicionarZero(dataHora)}:${adicionarZero(dataMinuto)}:${adicionarZero(dataSegundo)}`;
-        horarioFimAtividades.innerHTML = horarioAtual;
+
+        ajustarMinutosHoras(dataHora, dataMinuto, dataSegundo);
     }
 
     idTarefa++;
 });
 
-function ajustarMinutosHoras() {
+function ajustarMinutosHoras(horas, minutos, segundos) {
     // Se as tarefas passarem de 59 minutos, adicionar 1 hora:
-    if (dataMinuto > 59) {
-        let resultado = transformarEmHoras(dataMinuto);
-        dataHora += resultado.adicionarHoras;
-        dataMinuto = resultado.novosMinutos;
+    if (minutos > 59) {
+        let resultado = transformarEmHoras(minutos);
+        horas += resultado.adicionarHoras;
+        minutos = resultado.novosMinutos;
     }
     
     // Se as tarefas passarem de 23:59, resetar para 00:00
-    if (dataHora > 23) {
-        dataHora = dataHora % 24;
+    if (horas > 23) {
+        horas = horas % 24;
     }
 
-    if (dataMinuto < 0) {
-        let resultado = diminuirHoras(dataMinuto);
-        dataHora -= resultado.removerHoras;
-        dataMinuto = resultado.novosMinutos;
+    if (minutos < 0) {
+        let resultado = diminuirHoras(minutos);
+        horas -= resultado.removerHoras;
+        minutos = resultado.novosMinutos;
 
-        if (dataHora < 0) { 
-            dataHora = 24 + (dataHora % 24);
+        if (horas < 0) { 
+            horas = 24 + (horas % 24);
         }
     }
+
+    // Mostra o horário esperado para finalizar as atividades:
+    let horarioAtual = `${adicionarZero(horas)}:${adicionarZero(minutos)}:${adicionarZero(segundos)}`;
+    horarioFimAtividades.innerHTML = horarioAtual;
 }
 
 function excluirTarefa(tarefa) {
