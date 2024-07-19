@@ -11,6 +11,23 @@
     margin: 1em 0;
 }
 
+/* Ícone de atualizar timer */
+#botao-refresh img {
+    position: fixed;
+    top: 2em;
+    right: 5em;
+    border-radius: 2em;
+    border: 0.35em solid #000;
+    width: 4em;
+    transition: scale 0.15s;
+}
+
+#botao-refresh img:hover {
+    cursor: pointer;
+    scale: 1.1;
+}
+
+
 /* Form | Adicionar tarefa */
 form#adicionar-tarefa {
     display: flex;

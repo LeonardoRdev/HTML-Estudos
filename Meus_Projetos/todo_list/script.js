@@ -18,29 +18,9 @@ let dataMinuto = dataDia.getMinutes();
 let dataSegundo = dataDia.getSeconds();
 
 // Botão de atualizar o timer (refresh):
-// TRANSFORMAR EM UMA FUNÇÃO, FAZENDO COM QUE O BOTÃO ATIVE A FUNÇÃO "REFRESH"
 const botaoRefresh = document.querySelector("#botao-refresh");
 botaoRefresh.addEventListener("click", () => {
-    let dataDia = new Date();
-    let dataHora = dataDia.getHours();
-    let dataMinuto = dataDia.getMinutes();
-    let dataSegundo = dataDia.getSeconds();
-
-    let somaMinutosDaLista = 0;
-
-    for (let i = 0; i < divTarefas.children.length; i++) {
-        // Pega o valor do P e junto tudo numa variável e joga todos os minutos em dataMinuto.
-
-        let tarefa = divTarefas.children[i]
-        let textoComMinutosTarefa = tarefa.querySelector("p").textContent;
-        let MinutosTarefa = parseInt(textoComMinutosTarefa.split(" ")[0]);
-
-        somaMinutosDaLista += MinutosTarefa;
-    }
-
-    dataMinuto += somaMinutosDaLista;
-
-    ajustarMinutosHoras(dataHora, dataMinuto, dataSegundo);
+    atualizarTimer();
 });
 
 // Botão "ENVIAR" tarefa:
@@ -161,6 +141,32 @@ function ajustarMinutosHoras(horas, minutos, segundos) {
     // Mostra o horário esperado para finalizar as atividades:
     let horarioAtual = `${adicionarZero(horas)}:${adicionarZero(minutos)}:${adicionarZero(segundos)}`;
     horarioFimAtividades.innerHTML = horarioAtual;
+}
+
+function atualizarTimer() {
+    let dataDia = new Date();
+    let dataHora = dataDia.getHours();
+    let dataMinuto = dataDia.getMinutes();
+    let dataSegundo = dataDia.getSeconds();
+
+    let somaMinutosDaLista = 0;
+
+    for (let i = 0; i < divTarefas.children.length; i++) {
+        // alert("entrei no loop")
+        // Pega o valor do P e junto tudo numa variável e joga todos os minutos em dataMinuto.
+
+        let tarefa = divTarefas.children[i]
+        let textoComMinutosTarefa = tarefa.querySelector("p").textContent;
+        let MinutosTarefa = parseInt(textoComMinutosTarefa.split(" ")[0]);
+
+        somaMinutosDaLista += MinutosTarefa;
+    }
+
+    dataMinuto += somaMinutosDaLista;
+    // alert(somaMinutosDaLista)
+    // alert(divTarefas.children.length)
+
+    ajustarMinutosHoras(dataHora, dataMinuto, dataSegundo);
 }
 
 function excluirTarefa(tarefa) {
