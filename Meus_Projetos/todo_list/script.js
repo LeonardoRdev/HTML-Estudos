@@ -35,10 +35,6 @@ botaoEnviar.addEventListener("click", () => {
     somaMinutos += parseInt(inputTempoTarefa.value);
     dataMinuto += somaMinutos;
     
-    // Mostra o horário do fim das atividades:
-    ajustarMinutosHoras(dataHora, dataMinuto, dataSegundo);
-    divHorarioFimAtividades.style.display = "flex";
-
     const novaTarefa = document.createElement("div");
     novaTarefa.classList.add("tarefa");
     novaTarefa.id = `tarefa${idTarefa}`;
@@ -64,6 +60,9 @@ botaoEnviar.addEventListener("click", () => {
     novaTarefa.appendChild(botaoExcluirTarefa);
     divTarefas.appendChild(novaTarefa);
 
+    // Mostra o horário do fim das atividades:
+    atualizarTimer();
+    divHorarioFimAtividades.style.display = "flex";
 
     // Diminui o tempo total, reduzindo de acordo com a tarefa excluída:
     inputCheckbox.addEventListener("click", (event) => {
@@ -77,6 +76,8 @@ botaoEnviar.addEventListener("click", () => {
     })
 
     function diminuirTempoTarefaConcluida(event, acao) {
+        // Não precisava de nada disso?? (kkkkkkk?)
+
         // Elemento da div (no caso, a div .tarefa):
         let tarefaDiv = event.closest('.tarefa');
 
@@ -93,23 +94,19 @@ botaoEnviar.addEventListener("click", () => {
 
 
         // Caso o checkbox esteja ativo, não diminuir o tempo novamente:
-        if (acao === "button" && inputCheckboxElement.checked) {
-            return;
-        }
+        // if (acao === "button" && inputCheckboxElement.checked) {
+        //     return;
+        // }
 
         // Volta o tempo da tarefa já marcada como concluída:
-        if (acao === "input" && !inputCheckboxElement.checked) {
-            dataMinuto += (parseInt(tempoTarefa) * 2);
-        }
+        // if (acao === "input" && !inputCheckboxElement.checked) {
+        //     dataMinuto += (parseInt(tempoTarefa) * 2);
+        // }
 
+        
         // Atualizada o tempo com o novo tempo da tarefa exluída:
-        dataMinuto -= parseInt(tempoTarefa);
-
-        // Mostra o horário do fim das atividades:
-        let dataDia = new Date();
-        let dataSegundo = dataDia.getSeconds();
-
-        ajustarMinutosHoras(dataHora, dataMinuto, dataSegundo);
+        // dataMinuto -= parseInt(tempoTarefa);
+        atualizarTimer();
     }
 
     idTarefa++;
@@ -152,20 +149,22 @@ function atualizarTimer() {
     let somaMinutosDaLista = 0;
 
     for (let i = 0; i < divTarefas.children.length; i++) {
-        // alert("entrei no loop")
-        // Pega o valor do P e junto tudo numa variável e joga todos os minutos em dataMinuto.
 
+        // Pega o valor do P e junto tudo numa variável e joga todos os minutos em dataMinuto.
         let tarefa = divTarefas.children[i]
+        let input = tarefa.querySelector("input");
         let textoComMinutosTarefa = tarefa.querySelector("p").textContent;
         let MinutosTarefa = parseInt(textoComMinutosTarefa.split(" ")[0]);
 
-        somaMinutosDaLista += MinutosTarefa;
+        // O programa deixará de somar o tempo de uma tarefa, caso ela esteja concluída 
+        if (!input.checked) {
+            somaMinutosDaLista += MinutosTarefa;
+            // alert(`minuto tarefa ${i+1} = ${MinutosTarefa}`)
+        }
+
     }
 
     dataMinuto += somaMinutosDaLista;
-    // alert(somaMinutosDaLista)
-    // alert(divTarefas.children.length)
-
     ajustarMinutosHoras(dataHora, dataMinuto, dataSegundo);
 }
 
