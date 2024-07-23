@@ -1,16 +1,24 @@
 <!DOCTYPE html>
-<html lang="p-br">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Afazeres</title>
+    <link rel="stylesheet" href="../Arquivos_pagina_inicial/seta_voltar.css">
     <link rel="icon" href="../../Meus_Projetos/Arquivos_pagina_inicial/imagens/icones/inicial.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
 
 <body>
+
+    <!-- Seta Voltar -->
+    <div id="seta-voltar-pagina">
+        <a href="../meus_projetos.html">
+            <img src="../Arquivos_pagina_inicial/imagens/seta_voltar.png" alt="Seta voltar página">
+        </a>
+    </div>
 
     <h1 id="titulo">Lista de Afazeres</h1>
 
@@ -23,11 +31,11 @@
         <div id="divs-com-inputs">
             <div class="inputs-form">
                 <label for="input-tarefa">Tarefa</label>
-                <input type="text" placeholder="Ex: Passear o cachorro" id="input-tarefa" autocomplete="off" value="abc">
+                <input type="text" placeholder="Ex: Passear o cachorro" id="input-tarefa" autocomplete="off">
             </div>
             <div class="inputs-form">
                 <label for="input-tempo-tarefa">Tempo até conclusão (minutos)</label>
-                <input type="number" placeholder="Ex: 15 minutos" id="input-tempo-tarefa" autocomplete="off" value="5">
+                <input type="number" placeholder="Ex: 15 minutos" id="input-tempo-tarefa" autocomplete="off">
             </div>
         </div>
         <button type="button" id="botao-enviar">Enviar</button>
