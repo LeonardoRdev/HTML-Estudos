@@ -233,3 +233,38 @@ form#adicionar-tarefa button:active {
     border-radius: 0.15em;
     box-shadow: 0 0 0.4em #0005;
 }
+
+/* Responsividade (Tablet ou Menor) */
+@media only screen and (max-width: 768px) {
+    div#divs-com-inputs {
+        flex-direction: column;
+    }
+
+    #tarefas-a-fazer {
+        width: 80vw;
+    }
+
+    .excluir-tarefa {
+        right: 4.5vw;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #titulo {
+        margin: 2.5em 0 1em 0;
+    }
+
+    .excluir-tarefa {
+        right: 2vw;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    #tarefas-a-fazer {
+        width: 90vw;
+    }
+
+    .excluir-tarefa {
+        display: none;
+    }
+}
