@@ -2,11 +2,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Roboto Slab", serif;
 }
 
 #titulo {
-    font-size: 2.5em;
+    font-family: "Roboto Slab", serif;
+    font-weight: 600;
+    font-size: 2.8em;
     text-align: center;
     margin: 1em 0;
 }
@@ -61,10 +63,18 @@ div.inputs-form label {
     margin-left: 0.5em;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 form#adicionar-tarefa button {
+    font-family: "Rubik", sans-serif;
+    font-weight: 500;
     margin-top: 0.6em;
-    font-size: 1.3em;
-    padding: 0.2em 0.3em;
+    font-size: 1.4em;
+    padding: 0.3em 0.4em;
     border: solid 2px #000;
     box-shadow: 0 0 1em #0005;
     border-radius: 0.5em;
@@ -105,7 +115,7 @@ form#adicionar-tarefa button:active {
     font-size: 1.4em;
     border-radius: 10px 10px 0 0;
     background-color: #9b34eb;
-    color: #FAFAFA;
+    color: #FFF;
 }
 
 /* Aqui ficarão as tarefas adicionadas */
@@ -201,13 +211,14 @@ form#adicionar-tarefa button:active {
     position: absolute;
     right: 14vw;
 
+    font-family: sans-serif;
+    font-weight: bold;
     color: #fff;
     box-shadow: 0 0 0.5em #0005;
     background-color: #ed323b;
     border: solid 3px #000;
     border-radius: 15%;
     font-size: 1em;
-    font-weight: bold;
     padding: 0.1em 0.32em;
     transition: scale 0.2s;
 }
@@ -227,7 +238,9 @@ form#adicionar-tarefa button:active {
 }
 
 #horario-fim-atividades #horario {
-    font-size: 2em;
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 2.4em;
     padding: 0.2em;
     border: solid 4px #000;
     border-radius: 0.15em;
