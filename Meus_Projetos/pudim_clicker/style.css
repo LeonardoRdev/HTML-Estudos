@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+#pudins {
+    position: relative;
+}
+
+#pudim_feliz {
+    z-index: 2;
+    position: absolute;
+    cursor: pointer;
+}
+
+#pudim_feliz:active {
+    z-index: 0;
+}
+
+#pudim_apertado {
+    z-index: 1;
+    position: absolute;
+    cursor: pointer;
+}
+
+
+/* Da pra colocar um border-radius em canta ponta para deixar a área de clique do pudim mais certeira: */
+.imagem_pudim {
+    width: 60em;
+}
