@@ -13,8 +13,8 @@
 #pudins {
     position: relative;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
 }
 
 #pudim_feliz {
@@ -37,8 +37,8 @@
 .imagem_pudim {
     background-size: contain;
     background-repeat: no-repeat;
-    width: 29em;
-    height: 17em;
+    width: 25vw;
+    height: 28vh;
     position: absolute;
 
     border-radius: 60% / 100% 70% 13% 15% 
@@ -46,36 +46,79 @@
 
 #quantidade_pudins {
     text-align: center;
-    margin-top: 8.5em;
+    margin-top: 30vh;
     font-size: 2em;
 }
 
 
-/* MELHORIAS */
+/* Upgrades */
 
 aside {
     position: fixed;
     right: 0;
     top: 0;
-    width: 25em;
+    width: 28em;
     height: 100vh;
+    overflow-y: scroll;
+}
+
+#upgrades {
+    background-color: #0006;
     display: flex;
     flex-direction: column;
     gap: 1em;
-    background-color: #0006;
 }
 
 .upgrade {
     position: relative;
-    height: 11%;
-    background-color: #d44437;
+    height: 6em;
     display: flex;
     flex-direction: column;
+
+    background-color: #d44437;
+    background-image: url(imgs/upgrades/confeiteira.png);
+    background-size: contain;
+    background-position: 100%;
+    background-repeat: no-repeat;
+
+    /* Não permitir selecionar o texto dos upgrades: */
+    -ms-user-select: none; /* Internet Explorer e Edge */
+    user-select: none;
 }
 
 .upgrade:hover {
     cursor: pointer;
-    background-color: #b3392e;
+    
+    /* background-color: #b3392e; */
+    border: 2px solid #000;
+    border-radius: 5px;
+}
+
+.upgrade:active {
+    opacity: 0.85;
+}
+
+#upgrade_confeiteira {
+    background-image: url(imgs/upgrades/confeiteira.png);
+    border-radius: 0 0 5px 5px;
+}
+#upgrade_chef {
+    background-image: url(imgs/upgrades/chef.png);
+}
+#upgrade_padaria {
+    background-image: url(imgs/upgrades/padaria.png);
+}
+#upgrade_confeitaria {
+    background-image: url(imgs/upgrades/confeitaria.png);
+}
+#upgrade_supermercado {
+    background-image: url(imgs/upgrades/supermercado.png);
+}
+#upgrade_cafeteria {
+    background-image: url(imgs/upgrades/cafeteria.png);
+}
+#upgrade_gourmet {
+    background-image: url(imgs/upgrades/gurmet.png);
 }
 
 .informacoes_upgrade {
@@ -83,11 +126,15 @@ aside {
     padding: 0 0em 0 2em;
     display: flex;
     align-items: center;
-    gap: 0 6.5em;
+    gap: 0 4em;
 }
 
-.informacoes_upgrade p {
+.informacoes_upgrade p:first-child {
     font-size: 1.5em;
+}
+
+.informacoes_upgrade p:last-child {
+    font-size: 1.3em;
 }
 
 .custo_upgrade {
