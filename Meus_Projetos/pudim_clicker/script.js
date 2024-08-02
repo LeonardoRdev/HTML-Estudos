@@ -1,10 +1,12 @@
+// Definindo as variáveis:
+
 let divImagemPudins = document.querySelector("#pudins");
 let pudimApertado = document.querySelector("#pudim_apertado");
 let quantidadePudins = document.querySelector("#quantidade_pudins");
+
+// Pudins / Poder do Clique / Preços iniciais:
 let pudins = 0;
 let poderDoClique = 1;
-
-// Organiza as variáveis por grupo | Confeiteira | Chef | Padaria...
 
 let precoUpgradeConfeiteira = 10;
 let precoUpgradeChef = 100;
@@ -13,6 +15,8 @@ let precoUpgradeConfeitaria = 3000;
 let precoUpgradeSupermercado = 10000;
 let precoUpgradeCafeteria = 35000;
 let precoUpgradeGourmet = 150000;
+
+// Variáveis dos upgrades: quantidade e preços
 
 let upgradeConfeiteira = document.querySelector("#upgrade_confeiteira");
 let upgradeChef = document.querySelector("#upgrade_chef");
@@ -51,6 +55,8 @@ let quantidadeUpgradeCafeteria = 0;
 let paragrafoQuantidadeUpgradeGourmet = upgradeGourmet.querySelector(".quantidade_upgrade");
 let quantidadeUpgradeGourmet = 0;
 
+
+// FUNÇÕES COMPRAR UPGRADE:
 // Upgrade Confeiteira:
 upgradeConfeiteira.addEventListener("click", () => {
     if (pudins >= precoUpgradeConfeiteira) {

@@ -102,6 +102,7 @@ aside {
     background-image: url(imgs/upgrades/confeiteira.png);
     border-radius: 0 0 5px 5px;
 }
+
 #upgrade_chef {
     background-image: url(imgs/upgrades/chef.png);
 }
@@ -119,6 +120,7 @@ aside {
 }
 #upgrade_gourmet {
     background-image: url(imgs/upgrades/gurmet.png);
+    border-radius: 5px 5px 0 0;
 }
 
 .informacoes_upgrade {
