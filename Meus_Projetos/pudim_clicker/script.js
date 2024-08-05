@@ -4,7 +4,31 @@ let divImagemPudins = document.querySelector("#pudins");
 let pudimApertado = document.querySelector("#pudim_apertado");
 let quantidadePudins = document.querySelector("#quantidade_pudins");
 
-// Pudins / Poder do Clique / Preços iniciais:
+// Variáveis dos upgrades: elemento, texto preço, texto quantidade e quantidade:
+const listaUpgrades = [
+    "confeiteira",
+    "chef",
+    "padaria",
+    "confeitaria",
+    "supermercado",
+    "cafeteria",
+    "gourmet"
+];
+
+const elementosUpgrade = {};
+const precoParagrafosUpgrades = {};
+const paragrafoQuantidadeUpgrade = {};
+const quantidadeUpgrade = {};
+
+listaUpgrades.forEach(upgrade => {
+    let elementoUpgrade = document.querySelector(`#upgrade_${upgrade}`);
+    elementosUpgrade[upgrade] = elementoUpgrade;
+    precoParagrafosUpgrades[upgrade] = elementoUpgrade.querySelector(`.custo_upgrade p`);
+    paragrafoQuantidadeUpgrade[upgrade] = elementoUpgrade.querySelector(`.quantidade_upgrade`);
+    quantidadeUpgrade[upgrade] = 0;
+});
+
+// Pudins / Poder do Clique / Preços iniciais dos upgrades:
 let pudins = 0;
 let poderDoClique = 1;
 
@@ -16,158 +40,8 @@ let precoUpgradeSupermercado = 10000;
 let precoUpgradeCafeteria = 35000;
 let precoUpgradeGourmet = 150000;
 
-// Variáveis dos upgrades: quantidade e preços
 
-let upgradeConfeiteira = document.querySelector("#upgrade_confeiteira");
-let upgradeChef = document.querySelector("#upgrade_chef");
-let upgradePadaria = document.querySelector("#upgrade_padaria");
-let upgradeConfeitaria = document.querySelector("#upgrade_confeitaria");
-let upgradeSupermercado = document.querySelector("#upgrade_supermercado");
-let upgradeCafeteria = document.querySelector("#upgrade_cafeteria");
-let upgradeGourmet = document.querySelector("#upgrade_gourmet");
-
-let precoParagrafoConfeiteira = upgradeConfeiteira.querySelector(".custo_upgrade p");
-let precoParagrafoChef = upgradeChef.querySelector(".custo_upgrade p");
-let precoParagrafoPadaria = upgradePadaria.querySelector(".custo_upgrade p");
-let precoParagrafoConfeitaria = upgradeConfeitaria.querySelector(".custo_upgrade p");
-let precoParagrafoSupermercado = upgradeSupermercado.querySelector(".custo_upgrade p");
-let precoParagrafoCafeteria = upgradeCafeteria.querySelector(".custo_upgrade p");
-let precoParagrafoGourmet = upgradeGourmet.querySelector(".custo_upgrade p");
-
-let paragrafoQuantidadeUpgradeConfeiteira = upgradeConfeiteira.querySelector(".quantidade_upgrade");
-let quantidadeUpgradeConfeiteira = 0;
-
-let paragrafoQuantidadeUpgradeChef = upgradeChef.querySelector(".quantidade_upgrade");
-let quantidadeUpgradeChef = 0;
-
-let paragrafoQuantidadeUpgradePadaria = upgradePadaria.querySelector(".quantidade_upgrade");
-let quantidadeUpgradePadaria = 0;
-
-let paragrafoQuantidadeUpgradeConfeitaria = upgradeConfeitaria.querySelector(".quantidade_upgrade");
-let quantidadeUpgradeConfeitaria = 0;
-
-let paragrafoQuantidadeUpgradeSupermercado = upgradeSupermercado.querySelector(".quantidade_upgrade");
-let quantidadeUpgradeSupermercado = 0;
-
-let paragrafoQuantidadeUpgradeCafeteria = upgradeCafeteria.querySelector(".quantidade_upgrade");
-let quantidadeUpgradeCafeteria = 0;
-
-let paragrafoQuantidadeUpgradeGourmet = upgradeGourmet.querySelector(".quantidade_upgrade");
-let quantidadeUpgradeGourmet = 0;
-
-
-// FUNÇÕES COMPRAR UPGRADE:
-// Upgrade Confeiteira:
-upgradeConfeiteira.addEventListener("click", () => {
-    if (pudins >= precoUpgradeConfeiteira) {
-        quantidadeUpgradeConfeiteira++;
-        paragrafoQuantidadeUpgradeConfeiteira.innerHTML = quantidadeUpgradeConfeiteira;
-
-        pudins -= precoUpgradeConfeiteira
-        atualizarQuantidadePudins();
-
-        // Aumenta o preço do upgrade:
-        precoUpgradeConfeiteira++;
-
-        
-        // Recompensa fornecida pelo Upgrade:
-        // Alterar para PPS (pudim por segundo)
-        poderDoClique++;
-        precoParagrafoConfeiteira.innerHTML = `Pudins: ${precoUpgradeConfeiteira}`;
-    }
-});
-
-// Upgrade Chef:
-upgradeChef.addEventListener("click", () => {
-    if (pudins >= precoUpgradeChef) {
-        quantidadeUpgradeChef++;
-        paragrafoQuantidadeUpgradeChef.innerHTML = quantidadeUpgradeChef;
-
-        pudins -= precoUpgradeChef
-        atualizarQuantidadePudins();
-
-        precoUpgradeChef = (precoUpgradeChef + 3) * 7;
-        poderDoClique++;
-        precoParagrafoChef.innerHTML = `Pudins: ${precoUpgradeChef}`;
-    }
-});
-
-// Upgrade Padaria
-upgradePadaria.addEventListener("click", () => {
-    if (pudins >= precoUpgradePadaria) {
-        quantidadeUpgradePadaria++;
-        paragrafoQuantidadeUpgradePadaria.innerHTML = quantidadeUpgradePadaria;
-
-        pudins -= precoUpgradePadaria
-        atualizarQuantidadePudins();
-
-        precoUpgradePadaria = (precoUpgradePadaria + 3) * 7;
-        poderDoClique++;
-        precoParagrafoPadaria.innerHTML = `Pudins: ${precoUpgradePadaria}`;
-    }
-});
-
-// Upgrade Confeitaria
-upgradeConfeitaria.addEventListener("click", () => {
-    if (pudins >= precoUpgradeConfeitaria) {
-        quantidadeUpgradeConfeitaria++;
-        paragrafoQuantidadeUpgradeConfeitaria.innerHTML = quantidadeUpgradeConfeitaria;
-
-        pudins -= precoUpgradeConfeitaria
-        atualizarQuantidadePudins();
-
-        precoUpgradeConfeitaria = (precoUpgradeConfeitaria + 3) * 7;
-        poderDoClique++;
-        precoParagrafoConfeitaria.innerHTML = `Pudins: ${precoUpgradeConfeitaria}`;
-    }
-});
-
-// Upgrade Supermercado
-upgradeSupermercado.addEventListener("click", () => {
-    if (pudins >= precoUpgradeSupermercado) {
-        quantidadeUpgradeSupermercado++;
-        paragrafoQuantidadeUpgradeSupermercado.innerHTML = quantidadeUpgradeSupermercado;
-
-        pudins -= precoUpgradeSupermercado
-        atualizarQuantidadePudins();
-
-        precoUpgradeSupermercado = (precoUpgradeSupermercado + 3) * 7;
-        poderDoClique++;
-        precoParagrafoSupermercado.innerHTML = `Pudins: ${precoUpgradeSupermercado}`;
-    }
-});
-
-// Upgrade Cafeteria
-upgradeCafeteria.addEventListener("click", () => {
-    if (pudins >= precoUpgradeCafeteria) {
-        quantidadeUpgradeCafeteria++;
-        paragrafoQuantidadeUpgradeCafeteria.innerHTML = quantidadeUpgradeCafeteria;
-
-        pudins -= precoUpgradeCafeteria
-        atualizarQuantidadePudins();
-
-        precoUpgradeCafeteria = (precoUpgradeCafeteria + 3) * 7;
-        poderDoClique++;
-        precoParagrafoCafeteria.innerHTML = `Pudins: ${precoUpgradeCafeteria}`;
-    }
-});
-
-// Upgrade Restaurante Gourmet
-upgradeGourmet.addEventListener("click", () => {
-    if (pudins >= precoUpgradeGourmet) {
-        quantidadeUpgradeGourmet++;
-        paragrafoQuantidadeUpgradeGourmet.innerHTML = quantidadeUpgradeGourmet;
-
-        pudins -= precoUpgradeGourmet
-        atualizarQuantidadePudins();
-
-        precoUpgradeGourmet = (precoUpgradeGourmet + 3) * 7;
-        poderDoClique++;
-        precoParagrafoGourmet.innerHTML = `Pudins: ${precoUpgradeGourmet}`;
-    }
-});
-
-
+// FUNÇÕES:
 // Clicar no PUDIM:
 divImagemPudins.addEventListener("click", () => {
     pudins += poderDoClique;
@@ -175,6 +49,125 @@ divImagemPudins.addEventListener("click", () => {
     atualizarQuantidadePudins();
 });
 
+
+// Atualizar contador de Pudins:
 function atualizarQuantidadePudins() {
     quantidadePudins.innerHTML = `Pudins: ${pudins}`
 }
+
+
+// Upgrade Confeiteira:
+elementosUpgrade["confeiteira"].addEventListener("click", () => {
+    if (pudins >= precoUpgradeConfeiteira) {
+        quantidadeUpgrade["confeiteira"]++
+        paragrafoQuantidadeUpgrade["confeiteira"].innerHTML = quantidadeUpgrade["confeiteira"];
+
+        // Gasta os pudins para adquirir o upgrade:
+        pudins -= precoUpgradeConfeiteira
+        atualizarQuantidadePudins();
+
+        // Aumenta o preço do upgrade:
+        precoUpgradeConfeiteira++;
+        precoParagrafosUpgrades["confeiteira"].innerHTML = `Pudins: ${precoUpgradeConfeiteira}`;
+
+        // Recompensa fornecida pelo Upgrade:
+        // "Alterar para PPS (pudim por segundo)"
+        poderDoClique++;
+    }
+});
+
+// Upgrade Chef:
+elementosUpgrade["chef"].addEventListener("click", () => {
+    if (pudins >= precoUpgradeChef) {
+        quantidadeUpgrade["chef"]++
+        paragrafoQuantidadeUpgrade["chef"].innerHTML = quantidadeUpgrade["chef"];
+
+        pudins -= precoUpgradeChef
+        atualizarQuantidadePudins();
+
+        precoUpgradeChef = (precoUpgradeChef + 3) * 7;
+        precoParagrafosUpgrades["chef"].innerHTML = `Pudins: ${precoUpgradeChef}`;
+
+        poderDoClique++;
+    }
+});
+
+// Upgrade Padaria
+elementosUpgrade["padaria"].addEventListener("click", () => {
+    if (pudins >= precoUpgradePadaria) {
+        quantidadeUpgrade["padaria"]++
+        paragrafoQuantidadeUpgrade["padaria"].innerHTML = quantidadeUpgrade["padaria"];
+
+        pudins -= precoUpgradePadaria
+        atualizarQuantidadePudins();
+
+        precoUpgradePadaria = (precoUpgradePadaria + 3) * 7;
+        precoParagrafosUpgrades["padaria"].innerHTML = `Pudins: ${precoUpgradePadaria}`;
+
+        poderDoClique++;
+    }
+});
+
+// Upgrade Confeitaria
+elementosUpgrade["confeitaria"].addEventListener("click", () => {
+    if (pudins >= precoUpgradeConfeitaria) {
+        quantidadeUpgrade["confeitaria"]++
+        paragrafoQuantidadeUpgrade["confeitaria"].innerHTML = quantidadeUpgrade["confeitaria"];
+
+        pudins -= precoUpgradeConfeitaria
+        atualizarQuantidadePudins();
+
+        precoUpgradeConfeitaria = (precoUpgradeConfeitaria + 3) * 7;
+        precoParagrafosUpgrades["confeitaria"].innerHTML = `Pudins: ${precoUpgradeConfeitaria}`;
+
+        poderDoClique++;
+    }
+});
+
+// Upgrade Supermercado
+elementosUpgrade["supermercado"].addEventListener("click", () => {
+    if (pudins >= precoUpgradeSupermercado) {
+        quantidadeUpgrade["supermercado"]++
+        paragrafoQuantidadeUpgrade["supermercado"].innerHTML = quantidadeUpgrade["supermercado"];
+
+        pudins -= precoUpgradeSupermercado
+        atualizarQuantidadePudins();
+
+        precoUpgradeSupermercado = (precoUpgradeSupermercado + 3) * 7;
+        precoParagrafosUpgrades["supermercado"].innerHTML = `Pudins: ${precoUpgradeSupermercado}`;
+
+        poderDoClique++;
+    }
+});
+
+// Upgrade Cafeteria
+elementosUpgrade["cafeteria"].addEventListener("click", () => {
+    if (pudins >= precoUpgradeCafeteria) {
+        quantidadeUpgrade["cafeteria"]++
+        paragrafoQuantidadeUpgrade["cafeteria"].innerHTML = quantidadeUpgrade["cafeteria"];
+
+        pudins -= precoUpgradeCafeteria
+        atualizarQuantidadePudins();
+
+        precoUpgradeCafeteria = (precoUpgradeCafeteria + 3) * 7;
+        precoParagrafosUpgrades["cafeteria"].innerHTML = `Pudins: ${precoUpgradeCafeteria}`;
+
+        poderDoClique++;
+    }
+});
+
+// Upgrade Restaurante Gourmet
+elementosUpgrade["gourmet"].addEventListener("click", () => {
+    if (pudins >= precoUpgradeGourmet) {
+        quantidadeUpgrade["gourmet"]++
+        paragrafoQuantidadeUpgrade["gourmet"].innerHTML = quantidadeUpgrade["gourmet"];
+
+        pudins -= precoUpgradeGourmet
+        atualizarQuantidadePudins();
+
+        precoUpgradeGourmet = (precoUpgradeGourmet + 3) * 7;
+        precoParagrafosUpgrades["gourmet"].innerHTML = `Pudins: ${precoUpgradeGourmet}`;
+
+        poderDoClique++;
+    }
+});
