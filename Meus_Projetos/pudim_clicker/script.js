@@ -31,6 +31,7 @@ listaUpgrades.forEach(upgrade => {
 // Pudins / Poder do Clique / Preços iniciais dos upgrades:
 let pudins = 0;
 let poderDoClique = 1;
+let pudinsPorSegundo = 0;
 
 let precoUpgradeConfeiteira = 10;
 let precoUpgradeChef = 100;
@@ -39,6 +40,13 @@ let precoUpgradeConfeitaria = 3000;
 let precoUpgradeSupermercado = 10000;
 let precoUpgradeCafeteria = 35000;
 let precoUpgradeGourmet = 150000;
+
+
+// Aumenta a quantidade de Pudins para cada upgrade que aumente o PPS (Pudim Por Segundo)
+setInterval(() => {
+    pudins += pudinsPorSegundo;
+    atualizarQuantidadePudins();
+}, 1000);
 
 
 // FUNÇÕES:
@@ -52,6 +60,8 @@ divImagemPudins.addEventListener("click", () => {
 
 // Atualizar contador de Pudins:
 function atualizarQuantidadePudins() {
+    // Gambiarra por conta do Javascript, já que ele não calcula números flutuantes com precisão:
+    pudins = Math.round(pudins * 10) / 10;
     quantidadePudins.innerHTML = `Pudins: ${pudins}`
 }
 
@@ -71,8 +81,7 @@ elementosUpgrade["confeiteira"].addEventListener("click", () => {
         precoParagrafosUpgrades["confeiteira"].innerHTML = `Pudins: ${precoUpgradeConfeiteira}`;
 
         // Recompensa fornecida pelo Upgrade:
-        // "Alterar para PPS (pudim por segundo)"
-        poderDoClique++;
+        pudinsPorSegundo += 0.1;
     }
 });
 
