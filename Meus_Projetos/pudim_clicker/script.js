@@ -3,6 +3,7 @@
 let divImagemPudins = document.querySelector("#pudins");
 let pudimApertado = document.querySelector("#pudim_apertado");
 let quantidadePudins = document.querySelector("#quantidade_pudins");
+let ultimoUpgrade = document.querySelector("#ultimo_upgrade");
 
 // Variáveis dos upgrades: elemento, texto preço, texto quantidade e quantidade:
 const listaUpgrades = [
@@ -29,7 +30,7 @@ listaUpgrades.forEach(upgrade => {
 });
 
 // Pudins / Poder do Clique / Preços iniciais dos upgrades:
-let pudins = 1000;
+let pudins = 0;
 let poderDoClique = 1;
 let pudinsPorSegundo = 0;
 
@@ -82,6 +83,7 @@ elementosUpgrade["confeiteira"].addEventListener("click", () => {
 
         // Recompensa fornecida pelo Upgrade:
         pudinsPorSegundo += 0.1;
+        ultimoUpgrade.innerHTML = `PPS: ${pudinsPorSegundo.toFixed(1)}`;
     }
 });
 
@@ -98,6 +100,7 @@ elementosUpgrade["chef"].addEventListener("click", () => {
         precoParagrafosUpgrades["chef"].innerHTML = `Pudins: ${precoUpgradeChef.toFixed(1)}`;
 
         poderDoClique++;
+        ultimoUpgrade.innerHTML = `+${poderDoClique} Pudins por clique!`;
     }
 });
 
@@ -114,6 +117,7 @@ elementosUpgrade["padaria"].addEventListener("click", () => {
         precoParagrafosUpgrades["padaria"].innerHTML = `Pudins: ${precoUpgradePadaria.toFixed(1)}`;
 
         pudinsPorSegundo += 3;
+        ultimoUpgrade.innerHTML = `PPS: ${pudinsPorSegundo.toFixed(1)}`;
     }
 });
 
@@ -130,6 +134,7 @@ elementosUpgrade["confeitaria"].addEventListener("click", () => {
         precoParagrafosUpgrades["confeitaria"].innerHTML = `Pudins: ${precoUpgradeConfeitaria.toFixed(1)}`;
 
         pudinsPorSegundo += 20;
+        ultimoUpgrade.innerHTML = `PPS: ${pudinsPorSegundo.toFixed(1)}`;
     }
 });
 
@@ -146,6 +151,7 @@ elementosUpgrade["supermercado"].addEventListener("click", () => {
         precoParagrafosUpgrades["supermercado"].innerHTML = `Pudins: ${precoUpgradeSupermercado.toFixed(1)}`;
 
         pudinsPorSegundo += 50;
+        ultimoUpgrade.innerHTML = `PPS: ${pudinsPorSegundo.toFixed(1)}`;
     }
 });
 
@@ -162,6 +168,7 @@ elementosUpgrade["cafeteria"].addEventListener("click", () => {
         precoParagrafosUpgrades["cafeteria"].innerHTML = `Pudins: ${precoUpgradeCafeteria.toFixed(1)}`;
 
         pudinsPorSegundo += 150;
+        ultimoUpgrade.innerHTML = `PPS: ${pudinsPorSegundo.toFixed(1)}`;
     }
 });
 
@@ -178,5 +185,6 @@ elementosUpgrade["gourmet"].addEventListener("click", () => {
         precoParagrafosUpgrades["gourmet"].innerHTML = `Pudins: ${precoUpgradeGourmet.toFixed(1)}`;
 
         poderDoClique *= 2;
+        ultimoUpgrade.innerHTML = `2x Pudins por clique! (${poderDoClique})`;
     }
 });
