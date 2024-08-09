@@ -42,13 +42,21 @@ let precoUpgradeSupermercado = 10000;
 let precoUpgradeCafeteria = 35000;
 let precoUpgradeGourmet = 350000;
 
-
-// Aumenta a quantidade de Pudins para cada upgrade que aumente o PPS (Pudim Por Segundo)
 setInterval(() => {
     pudins += pudinsPorSegundo;
     atualizarQuantidadePudins();
-}, 1000);
 
+    // Faz com que os upgrades disponíveis para compra fiquem vermelhos:
+    listaUpgrades.forEach(upgrade => {
+        // Se o preço do upgrade for maior que a atual quantidade de pudins:
+        if (precoParagrafosUpgrades[upgrade].textContent.split(": ")[1] > pudins) {
+            elementosUpgrade[upgrade].classList.add("upgrade_caro");
+        }
+        else {
+            elementosUpgrade[upgrade].classList.remove("upgrade_caro");
+        }
+    });
+}, 1000);
 
 // FUNÇÕES:
 // Clicar no PUDIM:

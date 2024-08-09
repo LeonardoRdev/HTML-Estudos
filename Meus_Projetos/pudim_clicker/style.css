@@ -92,6 +92,10 @@ aside {
     user-select: none;
 }
 
+.upgrade_caro {
+    background-color: #0006;
+}
+
 .upgrade:hover {
     cursor: pointer;
     
