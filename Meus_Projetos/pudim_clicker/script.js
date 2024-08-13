@@ -5,8 +5,10 @@ let pudimApertado = document.querySelector("#pudim_apertado");
 let quantidadePudins = document.querySelector("#quantidade_pudins");
 let ultimoUpgrade = document.querySelector("#ultimo_upgrade");
 
-const audio = new Audio();
-audio.src = "../Arquivos_pagina_inicial/audios/boing.mp3";
+const audioClicarPudim = new Audio();
+audioClicarPudim.src = "../Arquivos_pagina_inicial/audios/boing.mp3";
+const audioComprarUpgrade = new Audio();
+audioComprarUpgrade.src = "../Arquivos_pagina_inicial/audios/comprar_upgrade1.mp3";
 
 // Variáveis dos upgrades: elemento, texto preço, texto quantidade e quantidade:
 const listaUpgrades = [
@@ -65,12 +67,11 @@ setInterval(() => {
 // Clicar no PUDIM:
 divImagemPudins.addEventListener("click", () => {
     // Som ao clickar:
-    audio.play();
-    if (audio.currentTime != 0) {
+    audioClicarPudim.play();
+    if (audioClicarPudim.currentTime != 0) {
         // Se clickar muito rápido, reiniciar o som:
-        audio.currentTime = 0;
+        audioClicarPudim.currentTime = 0;
     }
-    console.log(audio.currentTime)
 
     pudins += poderDoClique;
 
@@ -89,6 +90,7 @@ function atualizarQuantidadePudins() {
 // Upgrade Confeiteira:
 elementosUpgrade["confeiteira"].addEventListener("click", () => {
     if (pudins >= precoUpgradeConfeiteira) {
+        tocarSomComprarUpgrade();
         quantidadeUpgrade["confeiteira"]++
         paragrafoQuantidadeUpgrade["confeiteira"].innerHTML = quantidadeUpgrade["confeiteira"];
 
@@ -109,6 +111,7 @@ elementosUpgrade["confeiteira"].addEventListener("click", () => {
 // Upgrade Chef:
 elementosUpgrade["chef"].addEventListener("click", () => {
     if (pudins >= precoUpgradeChef) {
+        tocarSomComprarUpgrade();
         quantidadeUpgrade["chef"]++
         paragrafoQuantidadeUpgrade["chef"].innerHTML = quantidadeUpgrade["chef"];
 
@@ -126,6 +129,7 @@ elementosUpgrade["chef"].addEventListener("click", () => {
 // Upgrade Padaria
 elementosUpgrade["padaria"].addEventListener("click", () => {
     if (pudins >= precoUpgradePadaria) {
+        tocarSomComprarUpgrade();
         quantidadeUpgrade["padaria"]++
         paragrafoQuantidadeUpgrade["padaria"].innerHTML = quantidadeUpgrade["padaria"];
 
@@ -143,6 +147,7 @@ elementosUpgrade["padaria"].addEventListener("click", () => {
 // Upgrade Confeitaria
 elementosUpgrade["confeitaria"].addEventListener("click", () => {
     if (pudins >= precoUpgradeConfeitaria) {
+        tocarSomComprarUpgrade();
         quantidadeUpgrade["confeitaria"]++
         paragrafoQuantidadeUpgrade["confeitaria"].innerHTML = quantidadeUpgrade["confeitaria"];
 
@@ -160,6 +165,7 @@ elementosUpgrade["confeitaria"].addEventListener("click", () => {
 // Upgrade Supermercado
 elementosUpgrade["supermercado"].addEventListener("click", () => {
     if (pudins >= precoUpgradeSupermercado) {
+        tocarSomComprarUpgrade();
         quantidadeUpgrade["supermercado"]++
         paragrafoQuantidadeUpgrade["supermercado"].innerHTML = quantidadeUpgrade["supermercado"];
 
@@ -177,6 +183,7 @@ elementosUpgrade["supermercado"].addEventListener("click", () => {
 // Upgrade Cafeteria
 elementosUpgrade["cafeteria"].addEventListener("click", () => {
     if (pudins >= precoUpgradeCafeteria) {
+        tocarSomComprarUpgrade();
         quantidadeUpgrade["cafeteria"]++
         paragrafoQuantidadeUpgrade["cafeteria"].innerHTML = quantidadeUpgrade["cafeteria"];
 
@@ -194,6 +201,7 @@ elementosUpgrade["cafeteria"].addEventListener("click", () => {
 // Upgrade Restaurante Gourmet
 elementosUpgrade["gourmet"].addEventListener("click", () => {
     if (pudins >= precoUpgradeGourmet) {
+        tocarSomComprarUpgrade();
         quantidadeUpgrade["gourmet"]++
         paragrafoQuantidadeUpgrade["gourmet"].innerHTML = quantidadeUpgrade["gourmet"];
 
@@ -207,3 +215,11 @@ elementosUpgrade["gourmet"].addEventListener("click", () => {
         ultimoUpgrade.innerHTML = `2x Pudins por clique! (${poderDoClique})`;
     }
 });
+
+function tocarSomComprarUpgrade() {
+    audioComprarUpgrade.play();
+    if (audioComprarUpgrade.currentTime != 0) {
+        // Se clickar muito rápido, reiniciar o som:
+        audioComprarUpgrade.currentTime = 0;
+    }
+}
