@@ -153,3 +153,36 @@ aside {
     bottom: 8%;
     left: 3%;
 }
+
+/* FOOTER MELHORIAS */
+footer {
+    background-color: #d44437;
+    width: 20em;
+    height: 10em;
+    
+    position: fixed;
+    bottom: 0;
+    overflow-y: scroll;
+}
+
+#melhorias {
+    background-color: #525252;
+    padding: 0.8em;
+
+    display: flex;
+    gap: 1.3em;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.item_melhoria {
+    background-color: aqua;
+    width: 18%;
+    height: 3em;
+    transition: scale 0.15s;
+}
+
+.item_melhoria:hover {
+    cursor: pointer;
+    scale: 1.05;
+}
