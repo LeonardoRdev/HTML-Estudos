@@ -260,3 +260,85 @@ function atualizarPudinsPorSegundo() {
     console.log(`===============\nTOTAL PPS: ${pudinsPorSegundo}\n===============`);
 
 }
+
+// TOOLTIP das melhorias (explicar o que elas fazem):
+let melhoriaConfeiteira1 = document.querySelector("#melhoria_confeiteira_1");
+let melhoriaConfeiteira2 = document.querySelector("#melhoria_confeiteira_2");
+let melhoriaChef1 = document.querySelector("#melhoria_chef_1");
+let melhoriaChef2 = document.querySelector("#melhoria_chef_2");
+let melhoriaPadaria1 = document.querySelector("#melhoria_padaria_1");
+let melhoriaPadaria2 = document.querySelector("#melhoria_padaria_2");
+let melhoriaConfeitaria1 = document.querySelector("#melhoria_confeitaria_1");
+let melhoriaConfeitaria2 = document.querySelector("#melhoria_confeitaria_2");
+let melhoriaSupermercado1 = document.querySelector("#melhoria_supermercado_1");
+let melhoriaSupermercado2 = document.querySelector("#melhoria_supermercado_2");
+let melhoriaCafeteria1 = document.querySelector("#melhoria_cafeteria_1");
+let melhoriaCafeteria2 = document.querySelector("#melhoria_cafeteria_2");
+
+// Abrir o TOOLTIP
+melhoriaConfeiteira1.addEventListener("mouseover", () => {
+    mostrarTooltip("Aumenta os pudins recebidos em 1x");
+});
+
+melhoriaConfeiteira2.addEventListener("mouseover", () => {
+    mostrarTooltip("Aumenta os pudins recebidos em 2x");
+});
+
+melhoriaChef1.addEventListener("mouseover", () => {
+    mostrarTooltip("Aumenta os pudins recebidos em 3x");
+});
+
+melhoriaChef2.addEventListener("mouseover", () => {
+    mostrarTooltip("Aumenta os pudins recebidos em 4x");
+});
+
+melhoriaPadaria1.addEventListener("mouseover", () => {
+    mostrarTooltip("Aumenta os pudins recebidos em 5x");
+});
+
+melhoriaPadaria2.addEventListener("mouseover", () => {
+    mostrarTooltip("Aumenta os pudins recebidos em 6x");
+});
+
+melhoriaConfeitaria1.addEventListener("mouseover", () => {
+    mostrarTooltip("Aumenta os pudins recebidos em 7x");
+});
+
+melhoriaConfeitaria2.addEventListener("mouseover", () => {
+    mostrarTooltip("Aumenta os pudins recebidos em 8x");
+});
+
+melhoriaSupermercado1.addEventListener("mouseover", () => {
+    mostrarTooltip("Aumenta os pudins recebidos em 9x");
+});
+
+melhoriaSupermercado2.addEventListener("mouseover", () => {
+    mostrarTooltip("Aumenta os pudins recebidos em 10x");
+});
+
+melhoriaCafeteria1.addEventListener("mouseover", () => {
+    mostrarTooltip("Aumenta os pudins recebidos em 11x");
+});
+
+melhoriaCafeteria2.addEventListener("mouseover", () => {
+    mostrarTooltip("Aumenta os pudins recebidos em 12x");
+});
+
+// Para fechar o TOOLTIP
+let itensMelhorias = document.querySelectorAll(".item_melhoria");
+itensMelhorias.forEach((item) => {
+    item.addEventListener("mouseout", () => {
+        fecharTooltip();
+    });
+})
+
+function mostrarTooltip(mensagemTooltip) {
+    let descricaoMelhorias = document.querySelector("#descricao_melhorias");
+    descricaoMelhorias.style.display = "block";
+    descricaoMelhorias.querySelector("P").innerHTML = mensagemTooltip;
+}
+
+function fecharTooltip() {
+    let descricaoMelhorias = document.querySelector("#descricao_melhorias");
+    descricaoMelhorias.style.display = "none";
+}

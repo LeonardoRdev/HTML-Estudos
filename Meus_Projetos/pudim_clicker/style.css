@@ -156,16 +156,24 @@ aside {
 
 /* FOOTER MELHORIAS */
 footer {
-    background-color: #d44437;
+    background-color: #d4443755;
+
     width: 20em;
-    height: 10em;
-    
+    display: flex;
+    flex-direction: column;
     position: fixed;
     bottom: 0;
-    overflow-y: scroll;
+}
+
+#descricao_melhorias {
+    background-color: aquamarine;
+    display: none;
 }
 
 #melhorias {
+    overflow-y: scroll;
+    width: 20em;
+    height: 10em;
     background-color: #525252;
     padding: 0.8em;
 
