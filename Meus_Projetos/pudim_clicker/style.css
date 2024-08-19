@@ -165,7 +165,7 @@ footer {
     bottom: 0;
 }
 
-#descricao_melhorias {
+#informacoes_melhorias {
     background-color: aquamarine;
     display: none;
 }
@@ -184,6 +184,7 @@ footer {
 }
 
 .item_melhoria {
+    display: none;
     background-color: aqua;
     width: 18%;
     height: 3em;
@@ -193,4 +194,8 @@ footer {
 .item_melhoria:hover {
     cursor: pointer;
     scale: 1.05;
+}
+
+.aparecer {
+    display: block;
 }

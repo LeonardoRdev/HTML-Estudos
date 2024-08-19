@@ -37,7 +37,7 @@ listaUpgrades.forEach(upgrade => {
 
 // Pudins / Poder do Clique / Preços iniciais dos upgrades:
 let pudins = 0;
-let poderDoClique = 111;
+let poderDoClique = 5000;
 let pudinsPorSegundo = 0;
 
 poderUpgrade["confeiteira"] = 0.5; // + Pudim Por Segundo
@@ -116,6 +116,17 @@ elementosUpgrade["confeiteira"].addEventListener("click", () => {
         pudinsPorSegundo += poderUpgrade["confeiteira"] * quantidadeUpgrade["confeiteira"];
         atualizarPudinsPorSegundo();
         ultimoUpgrade.innerHTML = `PPS: ${pudinsPorSegundo.toFixed(1)}`;
+
+        // 1° Melhoria:
+        if (quantidadeUpgrade["confeiteira"] >= 2) {
+            melhoriaConfeiteira1.classList.add("aparecer");
+        }
+
+        // 2° Melhoria:
+        if (quantidadeUpgrade["confeiteira"] >= 15) {
+            melhoriaConfeiteira2.classList.add("aparecer");
+        }
+
     }
 });
 
@@ -133,10 +144,20 @@ elementosUpgrade["chef"].addEventListener("click", () => {
         precoParagrafosUpgrades["chef"].innerHTML = `Pudins: ${precoUpgradeChef.toFixed(1)}`;
 
         poderDoClique++;
+
+        // TESTE PARA USAR NO UPGRADE:
         poderUpgrade["confeiteira"] = 3;
-        atualizarPudinsPorSegundo();
-        ultimoUpgrade.innerHTML = `PPS: ${pudinsPorSegundo.toFixed(1)}`;
-        // ultimoUpgrade.innerHTML = `+${poderDoClique} Pudins por clique!`;
+        
+        // 1° Melhoria:
+        if (quantidadeUpgrade["chef"] >= 2) {
+            melhoriaChef1.classList.add("aparecer");
+        }
+
+        // 2° Melhoria:
+        if (quantidadeUpgrade["chef"] >= 15) {
+            melhoriaChef2.classList.add("aparecer");
+        }
+
     }
 });
 
@@ -150,11 +171,22 @@ elementosUpgrade["padaria"].addEventListener("click", () => {
         pudins -= precoUpgradePadaria;
         atualizarQuantidadePudins();
 
-        precoUpgradePadaria += 0.7 * precoUpgradePadaria + (1.3 * quantidadeUpgrade["padaria"]);
+        precoUpgradePadaria += 0.5 * precoUpgradePadaria + (1.3 * quantidadeUpgrade["padaria"]);
         precoParagrafosUpgrades["padaria"].innerHTML = `Pudins: ${precoUpgradePadaria.toFixed(1)}`;
 
         pudinsPorSegundo += 15;
         ultimoUpgrade.innerHTML = `PPS: ${pudinsPorSegundo.toFixed(1)}`;
+                
+        // 1° Melhoria:
+        if (quantidadeUpgrade["padaria"] >= 2) {
+            melhoriaPadaria1.classList.add("aparecer");
+        }
+
+        // 2° Melhoria:
+        if (quantidadeUpgrade["padaria"] >= 15) {
+            melhoriaPadaria2.classList.add("aparecer");
+        }
+
     }
 });
 
@@ -168,11 +200,22 @@ elementosUpgrade["confeitaria"].addEventListener("click", () => {
         pudins -= precoUpgradeConfeitaria;
         atualizarQuantidadePudins();
 
-        precoUpgradeConfeitaria += 0.3 * precoUpgradeConfeitaria + (1.5 * quantidadeUpgrade["confeitaria"]);
+        precoUpgradeConfeitaria += 0.4 * precoUpgradeConfeitaria + (1.5 * quantidadeUpgrade["confeitaria"]);
         precoParagrafosUpgrades["confeitaria"].innerHTML = `Pudins: ${precoUpgradeConfeitaria.toFixed(1)}`;
 
         pudinsPorSegundo += 100;
         ultimoUpgrade.innerHTML = `PPS: ${pudinsPorSegundo.toFixed(1)}`;
+                
+        // 1° Melhoria:
+        if (quantidadeUpgrade["confeitaria"] >= 2) {
+            melhoriaConfeitaria1.classList.add("aparecer");
+        }
+
+        // 2° Melhoria:
+        if (quantidadeUpgrade["confeitaria"] >= 15) {
+            melhoriaConfeitaria2.classList.add("aparecer");
+        }
+
     }
 });
 
@@ -191,6 +234,17 @@ elementosUpgrade["supermercado"].addEventListener("click", () => {
 
         pudinsPorSegundo += 250;
         ultimoUpgrade.innerHTML = `PPS: ${pudinsPorSegundo.toFixed(1)}`;
+                
+        // 1° Melhoria:
+        if (quantidadeUpgrade["supermercado"] >= 2) {
+            melhoriaSupermercado1.classList.add("aparecer");
+        }
+
+        // 2° Melhoria:
+        if (quantidadeUpgrade["supermercado"] >= 15) {
+            melhoriaSupermercado2.classList.add("aparecer");
+        }
+
     }
 });
 
@@ -209,6 +263,17 @@ elementosUpgrade["cafeteria"].addEventListener("click", () => {
 
         pudinsPorSegundo += 750;
         ultimoUpgrade.innerHTML = `PPS: ${pudinsPorSegundo.toFixed(1)}`;
+                
+        // 1° Melhoria:
+        if (quantidadeUpgrade["cafeteria"] >= 2) {
+            melhoriaCafeteria1.classList.add("aparecer");
+        }
+
+        // 2° Melhoria:
+        if (quantidadeUpgrade["cafeteria"] >= 15) {
+            melhoriaCafeteria2.classList.add("aparecer");
+        }
+
     }
 });
 
@@ -277,51 +342,51 @@ let melhoriaCafeteria2 = document.querySelector("#melhoria_cafeteria_2");
 
 // Abrir o TOOLTIP
 melhoriaConfeiteira1.addEventListener("mouseover", () => {
-    mostrarTooltip("Aumenta os pudins recebidos em 1x");
+    mostrarTooltip("Nome: Nome Legal", "Custo: 15 Pudins", "Aumenta os pudins recebidos em 1x");
 });
 
 melhoriaConfeiteira2.addEventListener("mouseover", () => {
-    mostrarTooltip("Aumenta os pudins recebidos em 2x");
+    mostrarTooltip("Nome: Nome Legal", "Custo: 15 Pudins", "Aumenta os pudins recebidos em 2x");
 });
 
 melhoriaChef1.addEventListener("mouseover", () => {
-    mostrarTooltip("Aumenta os pudins recebidos em 3x");
+    mostrarTooltip("Nome: Nome Legal", "Custo: 15 Pudins", "Aumenta os pudins recebidos em 3x");
 });
 
 melhoriaChef2.addEventListener("mouseover", () => {
-    mostrarTooltip("Aumenta os pudins recebidos em 4x");
+    mostrarTooltip("Nome: Nome Legal", "Custo: 15 Pudins", "Aumenta os pudins recebidos em 4x");
 });
 
 melhoriaPadaria1.addEventListener("mouseover", () => {
-    mostrarTooltip("Aumenta os pudins recebidos em 5x");
+    mostrarTooltip("Nome: Nome Legal", "Custo: 15 Pudins", "Aumenta os pudins recebidos em 5x");
 });
 
 melhoriaPadaria2.addEventListener("mouseover", () => {
-    mostrarTooltip("Aumenta os pudins recebidos em 6x");
+    mostrarTooltip("Nome: Nome Legal", "Custo: 15 Pudins", "Aumenta os pudins recebidos em 6x");
 });
 
 melhoriaConfeitaria1.addEventListener("mouseover", () => {
-    mostrarTooltip("Aumenta os pudins recebidos em 7x");
+    mostrarTooltip("Nome: Nome Legal", "Custo: 15 Pudins", "Aumenta os pudins recebidos em 7x");
 });
 
 melhoriaConfeitaria2.addEventListener("mouseover", () => {
-    mostrarTooltip("Aumenta os pudins recebidos em 8x");
+    mostrarTooltip("Nome: Nome Legal", "Custo: 15 Pudins", "Aumenta os pudins recebidos em 8x");
 });
 
 melhoriaSupermercado1.addEventListener("mouseover", () => {
-    mostrarTooltip("Aumenta os pudins recebidos em 9x");
+    mostrarTooltip("Nome: Nome Legal", "Custo: 15 Pudins", "Aumenta os pudins recebidos em 9x");
 });
 
 melhoriaSupermercado2.addEventListener("mouseover", () => {
-    mostrarTooltip("Aumenta os pudins recebidos em 10x");
+    mostrarTooltip("Nome: Nome Legal", "Custo: 15 Pudins", "Aumenta os pudins recebidos em 10x");
 });
 
 melhoriaCafeteria1.addEventListener("mouseover", () => {
-    mostrarTooltip("Aumenta os pudins recebidos em 11x");
+    mostrarTooltip("Nome: Nome Legal", "Custo: 15 Pudins", "Aumenta os pudins recebidos em 11x");
 });
 
 melhoriaCafeteria2.addEventListener("mouseover", () => {
-    mostrarTooltip("Aumenta os pudins recebidos em 12x");
+    mostrarTooltip("Nome: Nome Legal", "Custo: 15 Pudins", "Aumenta os pudins recebidos em 12x");
 });
 
 // Para fechar o TOOLTIP
@@ -332,13 +397,17 @@ itensMelhorias.forEach((item) => {
     });
 })
 
-function mostrarTooltip(mensagemTooltip) {
-    let descricaoMelhorias = document.querySelector("#descricao_melhorias");
-    descricaoMelhorias.style.display = "block";
-    descricaoMelhorias.querySelector("P").innerHTML = mensagemTooltip;
+function mostrarTooltip(txtNomeMelhoria, txtPrecoMelhoria, txtDescricaoMelhoria) {
+    let informacoesMelhorias = document.querySelector("#informacoes_melhorias");
+    informacoesMelhorias.style.display = "block";
+
+    informacoesMelhorias.querySelector("#nome_melhoria").innerHTML = txtNomeMelhoria;
+    informacoesMelhorias.querySelector("#preco_melhoria").innerHTML = txtPrecoMelhoria;
+    informacoesMelhorias.querySelector("#descricao_melhoria").innerHTML = txtDescricaoMelhoria;
 }
 
 function fecharTooltip() {
-    let descricaoMelhorias = document.querySelector("#descricao_melhorias");
-    descricaoMelhorias.style.display = "none";
+    let informacoesMelhorias = document.querySelector("#informacoes_melhorias");
+
+    informacoesMelhorias.style.display = "none";
 }
