@@ -9,6 +9,8 @@ const audioClicarPudim = new Audio();
 audioClicarPudim.src = "../Arquivos_pagina_inicial/audios/boing.mp3";
 const audioComprarUpgrade = new Audio();
 audioComprarUpgrade.src = "../Arquivos_pagina_inicial/audios/comprar_upgrade1.mp3";
+const audioComprarMelhoria = new Audio();
+audioComprarMelhoria.src = "../Arquivos_pagina_inicial/audios/comprar_upgrade2.mp3";
 
 // Variáveis dos upgrades: elemento, texto preço, texto quantidade e quantidade:
 const listaUpgrades = [
@@ -37,7 +39,7 @@ listaUpgrades.forEach(upgrade => {
 
 // Pudins / Poder do Clique / Preços iniciais dos upgrades:
 let pudins = 0;
-let poderDoClique = 5000;
+let poderDoClique = 50;
 let pudinsPorSegundo = 0;
 
 poderUpgrade["confeiteira"] = 0.5; // + Pudim Por Segundo
@@ -113,9 +115,7 @@ elementosUpgrade["confeiteira"].addEventListener("click", () => {
         precoParagrafosUpgrades["confeiteira"].innerHTML = `Pudins: ${precoUpgradeConfeiteira.toFixed(1)}`;
 
         // Recompensa fornecida pelo Upgrade:
-        pudinsPorSegundo += poderUpgrade["confeiteira"] * quantidadeUpgrade["confeiteira"];
         atualizarPudinsPorSegundo();
-        ultimoUpgrade.innerHTML = `PPS: ${pudinsPorSegundo.toFixed(1)}`;
 
         // 1° Melhoria:
         if (quantidadeUpgrade["confeiteira"] >= 2) {
@@ -144,9 +144,6 @@ elementosUpgrade["chef"].addEventListener("click", () => {
         precoParagrafosUpgrades["chef"].innerHTML = `Pudins: ${precoUpgradeChef.toFixed(1)}`;
 
         poderDoClique++;
-
-        // TESTE PARA USAR NO UPGRADE:
-        poderUpgrade["confeiteira"] = 3;
         
         // 1° Melhoria:
         if (quantidadeUpgrade["chef"] >= 2) {
@@ -157,7 +154,6 @@ elementosUpgrade["chef"].addEventListener("click", () => {
         if (quantidadeUpgrade["chef"] >= 15) {
             melhoriaChef2.classList.add("aparecer");
         }
-
     }
 });
 
@@ -174,8 +170,7 @@ elementosUpgrade["padaria"].addEventListener("click", () => {
         precoUpgradePadaria += 0.5 * precoUpgradePadaria + (1.3 * quantidadeUpgrade["padaria"]);
         precoParagrafosUpgrades["padaria"].innerHTML = `Pudins: ${precoUpgradePadaria.toFixed(1)}`;
 
-        pudinsPorSegundo += 15;
-        ultimoUpgrade.innerHTML = `PPS: ${pudinsPorSegundo.toFixed(1)}`;
+        atualizarPudinsPorSegundo();
                 
         // 1° Melhoria:
         if (quantidadeUpgrade["padaria"] >= 2) {
@@ -203,8 +198,7 @@ elementosUpgrade["confeitaria"].addEventListener("click", () => {
         precoUpgradeConfeitaria += 0.4 * precoUpgradeConfeitaria + (1.5 * quantidadeUpgrade["confeitaria"]);
         precoParagrafosUpgrades["confeitaria"].innerHTML = `Pudins: ${precoUpgradeConfeitaria.toFixed(1)}`;
 
-        pudinsPorSegundo += 100;
-        ultimoUpgrade.innerHTML = `PPS: ${pudinsPorSegundo.toFixed(1)}`;
+        atualizarPudinsPorSegundo();
                 
         // 1° Melhoria:
         if (quantidadeUpgrade["confeitaria"] >= 2) {
@@ -232,8 +226,7 @@ elementosUpgrade["supermercado"].addEventListener("click", () => {
         precoUpgradeSupermercado += 0.6 * precoUpgradeSupermercado + (1.5 * quantidadeUpgrade["supermercado"]);
         precoParagrafosUpgrades["supermercado"].innerHTML = `Pudins: ${precoUpgradeSupermercado.toFixed(1)}`;
 
-        pudinsPorSegundo += 250;
-        ultimoUpgrade.innerHTML = `PPS: ${pudinsPorSegundo.toFixed(1)}`;
+        atualizarPudinsPorSegundo();
                 
         // 1° Melhoria:
         if (quantidadeUpgrade["supermercado"] >= 2) {
@@ -261,8 +254,7 @@ elementosUpgrade["cafeteria"].addEventListener("click", () => {
         precoUpgradeCafeteria += 0.4 * precoUpgradeCafeteria + (1.5 * quantidadeUpgrade["cafeteria"]);
         precoParagrafosUpgrades["cafeteria"].innerHTML = `Pudins: ${precoUpgradeCafeteria.toFixed(1)}`;
 
-        pudinsPorSegundo += 750;
-        ultimoUpgrade.innerHTML = `PPS: ${pudinsPorSegundo.toFixed(1)}`;
+        atualizarPudinsPorSegundo();
                 
         // 1° Melhoria:
         if (quantidadeUpgrade["cafeteria"] >= 2) {
@@ -303,6 +295,14 @@ function tocarSomComprarUpgrade() {
     }
 }
 
+function tocarSomComprarMelhoria() {
+    audioComprarMelhoria.play();
+    if (audioComprarMelhoria.currentTime != 0) {
+        // Se clickar muito rápido, reiniciar o som:
+        audioComprarMelhoria.currentTime = 0;
+    }
+}
+
 const listaUpgradesPorSegundo = [
     "confeiteira",
     "padaria",
@@ -324,9 +324,10 @@ function atualizarPudinsPorSegundo() {
     pudinsPorSegundo = totalPPS;
     console.log(`===============\nTOTAL PPS: ${pudinsPorSegundo}\n===============`);
 
+    ultimoUpgrade.innerHTML = `PPS: ${pudinsPorSegundo.toFixed(1)}`;
 }
 
-// TOOLTIP das melhorias (explicar o que elas fazem):
+// Melhorias para os upgrades:
 let melhoriaConfeiteira1 = document.querySelector("#melhoria_confeiteira_1");
 let melhoriaConfeiteira2 = document.querySelector("#melhoria_confeiteira_2");
 let melhoriaChef1 = document.querySelector("#melhoria_chef_1");
@@ -340,9 +341,192 @@ let melhoriaSupermercado2 = document.querySelector("#melhoria_supermercado_2");
 let melhoriaCafeteria1 = document.querySelector("#melhoria_cafeteria_1");
 let melhoriaCafeteria2 = document.querySelector("#melhoria_cafeteria_2");
 
+// Comprar Melhoria
+melhoriaConfeiteira1.addEventListener("click", () => {
+    // Preço da melhoria
+    if (pudins >= 15) {
+        tocarSomComprarMelhoria();
+
+        pudins -= 15;
+        atualizarQuantidadePudins();
+
+        // benefício da melhoria
+        poderUpgrade["confeiteira"] += 3;
+        melhoriaConfeiteira1.style.display = "none";
+        atualizarPudinsPorSegundo();
+    }
+});
+
+melhoriaConfeiteira2.addEventListener("click", () => {
+    // Preço da melhoria
+    if (pudins >= 15) {
+        tocarSomComprarMelhoria();
+
+        pudins -= 15;
+        atualizarQuantidadePudins();
+
+        // benefício da melhoria
+        poderUpgrade["confeiteira"] += 3;
+        melhoriaConfeiteira2.style.display = "none";
+        atualizarPudinsPorSegundo();
+    }
+});
+
+melhoriaChef1.addEventListener("click", () => {
+    // Preço da melhoria
+    if (pudins >= 15) {
+        tocarSomComprarMelhoria();
+
+        pudins -= 15;
+        atualizarQuantidadePudins();
+
+        // benefício da melhoria
+        poderUpgrade["confeiteira"] += 3;
+        melhoriaChef1.style.display = "none";
+        atualizarPudinsPorSegundo();
+    }
+});
+
+melhoriaChef2.addEventListener("click", () => {
+    // Preço da melhoria
+    if (pudins >= 15) {
+        tocarSomComprarMelhoria();
+
+        pudins -= 15;
+        atualizarQuantidadePudins();
+
+        // benefício da melhoria
+        poderUpgrade["confeiteira"] += 3;
+        melhoriaChef2.style.display = "none";
+        atualizarPudinsPorSegundo();
+    }
+});
+
+melhoriaPadaria1.addEventListener("click", () => {
+    // Preço da melhoria
+    if (pudins >= 15) {
+        tocarSomComprarMelhoria();
+
+        pudins -= 15;
+        atualizarQuantidadePudins();
+
+        // benefício da melhoria
+        poderUpgrade["confeiteira"] += 3;
+        melhoriaPadaria1.style.display = "none";
+        atualizarPudinsPorSegundo();
+    }
+});
+
+melhoriaPadaria2.addEventListener("click", () => {
+    // Preço da melhoria
+    if (pudins >= 15) {
+        tocarSomComprarMelhoria();
+
+        pudins -= 15;
+        atualizarQuantidadePudins();
+
+        // benefício da melhoria
+        poderUpgrade["confeiteira"] += 3;
+        melhoriaPadaria2.style.display = "none";
+        atualizarPudinsPorSegundo();
+    }
+});
+
+melhoriaConfeitaria1.addEventListener("click", () => {
+    // Preço da melhoria
+    if (pudins >= 15) {
+        tocarSomComprarMelhoria();
+
+        pudins -= 15;
+        atualizarQuantidadePudins();
+
+        // benefício da melhoria
+        poderUpgrade["confeiteira"] += 3;
+        melhoriaConfeitaria1.style.display = "none";
+        atualizarPudinsPorSegundo();
+    }
+});
+
+melhoriaConfeitaria2.addEventListener("click", () => {
+    // Preço da melhoria
+    if (pudins >= 15) {
+        tocarSomComprarMelhoria();
+
+        pudins -= 15;
+        atualizarQuantidadePudins();
+
+        // benefício da melhoria
+        poderUpgrade["confeiteira"] += 3;
+        melhoriaConfeitaria2.style.display = "none";
+        atualizarPudinsPorSegundo();
+    }
+});
+
+melhoriaSupermercado1.addEventListener("click", () => {
+    // Preço da melhoria
+    if (pudins >= 15) {
+        tocarSomComprarMelhoria();
+
+        pudins -= 15;
+        atualizarQuantidadePudins();
+
+        // benefício da melhoria
+        poderUpgrade["confeiteira"] += 3;
+        melhoriaSupermercado1.style.display = "none";
+        atualizarPudinsPorSegundo();
+    }
+});
+
+melhoriaSupermercado2.addEventListener("click", () => {
+    // Preço da melhoria
+    if (pudins >= 15) {
+        tocarSomComprarMelhoria();
+
+        pudins -= 15;
+        atualizarQuantidadePudins();
+
+        // benefício da melhoria
+        poderUpgrade["confeiteira"] += 3;
+        melhoriaSupermercado2.style.display = "none";
+        atualizarPudinsPorSegundo();
+    }
+});
+
+melhoriaCafeteria1.addEventListener("click", () => {
+    // Preço da melhoria
+    if (pudins >= 15) {
+        tocarSomComprarMelhoria();
+
+        pudins -= 15;
+        atualizarQuantidadePudins();
+
+        // benefício da melhoria
+        poderUpgrade["confeiteira"] += 3;
+        melhoriaCafeteria1.style.display = "none";
+        atualizarPudinsPorSegundo();
+    }
+});
+
+melhoriaCafeteria2.addEventListener("click", () => {
+    // Preço da melhoria
+    if (pudins >= 15) {
+        tocarSomComprarMelhoria();
+
+        pudins -= 15;
+        atualizarQuantidadePudins();
+
+        // benefício da melhoria
+        poderUpgrade["confeiteira"] += 3;
+        melhoriaCafeteria2.style.display = "none";
+        atualizarPudinsPorSegundo();
+    }
+});
+
+
+
 // Abrir o TOOLTIP
 melhoriaConfeiteira1.addEventListener("mouseover", () => {
-    mostrarTooltip("Nome: Nome Legal", "Custo: 15 Pudins", "Aumenta os pudins recebidos em 1x");
+    mostrarTooltip("Nome: Nome Legal", "Custo: 15 Pudins", "Aumenta a produção das confeiteiras em 6x");
 });
 
 melhoriaConfeiteira2.addEventListener("mouseover", () => {
