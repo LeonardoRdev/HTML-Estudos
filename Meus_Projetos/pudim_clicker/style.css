@@ -127,6 +127,7 @@ aside {
 #upgrade_cafeteria {
     background-image: url(imgs/upgrades/cafeteria.png);
 }
+
 #upgrade_gourmet {
     background-image: url(imgs/upgrades/gurmet.png);
     border-radius: 5px 5px 0 0;
@@ -167,27 +168,42 @@ footer {
 
 #informacoes_melhorias {
     background-color: aquamarine;
+    width: 103.5%;
     display: none;
+    flex-direction: column;
+    gap: 50px;
 }
 
+#nome_preco_melhoria {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* #descricao_melhoria {
+
+} */
+
 #melhorias {
+    box-sizing: content-box;
     overflow-y: scroll;
     width: 20em;
-    height: 10em;
+    height: 8em;
     background-color: #525252;
     padding: 0.8em;
 
     display: flex;
-    gap: 1.3em;
     flex-wrap: wrap;
     text-align: center;
 }
 
 .item_melhoria {
+    background-size: cover;
+    box-sizing: content-box;
+    border: solid 6px #d44437;
     display: none;
     background-color: aqua;
-    width: 18%;
-    height: 3em;
+    width: 20%;
+    height: 3.6em;
     transition: scale 0.15s;
 }
 
@@ -198,4 +214,52 @@ footer {
 
 .aparecer {
     display: block;
+}
+
+#melhoria_confeiteira_1 {
+    background-image: url(imgs/melhorias/confeiteira1.png);
+}
+
+#melhoria_confeiteira_2 {
+    background-image: url(imgs/melhorias/imagem_provisoria.png);
+}
+
+#melhoria_chef_1 {
+    background-image: url(imgs/melhorias/chef1.png);
+}
+
+#melhoria_chef_2 {
+    background-image: url(imgs/melhorias/chef2.png);
+}
+
+#melhoria_padaria_1 {
+    background-image: url(imgs/melhorias/padaria1.png);
+}
+
+#melhoria_padaria_2 {
+    background-image: url(imgs/melhorias/padaria2.png);
+}
+
+#melhoria_confeitaria_1 {
+    background-image: url(imgs/melhorias/imagem_provisoria.png);
+}
+
+#melhoria_confeitaria_2 {
+    background-image: url(imgs/melhorias/imagem_provisoria.png);
+}
+
+#melhoria_supermercado_1 {
+    background-image: url(imgs/melhorias/imagem_provisoria.png);
+}
+
+#melhoria_supermercado_2 {
+    background-image: url(imgs/melhorias/imagem_provisoria.png);
+}
+
+#melhoria_cafeteria_1 {
+    background-image: url(imgs/melhorias/cafeteria1.png);
+}
+
+#melhoria_cafeteria_2 {
+    background-image: url(imgs/melhorias/imagem_provisoria.png);
 }

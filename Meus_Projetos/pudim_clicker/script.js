@@ -540,7 +540,7 @@ melhoriaCafeteria2.addEventListener("click", () => {
 
 // Abrir o TOOLTIP
 melhoriaConfeiteira1.addEventListener("mouseover", () => {
-    mostrarTooltip("Nome: Nome Legal", "Custo: 50 Pudins", "Aumenta a produção das confeiteiras em 2x");
+    mostrarTooltip("Curso EAD de confeiteira", "50 Pudins", "Aumenta a produção das confeiteiras em 2x");
 });
 
 melhoriaConfeiteira2.addEventListener("mouseover", () => {
@@ -597,7 +597,7 @@ itensMelhorias.forEach((item) => {
 
 function mostrarTooltip(txtNomeMelhoria, txtPrecoMelhoria, txtDescricaoMelhoria) {
     let informacoesMelhorias = document.querySelector("#informacoes_melhorias");
-    informacoesMelhorias.style.display = "block";
+    informacoesMelhorias.style.display = "flex";
 
     informacoesMelhorias.querySelector("#nome_melhoria").innerHTML = txtNomeMelhoria;
     informacoesMelhorias.querySelector("#preco_melhoria").innerHTML = txtPrecoMelhoria;
