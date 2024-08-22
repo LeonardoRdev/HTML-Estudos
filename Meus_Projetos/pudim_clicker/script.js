@@ -38,17 +38,17 @@ listaUpgrades.forEach(upgrade => {
 });
 
 // Pudins / Poder do Clique / Preços iniciais dos upgrades:
-let pudins = 0;
-let poderDoClique = 50;
+let pudins = 10000000;
+let poderDoClique = 1;
 let pudinsPorSegundo = 0;
 
 poderUpgrade["confeiteira"] = 0.5; // + Pudim Por Segundo
-// poderUpgrade["chef"] = 1; // + Poder Por Clique
+poderUpgrade["chef"] = 1; // + Poder Por Clique
 poderUpgrade["padaria"] = 15; // + PPS
 poderUpgrade["confeitaria"] = 100; // + PPS
 poderUpgrade["supermercado"] = 250; // + PPS
 poderUpgrade["cafeteria"] = 750; // + PPS
-// poderUpgrade["gourmet"] = 2; // * PPC
+poderUpgrade["gourmet"] = 1; // * PPC
 
 let precoUpgradeConfeiteira = 10;
 let precoUpgradeChef = 100;
@@ -143,7 +143,8 @@ elementosUpgrade["chef"].addEventListener("click", () => {
         precoUpgradeChef += 0.7 * precoUpgradeChef + (1.2 * quantidadeUpgrade["chef"]);
         precoParagrafosUpgrades["chef"].innerHTML = `Pudins: ${precoUpgradeChef.toFixed(1)}`;
 
-        poderDoClique++;
+        // poderDoClique++;
+        atualizarPudinsPorClique();
         
         // 1° Melhoria:
         if (quantidadeUpgrade["chef"] >= 2) {
@@ -315,8 +316,6 @@ const listaUpgradesPorSegundo = [
 function atualizarPudinsPorSegundo() {
     let totalPPS = 0;
     listaUpgradesPorSegundo.forEach(upgrade => {
-        poderUpgrade[upgrade];
-        quantidadeUpgrade[upgrade];
         totalPPS += poderUpgrade[upgrade] * quantidadeUpgrade[upgrade];
         console.log(`PODER UPGRADE ${upgrade}: ${poderUpgrade[upgrade]}\nQTD upgrade ${upgrade}: ${quantidadeUpgrade[upgrade]}\n\n`);
     });
@@ -325,6 +324,21 @@ function atualizarPudinsPorSegundo() {
     console.log(`===============\nTOTAL PPS: ${pudinsPorSegundo}\n===============`);
 
     ultimoUpgrade.innerHTML = `PPS: ${pudinsPorSegundo.toFixed(1)}`;
+}
+
+const listaUpgradesPorClique = [
+    "chef",
+    "gourmet"
+];
+
+function atualizarPudinsPorClique() {
+    let totalPPC = 0;
+    listaUpgradesPorClique.forEach(upgrade => {
+        console.log(`PODER UPGRADE ${upgrade}: ${poderUpgrade[upgrade]}\nQTD upgrade ${upgrade}: ${quantidadeUpgrade[upgrade]}\n\n`);
+        totalPPC += poderUpgrade[upgrade] * quantidadeUpgrade[upgrade];
+   });
+
+   poderDoClique = 1 + totalPPC;
 }
 
 // Melhorias para os upgrades:
@@ -341,17 +355,17 @@ let melhoriaSupermercado2 = document.querySelector("#melhoria_supermercado_2");
 let melhoriaCafeteria1 = document.querySelector("#melhoria_cafeteria_1");
 let melhoriaCafeteria2 = document.querySelector("#melhoria_cafeteria_2");
 
-// Comprar Melhoria
+// Comprar Melhorias
 melhoriaConfeiteira1.addEventListener("click", () => {
     // Preço da melhoria
-    if (pudins >= 15) {
+    if (pudins >= 50) {
         tocarSomComprarMelhoria();
 
-        pudins -= 15;
+        pudins -= 50;
         atualizarQuantidadePudins();
 
         // benefício da melhoria
-        poderUpgrade["confeiteira"] += 3;
+        poderUpgrade["confeiteira"] += 0.5;
         melhoriaConfeiteira1.style.display = "none";
         atualizarPudinsPorSegundo();
     }
@@ -374,16 +388,16 @@ melhoriaConfeiteira2.addEventListener("click", () => {
 
 melhoriaChef1.addEventListener("click", () => {
     // Preço da melhoria
-    if (pudins >= 15) {
+    if (pudins >= 500) {
         tocarSomComprarMelhoria();
 
-        pudins -= 15;
+        pudins -= 500;
         atualizarQuantidadePudins();
 
         // benefício da melhoria
-        poderUpgrade["confeiteira"] += 3;
+        poderUpgrade["chef"] += 1;
         melhoriaChef1.style.display = "none";
-        atualizarPudinsPorSegundo();
+        atualizarPudinsPorClique();
     }
 });
 
@@ -411,7 +425,7 @@ melhoriaPadaria1.addEventListener("click", () => {
         atualizarQuantidadePudins();
 
         // benefício da melhoria
-        poderUpgrade["confeiteira"] += 3;
+        poderUpgrade["padaria"] += 15;
         melhoriaPadaria1.style.display = "none";
         atualizarPudinsPorSegundo();
     }
@@ -441,7 +455,7 @@ melhoriaConfeitaria1.addEventListener("click", () => {
         atualizarQuantidadePudins();
 
         // benefício da melhoria
-        poderUpgrade["confeiteira"] += 3;
+        poderUpgrade["confeitaria"] += 100;
         melhoriaConfeitaria1.style.display = "none";
         atualizarPudinsPorSegundo();
     }
@@ -471,7 +485,7 @@ melhoriaSupermercado1.addEventListener("click", () => {
         atualizarQuantidadePudins();
 
         // benefício da melhoria
-        poderUpgrade["confeiteira"] += 3;
+        poderUpgrade["supermercado"] += 250;
         melhoriaSupermercado1.style.display = "none";
         atualizarPudinsPorSegundo();
     }
@@ -501,7 +515,7 @@ melhoriaCafeteria1.addEventListener("click", () => {
         atualizarQuantidadePudins();
 
         // benefício da melhoria
-        poderUpgrade["confeiteira"] += 3;
+        poderUpgrade["cafeteria"] += 750;
         melhoriaCafeteria1.style.display = "none";
         atualizarPudinsPorSegundo();
     }
@@ -526,7 +540,7 @@ melhoriaCafeteria2.addEventListener("click", () => {
 
 // Abrir o TOOLTIP
 melhoriaConfeiteira1.addEventListener("mouseover", () => {
-    mostrarTooltip("Nome: Nome Legal", "Custo: 15 Pudins", "Aumenta a produção das confeiteiras em 6x");
+    mostrarTooltip("Nome: Nome Legal", "Custo: 50 Pudins", "Aumenta a produção das confeiteiras em 2x");
 });
 
 melhoriaConfeiteira2.addEventListener("mouseover", () => {
@@ -534,7 +548,7 @@ melhoriaConfeiteira2.addEventListener("mouseover", () => {
 });
 
 melhoriaChef1.addEventListener("mouseover", () => {
-    mostrarTooltip("Nome: Nome Legal", "Custo: 15 Pudins", "Aumenta os pudins recebidos em 3x");
+    mostrarTooltip("Nome: Nome Legal", "Custo: 500 Pudins", "+1 Poder do Clique para cada Chef");
 });
 
 melhoriaChef2.addEventListener("mouseover", () => {
@@ -542,7 +556,7 @@ melhoriaChef2.addEventListener("mouseover", () => {
 });
 
 melhoriaPadaria1.addEventListener("mouseover", () => {
-    mostrarTooltip("Nome: Nome Legal", "Custo: 15 Pudins", "Aumenta os pudins recebidos em 5x");
+    mostrarTooltip("Nome: Nome Legal", "Custo: 2000 Pudins", "Aumenta a produção das padarias em 2x");
 });
 
 melhoriaPadaria2.addEventListener("mouseover", () => {
@@ -550,7 +564,7 @@ melhoriaPadaria2.addEventListener("mouseover", () => {
 });
 
 melhoriaConfeitaria1.addEventListener("mouseover", () => {
-    mostrarTooltip("Nome: Nome Legal", "Custo: 15 Pudins", "Aumenta os pudins recebidos em 7x");
+    mostrarTooltip("Nome: Nome Legal", "Custo: 15000 Pudins", "Aumenta a produção das confeitarias em 2x");
 });
 
 melhoriaConfeitaria2.addEventListener("mouseover", () => {
@@ -558,7 +572,7 @@ melhoriaConfeitaria2.addEventListener("mouseover", () => {
 });
 
 melhoriaSupermercado1.addEventListener("mouseover", () => {
-    mostrarTooltip("Nome: Nome Legal", "Custo: 15 Pudins", "Aumenta os pudins recebidos em 9x");
+    mostrarTooltip("Nome: Nome Legal", "Custo: 50000 Pudins", "Aumenta a produção das supermercado em 2x");
 });
 
 melhoriaSupermercado2.addEventListener("mouseover", () => {
@@ -566,7 +580,7 @@ melhoriaSupermercado2.addEventListener("mouseover", () => {
 });
 
 melhoriaCafeteria1.addEventListener("mouseover", () => {
-    mostrarTooltip("Nome: Nome Legal", "Custo: 15 Pudins", "Aumenta os pudins recebidos em 11x");
+    mostrarTooltip("Nome: Nome Legal", "Custo: 125000 Pudins", "Aumenta a produção das cafeterias em 2x");
 });
 
 melhoriaCafeteria2.addEventListener("mouseover", () => {
