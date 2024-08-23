@@ -167,28 +167,35 @@ footer {
 }
 
 #informacoes_melhorias {
-    background-color: aquamarine;
+    background-color: #E64A3C;
+    color: #111;
+
+    padding: 15px;
     width: 103.5%;
     display: none;
     flex-direction: column;
-    gap: 50px;
+    gap: 30px;
 }
 
 #nome_preco_melhoria {
     display: flex;
     justify-content: space-between;
+    font-weight: 600;
+    font-size: 1.05em;
 }
 
-/* #descricao_melhoria {
-
-} */
+#descricao_melhoria {
+    border-top: 3px solid #000;
+    padding-top: 10px;
+    font-weight: 600;
+}
 
 #melhorias {
     box-sizing: content-box;
     overflow-y: scroll;
     width: 20em;
     height: 8em;
-    background-color: #525252;
+    background-color: #333;
     padding: 0.8em;
 
     display: flex;
@@ -199,7 +206,7 @@ footer {
 .item_melhoria {
     background-size: cover;
     box-sizing: content-box;
-    border: solid 6px #d44437;
+    border: solid 3px #111;
     display: none;
     background-color: aqua;
     width: 20%;
@@ -210,6 +217,15 @@ footer {
 .item_melhoria:hover {
     cursor: pointer;
     scale: 1.05;
+}
+
+.melhoria {
+    height: 100%;
+    border: solid 4px #d44437DD;
+}
+
+.melhoria_cara {
+    background-color: #0008;
 }
 
 .aparecer {
