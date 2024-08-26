@@ -208,7 +208,7 @@ footer {
     box-sizing: content-box;
     border: solid 3px #111;
     display: none;
-    background-color: aqua;
+    background-color: #EEE;
     width: 20%;
     height: 3.6em;
     transition: scale 0.15s;

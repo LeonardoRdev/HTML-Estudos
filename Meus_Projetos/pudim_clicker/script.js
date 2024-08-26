@@ -38,8 +38,8 @@ listaUpgrades.forEach(upgrade => {
 });
 
 // Pudins / Poder do Clique / Preços iniciais dos upgrades:
-let pudins = 2;
-let poderDoClique = 1;
+let pudins = 0;
+let poderDoClique = 100;
 let pudinsPorSegundo = 0;
 
 poderUpgrade["confeiteira"] = 0.5; // + Pudim Por Segundo
@@ -57,38 +57,6 @@ let precoUpgradeConfeitaria = 3000;
 let precoUpgradeSupermercado = 10000;
 let precoUpgradeCafeteria = 35000;
 let precoUpgradeGourmet = 350000;
-
-setInterval(() => {
-    pudins += pudinsPorSegundo;
-    atualizarQuantidadePudins();
-
-    // Faz com que os upgrades disponíveis para compra fiquem coloridos:
-    listaUpgrades.forEach(upgrade => {
-        // Se o preço do upgrade for maior que a atual quantidade de pudins:
-        if (precoParagrafosUpgrades[upgrade].textContent.split(": ")[1] > pudins) {
-            elementosUpgrade[upgrade].classList.add("upgrade_caro");
-        }
-        else {
-            elementosUpgrade[upgrade].classList.remove("upgrade_caro");
-        }
-    });
-
-    // listaPrecoMelhorias.forEach(melhoria => {
-    //     if (melhoria > pudins) {
-    //         alert("caro" + melhoria)
-    //     }
-    // })
-
-    // FAZER ISSO PARA TODAS AS MELHORIAS:
-    if (precoMelhoriaConfeiteira1 > pudins) {
-        document.querySelector("#melhoria_confeiteira_1 .melhoria").classList.add("melhoria_cara");
-    }
-    else {
-        document.querySelector("#melhoria_confeiteira_1 .melhoria").classList.remove("melhoria_cara");
-    }
-
-}, 1000);
-
 
 // FUNÇÕES:
 // Clicar no PUDIM:
@@ -398,6 +366,21 @@ const listaPrecoMelhorias = [
     precoMelhoriaCafeteria2
 ];
 
+const listaMelhorias = [
+    [melhoriaConfeiteira1.querySelector(".melhoria"), precoMelhoriaConfeiteira1],
+    [melhoriaConfeiteira2.querySelector(".melhoria"), precoMelhoriaConfeiteira2],
+    [melhoriaChef1.querySelector(".melhoria"), precoMelhoriaChef1],
+    [melhoriaChef2.querySelector(".melhoria"), precoMelhoriaChef2],
+    [melhoriaPadaria1.querySelector(".melhoria"), precoMelhoriaPadaria1],
+    [melhoriaPadaria2.querySelector(".melhoria"), precoMelhoriaPadaria2],
+    [melhoriaConfeitaria1.querySelector(".melhoria"), precoMelhoriaConfeitaria1],
+    [melhoriaConfeitaria2.querySelector(".melhoria"), precoMelhoriaConfeitaria2],
+    [melhoriaSupermercado1.querySelector(".melhoria"), precoMelhoriaSupermercado1],
+    [melhoriaSupermercado2.querySelector(".melhoria"), precoMelhoriaSupermercado2],
+    [melhoriaCafeteria1.querySelector(".melhoria"), precoMelhoriaCafeteria1],
+    [melhoriaCafeteria2.querySelector(".melhoria"), precoMelhoriaCafeteria2],
+];
+
 // Comprar Melhorias
 melhoriaConfeiteira1.addEventListener("click", () => {
     // Preço da melhoria
@@ -591,19 +574,19 @@ melhoriaConfeiteira2.addEventListener("mouseover", () => {
 });
 
 melhoriaChef1.addEventListener("mouseover", () => {
-    mostrarTooltip("Nome: Nome Legal", `${precoMelhoriaChef1} Pudins`, "+1 Poder do Clique para cada Chef");
+    mostrarTooltip("Gato cozinheiro", `${precoMelhoriaChef1} Pudins`, "+1 Poder do Clique para cada Chef");
 });
 
 melhoriaChef2.addEventListener("mouseover", () => {
-    mostrarTooltip("Nome: Nome Legal", `${precoMelhoriaChef2} Pudins`, "Aumenta os pudins recebidos em 4x");
+    mostrarTooltip("Tony Stark brasileiro", `${precoMelhoriaChef2} Pudins`, "Aumenta os pudins recebidos em 4x");
 });
 
 melhoriaPadaria1.addEventListener("mouseover", () => {
-    mostrarTooltip("Nome: Nome Legal", `${precoMelhoriaPadaria1} Pudins`, "Aumenta a produção das padarias em 2x");
+    mostrarTooltip("Pãochorro de forma", `${precoMelhoriaPadaria1} Pudins`, "Aumenta a produção das padarias em 2x");
 });
 
 melhoriaPadaria2.addEventListener("mouseover", () => {
-    mostrarTooltip("Nome: Nome Legal", `${precoMelhoriaPadaria2} Pudins`, "Aumenta os pudins recebidos em 6x");
+    mostrarTooltip("Especialista em pães", `${precoMelhoriaPadaria2} Pudins`, "Aumenta os pudins recebidos em 6x");
 });
 
 melhoriaConfeitaria1.addEventListener("mouseover", () => {
@@ -623,7 +606,7 @@ melhoriaSupermercado2.addEventListener("mouseover", () => {
 });
 
 melhoriaCafeteria1.addEventListener("mouseover", () => {
-    mostrarTooltip("Nome: Nome Legal", `${precoMelhoriaCafeteria1} Pudins`, "Aumenta a produção das cafeterias em 2x");
+    mostrarTooltip("Cookie clica 🍪", `${precoMelhoriaCafeteria1} Pudins`, "Aumenta a produção das cafeterias em 2x");
 });
 
 melhoriaCafeteria2.addEventListener("mouseover", () => {
@@ -652,3 +635,40 @@ function fecharTooltip() {
 
     informacoesMelhorias.style.display = "none";
 }
+
+
+// Atualizar upgrades disponíveis para compra
+setInterval(() => {
+    pudins += pudinsPorSegundo;
+    atualizarQuantidadePudins();
+
+    // Faz com que os upgrades disponíveis para compra fiquem coloridos:
+    listaUpgrades.forEach(upgrade => {
+        // Se o preço do upgrade for maior que a atual quantidade de pudins:
+        if (precoParagrafosUpgrades[upgrade].textContent.split(": ")[1] > pudins) {
+            elementosUpgrade[upgrade].classList.add("upgrade_caro");
+        }
+        else {
+            elementosUpgrade[upgrade].classList.remove("upgrade_caro");
+        }
+    });
+
+
+    listaMelhorias.forEach(melhoria => {
+        if (melhoria[1] > pudins) {
+            melhoria[0].classList.add("melhoria_cara");
+        }
+        else {
+            melhoria[0].classList.remove("melhoria_cara");
+        }
+    });
+
+    // Resumindo a função de cima
+    // if (precoMelhoria > pudins) {
+    //     "deixar a melhoria apagada (indisponível para compra)"
+    // }
+    // else {
+    //     "deixar a melhoria brilhante (disponível para compra)"
+    // }
+
+}, 1000);
