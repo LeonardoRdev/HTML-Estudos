@@ -39,7 +39,7 @@ listaUpgrades.forEach(upgrade => {
 
 // Pudins / Poder do Clique / Preços iniciais dos upgrades:
 let pudins = 0;
-let poderDoClique = 100;
+let poderDoClique = 1;
 let pudinsPorSegundo = 0;
 
 poderUpgrade["confeiteira"] = 0.5; // + Pudim Por Segundo
@@ -71,6 +71,23 @@ divImagemPudins.addEventListener("click", () => {
     pudins += poderDoClique;
 
     atualizarQuantidadePudins();
+});
+
+// Efeito do cursor ao clicar no pudim
+document.addEventListener("click", (e) => {
+    let x = e.pageX;
+    let y = e.pageY
+
+    let span = document.createElement("span");
+    span.classList.add("click_effect");
+    span.style.top = y + "px";
+    span.style.left = x + "px";
+    document.body.appendChild(span);
+
+    setTimeout(() => {
+        span.remove();
+    }, 1500);
+
 });
 
 
