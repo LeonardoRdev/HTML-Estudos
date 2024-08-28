@@ -38,7 +38,7 @@ listaUpgrades.forEach(upgrade => {
 });
 
 // Pudins / Poder do Clique / Preços iniciais dos upgrades:
-let pudins = 0;
+let pudins = 1110;
 let poderDoClique = 1;
 let pudinsPorSegundo = 0;
 
@@ -60,7 +60,7 @@ let precoUpgradeGourmet = 350000;
 
 // FUNÇÕES:
 // Clicar no PUDIM:
-divImagemPudins.addEventListener("click", () => {
+divImagemPudins.addEventListener("click", (e) => {
     // Som ao clickar:
     audioClicarPudim.play();
     if (audioClicarPudim.currentTime != 0) {
@@ -71,14 +71,16 @@ divImagemPudins.addEventListener("click", () => {
     pudins += poderDoClique;
 
     atualizarQuantidadePudins();
-});
 
-// Efeito do cursor ao clicar no pudim
-document.addEventListener("click", (e) => {
+
+    // Efeito do cursor ao clicar no pudim
     let x = e.pageX;
     let y = e.pageY
 
     let span = document.createElement("span");
+    let paragrafo = document.createElement("p");
+    paragrafo.innerHTML = `+${poderDoClique}`;
+    span.appendChild(paragrafo);
     span.classList.add("click_effect");
     span.style.top = y + "px";
     span.style.left = x + "px";
@@ -89,7 +91,6 @@ document.addEventListener("click", (e) => {
     }, 1500);
 
 });
-
 
 // Atualizar contador de Pudins:
 function atualizarQuantidadePudins() {
