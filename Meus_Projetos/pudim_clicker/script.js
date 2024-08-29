@@ -38,7 +38,7 @@ listaUpgrades.forEach(upgrade => {
 });
 
 // Pudins / Poder do Clique / Preços iniciais dos upgrades:
-let pudins = 1110;
+let pudins = 0;
 let poderDoClique = 1;
 let pudinsPorSegundo = 0;
 
@@ -357,7 +357,7 @@ let melhoriaCafeteria1 = document.querySelector("#melhoria_cafeteria_1");
 let melhoriaCafeteria2 = document.querySelector("#melhoria_cafeteria_2");
 
 let precoMelhoriaConfeiteira1 = 50;
-let precoMelhoriaConfeiteira2 = 11;
+let precoMelhoriaConfeiteira2 = 13;
 let precoMelhoriaChef1 = 500;
 let precoMelhoriaChef2 = 11;
 let precoMelhoriaPadaria1 = 2000;
@@ -588,7 +588,7 @@ melhoriaConfeiteira1.addEventListener("mouseover", () => {
 });
 
 melhoriaConfeiteira2.addEventListener("mouseover", () => {
-    mostrarTooltip("Nome: Nome Legal", `${precoMelhoriaConfeiteira2} Pudins`, "Aumenta os pudins recebidos em 2x");
+    mostrarTooltip("Aulas com quem sabe", `${precoMelhoriaConfeiteira2} Pudins`, "...");
 });
 
 melhoriaChef1.addEventListener("mouseover", () => {
@@ -596,7 +596,7 @@ melhoriaChef1.addEventListener("mouseover", () => {
 });
 
 melhoriaChef2.addEventListener("mouseover", () => {
-    mostrarTooltip("Tony Stark brasileiro", `${precoMelhoriaChef2} Pudins`, "Aumenta os pudins recebidos em 4x");
+    mostrarTooltip("Tony Stark brasileiro", `${precoMelhoriaChef2} Pudins`, "...");
 });
 
 melhoriaPadaria1.addEventListener("mouseover", () => {
@@ -604,7 +604,7 @@ melhoriaPadaria1.addEventListener("mouseover", () => {
 });
 
 melhoriaPadaria2.addEventListener("mouseover", () => {
-    mostrarTooltip("Especialista em pães", `${precoMelhoriaPadaria2} Pudins`, "Aumenta os pudins recebidos em 6x");
+    mostrarTooltip("Especialista em pães", `${precoMelhoriaPadaria2} Pudins`, "...");
 });
 
 melhoriaConfeitaria1.addEventListener("mouseover", () => {
@@ -612,7 +612,7 @@ melhoriaConfeitaria1.addEventListener("mouseover", () => {
 });
 
 melhoriaConfeitaria2.addEventListener("mouseover", () => {
-    mostrarTooltip("Nome: Nome Legal", `${precoMelhoriaConfeitaria2} Pudins`, "Aumenta os pudins recebidos em 8x");
+    mostrarTooltip("Nome: Nome Legal", `${precoMelhoriaConfeitaria2} Pudins`, "...");
 });
 
 melhoriaSupermercado1.addEventListener("mouseover", () => {
@@ -620,7 +620,7 @@ melhoriaSupermercado1.addEventListener("mouseover", () => {
 });
 
 melhoriaSupermercado2.addEventListener("mouseover", () => {
-    mostrarTooltip("Nome: Nome Legal", `${precoMelhoriaSupermercado2} Pudins`, "Aumenta os pudins recebidos em 10x");
+    mostrarTooltip("Nome: Nome Legal", `${precoMelhoriaSupermercado2} Pudins`, "...");
 });
 
 melhoriaCafeteria1.addEventListener("mouseover", () => {
@@ -628,7 +628,7 @@ melhoriaCafeteria1.addEventListener("mouseover", () => {
 });
 
 melhoriaCafeteria2.addEventListener("mouseover", () => {
-    mostrarTooltip("Nome: Nome Legal", `${precoMelhoriaCafeteria2} Pudins`, "Aumenta os pudins recebidos em 12x");
+    mostrarTooltip("Café na Lua", `${precoMelhoriaCafeteria2} Pudins`, "...");
 });
 
 // Para fechar o TOOLTIP

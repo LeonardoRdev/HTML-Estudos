@@ -204,7 +204,7 @@ footer {
     color: #111;
 
     padding: 15px;
-    width: 103.5%;
+    width: 108%;
     display: none;
     flex-direction: column;
     gap: 30px;
@@ -229,11 +229,14 @@ footer {
     width: 20em;
     height: 8em;
     background-color: #333;
-    padding: 0.8em;
+    padding: 1.2em 0.8em;
 
     display: flex;
     flex-wrap: wrap;
-    text-align: center;
+}
+
+#melhorias::-webkit-scrollbar {
+    display: none;
 }
 
 .item_melhoria {
@@ -242,8 +245,8 @@ footer {
     border: solid 3px #111;
     display: none;
     background-color: #EEE;
-    width: 20%;
-    height: 3.6em;
+    width: 22%;
+    height: 4.3em;
     transition: scale 0.15s;
 }
 
@@ -270,7 +273,7 @@ footer {
 }
 
 #melhoria_confeiteira_2 {
-    background-image: url(imgs/melhorias/imagem_provisoria.png);
+    background-image: url(imgs/melhorias/confeitaria2.png);
 }
 
 #melhoria_chef_1 {
@@ -298,7 +301,7 @@ footer {
 }
 
 #melhoria_supermercado_1 {
-    background-image: url(imgs/melhorias/imagem_provisoria.png);
+    background-image: url(imgs/melhorias/supermercado1.png);
 }
 
 #melhoria_supermercado_2 {
@@ -310,5 +313,5 @@ footer {
 }
 
 #melhoria_cafeteria_2 {
-    background-image: url(imgs/melhorias/imagem_provisoria.png);
+    background-image: url(imgs/melhorias/cafeteria2.png);
 }
