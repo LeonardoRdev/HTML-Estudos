@@ -48,13 +48,13 @@ poderUpgrade["padaria"] = 15; // + PPS
 poderUpgrade["confeitaria"] = 100; // + PPS
 poderUpgrade["supermercado"] = 250; // + PPS
 poderUpgrade["cafeteria"] = 750; // + PPS
-poderUpgrade["gourmet"] = 1; // * PPC
+poderUpgrade["gourmet"] = 1; // ²PPS
 
 let precoUpgradeConfeiteira = 10;
 let precoUpgradeChef = 100;
 let precoUpgradePadaria = 500;
 let precoUpgradeConfeitaria = 3000;
-let precoUpgradeSupermercado = 10000;
+let precoUpgradeSupermercado = 20000;
 let precoUpgradeCafeteria = 35000;
 let precoUpgradeGourmet = 350000;
 
@@ -128,6 +128,21 @@ elementosUpgrade["confeiteira"].addEventListener("click", () => {
             melhoriaConfeiteira2.classList.add("aparecer");
         }
 
+        // 3° Melhoria:
+        if (quantidadeUpgrade["confeiteira"] >= 25) {
+            melhoriaConfeiteira3.classList.add("aparecer");
+        }
+
+        // 4° Melhoria:
+        if (quantidadeUpgrade["confeiteira"] >= 50) {
+            melhoriaConfeiteira4.classList.add("aparecer");
+        }
+
+        // 5° Melhoria:
+        if (quantidadeUpgrade["confeiteira"] >= 100) {
+            melhoriaConfeiteira5.classList.add("aparecer");
+        }
+
     }
 });
 
@@ -153,8 +168,13 @@ elementosUpgrade["chef"].addEventListener("click", () => {
         }
 
         // 2° Melhoria:
-        if (quantidadeUpgrade["chef"] >= 15) {
+        if (quantidadeUpgrade["chef"] >= 7) {
             melhoriaChef2.classList.add("aparecer");
+        }
+
+        // 3° Melhoria:
+        if (quantidadeUpgrade["chef"] >= 10) {
+            melhoriaChef3.classList.add("aparecer");
         }
     }
 });
@@ -180,10 +200,9 @@ elementosUpgrade["padaria"].addEventListener("click", () => {
         }
 
         // 2° Melhoria:
-        if (quantidadeUpgrade["padaria"] >= 15) {
+        if (quantidadeUpgrade["padaria"] >= 10) {
             melhoriaPadaria2.classList.add("aparecer");
         }
-
     }
 });
 
@@ -284,8 +303,9 @@ elementosUpgrade["gourmet"].addEventListener("click", () => {
         precoUpgradeGourmet += 0.7 * precoUpgradeGourmet + (1.5 * quantidadeUpgrade["gourmet"]);
         precoParagrafosUpgrades["gourmet"].innerHTML = `Pudins: ${precoUpgradeGourmet.toFixed(1)}`;
 
-        poderDoClique *= 2;
-        ultimoUpgrade.innerHTML = `2x Pudins por clique! (${poderDoClique})`;
+        // Esse upgrade está sempre ativo, porém, a cada compra DELE o poder do PPS total é multiplicado pelo poder DESTE upgrade, começando com x1.
+        poderUpgrade["gourmet"] *= 2;
+        atualizarPudinsPorSegundo();
     }
 });
 
@@ -321,7 +341,8 @@ function atualizarPudinsPorSegundo() {
         console.log(`PODER UPGRADE ${upgrade}: ${poderUpgrade[upgrade]}\nQTD upgrade ${upgrade}: ${quantidadeUpgrade[upgrade]}\n\n`);
     });
 
-    pudinsPorSegundo = totalPPS;
+    pudinsPorSegundo = totalPPS * poderUpgrade["gourmet"];
+    console.log(`GOURMET -> ${poderUpgrade["gourmet"]}`)
     console.log(`===============\nTOTAL PPS: ${pudinsPorSegundo}\n===============`);
 
     ultimoUpgrade.innerHTML = `PPS: ${pudinsPorSegundo.toFixed(1)}`;
@@ -340,13 +361,18 @@ function atualizarPudinsPorClique() {
    });
 
    poderDoClique = 1 + totalPPC;
+   console.log(`=======\n PPC ${poderDoClique}\n=======`)
 }
 
 // Melhorias para os upgrades:
 let melhoriaConfeiteira1 = document.querySelector("#melhoria_confeiteira_1");
 let melhoriaConfeiteira2 = document.querySelector("#melhoria_confeiteira_2");
+let melhoriaConfeiteira3 = document.querySelector("#melhoria_confeiteira_3");
+let melhoriaConfeiteira4 = document.querySelector("#melhoria_confeiteira_4");
+let melhoriaConfeiteira5 = document.querySelector("#melhoria_confeiteira_5");
 let melhoriaChef1 = document.querySelector("#melhoria_chef_1");
 let melhoriaChef2 = document.querySelector("#melhoria_chef_2");
+let melhoriaChef3 = document.querySelector("#melhoria_chef_3");
 let melhoriaPadaria1 = document.querySelector("#melhoria_padaria_1");
 let melhoriaPadaria2 = document.querySelector("#melhoria_padaria_2");
 let melhoriaConfeitaria1 = document.querySelector("#melhoria_confeitaria_1");
@@ -358,8 +384,12 @@ let melhoriaCafeteria2 = document.querySelector("#melhoria_cafeteria_2");
 
 let precoMelhoriaConfeiteira1 = 50;
 let precoMelhoriaConfeiteira2 = 13;
+let precoMelhoriaConfeiteira3 = 13;
+let precoMelhoriaConfeiteira4 = 13;
+let precoMelhoriaConfeiteira5 = 13;
 let precoMelhoriaChef1 = 500;
 let precoMelhoriaChef2 = 11;
+let precoMelhoriaChef3 = 11;
 let precoMelhoriaPadaria1 = 2000;
 let precoMelhoriaPadaria2 = 11;
 let precoMelhoriaConfeitaria1 = 15000;
@@ -372,8 +402,12 @@ let precoMelhoriaCafeteria2 = 11;
 const listaPrecoMelhorias = [
     precoMelhoriaConfeiteira1,
     precoMelhoriaConfeiteira2,
+    precoMelhoriaConfeiteira3,
+    precoMelhoriaConfeiteira4,
+    precoMelhoriaConfeiteira5,
     precoMelhoriaChef1,
     precoMelhoriaChef2,
+    precoMelhoriaChef3,
     precoMelhoriaPadaria1,
     precoMelhoriaPadaria2,
     precoMelhoriaConfeitaria1,
@@ -387,8 +421,12 @@ const listaPrecoMelhorias = [
 const listaMelhorias = [
     [melhoriaConfeiteira1.querySelector(".melhoria"), precoMelhoriaConfeiteira1],
     [melhoriaConfeiteira2.querySelector(".melhoria"), precoMelhoriaConfeiteira2],
+    [melhoriaConfeiteira3.querySelector(".melhoria"), precoMelhoriaConfeiteira3],
+    [melhoriaConfeiteira4.querySelector(".melhoria"), precoMelhoriaConfeiteira4],
+    [melhoriaConfeiteira5.querySelector(".melhoria"), precoMelhoriaConfeiteira5],
     [melhoriaChef1.querySelector(".melhoria"), precoMelhoriaChef1],
     [melhoriaChef2.querySelector(".melhoria"), precoMelhoriaChef2],
+    [melhoriaChef3.querySelector(".melhoria"), precoMelhoriaChef3],
     [melhoriaPadaria1.querySelector(".melhoria"), precoMelhoriaPadaria1],
     [melhoriaPadaria2.querySelector(".melhoria"), precoMelhoriaPadaria2],
     [melhoriaConfeitaria1.querySelector(".melhoria"), precoMelhoriaConfeitaria1],
@@ -430,6 +468,51 @@ melhoriaConfeiteira2.addEventListener("click", () => {
     }
 });
 
+melhoriaConfeiteira3.addEventListener("click", () => {
+    // Preço da melhoria
+    if (pudins >= precoMelhoriaConfeiteira3) {
+        tocarSomComprarMelhoria();
+
+        pudins -= precoMelhoriaConfeiteira3;
+        atualizarQuantidadePudins();
+
+        // benefício da melhoria
+        poderUpgrade["confeiteira"] += 3;
+        melhoriaConfeiteira3.style.display = "none";
+        atualizarPudinsPorSegundo();
+    }
+});
+
+melhoriaConfeiteira4.addEventListener("click", () => {
+    // Preço da melhoria
+    if (pudins >= precoMelhoriaConfeiteira4) {
+        tocarSomComprarMelhoria();
+
+        pudins -= precoMelhoriaConfeiteira4;
+        atualizarQuantidadePudins();
+
+        // benefício da melhoria
+        poderUpgrade["confeiteira"] += 3;
+        melhoriaConfeiteira4.style.display = "none";
+        atualizarPudinsPorSegundo();
+    }
+});
+
+melhoriaConfeiteira5.addEventListener("click", () => {
+    // Preço da melhoria
+    if (pudins >= precoMelhoriaConfeiteira5) {
+        tocarSomComprarMelhoria();
+
+        pudins -= precoMelhoriaConfeiteira5;
+        atualizarQuantidadePudins();
+
+        // benefício da melhoria
+        poderUpgrade["confeiteira"] += 3;
+        melhoriaConfeiteira5.style.display = "none";
+        atualizarPudinsPorSegundo();
+    }
+});
+
 melhoriaChef1.addEventListener("click", () => {
     // Preço da melhoria
     if (pudins >= precoMelhoriaChef1) {
@@ -456,6 +539,21 @@ melhoriaChef2.addEventListener("click", () => {
         // benefício da melhoria
         poderUpgrade["confeiteira"] += 3;
         melhoriaChef2.style.display = "none";
+        atualizarPudinsPorSegundo();
+    }
+});
+
+melhoriaChef3.addEventListener("click", () => {
+    // Preço da melhoria
+    if (pudins >= precoMelhoriaChef3) {
+        tocarSomComprarMelhoria();
+
+        pudins -= precoMelhoriaChef3;
+        atualizarQuantidadePudins();
+
+        // benefício da melhoria
+        poderUpgrade["confeiteira"] += 3;
+        melhoriaChef3.style.display = "none";
         atualizarPudinsPorSegundo();
     }
 });
@@ -591,12 +689,28 @@ melhoriaConfeiteira2.addEventListener("mouseover", () => {
     mostrarTooltip("Aulas com quem sabe", `${precoMelhoriaConfeiteira2} Pudins`, "...");
 });
 
+melhoriaConfeiteira3.addEventListener("mouseover", () => {
+    mostrarTooltip("Aulas com quem sabe", `${precoMelhoriaConfeiteira3} Pudins`, "...");
+});
+
+melhoriaConfeiteira4.addEventListener("mouseover", () => {
+    mostrarTooltip("Aulas com quem sabe", `${precoMelhoriaConfeiteira4} Pudins`, "...");
+});
+
+melhoriaConfeiteira5.addEventListener("mouseover", () => {
+    mostrarTooltip("Aulas com quem sabe", `${precoMelhoriaConfeiteira5} Pudins`, "...");
+});
+
 melhoriaChef1.addEventListener("mouseover", () => {
     mostrarTooltip("Gato cozinheiro", `${precoMelhoriaChef1} Pudins`, "+1 Poder do Clique para cada Chef");
 });
 
 melhoriaChef2.addEventListener("mouseover", () => {
     mostrarTooltip("Tony Stark brasileiro", `${precoMelhoriaChef2} Pudins`, "...");
+});
+
+melhoriaChef3.addEventListener("mouseover", () => {
+    mostrarTooltip("Nome a ser criado...", `${precoMelhoriaChef3} Pudins`, "...");
 });
 
 melhoriaPadaria1.addEventListener("mouseover", () => {
