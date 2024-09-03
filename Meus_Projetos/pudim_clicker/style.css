@@ -99,7 +99,9 @@ aside {
     top: 0;
     width: 28em;
     height: 100vh;
-    overflow-y: scroll;
+
+    /* PRECISA DISSO: */
+    /* overflow-y: auto; */
 }
 
 #upgrades {
@@ -139,6 +141,16 @@ aside {
 .upgrade:active {
     opacity: 0.85;
 }
+
+.upgrade::before {
+    content: "+5 PPS";
+    padding: 0.5rem;
+    position: absolute;
+    background-color: #8a4619;
+    height: 100%;
+    transform: translate(-100%);
+}
+
 
 #upgrade_confeiteira {
     background-image: url(imgs/upgrades/confeiteira.png);
