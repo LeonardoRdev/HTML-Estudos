@@ -133,28 +133,49 @@ aside {
 
 .upgrade:hover {
     cursor: pointer;
-    
     border: 2px solid #000;
-    border-radius: 5px;
+    /* border-radius: 5px; */
 }
 
 .upgrade:active {
     opacity: 0.85;
 }
 
+.upgrade::before,
+.upgrade::after {
+    position: absolute;
+    scale: 0;
+    transition: 0.2s scale;
+}
+
 .upgrade::before {
     content: "+5 PPS";
     padding: 0.5rem;
-    position: absolute;
+    box-sizing: border-box;
     background-color: #8a4619;
-    height: 100%;
-    transform: translate(-100%);
+    border-radius: 0.3em;
+    height: 6em;
+    left: -1.5em;
+    transform: translate(-100%, -2px);
 }
 
+.upgrade::after {
+    content: "";
+    left: -1.6em;
+    top: 50%;
+    border:  20px solid transparent;
+    border-left-color: #8a4619;
+    transform: translateY(-50%);
+    transform-origin: right top;
+}
+
+.upgrade:hover::before,
+.upgrade:hover::after {
+    scale: 1;
+}
 
 #upgrade_confeiteira {
     background-image: url(imgs/upgrades/confeiteira.png);
-    border-radius: 0 0 5px 5px;
 }
 
 #upgrade_chef {
@@ -175,7 +196,6 @@ aside {
 
 #upgrade_gourmet {
     background-image: url(imgs/upgrades/gurmet.png);
-    border-radius: 5px 5px 0 0;
 }
 
 .informacoes_upgrade {
