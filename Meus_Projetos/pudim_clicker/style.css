@@ -154,6 +154,7 @@ aside {
     box-sizing: border-box;
     background-color: #8a4619;
     border-radius: 0.3em;
+    width: 8em;
     height: 6em;
     left: -1.5em;
     transform: translate(-100%, -2px);
@@ -176,6 +177,22 @@ aside {
 
 #upgrade_confeiteira {
     background-image: url(imgs/upgrades/confeiteira.png);
+}
+
+.upgrade + #upgrade_confeiteira::before {
+    content: "PPS: 0.25";
+}
+
+#upgrade_confeiteira .informacoes_upgrade::before {
+    position: absolute;
+    content: "Total: 10";
+    scale: 0;
+    left: -3em;
+    transform: translate(-100%, -2px);
+}
+
+#upgrade_confeiteira .informacoes_upgrade:hover:before {
+    scale: 1;
 }
 
 #upgrade_chef {

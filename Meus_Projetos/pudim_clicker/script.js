@@ -102,6 +102,7 @@ function atualizarQuantidadePudins() {
 
 // Upgrade Confeiteira:
 elementosUpgrade["confeiteira"].addEventListener("click", () => {
+    
     if (pudins >= precoUpgradeConfeiteira) {
         tocarSomComprarUpgrade();
         quantidadeUpgrade["confeiteira"]++;
