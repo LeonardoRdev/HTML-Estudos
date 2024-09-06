@@ -50,8 +50,11 @@
     margin-top: 30vh;
 }
 
-#pudins_por_segundo {
-    font-size: 1.5em;
+#pudins_por_segundo,
+#quantidade_pudins {
+    /* Não permitir selecionar o texto dos upgrades: */
+    -ms-user-select: none; /* Internet Explorer e Edge */
+    user-select: none;
 }
 
 #quantidade_pudins {
@@ -97,11 +100,10 @@ aside {
     position: fixed;
     right: 0;
     top: 0;
-    width: 28em;
+    width: 48em;
+    padding-left: 20em;
     height: 100vh;
-
-    /* PRECISA DISSO: */
-    /* overflow-y: auto; */
+    overflow-y: scroll;
 }
 
 #upgrades {
@@ -251,6 +253,10 @@ footer {
     display: none;
     flex-direction: column;
     gap: 30px;
+
+    /* Não permitir selecionar o texto dos upgrades: */
+    -ms-user-select: none; /* Internet Explorer e Edge */
+    user-select: none;
 }
 
 #nome_preco_melhoria {

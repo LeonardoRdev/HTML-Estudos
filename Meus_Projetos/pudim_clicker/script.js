@@ -3,7 +3,7 @@
 let divImagemPudins = document.querySelector("#pudins");
 let pudimApertado = document.querySelector("#pudim_apertado");
 let quantidadePudins = document.querySelector("#quantidade_pudins");
-let ultimoUpgrade = document.querySelector("#ultimo_upgrade");
+let PPS = document.querySelector("#pudins_por_segundo");
 
 const audioClicarPudim = new Audio();
 audioClicarPudim.src = "../Arquivos_pagina_inicial/audios/boing.mp3";
@@ -166,9 +166,6 @@ elementosUpgrade["chef"].addEventListener("click", () => {
         quantidadeUpgrade["chef"]++;
         paragrafoQuantidadeUpgrade["chef"].innerHTML = quantidadeUpgrade["chef"];
 
-        // Atualizar texto do TOOLTIP
-        atualizarTooltip("chef");
-
         pudins -= precoUpgradeChef;
         atualizarQuantidadePudins();
 
@@ -325,9 +322,6 @@ elementosUpgrade["gourmet"].addEventListener("click", () => {
         quantidadeUpgrade["gourmet"]++;
         paragrafoQuantidadeUpgrade["gourmet"].innerHTML = quantidadeUpgrade["gourmet"];
 
-        // Atualizar texto do TOOLTIP
-        atualizarTooltip("gourmet");
-
         pudins -= precoUpgradeGourmet;
         atualizarQuantidadePudins();
 
@@ -372,11 +366,10 @@ function atualizarPudinsPorSegundo() {
         console.log(`PODER UPGRADE ${upgrade}: ${poderUpgrade[upgrade]}\nQTD upgrade ${upgrade}: ${quantidadeUpgrade[upgrade]}\n\n`);
     });
 
-    pudinsPorSegundo = totalPPS * poderUpgrade["gourmet"];
-    console.log(`GOURMET -> ${poderUpgrade["gourmet"]}`)
+    pudinsPorSegundo = totalPPS;
     console.log(`===============\nTOTAL PPS: ${pudinsPorSegundo}\n===============`);
 
-    ultimoUpgrade.innerHTML = `PPS: ${pudinsPorSegundo.toFixed(1)}`;
+    PPS.innerHTML = `PPS: ${pudinsPorSegundo.toFixed(1)}`;
 }
 
 function atualizarPudinsPorClique() {
@@ -384,7 +377,12 @@ function atualizarPudinsPorClique() {
 
    poderDoClique = (1 + (poderUpgrade["chef"] * quantidadeUpgrade["chef"])) * poderUpgrade["gourmet"];
    console.log(`=======\n PPC ${poderDoClique}\n=======`);
+
+    // Atualizar texto do TOOLTIP
+    atualizarTooltip("chef");
+    atualizarTooltip("gourmet");
 }
+
 
 // Melhorias para os upgrades:
 let melhoriaConfeiteira1 = document.querySelector("#melhoria_confeiteira_1");
@@ -848,11 +846,11 @@ setInterval(() => {
 function atualizarTooltip(upgrade) {
     if (upgrade === "chef") {
         elementosUpgrade[upgrade].querySelector(".informacoes_upgrade").setAttribute("data-tooltip", `+${poderUpgrade[upgrade]} PPC\n\nTotal: ${poderUpgrade[upgrade] * quantidadeUpgrade[upgrade]} PPC`);
-        elementosUpgrade["gourmet"].querySelector(".informacoes_upgrade").setAttribute("data-tooltip", `${poderUpgrade["chef"] * quantidadeUpgrade["chef"] + 1} x ${poderUpgrade["gourmet"] * 2}\n\nTotal: ${(poderUpgrade["chef"] * quantidadeUpgrade["chef"] + 1) * poderUpgrade["gourmet"]} PPC`);
+        elementosUpgrade["gourmet"].querySelector(".informacoes_upgrade").setAttribute("data-tooltip", `${poderDoClique} x 2\n\nTotal: ${poderDoClique} PPC`);
         return;
     }
     if (upgrade === "gourmet") {
-        elementosUpgrade[upgrade].querySelector(".informacoes_upgrade").setAttribute("data-tooltip", `${poderUpgrade["chef"] * quantidadeUpgrade["chef"]} x ${poderUpgrade["gourmet"]}\n\nTotal: ${(poderUpgrade["chef"] * quantidadeUpgrade["chef"]) * poderUpgrade["gourmet"]} PPC`);
+        elementosUpgrade[upgrade].querySelector(".informacoes_upgrade").setAttribute("data-tooltip", `${poderDoClique} x 2\n\nTotal: ${poderDoClique} PPC`);
         return;
     }
 
