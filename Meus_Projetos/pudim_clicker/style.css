@@ -141,26 +141,27 @@ aside {
     opacity: 0.85;
 }
 
-.upgrade::before,
-.upgrade::after {
+.informacoes_upgrade::before,
+.informacoes_upgrade::after {
+    pointer-events: none;
     position: absolute;
     scale: 0;
     transition: 0.2s scale;
 }
 
-.upgrade::before {
+.informacoes_upgrade::before {
     content: "+5 PPS";
-    padding: 0.5rem;
+    padding: 1.4em 0.5em;
     box-sizing: border-box;
     background-color: #8a4619;
     border-radius: 0.3em;
-    width: 8em;
+    width: 9em;
     height: 6em;
     left: -1.5em;
     transform: translate(-100%, -2px);
 }
 
-.upgrade::after {
+.informacoes_upgrade::after {
     content: "";
     left: -1.6em;
     top: 50%;
@@ -170,8 +171,9 @@ aside {
     transform-origin: right top;
 }
 
-.upgrade:hover::before,
-.upgrade:hover::after {
+/* pode tirar? */
+.informacoes_upgrade:hover::before,
+.informacoes_upgrade:hover::after {
     scale: 1;
 }
 
@@ -179,20 +181,11 @@ aside {
     background-image: url(imgs/upgrades/confeiteira.png);
 }
 
-.upgrade + #upgrade_confeiteira::before {
-    content: "PPS: 0.25";
-}
-
-#upgrade_confeiteira .informacoes_upgrade::before {
-    position: absolute;
-    content: "Total: 10";
-    scale: 0;
-    left: -3em;
-    transform: translate(-100%, -2px);
-}
-
-#upgrade_confeiteira .informacoes_upgrade:hover:before {
-    scale: 1;
+.informacoes_upgrade::before {
+    /* content: "+0.5 PPS\A\ATotal: 10 PPS"; */
+    content: attr(data-tooltip);
+    text-align: center;
+    white-space: pre-wrap;
 }
 
 #upgrade_chef {
@@ -233,6 +226,7 @@ aside {
 
 .custo_upgrade {
     position: absolute;
+    pointer-events: none;
     bottom: 8%;
     left: 3%;
 }

@@ -58,6 +58,15 @@ let precoUpgradeSupermercado = 20000;
 let precoUpgradeCafeteria = 35000;
 let precoUpgradeGourmet = 350000;
 
+// TOOLTIPS (remover depois?)
+atualizarTooltip("confeiteira");
+atualizarTooltip("chef");
+atualizarTooltip("padaria");
+atualizarTooltip("confeitaria");
+atualizarTooltip("supermercado");
+atualizarTooltip("cafeteria");
+atualizarTooltip("gourmet");
+
 // FUNÇÕES:
 // Clicar no PUDIM:
 divImagemPudins.addEventListener("click", (e) => {
@@ -107,7 +116,10 @@ elementosUpgrade["confeiteira"].addEventListener("click", () => {
         tocarSomComprarUpgrade();
         quantidadeUpgrade["confeiteira"]++;
         paragrafoQuantidadeUpgrade["confeiteira"].innerHTML = quantidadeUpgrade["confeiteira"];
-
+        
+        // Atualizar texto do TOOLTIP
+        atualizarTooltip("confeiteira");
+        
         // Gasta os pudins para adquirir o upgrade:
         pudins -= precoUpgradeConfeiteira;
         atualizarQuantidadePudins();
@@ -154,6 +166,9 @@ elementosUpgrade["chef"].addEventListener("click", () => {
         quantidadeUpgrade["chef"]++;
         paragrafoQuantidadeUpgrade["chef"].innerHTML = quantidadeUpgrade["chef"];
 
+        // Atualizar texto do TOOLTIP
+        atualizarTooltip("chef");
+
         pudins -= precoUpgradeChef;
         atualizarQuantidadePudins();
 
@@ -187,6 +202,9 @@ elementosUpgrade["padaria"].addEventListener("click", () => {
         quantidadeUpgrade["padaria"]++;
         paragrafoQuantidadeUpgrade["padaria"].innerHTML = quantidadeUpgrade["padaria"];
 
+        // Atualizar texto do TOOLTIP
+        atualizarTooltip("padaria");
+
         pudins -= precoUpgradePadaria;
         atualizarQuantidadePudins();
 
@@ -213,6 +231,9 @@ elementosUpgrade["confeitaria"].addEventListener("click", () => {
         tocarSomComprarUpgrade();
         quantidadeUpgrade["confeitaria"]++;
         paragrafoQuantidadeUpgrade["confeitaria"].innerHTML = quantidadeUpgrade["confeitaria"];
+
+        // Atualizar texto do TOOLTIP
+        atualizarTooltip("confeitaria");
 
         pudins -= precoUpgradeConfeitaria;
         atualizarQuantidadePudins();
@@ -242,6 +263,9 @@ elementosUpgrade["supermercado"].addEventListener("click", () => {
         quantidadeUpgrade["supermercado"]++;
         paragrafoQuantidadeUpgrade["supermercado"].innerHTML = quantidadeUpgrade["supermercado"];
 
+        // Atualizar texto do TOOLTIP
+        atualizarTooltip("supermercado");
+
         pudins -= precoUpgradeSupermercado;
         atualizarQuantidadePudins();
 
@@ -269,6 +293,9 @@ elementosUpgrade["cafeteria"].addEventListener("click", () => {
         tocarSomComprarUpgrade();
         quantidadeUpgrade["cafeteria"]++;
         paragrafoQuantidadeUpgrade["cafeteria"].innerHTML = quantidadeUpgrade["cafeteria"];
+
+        // Atualizar texto do TOOLTIP
+        atualizarTooltip("cafeteria");
 
         pudins -= precoUpgradeCafeteria;
         atualizarQuantidadePudins();
@@ -298,15 +325,18 @@ elementosUpgrade["gourmet"].addEventListener("click", () => {
         quantidadeUpgrade["gourmet"]++;
         paragrafoQuantidadeUpgrade["gourmet"].innerHTML = quantidadeUpgrade["gourmet"];
 
+        // Atualizar texto do TOOLTIP
+        atualizarTooltip("gourmet");
+
         pudins -= precoUpgradeGourmet;
         atualizarQuantidadePudins();
 
         precoUpgradeGourmet += 0.7 * precoUpgradeGourmet + (1.5 * quantidadeUpgrade["gourmet"]);
         precoParagrafosUpgrades["gourmet"].innerHTML = `Pudins: ${precoUpgradeGourmet.toFixed(1)}`;
 
-        // Esse upgrade está sempre ativo, porém, a cada compra DELE o poder do PPS total é multiplicado pelo poder DESTE upgrade, começando com x1.
+        // Esse upgrade está sempre ativo, porém, a cada compra DELE o PPC (Poder por Click) total é multiplicado pelo poder DESTE upgrade, começando com x1.
         poderUpgrade["gourmet"] *= 2;
-        atualizarPudinsPorSegundo();
+        atualizarPudinsPorClique();
     }
 });
 
@@ -349,20 +379,11 @@ function atualizarPudinsPorSegundo() {
     ultimoUpgrade.innerHTML = `PPS: ${pudinsPorSegundo.toFixed(1)}`;
 }
 
-const listaUpgradesPorClique = [
-    "chef",
-    "gourmet"
-];
-
 function atualizarPudinsPorClique() {
-    let totalPPC = 0;
-    listaUpgradesPorClique.forEach(upgrade => {
-        console.log(`PODER UPGRADE ${upgrade}: ${poderUpgrade[upgrade]}\nQTD upgrade ${upgrade}: ${quantidadeUpgrade[upgrade]}\n\n`);
-        totalPPC += poderUpgrade[upgrade] * quantidadeUpgrade[upgrade];
-   });
+   console.log(`PPC = (1 + ${poderUpgrade["chef"] * quantidadeUpgrade["chef"]}) * ${poderUpgrade["gourmet"]}`);
 
-   poderDoClique = 1 + totalPPC;
-   console.log(`=======\n PPC ${poderDoClique}\n=======`)
+   poderDoClique = (1 + (poderUpgrade["chef"] * quantidadeUpgrade["chef"])) * poderUpgrade["gourmet"];
+   console.log(`=======\n PPC ${poderDoClique}\n=======`);
 }
 
 // Melhorias para os upgrades:
@@ -449,6 +470,7 @@ melhoriaConfeiteira1.addEventListener("click", () => {
 
         // benefício da melhoria
         poderUpgrade["confeiteira"] += 0.5;
+        atualizarTooltip("confeiteira");
         melhoriaConfeiteira1.style.display = "none";
         atualizarPudinsPorSegundo();
     }
@@ -464,6 +486,7 @@ melhoriaConfeiteira2.addEventListener("click", () => {
 
         // benefício da melhoria
         poderUpgrade["confeiteira"] += 3;
+        atualizarTooltip("confeiteira");
         melhoriaConfeiteira2.style.display = "none";
         atualizarPudinsPorSegundo();
     }
@@ -479,6 +502,7 @@ melhoriaConfeiteira3.addEventListener("click", () => {
 
         // benefício da melhoria
         poderUpgrade["confeiteira"] += 3;
+        atualizarTooltip("confeiteira");
         melhoriaConfeiteira3.style.display = "none";
         atualizarPudinsPorSegundo();
     }
@@ -494,6 +518,7 @@ melhoriaConfeiteira4.addEventListener("click", () => {
 
         // benefício da melhoria
         poderUpgrade["confeiteira"] += 3;
+        atualizarTooltip("confeiteira");
         melhoriaConfeiteira4.style.display = "none";
         atualizarPudinsPorSegundo();
     }
@@ -509,6 +534,7 @@ melhoriaConfeiteira5.addEventListener("click", () => {
 
         // benefício da melhoria
         poderUpgrade["confeiteira"] += 3;
+        atualizarTooltip("confeiteira");
         melhoriaConfeiteira5.style.display = "none";
         atualizarPudinsPorSegundo();
     }
@@ -524,6 +550,7 @@ melhoriaChef1.addEventListener("click", () => {
 
         // benefício da melhoria
         poderUpgrade["chef"] += 1;
+        atualizarTooltip("chef");
         melhoriaChef1.style.display = "none";
         atualizarPudinsPorClique();
     }
@@ -539,6 +566,7 @@ melhoriaChef2.addEventListener("click", () => {
 
         // benefício da melhoria
         poderUpgrade["confeiteira"] += 3;
+        atualizarTooltip("chef");
         melhoriaChef2.style.display = "none";
         atualizarPudinsPorSegundo();
     }
@@ -554,6 +582,7 @@ melhoriaChef3.addEventListener("click", () => {
 
         // benefício da melhoria
         poderUpgrade["confeiteira"] += 3;
+        atualizarTooltip("chef");
         melhoriaChef3.style.display = "none";
         atualizarPudinsPorSegundo();
     }
@@ -569,6 +598,7 @@ melhoriaPadaria1.addEventListener("click", () => {
 
         // benefício da melhoria
         poderUpgrade["padaria"] += 15;
+        atualizarTooltip("padaria");
         melhoriaPadaria1.style.display = "none";
         atualizarPudinsPorSegundo();
     }
@@ -584,6 +614,7 @@ melhoriaPadaria2.addEventListener("click", () => {
 
         // benefício da melhoria
         poderUpgrade["confeiteira"] += 3;
+        atualizarTooltip("padaria");
         melhoriaPadaria2.style.display = "none";
         atualizarPudinsPorSegundo();
     }
@@ -599,6 +630,7 @@ melhoriaConfeitaria1.addEventListener("click", () => {
 
         // benefício da melhoria
         poderUpgrade["confeitaria"] += 100;
+        atualizarTooltip("confeitaria");
         melhoriaConfeitaria1.style.display = "none";
         atualizarPudinsPorSegundo();
     }
@@ -614,6 +646,7 @@ melhoriaConfeitaria2.addEventListener("click", () => {
 
         // benefício da melhoria
         poderUpgrade["confeiteira"] += 3;
+        atualizarTooltip("confeitaria");
         melhoriaConfeitaria2.style.display = "none";
         atualizarPudinsPorSegundo();
     }
@@ -629,6 +662,7 @@ melhoriaSupermercado1.addEventListener("click", () => {
 
         // benefício da melhoria
         poderUpgrade["supermercado"] += 250;
+        atualizarTooltip("supermercado");
         melhoriaSupermercado1.style.display = "none";
         atualizarPudinsPorSegundo();
     }
@@ -644,6 +678,7 @@ melhoriaSupermercado2.addEventListener("click", () => {
 
         // benefício da melhoria
         poderUpgrade["confeiteira"] += 3;
+        atualizarTooltip("supermercado");
         melhoriaSupermercado2.style.display = "none";
         atualizarPudinsPorSegundo();
     }
@@ -659,6 +694,7 @@ melhoriaCafeteria1.addEventListener("click", () => {
 
         // benefício da melhoria
         poderUpgrade["cafeteria"] += 750;
+        atualizarTooltip("cafeteria");
         melhoriaCafeteria1.style.display = "none";
         atualizarPudinsPorSegundo();
     }
@@ -674,6 +710,7 @@ melhoriaCafeteria2.addEventListener("click", () => {
 
         // benefício da melhoria
         poderUpgrade["confeiteira"] += 3;
+        atualizarTooltip("cafeteria");
         melhoriaCafeteria2.style.display = "none";
         atualizarPudinsPorSegundo();
     }
@@ -805,3 +842,19 @@ setInterval(() => {
     // }
 
 }, 1000);
+
+
+// Atualiza o texto do TOOLTIP
+function atualizarTooltip(upgrade) {
+    if (upgrade === "chef") {
+        elementosUpgrade[upgrade].querySelector(".informacoes_upgrade").setAttribute("data-tooltip", `+${poderUpgrade[upgrade]} PPC\n\nTotal: ${poderUpgrade[upgrade] * quantidadeUpgrade[upgrade]} PPC`);
+        elementosUpgrade["gourmet"].querySelector(".informacoes_upgrade").setAttribute("data-tooltip", `${poderUpgrade["chef"] * quantidadeUpgrade["chef"] + 1} x ${poderUpgrade["gourmet"] * 2}\n\nTotal: ${(poderUpgrade["chef"] * quantidadeUpgrade["chef"] + 1) * poderUpgrade["gourmet"]} PPC`);
+        return;
+    }
+    if (upgrade === "gourmet") {
+        elementosUpgrade[upgrade].querySelector(".informacoes_upgrade").setAttribute("data-tooltip", `${poderUpgrade["chef"] * quantidadeUpgrade["chef"]} x ${poderUpgrade["gourmet"]}\n\nTotal: ${(poderUpgrade["chef"] * quantidadeUpgrade["chef"]) * poderUpgrade["gourmet"]} PPC`);
+        return;
+    }
+
+    elementosUpgrade[upgrade].querySelector(".informacoes_upgrade").setAttribute("data-tooltip", `+${poderUpgrade[upgrade]} PPS\n\nTotal: ${poderUpgrade[upgrade] * quantidadeUpgrade[upgrade]} PPS`);
+}
