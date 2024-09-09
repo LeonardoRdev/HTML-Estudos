@@ -117,6 +117,9 @@ elementosUpgrade["confeiteira"].addEventListener("click", () => {
         quantidadeUpgrade["confeiteira"]++;
         paragrafoQuantidadeUpgrade["confeiteira"].innerHTML = quantidadeUpgrade["confeiteira"];
         
+        // Ativar TOOLTIP do UPGRADE
+        elementosUpgrade["confeiteira"].querySelector(".informacoes_upgrade").classList.add("mostrar_before", "mostrar_after");
+
         // Atualizar texto do TOOLTIP
         atualizarTooltip("confeiteira");
         
@@ -166,6 +169,9 @@ elementosUpgrade["chef"].addEventListener("click", () => {
         quantidadeUpgrade["chef"]++;
         paragrafoQuantidadeUpgrade["chef"].innerHTML = quantidadeUpgrade["chef"];
 
+        // Ativar TOOLTIP do UPGRADE
+        elementosUpgrade["chef"].querySelector(".informacoes_upgrade").classList.add("mostrar_before", "mostrar_after");
+
         pudins -= precoUpgradeChef;
         atualizarQuantidadePudins();
 
@@ -199,6 +205,9 @@ elementosUpgrade["padaria"].addEventListener("click", () => {
         quantidadeUpgrade["padaria"]++;
         paragrafoQuantidadeUpgrade["padaria"].innerHTML = quantidadeUpgrade["padaria"];
 
+        // Ativar TOOLTIP do UPGRADE
+        elementosUpgrade["padaria"].querySelector(".informacoes_upgrade").classList.add("mostrar_before", "mostrar_after");
+
         // Atualizar texto do TOOLTIP
         atualizarTooltip("padaria");
 
@@ -228,6 +237,9 @@ elementosUpgrade["confeitaria"].addEventListener("click", () => {
         tocarSomComprarUpgrade();
         quantidadeUpgrade["confeitaria"]++;
         paragrafoQuantidadeUpgrade["confeitaria"].innerHTML = quantidadeUpgrade["confeitaria"];
+
+        // Ativar TOOLTIP do UPGRADE
+        elementosUpgrade["confeitaria"].querySelector(".informacoes_upgrade").classList.add("mostrar_before", "mostrar_after");
 
         // Atualizar texto do TOOLTIP
         atualizarTooltip("confeitaria");
@@ -260,6 +272,9 @@ elementosUpgrade["supermercado"].addEventListener("click", () => {
         quantidadeUpgrade["supermercado"]++;
         paragrafoQuantidadeUpgrade["supermercado"].innerHTML = quantidadeUpgrade["supermercado"];
 
+        // Ativar TOOLTIP do UPGRADE
+        elementosUpgrade["supermercado"].querySelector(".informacoes_upgrade").classList.add("mostrar_before", "mostrar_after");
+
         // Atualizar texto do TOOLTIP
         atualizarTooltip("supermercado");
 
@@ -291,6 +306,9 @@ elementosUpgrade["cafeteria"].addEventListener("click", () => {
         quantidadeUpgrade["cafeteria"]++;
         paragrafoQuantidadeUpgrade["cafeteria"].innerHTML = quantidadeUpgrade["cafeteria"];
 
+        // Ativar TOOLTIP do UPGRADE
+        elementosUpgrade["cafeteria"].querySelector(".informacoes_upgrade").classList.add("mostrar_before", "mostrar_after");
+
         // Atualizar texto do TOOLTIP
         atualizarTooltip("cafeteria");
 
@@ -321,6 +339,9 @@ elementosUpgrade["gourmet"].addEventListener("click", () => {
         tocarSomComprarUpgrade();
         quantidadeUpgrade["gourmet"]++;
         paragrafoQuantidadeUpgrade["gourmet"].innerHTML = quantidadeUpgrade["gourmet"];
+
+        // Ativar TOOLTIP do UPGRADE
+        elementosUpgrade["gourmet"].querySelector(".informacoes_upgrade").classList.add("mostrar_before", "mostrar_after");
 
         pudins -= precoUpgradeGourmet;
         atualizarQuantidadePudins();
@@ -850,7 +871,7 @@ function atualizarTooltip(upgrade) {
         return;
     }
     if (upgrade === "gourmet") {
-        elementosUpgrade[upgrade].querySelector(".informacoes_upgrade").setAttribute("data-tooltip", `${poderDoClique} x 2\n\nTotal: ${poderDoClique} PPC`);
+        elementosUpgrade[upgrade].querySelector(".informacoes_upgrade").setAttribute("data-tooltip", `Duplica o PPC\n\nTotal: ${poderDoClique} PPC`);
         return;
     }
 

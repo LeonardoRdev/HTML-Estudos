@@ -149,10 +149,19 @@ aside {
     position: absolute;
     scale: 0;
     transition: 0.2s scale;
+    /* Display none -> só vai ficar visível ao comprar o upgrade pela 1° vez */
+    display: none;
+}
+
+.mostrar_before::before,
+.mostrar_after::after {
+    display: block;
 }
 
 .informacoes_upgrade::before {
-    content: "+5 PPS";
+    content: attr(data-tooltip);
+    text-align: center;
+    white-space: pre-wrap;
     padding: 1.4em 0.5em;
     box-sizing: border-box;
     background-color: #8a4619;
@@ -181,13 +190,6 @@ aside {
 
 #upgrade_confeiteira {
     background-image: url(imgs/upgrades/confeiteira.png);
-}
-
-.informacoes_upgrade::before {
-    /* content: "+0.5 PPS\A\ATotal: 10 PPS"; */
-    content: attr(data-tooltip);
-    text-align: center;
-    white-space: pre-wrap;
 }
 
 #upgrade_chef {
