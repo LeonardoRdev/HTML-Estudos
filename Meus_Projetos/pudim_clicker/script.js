@@ -844,9 +844,31 @@ function fecharTooltip() {
     informacoesMelhorias.style.display = "none";
 }
 
+// Verifica se o navegador suporta WEB WORKERS
+// *Serve para fazer o código rodar mesmo sem a janela do navegador estar focada
+if (window.Worker) {
+    // Cria o Worker a partidar do "worker.js"
+    const worker = new Worker("worker.js");
 
-// Atualizar UPGRADES e MELHORIAS disponíveis para serem comprados
-setInterval(() => {
+    // A cada segundo que o passar no setInterval do Worker, ler a mensagem "tick" e executar o seguinte código:
+    worker.onmessage = (event) => {
+        if (event.data === "tick") {
+            atualizarComponentesDeTempo();
+        }
+    };
+
+} else { // Caso o navegador não suporte WEB WORKERS
+
+    setInterval(() => {
+        atualizarComponentesDeTempo();
+    // v atualiza a cada 1 segundo (igual o Worker, porém o código não roda ao desfocar a janela)
+}, 1000);
+
+}
+
+function atualizarComponentesDeTempo() {
+
+    // PUDINS
     // Aumenta a quantidade de PUDINS por segundo de acordo com o PPS atual
     pudins += pudinsPorSegundo;
     atualizarQuantidadePudins();
@@ -883,10 +905,7 @@ setInterval(() => {
     //     "deixar a melhoria brilhante (disponível para compra)"
     // }
 
-
-    // v atualiza a cada 1 segundo v
-}, 1000);
-
+}
 
 // Atualiza o texto do TOOLTIP dos UPGRADES
 function atualizarTooltip(upgrade) {
