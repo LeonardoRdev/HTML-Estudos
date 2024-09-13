@@ -1,5 +1,7 @@
-// Definindo as variáveis
+// Ativar para remover os arquivos locais (deletar o save)
+// localStorage.clear();
 
+// Definindo as variáveis
 // formata os números grandes, exemplo: 10000 -> 10k 
 const formatarNumero = Intl.NumberFormat("en", { notation: "compact"});
 
@@ -27,6 +29,15 @@ const listaUpgrades = [
     "gourmet"
 ];
 
+// Lista com todos os upgrades que aumentam o PPS (Pudim Por Segundo)
+const listaUpgradesPorSegundo = [
+    "confeiteira",
+    "padaria",
+    "confeitaria",
+    "supermercado",
+    "cafeteria",
+];
+
 const elementosUpgrade = {};
 const precoUpgrades = {};
 const precoParagrafosUpgrades = {};
@@ -41,25 +52,25 @@ listaUpgrades.forEach(upgrade => {
     precoUpgrades[upgrade] = 0;
     precoParagrafosUpgrades[upgrade] = elementoUpgrade.querySelector(`.custo_upgrade p`);
     paragrafoQuantidadeUpgrade[upgrade] = elementoUpgrade.querySelector(`.quantidade_upgrade`);
-    quantidadeUpgrade[upgrade] = 0;
+    quantidadeUpgrade[upgrade] = localStorage.getItem(`upgrade_${upgrade} .quantidade_upgrade`) ? parseInt(localStorage.getItem(`upgrade_${upgrade} .quantidade_upgrade`)) : 0;
 });
 
 // Pudins / Poder do Clique / Preços iniciais dos upgrades:
-let pudins = 0;
+let pudins = localStorage.getItem("quantidade_pudins") ? parseInt(localStorage.getItem("quantidade_pudins")) : 0;
 let poderDoClique = 1;
 let pudinsPorSegundo = 0;
 
 // Poder dos Upgrades (O tanto de pudins que cada compra concederá)
-poderUpgrade["confeiteira"] = 0.5; // + PPS (Pudim Por Segundo)
+poderUpgrade["confeiteira"] = localStorage.getItem(`poder_upgrade_confeiteira`) ? parseInt(localStorage.getItem(`poder_upgrade_confeiteira`)): 0.5; // + PPS (Pudim Por Segundo)
 poderUpgrade["chef"] = 1; // + Poder Por Clique
 poderUpgrade["padaria"] = 15; // + PPS
 poderUpgrade["confeitaria"] = 100; // + PPS
 poderUpgrade["supermercado"] = 250; // + PPS
 poderUpgrade["cafeteria"] = 750; // + PPS
-poderUpgrade["gourmet"] = 1; // ²PPS
+poderUpgrade["gourmet"] = 1; // Poder x PPS
 
 // Preço dos Upgrades
-precoUpgrades["confeiteira"] = 10;
+precoUpgrades["confeiteira"] = localStorage.getItem(`upgrade_confeiteira .custo_upgrade`) ? parseInt(localStorage.getItem(`upgrade_confeiteira .custo_upgrade`)) : 10;
 precoUpgrades["chef"] = 100;
 precoUpgrades["padaria"] = 500;
 precoUpgrades["confeitaria"] = 3_000;
@@ -67,13 +78,19 @@ precoUpgrades["supermercado"] = 20_000;
 precoUpgrades["cafeteria"] = 35_000;
 precoUpgrades["gourmet"] = 350_000;
 
-// Cria o preço inicial de todos os upgrades:
+// Recarrega os upgrades (caso recarregar a página)
 listaUpgrades.forEach(upgrade => {
-    precoParagrafosUpgrades[upgrade].innerHTML = `Pudins: ${formatarNumero.format(precoUpgrades[upgrade].toFixed(1))}`;
+    paragrafoQuantidadeUpgrade[upgrade].innerHTML = quantidadeUpgrade[upgrade];
+    precoParagrafosUpgrades[upgrade].innerHTML = `Pudins: ${formatarNumero.format(precoUpgrades[upgrade])}`;
+    atualizarQuantidadePudins();
+    atualizarPudinsPorSegundo();
 });
 
 
-// FUNÇÕES
+// =======================
+// ======= FUNÇÕES =======
+// =======================
+
 // Clicar no PUDIM:
 divImagemPudins.addEventListener("click", (e) => {
     // Som ao clickar:
@@ -113,6 +130,10 @@ divImagemPudins.addEventListener("click", (e) => {
 function atualizarQuantidadePudins() {
     // Gambiarra por conta do Javascript, já que ele não calcula números flutuantes com precisão:
     pudins = Math.round(pudins * 10) / 10;
+
+    // salva os pudins no computador (para não perder o progresso) v
+    localStorage.setItem("quantidade_pudins", pudins);
+
     quantidadePudins.innerHTML = `Pudins: ${formatarNumero.format(pudins)}`;
 }
 
@@ -124,6 +145,9 @@ elementosUpgrade["confeiteira"].addEventListener("click", () => {
     if (pudins >= precoUpgrades["confeiteira"]) {
         tocarSomComprarUpgrade();
         quantidadeUpgrade["confeiteira"]++;
+        // salva a quantidade de upgrades no computador para não perder o progresso
+        localStorage.setItem(`upgrade_confeiteira .quantidade_upgrade`, quantidadeUpgrade["confeiteira"]);
+
         paragrafoQuantidadeUpgrade["confeiteira"].innerHTML = quantidadeUpgrade["confeiteira"];
         
         // Ativar TOOLTIP do UPGRADE
@@ -138,7 +162,11 @@ elementosUpgrade["confeiteira"].addEventListener("click", () => {
 
         // Aumenta o preço do upgrade:
         precoUpgrades["confeiteira"] += 1.5 * quantidadeUpgrade["confeiteira"];
-        precoParagrafosUpgrades["confeiteira"].innerHTML = `Pudins: ${formatarNumero.format(precoUpgrades["confeiteira"].toFixed(1))}`;
+
+        // salva a quantidade de upgrades no computador para não perder o progresso
+        localStorage.setItem(`upgrade_confeiteira .custo_upgrade`, precoUpgrades["confeiteira"]);
+
+        precoParagrafosUpgrades["confeiteira"].innerHTML = `Pudins: ${formatarNumero.format(precoUpgrades["confeiteira"])}`;
 
         // Recompensa fornecida pelo Upgrade:
         atualizarPudinsPorSegundo();
@@ -185,7 +213,7 @@ elementosUpgrade["chef"].addEventListener("click", () => {
         atualizarQuantidadePudins();
 
         precoUpgrades["chef"] += 0.7 * precoUpgrades["chef"] + (1.2 * quantidadeUpgrade["chef"]);
-        precoParagrafosUpgrades["chef"].innerHTML = `Pudins: ${formatarNumero.format(precoUpgrades["chef"].toFixed(1))}`;
+        precoParagrafosUpgrades["chef"].innerHTML = `Pudins: ${formatarNumero.format(precoUpgrades["chef"])}`;
 
         // poderDoClique++;
         atualizarPudinsPorClique();
@@ -224,7 +252,7 @@ elementosUpgrade["padaria"].addEventListener("click", () => {
         atualizarQuantidadePudins();
 
         precoUpgrades["padaria"] += 0.5 * precoUpgrades["padaria"] + (1.3 * quantidadeUpgrade["padaria"]);
-        precoParagrafosUpgrades["padaria"].innerHTML = `Pudins: ${formatarNumero.format(precoUpgrades["padaria"].toFixed(1))}`;
+        precoParagrafosUpgrades["padaria"].innerHTML = `Pudins: ${formatarNumero.format(precoUpgrades["padaria"])}`;
 
         atualizarPudinsPorSegundo();
                 
@@ -257,7 +285,7 @@ elementosUpgrade["confeitaria"].addEventListener("click", () => {
         atualizarQuantidadePudins();
 
         precoUpgrades["confeitaria"] += 0.4 * precoUpgrades["confeitaria"] + (1.5 * quantidadeUpgrade["confeitaria"]);
-        precoParagrafosUpgrades["confeitaria"].innerHTML = `Pudins: ${formatarNumero.format(precoUpgrades["confeitaria"].toFixed(1))}`;
+        precoParagrafosUpgrades["confeitaria"].innerHTML = `Pudins: ${formatarNumero.format(precoUpgrades["confeitaria"])}`;
 
         atualizarPudinsPorSegundo();
                 
@@ -291,7 +319,7 @@ elementosUpgrade["supermercado"].addEventListener("click", () => {
         atualizarQuantidadePudins();
 
         precoUpgrades["supermercado"] += 0.6 * precoUpgrades["supermercado"] + (1.5 * quantidadeUpgrade["supermercado"]);
-        precoParagrafosUpgrades["supermercado"].innerHTML = `Pudins: ${formatarNumero.format(precoUpgrades["supermercado"].toFixed(1))}`;
+        precoParagrafosUpgrades["supermercado"].innerHTML = `Pudins: ${formatarNumero.format(precoUpgrades["supermercado"])}`;
 
         atualizarPudinsPorSegundo();
                 
@@ -325,7 +353,7 @@ elementosUpgrade["cafeteria"].addEventListener("click", () => {
         atualizarQuantidadePudins();
 
         precoUpgrades["cafeteria"] += 0.4 * precoUpgrades["cafeteria"] + (1.5 * quantidadeUpgrade["cafeteria"]);
-        precoParagrafosUpgrades["cafeteria"].innerHTML = `Pudins: ${formatarNumero.format(precoUpgrades["cafeteria"].toFixed(1))}`;
+        precoParagrafosUpgrades["cafeteria"].innerHTML = `Pudins: ${formatarNumero.format(precoUpgrades["cafeteria"])}`;
 
         atualizarPudinsPorSegundo();
                 
@@ -356,7 +384,7 @@ elementosUpgrade["gourmet"].addEventListener("click", () => {
         atualizarQuantidadePudins();
 
         precoUpgrades["gourmet"] += 0.7 * precoUpgrades["gourmet"] + (1.5 * quantidadeUpgrade["gourmet"]);
-        precoParagrafosUpgrades["gourmet"].innerHTML = `Pudins: ${formatarNumero.format(precoUpgrades["gourmet"].toFixed(1))}`;
+        precoParagrafosUpgrades["gourmet"].innerHTML = `Pudins: ${formatarNumero.format(precoUpgrades["gourmet"])}`;
 
         // Esse upgrade está sempre ativo, porém, a cada compra DELE o PPC (Poder por Click) total é multiplicado pelo poder DESTE upgrade, começando com x1.
         poderUpgrade["gourmet"] *= 2;
@@ -382,15 +410,6 @@ function tocarSomComprarMelhoria() {
     }
 }
 
-// Lista com todos os upgrades que aumentam o PPS (Pudim Por Segundo)
-const listaUpgradesPorSegundo = [
-    "confeiteira",
-    "padaria",
-    "confeitaria",
-    "supermercado",
-    "cafeteria",
-];
-
 function atualizarPudinsPorSegundo() {
     let totalPPS = 0;
     listaUpgradesPorSegundo.forEach(upgrade => {
@@ -402,7 +421,7 @@ function atualizarPudinsPorSegundo() {
     console.log(`===============\nTOTAL PPS: ${pudinsPorSegundo}\n===============`);
 
     // Exibe abaixo do PUDIM o PPS
-    PPS.innerHTML = `PPS: ${formatarNumero.format(pudinsPorSegundo.toFixed(1))}`;
+    PPS.innerHTML = `PPS: ${formatarNumero.format(pudinsPorSegundo)}`;
 }
 
 function atualizarPudinsPorClique() {
@@ -494,6 +513,8 @@ const listaMelhorias = [
     [melhoriaCafeteria2.querySelector(".melhoria"), precoMelhoriaCafeteria2],
 ];
 
+
+
 // Comprar MELHORIAS
 melhoriaConfeiteira1.addEventListener("click", () => {
     // Preço da melhoria
@@ -505,11 +526,20 @@ melhoriaConfeiteira1.addEventListener("click", () => {
 
         // benefício da melhoria
         poderUpgrade["confeiteira"] += 0.5;
+
+        // salva o poder do upgrade no computador para não perder o progresso
+        localStorage.setItem(`poder_upgrade_confeiteira`, poderUpgrade["confeiteira"]);
+
         atualizarTooltip("confeiteira");
         melhoriaConfeiteira1.style.display = "none";
         atualizarPudinsPorSegundo();
     }
 });
+
+// FAZ O TESTE COM LOCALSTORAGE INDIVIDUALMENTE, DEPOIS COLOCA NUMA LISTA PARA FAZER TODOS OS UPGRADES DE UMA VEZ (ao carregar)
+if (melhoriaConfeiteira1.style.display === "none") {
+    alert(melhoriaConfeiteira1.style.display)
+}
 
 melhoriaConfeiteira2.addEventListener("click", () => {
     // Preço da melhoria
