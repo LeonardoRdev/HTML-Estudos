@@ -1,4 +1,4 @@
-// Ativar para remover os arquivos locais (deletar o save)
+// Descomentar para remover os arquivos locais (deletar o save)
 // localStorage.clear();
 
 // Definindo as variáveis
@@ -61,7 +61,7 @@ let poderDoClique = 1;
 let pudinsPorSegundo = 0;
 
 // Poder dos Upgrades (O tanto de pudins que cada compra concederá)
-poderUpgrade["confeiteira"] = localStorage.getItem(`poder_upgrade_confeiteira`) ? parseInt(localStorage.getItem(`poder_upgrade_confeiteira`)): 0.5; // + PPS (Pudim Por Segundo)
+poderUpgrade["confeiteira"] = localStorage.getItem("poder_upgrade_confeiteira") ? parseInt(localStorage.getItem("poder_upgrade_confeiteira")): 0.5; // + PPS (Pudim Por Segundo)
 poderUpgrade["chef"] = 1; // + Poder Por Clique
 poderUpgrade["padaria"] = 15; // + PPS
 poderUpgrade["confeitaria"] = 100; // + PPS
@@ -172,12 +172,12 @@ elementosUpgrade["confeiteira"].addEventListener("click", () => {
         atualizarPudinsPorSegundo();
 
         // 1° Melhoria:
-        if (quantidadeUpgrade["confeiteira"] >= 2) {
+        if (quantidadeUpgrade["confeiteira"] >= 2 & !compreiMelhoriaConfeiteira1) {
             melhoriaConfeiteira1.classList.add("aparecer");
         }
 
         // 2° Melhoria:
-        if (quantidadeUpgrade["confeiteira"] >= 15) {
+        if (quantidadeUpgrade["confeiteira"] >= 15 & !compreiMelhoriaConfeiteira2) {
             melhoriaConfeiteira2.classList.add("aparecer");
         }
 
@@ -455,11 +455,11 @@ let melhoriaSupermercado2 = document.querySelector("#melhoria_supermercado_2");
 let melhoriaCafeteria1 = document.querySelector("#melhoria_cafeteria_1");
 let melhoriaCafeteria2 = document.querySelector("#melhoria_cafeteria_2");
 
-// melhoriaConfeiteira1.style.display = ""
-if (melhoriaCafeteria1.style.display === "") {
-    alert("Display: nenhum")
-}
-alert(`Display: ${melhoriaConfeiteira1.style.display}`)
+// Melhorias compradas (para salvar no localStorage)
+// - Se o localStorage tiver alguma data sobre "comprei_melhoria_confeiteira1", então ela foi comprada (true), senão, continuar o comportamente padrão (false)
+let compreiMelhoriaConfeiteira1 = localStorage.getItem("comprei_melhoria_confeiteira1") ? true : false;
+let compreiMelhoriaConfeiteira2 = localStorage.getItem("comprei_melhoria_confeiteira2") ? true : false;
+// let compreiMelhoria.....
 
 // Preço das MELHORIAS
 let precoMelhoriaConfeiteira1 = 50;
@@ -519,27 +519,6 @@ const listaMelhorias = [
     [melhoriaCafeteria2.querySelector(".melhoria"), precoMelhoriaCafeteria2],
 ];
 
-const itensMelhorias = document.querySelectorAll(".item_melhoria");
-const displayMelhorias = {};
-
-// Recarrega as MELHORIAS (caso recarregar a página)
-itensMelhorias.forEach((item) => {
-    // Se a melhoria existir no localStorage, significa que mudou o display para "none". Então continuar deixando ela como display = "none".
-    displayMelhorias[item.id] = localStorage.getItem(item.id.style.display) ? localStorage.getItem(item.id.style.display) : "";
-
-});
-
-// excluir
-console.log(displayMelhorias)
-
-// itensMelhorias.forEach((item) => {
-//     item.addEventListener("click",() => {
-//         // alert(`\nClicou no upgrade: ${item.id.display}`)
-
-//     })
-// });
-
-
 // Comprar MELHORIAS
 melhoriaConfeiteira1.addEventListener("click", () => {
     // Preço da melhoria
@@ -551,28 +530,14 @@ melhoriaConfeiteira1.addEventListener("click", () => {
 
         // benefício da melhoria
         poderUpgrade["confeiteira"] += 0.5;
-
-        // salva o poder do upgrade no computador para não perder o progresso
-        localStorage.setItem(`poder_upgrade_confeiteira`, poderUpgrade["confeiteira"]);
+        localStorage.setItem("poder_upgrade_confeiteira", poderUpgrade["confeiteira"]);
 
         atualizarTooltip("confeiteira");
-        // localStorage.setItem(`melhoriaConfeiteira1.style.display`, "none")
         melhoriaConfeiteira1.style.display = "none";
-
-        alert(displayMelhorias[melhoria_confeiteira_1].style.display)
-        localStorage.setItem(displayMelhorias[melhoria_confeiteira_1], displayMelhorias[melhoria_confeiteira_1].style.display);
-        // alert(melhoriaConfeiteira1.style.display)
-        // É AQUI QUE O DISPLAY NONE É APLICADO, É SÓ SALVAR ESSA INFORMAÇÃO NO LOCAL STORAGE
         atualizarPudinsPorSegundo();
-
-        // FAZ O TESTE COM LOCALSTORAGE INDIVIDUALMENTE, DEPOIS COLOCA NUMA LISTA PARA FAZER TODOS OS UPGRADES DE UMA VEZ (ao carregar)
-        // if (listaMelhorias[0][0].closest(".item_melhoria").style.display === "none") {
-        //     alert(melhoriaConfeiteira1.style.display)
-
-        //     // salva a quantidade de upgrades no computador para não perder o progresso
-        //     localStorage.setItem(`#melhoria_confeiteira_1`, true);
-        // }
-
+        
+        // Armazena a informação no localStorage de que a melhoria foi comprada, e não deverá aparecer mais.
+        localStorage.setItem("comprei_melhoria_confeiteira1", true);
     }
 });
 
@@ -586,9 +551,14 @@ melhoriaConfeiteira2.addEventListener("click", () => {
 
         // benefício da melhoria
         poderUpgrade["confeiteira"] += 3;
+        localStorage.setItem("poder_upgrade_confeiteira", poderUpgrade["confeiteira"]);
+
         atualizarTooltip("confeiteira");
         melhoriaConfeiteira2.style.display = "none";
         atualizarPudinsPorSegundo();
+
+        // Armazena a informação no localStorage de que a melhoria foi comprada, e não deverá aparecer mais.
+        localStorage.setItem("comprei_melhoria_confeiteira2", true);
     }
 });
 
@@ -883,6 +853,8 @@ melhoriaCafeteria2.addEventListener("mouseover", () => {
     mostrarTooltip("Café na Lua", `${precoMelhoriaCafeteria2} Pudins`, "...");
 });
 
+const itensMelhorias = document.querySelectorAll(".item_melhoria");
+
 // Para fechar o TOOLTIP
 itensMelhorias.forEach((item) => {
     item.addEventListener("mouseout", () => {
@@ -988,4 +960,15 @@ function atualizarTooltip(upgrade) {
 
     // Caso seja um upgrade de PPS (todos os outros)
     elementosUpgrade[upgrade].querySelector(".informacoes_upgrade").setAttribute("data-tooltip", `+${formatarNumero.format(poderUpgrade[upgrade])} PPS\n\nTotal: ${formatarNumero.format(poderUpgrade[upgrade] * quantidadeUpgrade[upgrade])} PPS`);
+}
+
+
+// Exibe as melhorias disponíveis para compra ao recarregar a página (localStorage)
+/// *SIMPLIFICAR O CÓDIGO, SE NÃO VAI REPETIR MUITA COISA
+if (quantidadeUpgrade["confeiteira"] >= 2 & !compreiMelhoriaConfeiteira1) {
+    melhoriaConfeiteira1.classList.add("aparecer");
+}
+
+if (quantidadeUpgrade["confeiteira"] >= 15 & !compreiMelhoriaConfeiteira2) {
+    melhoriaConfeiteira2.classList.add("aparecer");
 }
