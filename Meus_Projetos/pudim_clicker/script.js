@@ -455,6 +455,12 @@ let melhoriaSupermercado2 = document.querySelector("#melhoria_supermercado_2");
 let melhoriaCafeteria1 = document.querySelector("#melhoria_cafeteria_1");
 let melhoriaCafeteria2 = document.querySelector("#melhoria_cafeteria_2");
 
+// melhoriaConfeiteira1.style.display = ""
+if (melhoriaCafeteria1.style.display === "") {
+    alert("Display: nenhum")
+}
+alert(`Display: ${melhoriaConfeiteira1.style.display}`)
+
 // Preço das MELHORIAS
 let precoMelhoriaConfeiteira1 = 50;
 let precoMelhoriaConfeiteira2 = 13;
@@ -513,6 +519,25 @@ const listaMelhorias = [
     [melhoriaCafeteria2.querySelector(".melhoria"), precoMelhoriaCafeteria2],
 ];
 
+const itensMelhorias = document.querySelectorAll(".item_melhoria");
+const displayMelhorias = {};
+
+// Recarrega as MELHORIAS (caso recarregar a página)
+itensMelhorias.forEach((item) => {
+    // Se a melhoria existir no localStorage, significa que mudou o display para "none". Então continuar deixando ela como display = "none".
+    displayMelhorias[item.id] = localStorage.getItem(item.id.style.display) ? localStorage.getItem(item.id.style.display) : "";
+
+});
+
+// excluir
+console.log(displayMelhorias)
+
+// itensMelhorias.forEach((item) => {
+//     item.addEventListener("click",() => {
+//         // alert(`\nClicou no upgrade: ${item.id.display}`)
+
+//     })
+// });
 
 
 // Comprar MELHORIAS
@@ -531,15 +556,25 @@ melhoriaConfeiteira1.addEventListener("click", () => {
         localStorage.setItem(`poder_upgrade_confeiteira`, poderUpgrade["confeiteira"]);
 
         atualizarTooltip("confeiteira");
+        // localStorage.setItem(`melhoriaConfeiteira1.style.display`, "none")
         melhoriaConfeiteira1.style.display = "none";
+
+        alert(displayMelhorias[melhoria_confeiteira_1].style.display)
+        localStorage.setItem(displayMelhorias[melhoria_confeiteira_1], displayMelhorias[melhoria_confeiteira_1].style.display);
+        // alert(melhoriaConfeiteira1.style.display)
+        // É AQUI QUE O DISPLAY NONE É APLICADO, É SÓ SALVAR ESSA INFORMAÇÃO NO LOCAL STORAGE
         atualizarPudinsPorSegundo();
+
+        // FAZ O TESTE COM LOCALSTORAGE INDIVIDUALMENTE, DEPOIS COLOCA NUMA LISTA PARA FAZER TODOS OS UPGRADES DE UMA VEZ (ao carregar)
+        // if (listaMelhorias[0][0].closest(".item_melhoria").style.display === "none") {
+        //     alert(melhoriaConfeiteira1.style.display)
+
+        //     // salva a quantidade de upgrades no computador para não perder o progresso
+        //     localStorage.setItem(`#melhoria_confeiteira_1`, true);
+        // }
+
     }
 });
-
-// FAZ O TESTE COM LOCALSTORAGE INDIVIDUALMENTE, DEPOIS COLOCA NUMA LISTA PARA FAZER TODOS OS UPGRADES DE UMA VEZ (ao carregar)
-if (melhoriaConfeiteira1.style.display === "none") {
-    alert(melhoriaConfeiteira1.style.display)
-}
 
 melhoriaConfeiteira2.addEventListener("click", () => {
     // Preço da melhoria
@@ -849,7 +884,6 @@ melhoriaCafeteria2.addEventListener("mouseover", () => {
 });
 
 // Para fechar o TOOLTIP
-let itensMelhorias = document.querySelectorAll(".item_melhoria");
 itensMelhorias.forEach((item) => {
     item.addEventListener("mouseout", () => {
         // Se tirar o mouse de cima das MELHORIAS, fechar o TOOLTIP
