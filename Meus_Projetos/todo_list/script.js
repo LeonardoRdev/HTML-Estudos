@@ -9,7 +9,7 @@ const horarioFimAtividades = document.querySelector("#horario-fim-atividades #ho
 
 // Form | Tarefas adicionadas
 const divTarefas = document.querySelector("div#tarefas");
-let idTarefa = 1;
+let idTarefa = localStorage.getItem("idTarefa_salvo") ? parseInt(localStorage.getItem("idTarefa_salvo")) : 1
 
 // Declarando o tempo inicial:
 let dataDia = new Date();
@@ -23,7 +23,6 @@ botaoRefresh.addEventListener("click", () => {
     atualizarTimer();
 });
 
-
 // Botão "ENVIAR" tarefa:
 botaoEnviar.addEventListener("click", () => {
 
@@ -36,6 +35,8 @@ botaoEnviar.addEventListener("click", () => {
 
     somaMinutos += parseInt(inputTempoTarefa.value);
     dataMinuto += somaMinutos;
+
+    console.log(`ID: ${idTarefa}`);
     
     const novaTarefa = document.createElement("div");
     novaTarefa.classList.add("tarefa");
@@ -51,8 +52,6 @@ botaoEnviar.addEventListener("click", () => {
         <p>${inputTempoTarefa.value} minutos</p>
     `;
 
-    const inputCheckbox = novaTarefa.querySelector(`#input-tarefa${idTarefa}`);
-
     // O botão "excluirTarefa" vai passar na função "excluirTarefa" a própria tarefa em que ele se encontra.
     const botaoExcluirTarefa = document.createElement("button");
     botaoExcluirTarefa.classList.add("excluir-tarefa");
@@ -62,6 +61,25 @@ botaoEnviar.addEventListener("click", () => {
 
     novaTarefa.appendChild(botaoExcluirTarefa);
     divTarefas.appendChild(novaTarefa);
+
+    // Salvar informações no localStorage
+    let listaTarefasSalvas = JSON.parse(localStorage.getItem("array_tarefas_salvas")) || [];
+    listaTarefasSalvas.push(document.querySelector(`#tarefa${idTarefa}`));
+    alert(document.querySelector(`#tarefa${idTarefa}`))
+    localStorage.setItem("array_tarefas_salvas", JSON.stringify(listaTarefasSalvas));
+
+    listaTarefasSalvas.forEach((tarefa, index) => {
+        console.log(`Tarefa ${index + 1}: ${(listaTarefasSalvas[index])}`)
+    })
+
+    // O QUE PRECISA ACONTECER:
+    // const li = document.createElement('li');
+    // Usa innerHTML para criar elementos HTML a partir da string
+    // lista.appendChild(li);
+    // li.innerHTML = itemHTML;
+
+
+    const inputCheckbox = novaTarefa.querySelector(`#input-tarefa${idTarefa}`);
 
     // Mostra o horário do fim das atividades e o mostra:
     atualizarTimer();
@@ -83,6 +101,7 @@ botaoEnviar.addEventListener("click", () => {
     inputTempoTarefa.value = "";
 
     idTarefa++;
+    localStorage.setItem("idTarefa_salvo", idTarefa);
 });
 
 function ajustarMinutosHoras(horas, minutos, segundos) {
