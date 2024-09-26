@@ -14,6 +14,11 @@ const divTarefas = document.querySelector("div#tarefas");
 let idTarefa = localStorage.getItem("idTarefa_salvo") ? parseInt(localStorage.getItem("idTarefa_salvo")) : 1
 
 // localStorage.clear();
+let listaTarefasSalvas = JSON.parse(localStorage.getItem("array_tarefas_salvas")) || [];
+if (listaTarefasSalvas.length !== 0) {
+    salvarTarefasNoLocalStorage(listaTarefasSalvas);
+
+}
 
 // Declarando o tempo inicial:
 let dataDia = new Date();
@@ -40,7 +45,7 @@ botaoEnviar.addEventListener("click", () => {
     somaMinutos += parseInt(inputTempoTarefa.value);
     dataMinuto += somaMinutos;
 
-    console.log(`ID: ${idTarefa}`);
+    console.log(`ID da nova tarefa: ${idTarefa}`);
     
     const novaTarefa = document.createElement("div");
     novaTarefa.classList.add("tarefa");
@@ -67,7 +72,7 @@ botaoEnviar.addEventListener("click", () => {
     divTarefas.appendChild(novaTarefa);
 
     // Salva informações no localStorage
-    let listaTarefasSalvas = JSON.parse(localStorage.getItem("array_tarefas_salvas")) || [];
+    listaTarefasSalvas = JSON.parse(localStorage.getItem("array_tarefas_salvas")) || [];
     listaTarefasSalvas.push(novaTarefa.innerHTML);
     localStorage.setItem("array_tarefas_salvas", JSON.stringify(listaTarefasSalvas));
 
@@ -157,6 +162,23 @@ function atualizarTimer() {
 
 function excluirTarefa(tarefa) {
     divTarefas.removeChild(tarefa);
+
+    // Para remover a tarefa do localStorage
+    listaTarefasSalvas.forEach((txtTarefa, index) => {
+        if (txtTarefa === null) {
+            // Caso a tarefa seja "null"
+            return
+        }
+
+        if (txtTarefa.includes(tarefa.id)) {
+            // Define a tarefa como null
+            listaTarefasSalvas[index] = null;
+        }
+
+    });
+
+    // Salva o novo array com a tarefa excluida
+    localStorage.setItem("array_tarefas_salvas", JSON.stringify(listaTarefasSalvas));
 }
 
 function adicionarZero(horario) {
@@ -173,7 +195,7 @@ function transformarEmHoras(minutos) {
 function salvarTarefasNoLocalStorage(listaTarefasSalvas) {
 
     listaTarefasSalvas.forEach((tarefa, index) => {
-        console.log(`index: ${index+1}\nidTarefa: ${idTarefa}`)
+
         if (listaTarefasSalvas[index] != null & index+1 != idTarefa & document.querySelector(`#tarefa${index+1}`) == null) {
             // alert(document.querySelector(`#tarefa${index}`))
 
@@ -193,10 +215,7 @@ function salvarTarefasNoLocalStorage(listaTarefasSalvas) {
             novaTarefa.appendChild(botaoExcluirTarefa);
             divTarefas.appendChild(novaTarefa);
 
-            console.log(`Tarefa ${index + 1}: ${(listaTarefasSalvas[index])}`);
-
             const inputCheckbox = novaTarefa.querySelector(`#input-tarefa${index+1}`);
-            console.log(`\n\nINPUT CHECKBOX:\n${inputCheckbox}\n\n`);
 
             // Mostra o horário do fim das atividades e o mostra:
             atualizarTimer();
