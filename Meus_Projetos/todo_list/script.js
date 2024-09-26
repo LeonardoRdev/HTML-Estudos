@@ -1,3 +1,5 @@
+// Agora a página salva as tarefas, porém, mesmo se excluir, ao recarregar a página todas tarefas voltam.
+
 // Form | Adicionar Tarefas
 const inputTarefa = document.querySelector("#input-tarefa");
 const inputTempoTarefa = document.querySelector("#input-tempo-tarefa");
@@ -10,6 +12,8 @@ const horarioFimAtividades = document.querySelector("#horario-fim-atividades #ho
 // Form | Tarefas adicionadas
 const divTarefas = document.querySelector("div#tarefas");
 let idTarefa = localStorage.getItem("idTarefa_salvo") ? parseInt(localStorage.getItem("idTarefa_salvo")) : 1
+
+// localStorage.clear();
 
 // Declarando o tempo inicial:
 let dataDia = new Date();
@@ -62,22 +66,12 @@ botaoEnviar.addEventListener("click", () => {
     novaTarefa.appendChild(botaoExcluirTarefa);
     divTarefas.appendChild(novaTarefa);
 
-    // Salvar informações no localStorage
+    // Salva informações no localStorage
     let listaTarefasSalvas = JSON.parse(localStorage.getItem("array_tarefas_salvas")) || [];
-    listaTarefasSalvas.push(document.querySelector(`#tarefa${idTarefa}`));
-    alert(document.querySelector(`#tarefa${idTarefa}`))
+    listaTarefasSalvas.push(novaTarefa.innerHTML);
     localStorage.setItem("array_tarefas_salvas", JSON.stringify(listaTarefasSalvas));
 
-    listaTarefasSalvas.forEach((tarefa, index) => {
-        console.log(`Tarefa ${index + 1}: ${(listaTarefasSalvas[index])}`)
-    })
-
-    // O QUE PRECISA ACONTECER:
-    // const li = document.createElement('li');
-    // Usa innerHTML para criar elementos HTML a partir da string
-    // lista.appendChild(li);
-    // li.innerHTML = itemHTML;
-
+    salvarTarefasNoLocalStorage(listaTarefasSalvas);
 
     const inputCheckbox = novaTarefa.querySelector(`#input-tarefa${idTarefa}`);
 
@@ -174,4 +168,50 @@ function transformarEmHoras(minutos) {
     let novosMinutos = minutos % 60;
 
     return {adicionarHoras, novosMinutos} ;
+}
+
+function salvarTarefasNoLocalStorage(listaTarefasSalvas) {
+
+    listaTarefasSalvas.forEach((tarefa, index) => {
+        console.log(`index: ${index+1}\nidTarefa: ${idTarefa}`)
+        if (listaTarefasSalvas[index] != null & index+1 != idTarefa & document.querySelector(`#tarefa${index+1}`) == null) {
+            // alert(document.querySelector(`#tarefa${index}`))
+
+            const novaTarefa = document.createElement("div");
+            novaTarefa.classList.add("tarefa");
+            novaTarefa.id = `tarefa${index+1}`;
+
+            novaTarefa.innerHTML = listaTarefasSalvas[index];
+
+            // O botão "excluirTarefa" vai passar na função "excluirTarefa" a própria tarefa em que ele se encontra.
+            const botaoExcluirTarefa = document.createElement("button");
+            botaoExcluirTarefa.classList.add("excluir-tarefa");
+            botaoExcluirTarefa.type = "button";
+            botaoExcluirTarefa.textContent = "X";
+            botaoExcluirTarefa.addEventListener("click", () => excluirTarefa(novaTarefa));
+        
+            novaTarefa.appendChild(botaoExcluirTarefa);
+            divTarefas.appendChild(novaTarefa);
+
+            console.log(`Tarefa ${index + 1}: ${(listaTarefasSalvas[index])}`);
+
+            const inputCheckbox = novaTarefa.querySelector(`#input-tarefa${index+1}`);
+            console.log(`\n\nINPUT CHECKBOX:\n${inputCheckbox}\n\n`);
+
+            // Mostra o horário do fim das atividades e o mostra:
+            atualizarTimer();
+            divHorarioFimAtividades.style.display = "flex";
+
+            // Diminui o tempo total esperado para a conclusão das tarefas:
+            inputCheckbox.addEventListener("click", () => {
+                atualizarTimer();
+
+            });
+
+            botaoExcluirTarefa.addEventListener("click", () => {
+                atualizarTimer();
+
+            });
+        }
+    });
 }
