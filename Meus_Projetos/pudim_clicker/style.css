@@ -5,13 +5,14 @@
     font-family: sans-serif;
 }
 
-#titulo {
-    text-align: center;
+main {
+    margin-top: 5%;
+    position: relative;
+    width: 70%;
 }
 
 /* PUDINS */
 #pudins {
-    margin-top: 4em;
     position: relative;
     display: flex;
     align-items: center;
@@ -38,7 +39,7 @@
 .imagem_pudim {
     background-size: contain;
     background-repeat: no-repeat;
-    width: 25vw;
+    width: 40%;
     height: 28vh;
     position: absolute;
 
@@ -47,7 +48,7 @@
 
 #informacoes_pudins {
     text-align: center;
-    margin-top: 30vh;
+    margin-top: 26%;
 }
 
 #pudins_por_segundo,
@@ -60,6 +61,7 @@
 #quantidade_pudins {
     font-size: 2em;
 }
+
 
 /* Efeito ao clicar no pudim */
 .click_effect {
@@ -377,4 +379,20 @@ footer {
 
 #melhoria_cafeteria_2 {
     background-image: url(imgs/melhorias/cafeteria2.png);
+}
+
+
+/* ESTILIZAÇÕES DE RESPONSIVIDADE */
+@media only screen and (max-width: 1440px) {
+    aside {
+        /* background-color: red; */
+
+        width: 48em;
+        padding-left: 25em;
+    }
+
+    .upgrade {
+        height: 7em;
+        font-size: 0.83em;
+    }
 }
