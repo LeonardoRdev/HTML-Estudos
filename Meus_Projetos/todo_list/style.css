@@ -120,8 +120,6 @@ form#adicionar-tarefa button:active {
 
 /* Aqui ficarão as tarefas adicionadas */
 #tarefas {
-
-
     display: flex;
     flex-direction: column;
 }
@@ -146,7 +144,7 @@ form#adicionar-tarefa button:active {
     border-bottom: solid 0.25em #9b34eb;
 }
 
-.tarefa label, #div-checkbox, .tarefa p {
+.tarefa label, #div-checkbox, #tempo-tarefa {
     width: 33.3%;
 }
 
@@ -205,6 +203,10 @@ form#adicionar-tarefa button:active {
     100% {
         transform: rotate(45deg) scale(1);
     }
+}
+
+p#hora-aproximada-conclusao-tarefa {
+    font-size: 0.65em
 }
 
 .excluir-tarefa {

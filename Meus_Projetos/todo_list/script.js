@@ -58,7 +58,10 @@ botaoEnviar.addEventListener("click", () => {
             </div>
         </div>
         <label for="input-tarefa${idTarefa}">${inputTarefa.value}</label>
-        <p>${inputTempoTarefa.value} minutos</p>
+        <div id="tempo-tarefa">
+            <p id="tempo-em-minutos">${inputTempoTarefa.value} minutos</p>
+            <p id="hora-aproximada-conclusao-tarefa">(${adicionarZero(dataHora)}:${adicionarZero(dataMinuto)}:${adicionarZero(dataSegundo)})</>
+        </div>
     `;
 
     // O botão "excluirTarefa" vai passar na função "excluirTarefa" a própria tarefa em que ele se encontra.
