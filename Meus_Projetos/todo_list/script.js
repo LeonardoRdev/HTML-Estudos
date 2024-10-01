@@ -13,18 +13,18 @@ const horarioFimAtividades = document.querySelector("#horario-fim-atividades #ho
 const divTarefas = document.querySelector("div#tarefas");
 let idTarefa = localStorage.getItem("idTarefa_salvo") ? parseInt(localStorage.getItem("idTarefa_salvo")) : 1
 
+// Declarando o tempo inicial:
+let dataDia = new Date();
+let dataHora = dataDia.getHours();
+let dataMinuto = dataDia.getMinutes();
+let dataSegundo = dataDia.getSeconds();
+
 // localStorage.clear();
 let listaTarefasSalvas = JSON.parse(localStorage.getItem("array_tarefas_salvas")) || [];
 if (listaTarefasSalvas.length !== 0) {
     salvarTarefasNoLocalStorage(listaTarefasSalvas);
 
 }
-
-// Declarando o tempo inicial:
-let dataDia = new Date();
-let dataHora = dataDia.getHours();
-let dataMinuto = dataDia.getMinutes();
-let dataSegundo = dataDia.getSeconds();
 
 // Botão de atualizar o timer (refresh):
 const botaoRefresh = document.querySelector("#botao-refresh");
@@ -60,7 +60,7 @@ botaoEnviar.addEventListener("click", () => {
         <label for="input-tarefa${idTarefa}">${inputTarefa.value}</label>
         <div id="tempo-tarefa">
             <p id="tempo-em-minutos">${inputTempoTarefa.value} minutos</p>
-            <p id="hora-aproximada-conclusao-tarefa">(${adicionarZero(dataHora)}:${adicionarZero(dataMinuto)}:${adicionarZero(dataSegundo)})</>
+            <p id="hora-aproximada-conclusao-tarefa">(${adicionarZero(dataHora)}:${adicionarZero(dataMinuto)})</>
         </div>
     `;
 
@@ -119,9 +119,8 @@ function ajustarMinutosHoras(horas, minutos, segundos) {
         horas = horas % 24;
     }
 
-    // Mostra o horário esperado para finalizar as atividades:
-    let horarioAtual = `${adicionarZero(horas)}:${adicionarZero(minutos)}:${adicionarZero(segundos)}`;
-    horarioFimAtividades.innerHTML = horarioAtual;
+    // Retorna o novo valor de "horas", "minutos" e "segundos"
+    return {horas, minutos, segundos}
 }
 
 function atualizarTimer() {
@@ -160,7 +159,13 @@ function atualizarTimer() {
     }
 
     dataMinuto += somaMinutosDaLista;
-    ajustarMinutosHoras(dataHora, dataMinuto, dataSegundo);
+    let resultado = ajustarMinutosHoras(dataHora, dataMinuto, dataSegundo);
+        
+    // Mostra o horário esperado para finalizar as atividades:
+    let horarioAtual = `${adicionarZero(resultado.horas)}:${adicionarZero(resultado.minutos)}:${adicionarZero(resultado.segundos)}`;
+    horarioFimAtividades.innerHTML = horarioAtual;
+
+    atualizarPrevisaoConclusaoCadaTarefa();
 }
 
 function excluirTarefa(tarefa) {
@@ -235,5 +240,36 @@ function salvarTarefasNoLocalStorage(listaTarefasSalvas) {
 
             });
         }
+    });
+}
+
+function atualizarPrevisaoConclusaoCadaTarefa() {
+    
+    const elementoTarefas = document.querySelectorAll(".tarefa");
+    let somaTotalMinutosTarefas = 0;
+
+    elementoTarefas.forEach((tarefa) => {
+        // Soma em uma única variável os minutos definidos para cada tarefa
+        somaTotalMinutosTarefas += parseInt(tarefa.querySelector("#tempo-em-minutos").innerHTML);
+
+        let input = tarefa.querySelector("input");
+        // Caso a tarefa esteja concluída, o programa deixará de somar o valor dela
+        if (input.checked) {
+            somaTotalMinutosTarefas -= parseInt(tarefa.querySelector("#tempo-em-minutos").innerHTML);
+        }
+
+        // Inicia o horário atual
+        let dataDia = new Date();
+        let dataHora = dataDia.getHours();
+        let dataMinuto = dataDia.getMinutes();
+        let dataSegundo = dataDia.getSeconds();
+
+        // Soma, a cada tarefa, o valor de seu tempo estimado para essa variável acumuladora
+        dataMinuto += somaTotalMinutosTarefas;
+        let resultado = ajustarMinutosHoras(dataHora, dataMinuto, dataSegundo);
+        
+        // Mostra o horário esperado para finaliza cada atividade:
+        let stringHorarioFormatado = (`(${adicionarZero(resultado.horas)}:${adicionarZero(resultado.minutos)})`)
+        tarefa.querySelector("#hora-aproximada-conclusao-tarefa").innerHTML = stringHorarioFormatado;
     });
 }
