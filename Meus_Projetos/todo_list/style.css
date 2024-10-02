@@ -212,7 +212,7 @@ p#hora-aproximada-conclusao-tarefa {
 .excluir-tarefa {
     position: absolute;
     right: 14vw;
-
+    
     font-family: sans-serif;
     font-weight: bold;
     color: #fff;
@@ -249,7 +249,15 @@ p#hora-aproximada-conclusao-tarefa {
     box-shadow: 0 0 0.4em #0005;
 }
 
-/* Responsividade (Tablet ou Menor) */
+
+/* Responsividade*/
+@media only screen and (max-width: 1200px) {
+    .excluir-tarefa {
+        right: 12vw;
+    }
+}
+
+/* Tablet ou Menor */
 @media only screen and (max-width: 768px) {
     div#divs-com-inputs {
         flex-direction: column;
@@ -272,14 +280,100 @@ p#hora-aproximada-conclusao-tarefa {
     .excluir-tarefa {
         right: 2vw;
     }
+
+    #tarefas-a-fazer {
+        width: 82vw;
+    }
+
+    .tarefa input[type="checkbox"] {
+        width: 30px;
+        height: 30px;
+        border: 3px solid #000c;
+    }
+
+    /* diminuir fonte */
+    #titulo {
+        font-size: 2.4em;
+    }
+    
+    div.inputs-form input {
+        font-size: 1.2em;
+    }
+    
+    form#adicionar-tarefa button {
+        font-size: 1.3em;
+    }
+
+    #header-lista-tarefas {
+        font-size: 1.2em;
+    }
+    
+    .tarefa {
+        font-size: 1.1em;
+    }
+    
+    p#hora-aproximada-conclusao-tarefa {
+        font-size: 0.65em
+    }
+    
+    .excluir-tarefa {
+        font-size: 0.95em;
+    }
+    
+    #horario-fim-atividades #horario {
+        font-size: 2em;
+    }
 }
 
 @media only screen and (max-width: 425px) {
+    .excluir-tarefa {
+        right: 3px
+    }
+
     #tarefas-a-fazer {
         width: 90vw;
     }
 
+    .tarefa input[type="checkbox"] {
+        width: 30px;
+        height: 30px;
+        border: 3px solid #000c;
+    }
+
+    /* diminuir fonte */
+    #titulo {
+        font-size: 2em;
+    }
+    
+    div.inputs-form input {
+        font-size: 1em;
+    }
+
+    div.inputs-form label {
+        font-size: 0.85em;
+    }
+    
+    form#adicionar-tarefa button {
+        font-size: 1.2em;
+    }
+
+    #header-lista-tarefas {
+        font-size: 1em;
+    }
+    
+    .tarefa {
+        font-size: 0.9em;
+    }
+    
+    p#hora-aproximada-conclusao-tarefa {
+        font-size: 0.75em
+    }
+    
     .excluir-tarefa {
-        display: none;
+        font-size: 0.85em;
+    }
+    
+    #horario-fim-atividades #horario {
+        font-size: 1.8em;
     }
 }
