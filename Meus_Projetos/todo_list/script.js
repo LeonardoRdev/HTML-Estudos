@@ -138,6 +138,7 @@ function atualizarTimer() {
         let input = tarefa.querySelector("input");
         let label = tarefa.querySelector("label");
         let paragrafo = tarefa.querySelector("p");
+        let paragrafoTempoEstimadoConclusao = tarefa.querySelector("p:nth-of-type(2)");
         let textoComMinutosTarefa = paragrafo.textContent;
         let MinutosTarefa = parseInt(textoComMinutosTarefa.split(" ")[0]);
 
@@ -148,12 +149,14 @@ function atualizarTimer() {
             // estilização ao marcar e desmarcar tarefas: 
             label.style.textDecoration = "none";
             paragrafo.style.textDecoration = "none";
+            paragrafoTempoEstimadoConclusao.style.textDecoration = "none";
         }
         
         // Caso a tarefa esteja concluída:
         else {
             label.style.textDecoration = "line-through";
             paragrafo.style.textDecoration = "line-through";
+            paragrafoTempoEstimadoConclusao.style.textDecoration = "line-through";
         }
 
     }

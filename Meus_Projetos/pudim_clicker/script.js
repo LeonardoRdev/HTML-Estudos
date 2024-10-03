@@ -1,7 +1,7 @@
 // O UNICO PROBLEMA (APARENTE), É QUE AS MELHORIAS PERDEM A "BORDA" VERMELHA AO FICAREM DISPONÍVEIS PARA COMPRA, VÊ ISSO.
 
 // Descomentar para remover os arquivos locais (deletar o save)
-// localStorage.clear();
+localStorage.clear();
 
 // formata os números grandes, exemplo: 10000 -> 10k 
 const formatarNumero = Intl.NumberFormat("en", { notation: "compact"});
@@ -482,7 +482,7 @@ function atualizarComponentesDeTempo() {
 
         else {
             // *Deixar a melhoria brilhante (disponível para compra)
-            elementosClasseMelhoria[melhoria].remove("melhoria_cara");
+            elementosClasseMelhoria[melhoria].classList.remove("melhoria_cara");
         }
 
 

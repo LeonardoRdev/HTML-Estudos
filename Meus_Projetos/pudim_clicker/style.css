@@ -39,11 +39,12 @@ main {
 .imagem_pudim {
     background-size: contain;
     background-repeat: no-repeat;
-    width: 40%;
+    width: 34%;
+
     height: 28vh;
     position: absolute;
 
-    border-radius: 60% / 100% 70% 13% 15% 
+    border-radius: 400px 300px 0 0; /* Cria uma elipse na parte superior */
 }
 
 #informacoes_pudins {
