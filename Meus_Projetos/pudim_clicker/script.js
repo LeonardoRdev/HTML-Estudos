@@ -1,7 +1,7 @@
 // O UNICO PROBLEMA (APARENTE), É QUE AS MELHORIAS PERDEM A "BORDA" VERMELHA AO FICAREM DISPONÍVEIS PARA COMPRA, VÊ ISSO.
 
 // Descomentar para remover os arquivos locais (deletar o save)
-localStorage.clear();
+// localStorage.clear();
 
 // formata os números grandes, exemplo: 10000 -> 10k 
 const formatarNumero = Intl.NumberFormat("en", { notation: "compact"});
@@ -297,22 +297,22 @@ const listaPrecoMelhorias = [
 ];
 
 const listaNomeMelhorias = [
-    "Curso EAD de confeiteira", // confeiteira_1
-     "Aulas com quem sabe",     // confeiteira_2
-     "Aulas com quem sabe",     // confeiteira_3
-     "Aulas com quem sabe",     // confeiteira_4
-     "Aulas com quem sabe",     // confeiteira_5
-     "Gato cozinheiro",         // chef_1
-     "Tony Stark brasileiro",   // chef_2
-     "Nome a ser criado...",    // chef_3
-     "Pãochorro de forma",      // padaria_1
-     "Especialista em pães",    // padaria_2
-     "Nome a ser criado...",    // confeitaria_1
-     "Nome a ser criado...",    // confeitaria_2
-     "Nome a ser criado...",    // supermercado_1
-     "Nome a ser criado...",    // supermercado_2
-     "Cookie clica 🍪",         // cafeteria_1
-     "Café na Lua"              // cafeteria_2
+    "Curso EAD de confeiteira",                  // confeiteira_1
+     "Nome a ser criado...",                     // confeiteira_2
+     "Nome a ser criado...",                     // confeiteira_3
+     "Nome a ser criado...",                     // confeiteira_4
+     "Nome a ser criado...",                     // confeiteira_5
+     "Gato cozinheiro",                          // chef_1
+     "Tony Stark brasileiro",                    // chef_2
+     "Desligar o freezer durante a noite",       // chef_3
+     "Pãochorro de forma",                       // padaria_1
+     "Especialista em pães",                     // padaria_2
+     "Nome a ser criado...",                     // confeitaria_1
+     "Nome a ser criado...",                     // confeitaria_2
+     "Produtos legalizados",                     // supermercado_1
+     "Nome a ser criado...",                     // supermercado_2
+     "Cookie clica 🍪",                          // cafeteria_1
+     "Parceria das grandes"                      // cafeteria_2
 ];
 
 const listaDescricaoMelhorias = [

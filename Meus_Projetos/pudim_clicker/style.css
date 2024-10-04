@@ -299,8 +299,8 @@ footer {
     border: solid 3px #111;
     display: none;
     background-color: #EEE;
-    width: 22%;
-    height: 4.3em;
+    width: 72px;
+    height: 72px;
     transition: scale 0.15s;
 }
 
@@ -311,7 +311,7 @@ footer {
 
 .melhoria {
     height: 100%;
-    border: solid 4px #d44437DD;
+    border: solid 3px #d44437DD;
 }
 
 .melhoria_cara {
@@ -327,19 +327,19 @@ footer {
 }
 
 #melhoria_confeiteira_2 {
-    background-image: url(imgs/melhorias/confeitaria2.png);
+    background-image: url(imgs/melhorias/imagem_provisoria.png);
 }
 
 #melhoria_confeiteira_3 {
-    background-image: url(imgs/melhorias/confeitaria2.png);
+    background-image: url(imgs/melhorias/imagem_provisoria.png);
 }
 
 #melhoria_confeiteira_4 {
-    background-image: url(imgs/melhorias/confeitaria2.png);
+    background-image: url(imgs/melhorias/imagem_provisoria.png);
 }
 
 #melhoria_confeiteira_5 {
-    background-image: url(imgs/melhorias/confeitaria2.png);
+    background-image: url(imgs/melhorias/imagem_provisoria.png);
 }
 
 #melhoria_chef_1 {
@@ -348,6 +348,10 @@ footer {
 
 #melhoria_chef_2 {
     background-image: url(imgs/melhorias/chef2.png);
+}
+
+#melhoria_chef_3 {
+    background-image: url(imgs/melhorias/chef3.png);
 }
 
 #melhoria_padaria_1 {
