@@ -240,7 +240,7 @@ aside {
 
 /* FOOTER MELHORIAS */
 footer {
-    background-color: #d4443755;
+    /* background-color: #d4443755; */
 
     width: 20em;
     display: flex;
@@ -250,14 +250,14 @@ footer {
 }
 
 #informacoes_melhorias {
-    background-color: #E64A3C;
+    background-color: #E64A3CE8;
     color: #111;
 
     padding: 15px;
     width: 108%;
     display: none;
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
 
     /* Não permitir selecionar o texto dos upgrades: */
     -ms-user-select: none; /* Internet Explorer e Edge */
@@ -275,6 +275,7 @@ footer {
     border-top: 3px solid #000;
     padding-top: 10px;
     font-weight: 600;
+    font-size: 0.95em;
 }
 
 #melhorias {
