@@ -279,7 +279,7 @@ const listaMelhorias = [
 
 const listaPrecoMelhorias = [
     50,      // confeiteira_1
-    15,      // confeiteira_2
+    250,      // confeiteira_2
     15,      // confeiteira_3
     15,      // confeiteira_4
     15,      // confeiteira_5
@@ -317,21 +317,21 @@ const listaNomeMelhorias = [
 
 const listaDescricaoMelhorias = [
     "Tudo tem que começar de algum lugar.<br><br><br>Aumenta a produção das confeiteiras em 2x",                // confeiteira_1
-    "Para confundir os clientes na hora de comer.<br><br><br>Aumenta a produção das confeiteiras em 2x",        // confeiteira_2
-    "Aumenta a produção das confeiteiras em 2x",                                                                // confeiteira_3
-    "Aumenta a produção das confeiteiras em 2x",                                                                // confeiteira_4
-    "Aumenta a produção das confeiteiras em 2x",                                                                // confeiteira_5
+    "Para confundir os clientes na hora de comer.<br><br><br>Aumenta a produção das confeiteiras em 4x",        // confeiteira_2
+    "Aumenta a produção das confeiteiras em 6x",                                                                // confeiteira_3
+    "Aumenta a produção das confeiteiras em 8x",                                                                // confeiteira_4
+    "Aumenta a produção das confeiteiras em 10x",                                                                // confeiteira_5
     "A comida fica melhor com pelos!<br><br><br>Aumenta a produção dos chefs em 2x",                            // chef_1
-    "Largou os VIngadores pra fazer comida 🔥<br><br><br>Aumenta a produção dos chefs em 2x",                   // chef_2
-    "Economizar também é ganhar.<br>(pense nisso)<br><br><br>Aumenta a produção dos chefs em 2x",               // chef_3
+    "Largou os VIngadores pra fazer comida 🔥<br><br><br>Aumenta a produção dos chefs em 4x",                   // chef_2
+    "Economizar também é ganhar.<br>(pense nisso)<br><br><br>Aumenta a produção dos chefs em 6x",               // chef_3
     "Pode ficar tranquilo(a), eles só servem de decoração.<br><br><br>Aumenta a produção das padarias em 2x",   // padaria_1
-    "Ficou careca de tanto estudar os pães.<br><br><br>Aumenta a produção das padarias em 2x",                  // padaria_2
+    "Ficou careca de tanto estudar os pães.<br><br><br>Aumenta a produção das padarias em 4x",                  // padaria_2
     "Aumenta a produção das confeitarias em 2x",                                                                // confeitaria_1
-    "Aumenta a produção das confeitarias em 2x",                                                                // confeitaria_2
+    "Aumenta a produção das confeitarias em 4x",                                                                // confeitaria_2
     "Agora com produtos legalizados!!<br><br><br>Aumenta a produção dos supermercados em 2x",                   // supermercado_1
-    "Aumenta a produção dos supermercados em 2x",                                                               // supermercado_2
+    "Aumenta a produção dos supermercados em 4x",                                                               // supermercado_2
     "Clica Cookie...<br><br><br>Aumenta a produção das cafeterias em 2x",                                       // cafeteria_1
-    "Nem precisa mais comprar Restaurante Gourmet.<br><br><br>Aumenta a produção das cafeterias em 2x"          // cafeteria_2
+    "Nem precisa mais comprar Restaurante Gourmet.<br><br><br>Aumenta a produção das cafeterias em 4x"          // cafeteria_2
 ];
 
 const elementosMelhorias = {};
@@ -391,22 +391,25 @@ function clicarNaMelhoria(melhoria) {
         atualizarQuantidadePudins();
 
         elementosMelhorias[melhoria].style.display = "none";
-        atualizarPudinsPorSegundo();
         
         // Armazena a informação no localStorage de que a melhoria foi comprada, e não deverá aparecer mais.
         localStorage.setItem(`comprei_melhoria_${melhoria}`, true);
 
         
-        // Beneficios da MELHORIA
-        listaUpgrades.forEach((upgrade) => {
-            
-            // Duplica o poder do UPGRADE!
-            poderUpgrades[upgrade] *= 2;
-            localStorage.setItem(`poder_upgrade_${upgrade}`, poderUpgrades[upgrade]);
+        // # Beneficios da MELHORIA 
+        let upgradeBeneficiado = melhoria.split("_")[0];
+        let numeroUpgradeComprado = melhoria.split("_")[1];
 
-            // Atualiza o Tooltip dos UPGRADES
-            atualizarTooltipUpgrades(upgrade);
-        });
+        // Aumenta o poder do upgrade em 2 * (Quantidade de melhorias já compradas), para cada melhoria!
+        poderUpgrades[upgradeBeneficiado] *= 2 * numeroUpgradeComprado;
+        localStorage.setItem(`poder_upgrade_${upgradeBeneficiado}`, poderUpgrades[upgradeBeneficiado]);
+
+        // Atualiza o Tooltip dos UPGRADES
+        atualizarTooltipUpgrades(upgradeBeneficiado);
+
+        // Atualiza o PPS e o PPC
+        atualizarPudinsPorSegundo();
+        atualizarPudinsPorClique();
     }
 
 }
