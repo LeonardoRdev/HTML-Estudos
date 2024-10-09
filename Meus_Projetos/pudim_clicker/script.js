@@ -1,5 +1,3 @@
-// O UNICO PROBLEMA (APARENTE), É QUE AS MELHORIAS PERDEM A "BORDA" VERMELHA AO FICAREM DISPONÍVEIS PARA COMPRA, VÊ ISSO.
-
 // Descomentar para remover os arquivos locais (deletar o save)
 // localStorage.clear();
 
@@ -64,10 +62,10 @@ const listaUpgradesPorSegundo = [
 const listaPoderInicialUpgrades = [
     0.5, // confeiteira  + PPS (Pudim Por Segundo)
     1,   // chef         + PPC (Pudim Por Clique)
-    15,  // padaria      + PSS
-    100, // confeitaria  + PPS
-    250, // supermercado + PPS
-    750, // cafeteria    + PPS
+    20,  // padaria      + PSS
+    150, // confeitaria  + PPS
+    500, // supermercado + PPS
+    2000, // cafeteria    + PPS
     1    // gourmet        PPC * Poder_gourmet (vai multiplicando por 2)
 ];
 
@@ -113,6 +111,12 @@ listaUpgrades.forEach(upgrade => {
     atualizarQuantidadePudins();
     atualizarPudinsPorSegundo();
     atualizarPudinsPorClique();
+
+    // Ativar TOOLTIP do UPGRADE
+    if (quantidadeUpgrade[upgrade] > 0) {
+        atualizarTooltipUpgrades(upgrade)
+        elementosUpgrade[upgrade].querySelector(".informacoes_upgrade").classList.add("mostrar_before", "mostrar_after");
+    }
 });
 
 
@@ -279,7 +283,7 @@ const listaMelhorias = [
 
 const listaPrecoMelhorias = [
     50,      // confeiteira_1
-    250,      // confeiteira_2
+    350,      // confeiteira_2
     15,      // confeiteira_3
     15,      // confeiteira_4
     15,      // confeiteira_5
@@ -400,8 +404,16 @@ function clicarNaMelhoria(melhoria) {
         let upgradeBeneficiado = melhoria.split("_")[0];
         let numeroUpgradeComprado = melhoria.split("_")[1];
 
-        // Aumenta o poder do upgrade em 2 * (Quantidade de melhorias já compradas), para cada melhoria!
-        poderUpgrades[upgradeBeneficiado] *= 2 * numeroUpgradeComprado;
+        // Caso for chef, multiplica o poder dele por 10x
+        if (upgradeBeneficiado === "chef") {
+            poderUpgrades[upgradeBeneficiado] *= 10 * numeroUpgradeComprado;
+        }
+        
+        // Senão, aumenta o poder do upgrade em 2 * (Quantidade de melhorias já compradas) -> (2x1, 2x2, 2x3)
+        else {
+            poderUpgrades[upgradeBeneficiado] *= 2 * numeroUpgradeComprado;
+        }
+
         localStorage.setItem(`poder_upgrade_${upgradeBeneficiado}`, poderUpgrades[upgradeBeneficiado]);
 
         // Atualiza o Tooltip dos UPGRADES
