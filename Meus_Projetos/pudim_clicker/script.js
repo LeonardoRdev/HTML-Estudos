@@ -1,6 +1,10 @@
 // Descomentar para remover os arquivos locais (deletar o save)
 // localStorage.clear();
 
+// document.querySelector("#botao-teste").onclick = () => {
+//     pudins = 0;
+// }
+
 // formata os números grandes, exemplo: 10000 -> 10k 
 const formatarNumero = Intl.NumberFormat("en", { notation: "compact"});
 
@@ -60,23 +64,23 @@ const listaUpgradesPorSegundo = [
 
 // Poder dos Upgrades (O tanto de pudins que cada compra concederá)
 const listaPoderInicialUpgrades = [
-    0.5, // confeiteira  + PPS (Pudim Por Segundo)
-    1,   // chef         + PPC (Pudim Por Clique)
-    20,  // padaria      + PSS
-    150, // confeitaria  + PPS
-    500, // supermercado + PPS
-    2000, // cafeteria    + PPS
-    1    // gourmet        PPC * Poder_gourmet (vai multiplicando por 2)
+    0.5,   // confeiteira  + PPS (Pudim Por Segundo)
+    1,     // chef         + PPC (Pudim Por Clique)
+    20,    // padaria      + PSS
+    150,   // confeitaria  + PPS
+    500,   // supermercado + PPS
+    4_000, // cafeteria    + PPS
+    1      // gourmet        PPC * Poder_gourmet (vai multiplicando por 2)
 ];
 
 const listaPrecoInicialUpgrades = [
     10,     // confeiteira
     100,    // chef
     500,    // padaria
-    3_000,  // confeitaria
-    20_000, // supermercado
-    35_000, // cafeteria
-    350_000 // gourmet
+    5_000,  // confeitaria
+    75_000, // supermercado
+    1_000_000, // cafeteria
+    1_000_000 // gourmet
 ];
 
 const elementosUpgrade = {};
@@ -203,15 +207,16 @@ function clicarNoUpgrade(upgrade) {
 
         // Caso o UPGRADE for PPC
         if (upgrade === "chef" || upgrade === "gourmet") {
-    
-            // Recompensa fornecida pelo UPGRADE
-            atualizarPudinsPorClique();
 
             // Caso for GOURMET
             if (upgrade === "gourmet") {
                 // Esse upgrade está sempre ativo, porém, a cada compra DELE o PPC (Poder por Click) total é multiplicado pelo poder DESTE upgrade, começando com x1.
                 poderUpgrades["gourmet"] *= 2;
+                localStorage.setItem(`poder_upgrade_${upgrade}`, poderUpgrades[upgrade]);
             }
+
+            // Recompensa fornecida pelo UPGRADE
+            atualizarPudinsPorClique();
         }
 
         // Caso o UPGRADE for PPS
@@ -284,20 +289,20 @@ const listaMelhorias = [
 const listaPrecoMelhorias = [
     50,      // confeiteira_1
     350,      // confeiteira_2
-    15,      // confeiteira_3
-    15,      // confeiteira_4
-    15,      // confeiteira_5
+    50_000,      // confeiteira_3
+    250_000,      // confeiteira_4
+    15000000000000,      // confeiteira_5
     500,     // chef_1
-    15,      // chef_2
-    15,      // chef_3
-    2_000,   // padaria_1
-    15,      // padaria_2
-    15_000,  // confeitaria_1
-    15,      // confeitaria_2
-    50_000,  // supermercado_1
-    15,      // supermercado_2
+    20_000,      // chef_2
+    15000000000000,      // chef_3
+    3_500,   // padaria_1
+    200_000,      // padaria_2
+    25_000,  // confeitaria_1
+    15000000000000,      // confeitaria_2
+    750_000,  // supermercado_1
+    15000000000000,      // supermercado_2
     125_000, // cafeteria_1
-    15       // cafeteria_2
+    15000000000000       // cafeteria_2
 ];
 
 const listaNomeMelhorias = [
@@ -324,17 +329,17 @@ const listaDescricaoMelhorias = [
     "Para confundir os clientes na hora de comer.<br><br><br>Aumenta a produção das confeiteiras em 4x",        // confeiteira_2
     "Aumenta a produção das confeiteiras em 6x",                                                                // confeiteira_3
     "Aumenta a produção das confeiteiras em 8x",                                                                // confeiteira_4
-    "Aumenta a produção das confeiteiras em 10x",                                                                // confeiteira_5
-    "A comida fica melhor com pelos!<br><br><br>Aumenta a produção dos chefs em 2x",                            // chef_1
-    "Largou os VIngadores pra fazer comida 🔥<br><br><br>Aumenta a produção dos chefs em 4x",                   // chef_2
-    "Economizar também é ganhar.<br>(pense nisso)<br><br><br>Aumenta a produção dos chefs em 6x",               // chef_3
+    "Aumenta a produção das confeiteiras em 10x",                                                               // confeiteira_5
+    "A comida fica melhor com pelos!<br><br><br>Aumenta a produção dos chefs em 10x",                           // chef_1
+    "Largou os Vingadores pra fazer comida 🔥<br><br><br>Aumenta a produção dos chefs em 20x",                  // chef_2
+    "Economizar também é ganhar.<br>(pense nisso)<br><br><br>Aumenta a produção dos chefs em 30x",              // chef_3
     "Pode ficar tranquilo(a), eles só servem de decoração.<br><br><br>Aumenta a produção das padarias em 2x",   // padaria_1
     "Ficou careca de tanto estudar os pães.<br><br><br>Aumenta a produção das padarias em 4x",                  // padaria_2
     "Aumenta a produção das confeitarias em 2x",                                                                // confeitaria_1
     "Aumenta a produção das confeitarias em 4x",                                                                // confeitaria_2
     "Agora com produtos legalizados!!<br><br><br>Aumenta a produção dos supermercados em 2x",                   // supermercado_1
     "Aumenta a produção dos supermercados em 4x",                                                               // supermercado_2
-    "Clica Cookie...<br><br><br>Aumenta a produção das cafeterias em 2x",                                       // cafeteria_1
+    "Clica no Cookie...<br><br><br>Aumenta a produção das cafeterias em 2x",                                    // cafeteria_1
     "Nem precisa mais comprar Restaurante Gourmet.<br><br><br>Aumenta a produção das cafeterias em 4x"          // cafeteria_2
 ];
 
@@ -432,7 +437,7 @@ function mostrarTooltipMelhorias(txtNomeMelhoria, txtPrecoMelhoria, txtDescricao
     informacoesMelhorias.style.display = "flex";
 
     informacoesMelhorias.querySelector("#nome_melhoria").innerHTML = txtNomeMelhoria;
-    informacoesMelhorias.querySelector("#preco_melhoria").innerHTML = txtPrecoMelhoria;
+    informacoesMelhorias.querySelector("#preco_melhoria").innerHTML = formatarNumero.format(txtPrecoMelhoria);
     informacoesMelhorias.querySelector("#descricao_melhoria").innerHTML = txtDescricaoMelhoria;
 }
 
@@ -514,13 +519,13 @@ function atualizarTooltipUpgrades(upgrade) {
 
     // Caso seja CHEF ou GOURMET
     if (upgrade === "chef") {
-        elementosUpgrade[upgrade].querySelector(".informacoes_upgrade").setAttribute("data-tooltip", `+${poderUpgrades[upgrade]} PPC\n\nTotal: ${poderUpgrades[upgrade] * quantidadeUpgrade[upgrade]} PPC`);
-        elementosUpgrade["gourmet"].querySelector(".informacoes_upgrade").setAttribute("data-tooltip", `${poderDoClique} x 2\n\nTotal: ${poderDoClique} PPC`);
+        elementosUpgrade[upgrade].querySelector(".informacoes_upgrade").setAttribute("data-tooltip", `+${poderUpgrades[upgrade]} PPC\n\nTotal: ${formatarNumero.format(poderUpgrades[upgrade] * quantidadeUpgrade[upgrade])} PPC`);
+        elementosUpgrade["gourmet"].querySelector(".informacoes_upgrade").setAttribute("data-tooltip", `${poderDoClique} x 2\n\nTotal: ${formatarNumero.format(poderDoClique)} PPC`);
         return;
     }
 
     if (upgrade === "gourmet") {
-        elementosUpgrade[upgrade].querySelector(".informacoes_upgrade").setAttribute("data-tooltip", `Duplica o PPC\n\nTotal: ${poderDoClique} PPC`);
+        elementosUpgrade[upgrade].querySelector(".informacoes_upgrade").setAttribute("data-tooltip", `Duplica o PPC\n\nTotal: ${formatarNumero.format(poderDoClique)} PPC`);
         return;
     }
 
