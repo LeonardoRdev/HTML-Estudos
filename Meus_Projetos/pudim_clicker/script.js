@@ -1,5 +1,5 @@
 // Descomentar para remover os arquivos locais (deletar o save)
-// localStorage.clear();
+//  localStorage.clear();
 
 // document.querySelector("#botao-teste").onclick = () => {
 //     pudins = 0;
@@ -15,7 +15,7 @@ let quantidadePudins = document.querySelector("#quantidade_pudins");
 let PPS = document.querySelector("#pudins_por_segundo");
 
 // Pudins / Poder do Clique / Preços iniciais dos upgrades:
-let pudins = localStorage.getItem("quantidade_pudins") ? parseInt(localStorage.getItem("quantidade_pudins")) : 0;
+let pudins = localStorage.getItem("quantidade_pudins") ? parseInt(localStorage.getItem("quantidade_pudins")) : 10000000;
 let poderDoClique = 1;
 let pudinsPorSegundo = 0;
 
@@ -287,36 +287,36 @@ const listaMelhorias = [
 ];
 
 const listaPrecoMelhorias = [
-    50,      // confeiteira_1
-    350,      // confeiteira_2
-    50_000,      // confeiteira_3
-    250_000,      // confeiteira_4
+    50,                  // confeiteira_1
+    350,                 // confeiteira_2
+    50_000,              // confeiteira_3
+    250_000,             // confeiteira_4
     15000000000000,      // confeiteira_5
-    500,     // chef_1
-    20_000,      // chef_2
+    500,                 // chef_1
+    20_000,              // chef_2
     15000000000000,      // chef_3
-    3_500,   // padaria_1
-    200_000,      // padaria_2
-    25_000,  // confeitaria_1
+    3_500,               // padaria_1
+    200_000,             // padaria_2
+    25_000,              // confeitaria_1
     15000000000000,      // confeitaria_2
-    750_000,  // supermercado_1
+    750_000,             // supermercado_1
     15000000000000,      // supermercado_2
-    125_000, // cafeteria_1
+    125_000,             // cafeteria_1
     15000000000000       // cafeteria_2
 ];
 
 const listaNomeMelhorias = [
     "Curso EAD de confeiteira",                  // confeiteira_1
      "Real ou Bolo??",                           // confeiteira_2
-     "Nome a ser criado...",                     // confeiteira_3
-     "Nome a ser criado...",                     // confeiteira_4
+     "Faculdade de confeiteira",                 // confeiteira_3
+     "Equipamentos melhores",                       // confeiteira_4
      "Nome a ser criado...",                     // confeiteira_5
      "Gato cozinheiro",                          // chef_1
      "Tony Stark brasileiro",                    // chef_2
      "Desligar o freezer durante a noite",       // chef_3
      "Pãochorro de forma",                       // padaria_1
      "Especialista em pães",                     // padaria_2
-     "Nome a ser criado...",                     // confeitaria_1
+     "Menos dinheiro, mais trabalho!",           // confeitaria_1
      "Nome a ser criado...",                     // confeitaria_2
      "Produtos legalizados",                     // supermercado_1
      "Nome a ser criado...",                     // supermercado_2
@@ -325,22 +325,22 @@ const listaNomeMelhorias = [
 ];
 
 const listaDescricaoMelhorias = [
-    "Tudo tem que começar de algum lugar.<br><br><br>Aumenta a produção das confeiteiras em 2x",                // confeiteira_1
-    "Para confundir os clientes na hora de comer.<br><br><br>Aumenta a produção das confeiteiras em 4x",        // confeiteira_2
-    "Aumenta a produção das confeiteiras em 6x",                                                                // confeiteira_3
-    "Aumenta a produção das confeiteiras em 8x",                                                                // confeiteira_4
-    "Aumenta a produção das confeiteiras em 10x",                                                               // confeiteira_5
-    "A comida fica melhor com pelos!<br><br><br>Aumenta a produção dos chefs em 10x",                           // chef_1
-    "Largou os Vingadores pra fazer comida 🔥<br><br><br>Aumenta a produção dos chefs em 20x",                  // chef_2
-    "Economizar também é ganhar.<br>(pense nisso)<br><br><br>Aumenta a produção dos chefs em 30x",              // chef_3
-    "Pode ficar tranquilo(a), eles só servem de decoração.<br><br><br>Aumenta a produção das padarias em 2x",   // padaria_1
-    "Ficou careca de tanto estudar os pães.<br><br><br>Aumenta a produção das padarias em 4x",                  // padaria_2
-    "Aumenta a produção das confeitarias em 2x",                                                                // confeitaria_1
-    "Aumenta a produção das confeitarias em 4x",                                                                // confeitaria_2
-    "Agora com produtos legalizados!!<br><br><br>Aumenta a produção dos supermercados em 2x",                   // supermercado_1
-    "Aumenta a produção dos supermercados em 4x",                                                               // supermercado_2
-    "Clica no Cookie...<br><br><br>Aumenta a produção das cafeterias em 2x",                                    // cafeteria_1
-    "Nem precisa mais comprar Restaurante Gourmet.<br><br><br>Aumenta a produção das cafeterias em 4x"          // cafeteria_2
+    "Tudo tem que começar de algum lugar.<br><br><br>Aumenta a produção das confeiteiras em 2x",                                  // confeiteira_1
+    "Para confundir os clientes na hora de comer.<br><br><br>Aumenta a produção das confeiteiras em 4x",                          // confeiteira_2
+    "Faculade de confeiteira para os funcionários!!<br><br><br>Aumenta a produção das confeiteiras em 6x",                        // confeiteira_3
+    "Com esses novos equipamentos, a produção vai mais que dobrar!! 🔥<br><br><br>Aumenta a produção das confeiteiras em 8x",     // confeiteira_4
+    "Aumenta a produção das confeiteiras em 10x",                                                                                 // confeiteira_5
+    "A comida fica melhor com pelos!<br><br><br>Aumenta a produção dos chefs em 10x",                                             // chef_1
+    "Largou os Vingadores pra fazer comida 🔥<br><br><br>Aumenta a produção dos chefs em 20x",                                    // chef_2
+    "Economizar também é ganhar.<br>(pense nisso)<br><br><br>Aumenta a produção dos chefs em 30x",                                // chef_3
+    "Pode ficar tranquilo(a), eles só servem de decoração.<br><br><br>Aumenta a produção das padarias em 2x",                     // padaria_1
+    "Ficou careca de tanto estudar os pães.<br><br><br>Aumenta a produção das padarias em 4x",                                    // padaria_2
+    "Diminuir o salário dos funcionários em 50%.<br><br><br>Aumenta a produção das confeitarias em 2x",                           // confeitaria_1
+    "Aumenta a produção das confeitarias em 4x",                                                                                  // confeitaria_2
+    "Agora com produtos legalizados!!<br><br><br>Aumenta a produção dos supermercados em 2x",                                     // supermercado_1
+    "Aumenta a produção dos supermercados em 4x",                                                                                 // supermercado_2
+    "Clica no Cookie...<br><br><br>Aumenta a produção das cafeterias em 2x",                                                      // cafeteria_1
+    "Nem precisa mais comprar Restaurante Gourmet.<br><br><br>Aumenta a produção das cafeterias em 4x"                            // cafeteria_2
 ];
 
 const elementosMelhorias = {};
