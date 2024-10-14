@@ -1,6 +1,8 @@
 // Descomentar para remover os arquivos locais (deletar o save)
 //  localStorage.clear();
 
+// COLOCAR UPGRADES PRA O RESTAURANTE GOURMET
+
 // document.querySelector("#botao-teste").onclick = () => {
 //     pudins = 0;
 // }
@@ -15,7 +17,7 @@ let quantidadePudins = document.querySelector("#quantidade_pudins");
 let PPS = document.querySelector("#pudins_por_segundo");
 
 // Pudins / Poder do Clique / Preços iniciais dos upgrades:
-let pudins = localStorage.getItem("quantidade_pudins") ? parseInt(localStorage.getItem("quantidade_pudins")) : 10000000;
+let pudins = localStorage.getItem("quantidade_pudins") ? parseInt(localStorage.getItem("quantidade_pudins")) : 0;
 let poderDoClique = 1;
 let pudinsPorSegundo = 0;
 
@@ -68,7 +70,7 @@ const listaPoderInicialUpgrades = [
     1,     // chef         + PPC (Pudim Por Clique)
     20,    // padaria      + PSS
     150,   // confeitaria  + PPS
-    500,   // supermercado + PPS
+    1_000,   // supermercado + PPS
     4_000, // cafeteria    + PPS
     1      // gourmet        PPC * Poder_gourmet (vai multiplicando por 2)
 ];
@@ -77,9 +79,9 @@ const listaPrecoInicialUpgrades = [
     10,     // confeiteira
     100,    // chef
     500,    // padaria
-    5_000,  // confeitaria
-    75_000, // supermercado
-    1_000_000, // cafeteria
+    15_000,  // confeitaria
+    500_000, // supermercado
+    100_000_000, // cafeteria
     1_000_000 // gourmet
 ];
 
@@ -290,18 +292,18 @@ const listaPrecoMelhorias = [
     50,                  // confeiteira_1
     350,                 // confeiteira_2
     50_000,              // confeiteira_3
-    250_000,             // confeiteira_4
+    2_000_000,           // confeiteira_4
     15000000000000,      // confeiteira_5
     500,                 // chef_1
     20_000,              // chef_2
     15000000000000,      // chef_3
     3_500,               // padaria_1
     200_000,             // padaria_2
-    25_000,              // confeitaria_1
+    50_000,              // confeitaria_1
     15000000000000,      // confeitaria_2
-    750_000,             // supermercado_1
+    1_500_000,           // supermercado_1
     15000000000000,      // supermercado_2
-    125_000,             // cafeteria_1
+    15000000000000,      // cafeteria_1
     15000000000000       // cafeteria_2
 ];
 
@@ -309,7 +311,7 @@ const listaNomeMelhorias = [
     "Curso EAD de confeiteira",                  // confeiteira_1
      "Real ou Bolo??",                           // confeiteira_2
      "Faculdade de confeiteira",                 // confeiteira_3
-     "Equipamentos melhores",                       // confeiteira_4
+     "Equipamentos melhores",                    // confeiteira_4
      "Nome a ser criado...",                     // confeiteira_5
      "Gato cozinheiro",                          // chef_1
      "Tony Stark brasileiro",                    // chef_2
@@ -330,8 +332,8 @@ const listaDescricaoMelhorias = [
     "Faculade de confeiteira para os funcionários!!<br><br><br>Aumenta a produção das confeiteiras em 6x",                        // confeiteira_3
     "Com esses novos equipamentos, a produção vai mais que dobrar!! 🔥<br><br><br>Aumenta a produção das confeiteiras em 8x",     // confeiteira_4
     "Aumenta a produção das confeiteiras em 10x",                                                                                 // confeiteira_5
-    "A comida fica melhor com pelos!<br><br><br>Aumenta a produção dos chefs em 10x",                                             // chef_1
-    "Largou os Vingadores pra fazer comida 🔥<br><br><br>Aumenta a produção dos chefs em 20x",                                    // chef_2
+    "A comida fica melhor com pelos!<br><br><br>Aumenta a produção dos chefs em 5x",                                              // chef_1
+    "Largou os Vingadores pra fazer comida 🔥<br><br><br>Aumenta a produção dos chefs em 10x",                                    // chef_2
     "Economizar também é ganhar.<br>(pense nisso)<br><br><br>Aumenta a produção dos chefs em 30x",                                // chef_3
     "Pode ficar tranquilo(a), eles só servem de decoração.<br><br><br>Aumenta a produção das padarias em 2x",                     // padaria_1
     "Ficou careca de tanto estudar os pães.<br><br><br>Aumenta a produção das padarias em 4x",                                    // padaria_2
@@ -411,7 +413,7 @@ function clicarNaMelhoria(melhoria) {
 
         // Caso for chef, multiplica o poder dele por 10x
         if (upgradeBeneficiado === "chef") {
-            poderUpgrades[upgradeBeneficiado] *= 10 * numeroUpgradeComprado;
+            poderUpgrades[upgradeBeneficiado] *= 5 * numeroUpgradeComprado;
         }
         
         // Senão, aumenta o poder do upgrade em 2 * (Quantidade de melhorias já compradas) -> (2x1, 2x2, 2x3)
