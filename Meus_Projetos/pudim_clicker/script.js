@@ -1,7 +1,8 @@
 // Descomentar para remover os arquivos locais (deletar o save)
 //  localStorage.clear();
 
-// COLOCAR UPGRADES PRA O RESTAURANTE GOURMET
+// COLOCAR UPGRADES PRA O RESTAURANTE GOURMET (será?)
+// Colocar um upgrade que custa 1 TRILHÃO, que transforma toda produção em ∞ (infinito), pra isso é só aumentar um valor colossal, usando exponenciação (2³¹)
 
 // document.querySelector("#botao-teste").onclick = () => {
 //     pudins = 0;
@@ -66,13 +67,13 @@ const listaUpgradesPorSegundo = [
 
 // Poder dos Upgrades (O tanto de pudins que cada compra concederá)
 const listaPoderInicialUpgrades = [
-    0.5,   // confeiteira  + PPS (Pudim Por Segundo)
-    1,     // chef         + PPC (Pudim Por Clique)
-    20,    // padaria      + PSS
-    150,   // confeitaria  + PPS
-    1_000,   // supermercado + PPS
-    4_000, // cafeteria    + PPS
-    1      // gourmet        PPC * Poder_gourmet (vai multiplicando por 2)
+    0.5,      // confeiteira  + PPS (Pudim Por Segundo)
+    1,        // chef         + PPC (Pudim Por Clique)
+    20,       // padaria      + PSS
+    250,      // confeitaria  + PPS
+    5_000,   // supermercado + PPS
+    1_000,    // cafeteria    + PPS
+    1         // gourmet        PPC * Poder_gourmet (vai multiplicando por 2)
 ];
 
 const listaPrecoInicialUpgrades = [
@@ -80,7 +81,7 @@ const listaPrecoInicialUpgrades = [
     100,    // chef
     500,    // padaria
     15_000,  // confeitaria
-    500_000, // supermercado
+    250_000, // supermercado
     100_000_000, // cafeteria
     1_000_000 // gourmet
 ];
@@ -197,7 +198,7 @@ function clicarNoUpgrade(upgrade) {
         atualizarQuantidadePudins();
 
         // Aumenta o preço do upgrade
-        precoUpgrades[upgrade] += 1.15 * precoUpgrades[upgrade];
+        precoUpgrades[upgrade] *= 1.45;
 
         // salva o preço dos upgrades no computador para não perder o progresso
         localStorage.setItem(`upgrade_${upgrade} .custo_upgrade`, precoUpgrades[upgrade]);
@@ -290,16 +291,16 @@ const listaMelhorias = [
 
 const listaPrecoMelhorias = [
     50,                  // confeiteira_1
-    350,                 // confeiteira_2
+    1_500,               // confeiteira_2
     50_000,              // confeiteira_3
     2_000_000,           // confeiteira_4
     15000000000000,      // confeiteira_5
     500,                 // chef_1
-    20_000,              // chef_2
-    15000000000000,      // chef_3
+    15_000,              // chef_2
+    200_000,             // chef_3
     3_500,               // padaria_1
     200_000,             // padaria_2
-    50_000,              // confeitaria_1
+    75_000,              // confeitaria_1
     15000000000000,      // confeitaria_2
     1_500_000,           // supermercado_1
     15000000000000,      // supermercado_2
@@ -315,7 +316,7 @@ const listaNomeMelhorias = [
      "Nome a ser criado...",                     // confeiteira_5
      "Gato cozinheiro",                          // chef_1
      "Tony Stark brasileiro",                    // chef_2
-     "Desligar o freezer durante a noite",       // chef_3
+     "Desligar o freezer à noite",               // chef_3
      "Pãochorro de forma",                       // padaria_1
      "Especialista em pães",                     // padaria_2
      "Menos dinheiro, mais trabalho!",           // confeitaria_1
@@ -332,12 +333,12 @@ const listaDescricaoMelhorias = [
     "Faculade de confeiteira para os funcionários!!<br><br><br>Aumenta a produção das confeiteiras em 6x",                        // confeiteira_3
     "Com esses novos equipamentos, a produção vai mais que dobrar!! 🔥<br><br><br>Aumenta a produção das confeiteiras em 8x",     // confeiteira_4
     "Aumenta a produção das confeiteiras em 10x",                                                                                 // confeiteira_5
-    "A comida fica melhor com pelos!<br><br><br>Aumenta a produção dos chefs em 5x",                                              // chef_1
-    "Largou os Vingadores pra fazer comida 🔥<br><br><br>Aumenta a produção dos chefs em 10x",                                    // chef_2
-    "Economizar também é ganhar.<br>(pense nisso)<br><br><br>Aumenta a produção dos chefs em 30x",                                // chef_3
+    "A comida fica melhor com pelos!<br><br><br>Aumenta a produção dos chefs em 3x",                                              // chef_1
+    "Largou os Vingadores pra fazer comida! 🔥<br><br><br>Aumenta a produção dos chefs em 6x",                                     // chef_2
+    "Economizar também é ganhar.<br>(pense nisso)<br><br><br>Aumenta a produção dos chefs em 9x",                                // chef_3
     "Pode ficar tranquilo(a), eles só servem de decoração.<br><br><br>Aumenta a produção das padarias em 2x",                     // padaria_1
     "Ficou careca de tanto estudar os pães.<br><br><br>Aumenta a produção das padarias em 4x",                                    // padaria_2
-    "Diminuir o salário dos funcionários em 50%.<br><br><br>Aumenta a produção das confeitarias em 2x",                           // confeitaria_1
+    "Diminuir o salário dos funcionários em 50%.<br><br><br>Duplica a produção das confeitarias",                           // confeitaria_1
     "Aumenta a produção das confeitarias em 4x",                                                                                  // confeitaria_2
     "Agora com produtos legalizados!!<br><br><br>Aumenta a produção dos supermercados em 2x",                                     // supermercado_1
     "Aumenta a produção dos supermercados em 4x",                                                                                 // supermercado_2
@@ -411,12 +412,12 @@ function clicarNaMelhoria(melhoria) {
         let upgradeBeneficiado = melhoria.split("_")[0];
         let numeroUpgradeComprado = melhoria.split("_")[1];
 
-        // Caso for chef, multiplica o poder dele por 10x
+        // Caso for chef, multiplica o poder dele por 3x a cada upgrade (3x1, 3x2, 3x3...)
         if (upgradeBeneficiado === "chef") {
-            poderUpgrades[upgradeBeneficiado] *= 5 * numeroUpgradeComprado;
+            poderUpgrades[upgradeBeneficiado] *= 3 * numeroUpgradeComprado;
         }
         
-        // Senão, aumenta o poder do upgrade em 2 * (Quantidade de melhorias já compradas) -> (2x1, 2x2, 2x3)
+        // Senão, aumenta o poder do upgrade em 2 * (Quantidade de melhorias já compradas) -> (2x1, 2x2, 2x3...)
         else {
             poderUpgrades[upgradeBeneficiado] *= 2 * numeroUpgradeComprado;
         }
