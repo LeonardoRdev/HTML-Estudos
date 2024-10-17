@@ -202,7 +202,7 @@ function clicarNoUpgrade(upgrade) {
 
         if (upgrade === "gourmet") {
             // O preço do upgrade "gourmet" aumenta mais ainda
-            precoUpgrades[upgrade] *= 1.40;
+            precoUpgrades[upgrade] *= 1.30;
         }
 
         // salva o preço dos upgrades no computador para não perder o progresso
@@ -310,7 +310,7 @@ const listaPrecoMelhorias = [
     1_500_000,           // supermercado_1
     20_000_000,          // supermercado_2
     100_000_000,         // cafeteria_1
-    15000000000000       // cafeteria_2
+    500_000_000          // cafeteria_2
 ];
 
 const listaNomeMelhorias = [
@@ -318,16 +318,16 @@ const listaNomeMelhorias = [
      "Real ou Bolo??",                           // confeiteira_2
      "Faculdade de confeiteira",                 // confeiteira_3
      "Equipamentos melhores",                    // confeiteira_4
-     "Nome a ser criado...",                     // confeiteira_5
+     "Quanto mais braços, melhor!",              // confeiteira_5
      "Gato cozinheiro",                          // chef_1
      "Tony Stark brasileiro",                    // chef_2
      "Desligar o freezer à noite",               // chef_3
      "Pãochorro de forma",                       // padaria_1
      "Especialista em pães",                     // padaria_2
      "Menos dinheiro, mais trabalho!",           // confeitaria_1
-     "Nome a ser criado...",                     // confeitaria_2
+     "Nova localização",                         // confeitaria_2
      "Produtos legalizados",                     // supermercado_1
-     "Nome a ser criado...",                     // supermercado_2
+     "Mercadinho BIG BOM",                       // supermercado_2
      "Cookie clica 🍪",                          // cafeteria_1
      "Parceria das grandes"                      // cafeteria_2
 ];
@@ -337,16 +337,16 @@ const listaDescricaoMelhorias = [
     "Para confundir os clientes na hora de comer.<br><br><br>Aumenta a produção das confeiteiras em 4x",                          // confeiteira_2
     "Faculade de confeiteira para os funcionários!!<br><br><br>Aumenta a produção das confeiteiras em 6x",                        // confeiteira_3
     "Com esses novos equipamentos, a produção vai mais que dobrar!! 🔥<br><br><br>Aumenta a produção das confeiteiras em 8x",     // confeiteira_4
-    "Aumenta a produção das confeiteiras em 10x",                                                                                 // confeiteira_5
+    "Quem disse que uma aranha não pode fazer cupcakes?<br><br><br>Aumenta a produção das confeiteiras em 10x",                   // confeiteira_5
     "A comida fica melhor com pelos!<br><br><br>Aumenta a produção dos chefs em 3x",                                              // chef_1
     "Largou os Vingadores pra fazer comida! 🔥<br><br><br>Aumenta a produção dos chefs em 6x",                                    // chef_2
     "Economizar também é ganhar.<br>(pense nisso)<br><br><br>Aumenta a produção dos chefs em 9x",                                 // chef_3
     "Pode ficar tranquilo(a), eles só servem de decoração.<br><br><br>Aumenta a produção das padarias em 2x",                     // padaria_1
     "Ficou careca de tanto estudar os pães.<br><br><br>Aumenta a produção das padarias em 4x",                                    // padaria_2
-    "Diminuir o salário dos funcionários em 50%.<br><br><br>Duplica a produção das confeitarias",                                 // confeitaria_1
-    "Aumenta a produção das confeitarias em 4x",                                                                                  // confeitaria_2
+    "Diminuir o salário dos funcionários em 50%.<br><br><br>Aumenta a produção das confeitarias em 2x",                           // confeitaria_1
+    "Mais espaço significa mais clientes!<br><br><br>Aumenta a produção das confeitarias em 4x",                                                                                  // confeitaria_2
     "Agora com produtos legalizados!!<br><br><br>Aumenta a produção dos supermercados em 2x",                                     // supermercado_1
-    "Aumenta a produção dos supermercados em 4x",                                                                                 // supermercado_2
+    "Parceria com um dos mais fortes mercados do Brasil!<br><br><br>Aumenta a produção dos supermercados em 4x",                  // supermercado_2
     "Clica no Cookie...<br><br><br>Aumenta a produção das cafeterias em 2x",                                                      // cafeteria_1
     "Nem precisa mais comprar Restaurante Gourmet.<br><br><br>Aumenta a produção das cafeterias em 4x"                            // cafeteria_2
 ];
