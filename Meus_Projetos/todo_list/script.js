@@ -1,5 +1,3 @@
-// Agora a página salva as tarefas, porém, mesmo se excluir, ao recarregar a página todas tarefas voltam.
-
 // Form | Adicionar Tarefas
 const inputTarefa = document.querySelector("#input-tarefa");
 const inputTempoTarefa = document.querySelector("#input-tempo-tarefa");
@@ -32,8 +30,21 @@ botaoRefresh.addEventListener("click", () => {
     atualizarTimer();
 });
 
-// Botão "ENVIAR" tarefa:
+// Ao apertar "ENTER", chamar a função de enviar tarefa
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        enviarTarefa();
+    }
+});
+
+// Ou
+
+// Ao apertar o Botão "ENVIAR", chamar a função de enviar tarefa
 botaoEnviar.addEventListener("click", () => {
+    enviarTarefa();
+});
+
+function enviarTarefa() {
 
     // Verificação para saber se a tarefa é válida:
     if (inputTarefa.value == "" || inputTempoTarefa.value == "" || inputTempoTarefa.value < 1) {
@@ -104,7 +115,11 @@ botaoEnviar.addEventListener("click", () => {
 
     idTarefa++;
     localStorage.setItem("idTarefa_salvo", idTarefa);
-});
+
+
+    // Coloca o foco no input "nome-tarefa"
+    inputTarefa.focus();
+}
 
 function ajustarMinutosHoras(horas, minutos, segundos) {
     // Se as tarefas passarem de 59 minutos, adicionar 1 hora:
