@@ -28,6 +28,11 @@
     scale: 1.1;
 }
 
+#seta-voltar-pagina img:active {
+    background-color: #2222;
+}
+
+
 /* Responsividade*/
 /* Tablet ou Menor */
 @media only screen and (max-width: 768px) {

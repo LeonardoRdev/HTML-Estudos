@@ -1,8 +1,24 @@
+:root {
+    --preto-forte: #000;
+    --preto-medio-forte: #0003;
+    --preto-medio: #0005;
+    --preto-medio-fraco: #0008;
+    --preto-fraco: #000C;
+
+    --branco-forte: #FFF;
+    --branco-medio: #EEE;
+    --branco-fraco: #CCC;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Roboto Slab", serif;
+}
+
+body {
+    background-color: var(--branco-medio);
 }
 
 #titulo {
@@ -11,6 +27,7 @@
     font-size: 2.8em;
     text-align: center;
     margin: 1em 0;
+    color: var(--preto-forte);
 }
 
 /* Seta para voltar 1 página */
@@ -24,7 +41,7 @@
     top: 2.5vh;
     right: 2vw;
     border-radius: 2em;
-    border: 0.35em solid #000;
+    border: 0.35em solid var(--preto-forte);
     width: 3.8em;
     transition: scale 0.15s;
 }
@@ -32,6 +49,10 @@
 #botao-refresh img:hover {
     cursor: pointer;
     scale: 1.1;
+}
+
+#botao-refresh img:active {
+    scale: 0.95;
 }
 
 
@@ -52,6 +73,7 @@ div#divs-com-inputs {
 div.inputs-form {
     display: flex;
     flex-direction: column;
+    color: var(--preto-forte);
 }
 
 div.inputs-form input {
@@ -75,15 +97,17 @@ form#adicionar-tarefa button {
     margin-top: 0.6em;
     font-size: 1.4em;
     padding: 0.3em 0.4em;
-    border: solid 2px #000;
-    box-shadow: 0 0 1em #0005;
+    border: solid 2px var(--preto-forte);
+    box-shadow: 0 0 1em var(--preto-medio);
+    color: var(--preto-forte);
+    background-color: var(--branco-medio);
     border-radius: 0.5em;
     transition: scale 0.15s, box-shadow 0.15s;
 }
 
 form#adicionar-tarefa button:hover {
     scale: 1.1;
-    box-shadow: 0 0 1em #0003;
+    box-shadow: 0 0 1em var(--preto-medio-forte);
     cursor: pointer;
 }
 
@@ -103,7 +127,6 @@ form#adicionar-tarefa button:active {
 
 #tarefas-a-fazer {
     width: 65vw;
-
     padding: 10px;
 }
 
@@ -115,7 +138,7 @@ form#adicionar-tarefa button:active {
     font-size: 1.4em;
     border-radius: 10px 10px 0 0;
     background-color: #9b34eb;
-    color: #FFF;
+    color: var(--branco-medio);
 }
 
 /* Aqui ficarão as tarefas adicionadas */
@@ -131,9 +154,10 @@ form#adicionar-tarefa button:active {
     justify-content: space-around;
     align-items: center;
     font-size: 1.4em;
+    color: var(--preto-forte);
     width: 100%;
     text-align: center;
-    border-bottom: solid 0.15em #0008;
+    border-bottom: solid 0.15em var(--preto-medio-fraco);
 }
 
 .tarefa:nth-of-type(even) {
@@ -157,16 +181,15 @@ form#adicionar-tarefa button:active {
 .tarefa input[type="checkbox"] {
     width: 35px;
     height: 35px;
-    background-color: #ccc;
+    background-color: var(--branco-fraco);
     border-radius: .3rem;
-    border: 3px solid #000c;
+    border: 3px solid var(--preto-fraco);
     appearance: none;
 }
 
 .tarefa input[type="checkbox"]:checked {
     background-color: #40e373;
     border-radius: .3rem;
-
 }
 
 .tarefa input[type="checkbox"]:hover {
@@ -187,7 +210,7 @@ form#adicionar-tarefa button:active {
 }
 
 .tarefa input[type="checkbox"]:checked::before {
-    border-color: #fff;
+    border-color: var(--branco-medio);
     animation: animacaoCheckbox .25s;
 }
 
@@ -215,10 +238,10 @@ p#hora-aproximada-conclusao-tarefa {
     
     font-family: sans-serif;
     font-weight: bold;
-    color: #fff;
-    box-shadow: 0 0 0.5em #0005;
+    color: var(--branco-medio);
+    box-shadow: 0 0 0.5em var(--preto-medio);
     background-color: #ed323b;
-    border: solid 3px #000;
+    border: solid 3px var(--preto-forte);
     border-radius: 15%;
     font-size: 1em;
     padding: 0.1em 0.32em;
@@ -234,20 +257,48 @@ p#hora-aproximada-conclusao-tarefa {
 #horario-fim-atividades {
     margin: 3em 0;
 
+    color: var(--branco-medio);
     display: none;
     align-items: center;
     flex-direction: column;
 }
 
+#descricao-timer-final {
+    color: var(--preto-forte);
+}
+
 #horario-fim-atividades #horario {
+    background-color: var(--preto-forte);
     font-family: sans-serif;
     font-weight: 600;
     font-size: 2.4em;
     padding: 0.2em;
-    border: solid 4px #000;
+    border: solid 4px var(--preto-forte);
     border-radius: 0.15em;
-    box-shadow: 0 0 0.4em #0005;
+    box-shadow: 0 0 0.4em var(--preto-medio);
 }
+
+#modo-escuro {
+    position: fixed;
+    bottom: 5vh;
+    right: 3vw;
+    border-radius: 1.2em;
+    border: 0.35em solid var(--preto-medio);
+    width: 4em;
+    background-color: #000C;
+    padding: 5px;
+    transition: scale 0.15s;
+}
+
+#modo-escuro:hover {
+    cursor: pointer;
+    scale: 1.1;
+}
+
+#modo-escuro:active {
+    scale: 0.95;
+}
+
 
 
 /* Responsividade*/
@@ -293,7 +344,6 @@ p#hora-aproximada-conclusao-tarefa {
     .tarefa input[type="checkbox"] {
         width: 30px;
         height: 30px;
-        border: 3px solid #000c;
     }
 
     /* diminuir fonte */
@@ -337,12 +387,6 @@ p#hora-aproximada-conclusao-tarefa {
 
     #tarefas-a-fazer {
         width: 85vw;
-    }
-
-    .tarefa input[type="checkbox"] {
-        width: 30px;
-        height: 30px;
-        border: 3px solid #000c;
     }
 
     #botao-refresh img {

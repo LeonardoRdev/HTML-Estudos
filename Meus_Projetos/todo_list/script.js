@@ -291,3 +291,46 @@ function atualizarPrevisaoConclusaoCadaTarefa() {
         tarefa.querySelector("#hora-aproximada-conclusao-tarefa").innerHTML = stringHorarioFormatado;
     });
 }
+
+
+// MODO ESCURO
+const botaoModoEscuro = document.querySelector("#modo-escuro");
+
+botaoModoEscuro.onclick = () => {
+
+    // Caso clicar no botão da LUA
+    if (botaoModoEscuro.getAttribute("src") === "imgs/lua.png") {
+
+        // Transforma o botão no SOL
+        botaoModoEscuro.src = "imgs/sol.png";
+
+        // Mudar cores de algumas variáveis CSS
+        document.documentElement.style.setProperty("--preto-forte", "#FFF");
+        document.documentElement.style.setProperty("--preto-medio-forte", "#FFF3");
+        document.documentElement.style.setProperty("--preto-medio", "#FFF5");
+        document.documentElement.style.setProperty("--preto-medio-fraco", "#FFF8");
+        document.documentElement.style.setProperty("--preto-fraco", "#FFFC");
+    
+        document.documentElement.style.setProperty("--branco-forte", "#000");
+        document.documentElement.style.setProperty("--branco-medio", "#000C");
+        document.documentElement.style.setProperty("--branco-fraco", "#333C");
+    }
+
+    // Caso clicar no botão do SOL
+    else {
+
+        // Transforma o botão na LUA
+        botaoModoEscuro.src = "imgs/lua.png"
+        
+        // Mudar cores de algumas variáveis CSS
+        document.documentElement.style.setProperty("--preto-forte", "#000");
+        document.documentElement.style.setProperty("--preto-medio-forte", "#0003");
+        document.documentElement.style.setProperty("--preto-medio", "#0005");
+        document.documentElement.style.setProperty("--preto-medio-fraco", "#0008");
+        document.documentElement.style.setProperty("--preto-fraco", "#000C");
+        
+        document.documentElement.style.setProperty("--branco-forte", "#FFF");
+        document.documentElement.style.setProperty("--branco-medio", "#EEE");
+        document.documentElement.style.setProperty("--branco-fraco", "#CCC");
+    }
+}
