@@ -314,6 +314,11 @@ botaoModoEscuro.onclick = () => {
         document.documentElement.style.setProperty("--branco-forte", "#000");
         document.documentElement.style.setProperty("--branco-medio", "#000C");
         document.documentElement.style.setProperty("--branco-fraco", "#333C");
+
+        document.documentElement.style.setProperty("--tabela", "#AEF500");
+        document.documentElement.style.setProperty("--tabela-fraco", "#AEF50040");
+
+        document.documentElement.style.setProperty("--vermelho-claro", "#ED323BAA");
     }
 
     // Caso clicar no botão do SOL
@@ -332,5 +337,10 @@ botaoModoEscuro.onclick = () => {
         document.documentElement.style.setProperty("--branco-forte", "#FFF");
         document.documentElement.style.setProperty("--branco-medio", "#EEE");
         document.documentElement.style.setProperty("--branco-fraco", "#CCC");
+        
+        document.documentElement.style.setProperty("--tabela", "#9b34eb");
+        document.documentElement.style.setProperty("--tabela-fraco", "#9b34eb40");
+
+        document.documentElement.style.setProperty("--vermelho-claro", "#ED323B");
     }
 }

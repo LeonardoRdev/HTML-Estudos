@@ -8,6 +8,11 @@
     --branco-forte: #FFF;
     --branco-medio: #EEE;
     --branco-fraco: #CCC;
+
+    --tabela: #9b34eb;
+    --tabela-fraco: #9b34eb40;
+
+    --vermelho-claro: #ED323B;
 }
 
 * {
@@ -79,7 +84,15 @@ div.inputs-form {
 div.inputs-form input {
     font-size: 1.4em;
     padding: 0.2em 0 0.15em 0.4em;
+    
+    border: solid 3px var(--preto-forte);
+    color: var(--preto-forte);
+    background-color: var(--branco-forte);
+    border-radius: 10px;
+    padding: 5px 20px 5px 10px;
+    outline: none;
 }
+
 
 div.inputs-form label {
     margin-left: 0.5em;
@@ -112,7 +125,7 @@ form#adicionar-tarefa button:hover {
 }
 
 form#adicionar-tarefa button:active {
-    background-color: #00D3;
+    background-color: var(--tabela-fraco);
 }
 
 /* Form | Tarefas adicionadas */
@@ -137,7 +150,7 @@ form#adicionar-tarefa button:active {
     padding: 0.3em 0;
     font-size: 1.4em;
     border-radius: 10px 10px 0 0;
-    background-color: #9b34eb;
+    background-color: var(--tabela);
     color: var(--branco-medio);
 }
 
@@ -161,11 +174,11 @@ form#adicionar-tarefa button:active {
 }
 
 .tarefa:nth-of-type(even) {
-    background-color: #9b34eb40;
+    background-color: var(--tabela-fraco);
 }
 
 .tarefa:last-of-type {
-    border-bottom: solid 0.25em #9b34eb;
+    border-bottom: solid 0.25em var(--tabela);
 }
 
 .tarefa label, #div-checkbox, #tempo-tarefa {
@@ -238,9 +251,9 @@ p#hora-aproximada-conclusao-tarefa {
     
     font-family: sans-serif;
     font-weight: bold;
-    color: var(--branco-medio);
-    box-shadow: 0 0 0.5em var(--preto-medio);
-    background-color: #ed323b;
+    color: var(--branco-forte);
+    box-shadow: 0 0 0.4em var(--preto-medio);
+    background-color: var(--vermelho-claro);
     border: solid 3px var(--preto-forte);
     border-radius: 15%;
     font-size: 1em;
@@ -257,7 +270,7 @@ p#hora-aproximada-conclusao-tarefa {
 #horario-fim-atividades {
     margin: 3em 0;
 
-    color: var(--branco-medio);
+    color: var(--branco-forte);
     display: none;
     align-items: center;
     flex-direction: column;
