@@ -1,0 +1,41 @@
+header {
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.perguntas {
+    background-color: #0002;
+}
+
+#enunciado {
+    font-size: 2em;
+}
+
+#respostas {
+    background-color: #0f04;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 40%;
+    margin: 0 auto;
+    gap: 25px;
+}
+
+.resposta {
+    background-color: #00f7;
+
+    height: 150px;
+    display: grid;
+    place-content: center;
+}
+
+.resposta:hover {
+    border: solid 3px #000;
+}
+
+/* #explicacao {
+
+} */
