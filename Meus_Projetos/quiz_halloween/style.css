@@ -30,12 +30,18 @@ header {
     height: 150px;
     display: grid;
     place-content: center;
+    transition: scale 0.1s;
 }
 
 .resposta:hover {
     border: solid 3px #000;
+    cursor: pointer;
+}
+
+.resposta:active {
+    scale: 0.95;
 }
 
 /* #explicacao {
-
+    filter: blur(0.03em);
 } */
