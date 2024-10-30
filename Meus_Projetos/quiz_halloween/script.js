@@ -9,11 +9,13 @@ divsComRespostas.forEach((possiveisRespostas) => {
         // Aleatoriza a ordem das respostas
         arrayRespostas[index] = resposta;
     
+
         // Função ao clicar em alguma resposta
         resposta.onclick = () => {
     
             // Ao chutar pela primeira vez, revelar a explicação da resposta
-            resposta.closest(".perguntas").querySelector("#explicacao").style.display = "block";
+            resposta.closest(".perguntas").querySelector("#div-explicacao").style.backgroundColor = "transparent";
+            resposta.closest(".perguntas").querySelector("#div-explicacao").style.borderRadius = "0";
     
             // Caso acertar a resposta
             if (resposta.id === "resposta1") {
@@ -54,9 +56,3 @@ divsComRespostas.forEach((possiveisRespostas) => {
     }
     aleatorizarOrdemRespostas();
 });
-
-
-
-
-
-
