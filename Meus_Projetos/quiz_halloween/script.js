@@ -16,6 +16,8 @@ divsComRespostas.forEach((possiveisRespostas) => {
             // Ao chutar pela primeira vez, revelar a explicação da resposta
             resposta.closest(".perguntas").querySelector("#div-explicacao").style.backgroundColor = "transparent";
             resposta.closest(".perguntas").querySelector("#div-explicacao").style.borderRadius = "0";
+            resposta.closest(".perguntas").querySelector("#div-explicacao").style.backgroundImage = "none";
+            resposta.closest(".perguntas").querySelector("#explicacao").style.color = "#000";
     
             // Caso acertar a resposta
             if (resposta.id === "resposta1") {
