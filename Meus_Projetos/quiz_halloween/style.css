@@ -107,10 +107,20 @@ main {
     cursor: none;
 }
 
-#agradecimento p {
+#agradecimento {
+    gap: 25px;
+    display: flex;
     text-align: center;
-    font-size: 3em;
     margin-bottom: 20vh;
+    flex-direction: column;
+}
+
+#agradecimento p:first-child {
+    font-size: 3em;
+}
+
+#agradecimento #score {
+    font-size: 2em;
 }
 
 footer {
