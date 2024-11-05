@@ -389,10 +389,10 @@ footer {
 
 
 /* ESTILIZAÇÕES DE RESPONSIVIDADE */
+
+/* Laptop Grande */
 @media only screen and (max-width: 1440px) {
     aside {
-        /* background-color: red; */
-
         width: 48em;
         padding-left: 25em;
     }
@@ -401,4 +401,47 @@ footer {
         height: 7em;
         font-size: 0.83em;
     }
+}
+
+/* Laptop */
+@media only screen and (max-width: 1024px) {
+
+    main {
+        margin-top: 8%;
+        width: 50%;
+    }
+
+    .imagem_pudim {
+        width: 50%;
+    }
+
+    #informacoes_pudins {
+        margin-top: 33%;
+    }
+
+    #pudins_por_segundo {
+        font-size: 0.9em;
+    }
+
+    #quantidade_pudins {
+        font-size: 1.7em;
+    }
+}
+
+/* Tablets */
+@media only screen and (max-width: 768px) {
+    /* Sumir com a aba de upgrades e Melhorias, e colocar um ícone no lugar, que faz com que as respectivas abas sejam abertas */
+
+    /* aside {
+        width: 30em;
+        padding-left: 10em;
+    }
+
+    .upgrade {
+        height: 7em;
+    }
+
+    .descricao_upgrade {
+        width: 40%;
+    } */
 }
