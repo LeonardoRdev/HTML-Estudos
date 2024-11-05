@@ -47,6 +47,7 @@ main {
 
 .respostas {
     display: grid;
+    place-content: center;
     grid-template-columns: 1fr 1fr;
     width: 40%;
     margin: 0 auto;
@@ -130,4 +131,220 @@ footer p {
     text-align: center;
     color: #FFF;
     font-size: 1.4em;
+}
+
+/* Configurações de RESPONSIVIDADE */
+
+/* LAPTOP */
+@media only screen and (max-width: 1024px) {
+    #enunciado {
+        font-size: 1.7em;
+    }
+    
+    .respostas {
+        width: 50%;
+    }
+
+    .resposta {
+        font-size: 1.4em;
+        height: 140px;
+        padding: 0 10px;
+    }
+
+    #explicacao {
+        font-size: 1.3em;
+    }
+
+}
+
+/* TABLET */
+@media only screen and (max-width: 768px) {
+    #titulo1 {
+        font-size: 2.5em;
+    }
+    
+    #titulo2 {
+        font-size: 1.8em;
+    }
+
+    #section-imagem-inicial {
+        padding: 0;
+        margin-top: 30px;
+        margin-bottom: 15vh;
+    }
+    
+    #section-imagem-inicial img {
+        width: 60%;
+        border-radius: 30px;
+    }
+
+    main {
+        margin-bottom: 18vh;
+    }
+
+    #enunciado {
+        font-size: 1.4em;
+    }
+
+    .respostas {
+        width: 50%;
+    }
+
+    .resposta {
+        font-size: 1.15em;
+        height: 120px;
+        min-width: 120px;
+    }
+    
+    #div-explicacao {
+        width: 85%;
+    }
+
+    #explicacao {
+        font-size: 1em;
+    }
+
+    #agradecimento {
+        margin-bottom: 15vh;
+    }
+    
+    #agradecimento p:first-child {
+        font-size: 2.2em;
+    }
+    
+    #agradecimento #score {
+        font-size: 1.5em;
+    }
+    
+    footer p {
+        font-size: 1.1em;
+    }
+}
+
+/* MOBILE Large */
+@media only screen and (max-width: 425px) {
+    #div-explicacao {
+        background-size: cover;
+    }
+
+    #titulo1 {
+        font-size: 2em;
+    }
+    
+    #titulo2 {
+        font-size: 1.5em;
+    }
+
+    #section-imagem-inicial {
+        margin-bottom: 25vh;
+    }
+    
+    #section-imagem-inicial img {
+        width: 70%;
+        border-radius: 25px;
+    }
+
+    main {
+        margin-bottom: 12vh;
+    }
+
+    #enunciado {
+        font-size: 1.2em;
+    }
+
+    .respostas {
+        width: 70%;
+    }
+
+    .resposta {
+        font-size: 0.9em;
+        height: 90px;
+    }
+    
+    #div-explicacao {
+        width: 85%;
+    }
+
+    #explicacao {
+        font-size: 0.9em;
+    }
+
+    #agradecimento {
+        margin-bottom: 15vh;
+    }
+    
+    #agradecimento p:first-child {
+        font-size: 1.6em;
+    }
+    
+    #agradecimento #score {
+        font-size: 1.2em;
+    }
+    
+    footer p {
+        font-size: 0.9em;
+    }
+}
+
+/* MOBILE Medium */
+@media only screen and (max-width: 375px) {
+
+    #titulo1 {
+        font-size: 1.9em;
+    }
+    
+    #titulo2 {
+        font-size: 1.4em;
+    }
+
+    #section-imagem-inicial {
+        margin-bottom: 18vh;
+    }
+
+    main {
+        margin-bottom: 10vh;
+    }
+
+    #enunciado {
+        font-size: 1.1em;
+        padding: 0;
+    }
+
+    .respostas {
+        width: 75%;
+    }
+
+    .resposta {
+        font-size: 0.9em;
+        height: 90px;
+    }
+    
+    #div-explicacao {
+        width: 90%;
+    }
+
+    #explicacao {
+        font-size: 0.85em;
+    }
+
+    #agradecimento {
+        margin-bottom: 13vh;
+    }
+    
+    #agradecimento p:first-child {
+        font-size: 1.4em;
+    }
+    
+    #agradecimento #score {
+        font-size: 1em;
+    }
+    
+    footer p {
+        font-size: 0.75em;
+    }
+}
+
+/* MOBILE Small */
+@media only screen and (max-width: 320px) {
+
 }
