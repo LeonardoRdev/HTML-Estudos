@@ -1,5 +1,5 @@
 // Descomentar para remover os arquivos locais (deletar o save)
-//  localStorage.clear();
+ localStorage.clear();
 
 // COLOCAR UPGRADES PRA O RESTAURANTE GOURMET (será?)
 // Colocar um upgrade que custa 1 TRILHÃO, que transforma toda produção em ∞ (infinito), pra isso é só aumentar um valor colossal, usando exponenciação (2³¹)
@@ -8,8 +8,18 @@
 //     pudins = 0;
 // }
 
+
+// Responsividade
+const botaoResponsividade = document.querySelector("#botao-responsividade img");
+botaoResponsividade.onclick = () => {
+    let upgrades = document.querySelector("#upgrades");
+    upgrades.style.display = "block";
+}
+
+
 // formata os números grandes, exemplo: 10000 -> 10k 
 const formatarNumero = Intl.NumberFormat("en", { notation: "compact"});
+
 
 // Elementos do PUDIM
 let divImagemPudins = document.querySelector("#pudins");
@@ -18,7 +28,7 @@ let quantidadePudins = document.querySelector("#quantidade_pudins");
 let PPS = document.querySelector("#pudins_por_segundo");
 
 // Pudins / Poder do Clique / Preços iniciais dos upgrades:
-let pudins = localStorage.getItem("quantidade_pudins") ? parseInt(localStorage.getItem("quantidade_pudins")) : 0;
+let pudins = localStorage.getItem("quantidade_pudins") ? parseInt(localStorage.getItem("quantidade_pudins")) : 5000;
 let poderDoClique = 1;
 let pudinsPorSegundo = 0;
 
