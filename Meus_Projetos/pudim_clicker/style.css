@@ -109,6 +109,10 @@ aside {
     overflow-y: scroll;
 }
 
+#botao-responsividade {
+    display: none;
+}
+
 #upgrades {
     background-color: #0006;
     display: flex;
@@ -437,21 +441,44 @@ footer {
     }
 
     /* UPGRADES */
-        /* Sumir com a aba de upgrades e Melhorias, e colocar um ícone no lugar, que faz com que as respectivas abas sejam abertas */
+        /* Transforma os UPGRADES em um ícone */
 
     aside {
-        /* display: none; */
-        display: flex;
+        display: none;
         flex-direction: column;
+        align-items: center;
+
+        position: fixed;
+        left: calc(50% - 75px);
+        top: 10%;
+        padding-left: 150px;
+        width: calc(320px + 150px);
+        height: 93%;
+        z-index: 100;
+        transform: translateX(-50%);
+        /* overflow: visible; */
+
+        background-color: #e4771e77;
     }
 
     #upgrades {
-        display: none;
+        width: 320px;
+        padding: 25px;
+        background-color: #FFF;
+        border: solid 4px #000;
+        border-radius: 10px;
+    }
+
+    .informacoes_upgrade {
+        font-size: 0.8em;
+        width: 170px;
     }
 
     #botao-responsividade {
-        margin-left: 80%;
-        margin-top: 20px;
+        display: block;
+        position: fixed;
+        top: 15px;
+        right: 25px;
     }
 
     #botao-responsividade img {
