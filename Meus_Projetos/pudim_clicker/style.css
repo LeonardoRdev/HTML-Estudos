@@ -285,6 +285,7 @@ footer {
     box-sizing: content-box;
     overflow-y: scroll;
     width: 100%;
+    min-width: 320px;
     height: 8em;
     background-color: #333;
     padding: 1.2em 0.8em;
@@ -450,15 +451,15 @@ footer {
 
         position: fixed;
         left: calc(50% - 75px);
-        top: 10%;
+        top: -2%;
         padding-left: 150px;
         width: calc(320px + 150px);
-        height: 93%;
+        height: 104%;
         z-index: 100;
         transform: translateX(-50%);
         /* overflow: visible; */
 
-        background-color: #e4771e77;
+        /* background-color: #e4771e77; */
     }
 
     #upgrades {
@@ -508,3 +509,27 @@ footer {
     }
 
 }
+
+/* MOBILE Grande */
+@media only screen and (max-width: 425px) {
+
+    aside {
+        width: calc(300px + 150px);
+    }
+
+    #upgrades {
+        width: 300px;
+    }
+
+    .upgrade {
+        height: 6em;
+        /* width: 80%; */
+        font-size: 0.7em;
+    }
+}
+
+/* MOBILE Médio */
+@media only screen and (max-width: 375px) {}
+
+/* MOBILE Pequeno */
+@media only screen and (max-width: 320px) {}
