@@ -444,6 +444,10 @@ footer {
     /* UPGRADES */
         /* Transforma os UPGRADES em um ícone */
 
+    .mostrar {
+        display: block;
+    }
+
     aside {
         display: none;
         flex-direction: column;
@@ -455,11 +459,13 @@ footer {
         padding-left: 150px;
         width: calc(320px + 150px);
         height: 104%;
-        z-index: 100;
+        z-index: 3;
         transform: translateX(-50%);
-        /* overflow: visible; */
+    }
 
-        /* background-color: #e4771e77; */
+    aside::-webkit-scrollbar {
+        /*  Remove a barra de rolagem horizontal */
+        width: 0;
     }
 
     #upgrades {
@@ -477,19 +483,30 @@ footer {
 
     #botao-responsividade {
         display: block;
-        position: fixed;
+        position: absolute;
+        z-index: 4;
         top: 15px;
         right: 25px;
     }
 
     #botao-responsividade img {
         border: solid 3px #000;
-        rotate: 90deg;
-        padding: 6px;
+        padding: 4px;
         border-radius: 50%;
 
         width: 55px;
         height: 55px;
+        transition: scale 0.15s;
+        background-color: #FFF;
+    }
+
+    #botao-responsividade img:hover {
+        cursor: pointer;
+        scale: 1.1;
+    }
+    
+    #botao-responsividade img:active {
+        background-color: #2222;
     }
 
     /* FOOTER MELHORIAS */
@@ -514,17 +531,23 @@ footer {
 @media only screen and (max-width: 425px) {
 
     aside {
+        top: 5px;
+        left: 50%;
+        padding-left: 100px;
         width: calc(300px + 150px);
     }
 
     #upgrades {
-        width: 300px;
+        width: 250px;
     }
 
     .upgrade {
         height: 6em;
-        /* width: 80%; */
-        font-size: 0.7em;
+        font-size: 0.64em;
+    }
+
+    .descricao_upgrade {
+        width: 45%;
     }
 }
 

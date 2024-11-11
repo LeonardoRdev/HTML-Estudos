@@ -137,7 +137,7 @@ botaoResponsividade.onclick = () => {
 
     if (botaoResponsividadeClicado) {
         // Fechar a aba que o botão abre (sair)
-        aside.style.display = "none";
+        aside.classList.remove("mostrar");
         divImagemPudins.style.display = "flex";
 
         botaoResponsividadeClicado = false;
@@ -145,7 +145,7 @@ botaoResponsividade.onclick = () => {
 
     else {
         // Abrir a aba do Botão (entrar)
-        aside.style.display = "flex";
+        aside.classList.add("mostrar");
         divImagemPudins.style.display = "none";
 
         botaoResponsividadeClicado = true;
