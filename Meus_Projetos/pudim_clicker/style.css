@@ -286,7 +286,6 @@ footer {
     overflow-y: scroll;
     width: 100%;
     min-width: 320px;
-    height: 8em;
     background-color: #333;
     padding: 1.2em 0.8em;
 
@@ -307,6 +306,7 @@ footer {
     width: 72px;
     height: 72px;
     transition: scale 0.15s;
+    box-sizing: border-box;
 }
 
 .item_melhoria:hover {
@@ -439,6 +439,11 @@ footer {
     main {
         margin: 8% auto 0;
         width: 75%;
+        margin-top: 20vh;
+    }
+
+    .imagem_pudim {
+        height: 21.2vw;
     }
 
     /* UPGRADES */
@@ -512,17 +517,11 @@ footer {
     /* FOOTER MELHORIAS */
     footer {
         width: 100%;
-        flex-direction: row-reverse
+        padding: 0 25px 0 0;
     }
 
     #informacoes_melhorias {
-        width: 57%;
-        margin-left: auto;
-    }
-
-    #melhorias {
-        width: 43%;
-        margin-right: auto;
+        width: calc(100% + 25px);
     }
 
 }
@@ -530,6 +529,23 @@ footer {
 /* MOBILE Grande */
 @media only screen and (max-width: 425px) {
 
+    /* Pudim */
+    main {
+        margin: 8% auto 0;
+        width: 75%;
+        margin-top: 20vh;
+    }
+
+    .imagem_pudim {
+        height: 30vw;
+        width: 70%;
+    }
+
+    #informacoes_pudins {
+        margin-top: 43%;
+    }
+    
+    /* UPGRADES */
     aside {
         top: 5px;
         left: 50%;
@@ -552,7 +568,7 @@ footer {
 }
 
 /* MOBILE Médio */
-@media only screen and (max-width: 375px) {}
+/* @media only screen and (max-width: 375px) {} */
 
 /* MOBILE Pequeno */
-@media only screen and (max-width: 320px) {}
+/* @media only screen and (max-width: 320px) {} */
