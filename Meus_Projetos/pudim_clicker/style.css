@@ -245,6 +245,9 @@ aside {
 footer {
     /* background-color: #d4443755; */
 
+    position: relative;
+    z-index: 3;
+
     width: 20em;
     display: flex;
     flex-direction: column;
@@ -464,7 +467,7 @@ footer {
         padding-left: 150px;
         width: calc(320px + 150px);
         height: 104%;
-        z-index: 3;
+        z-index: 4;
         transform: translateX(-50%);
     }
 
@@ -489,7 +492,7 @@ footer {
     #botao-responsividade {
         display: block;
         position: absolute;
-        z-index: 4;
+        z-index: 5;
         top: 15px;
         right: 25px;
     }

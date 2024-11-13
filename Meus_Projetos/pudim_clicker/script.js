@@ -131,24 +131,22 @@ listaUpgrades.forEach(upgrade => {
 
 // Responsividade
 const botaoResponsividade = document.querySelector("#botao-responsividade img");
-let botaoResponsividadeClicado = false;
+let menuDoBotaoResponsividadeAberto = false;
 botaoResponsividade.onclick = () => {
     let aside = document.querySelector("aside");
 
-    if (botaoResponsividadeClicado) {
+    if (menuDoBotaoResponsividadeAberto) {
         // Fechar a aba que o botão abre (sair)
         aside.classList.remove("mostrar");
-        divImagemPudins.style.display = "flex";
 
-        botaoResponsividadeClicado = false;
+        menuDoBotaoResponsividadeAberto = false;
     }
 
     else {
         // Abrir a aba do Botão (entrar)
         aside.classList.add("mostrar");
-        divImagemPudins.style.display = "none";
 
-        botaoResponsividadeClicado = true;
+        menuDoBotaoResponsividadeAberto = true;
     }
 }
 

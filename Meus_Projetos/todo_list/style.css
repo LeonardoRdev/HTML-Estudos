@@ -85,7 +85,7 @@ div.inputs-form input {
     font-size: 1.4em;
     padding: 0.2em 0 0.15em 0.4em;
     
-    border: solid 3px var(--preto-forte);
+    border: solid 3px var(--preto-fraco);
     color: var(--preto-forte);
     background-color: var(--branco-forte);
     border-radius: 10px;
@@ -110,8 +110,8 @@ form#adicionar-tarefa button {
     margin-top: 0.6em;
     font-size: 1.4em;
     padding: 0.3em 0.4em;
-    border: solid 2px var(--preto-forte);
-    box-shadow: 0 0 1em var(--preto-medio);
+    border: solid 2px var(--preto-fraco);
+    box-shadow: 0 0 1em var(--preto-medio-forte);
     color: var(--preto-forte);
     background-color: var(--branco-medio);
     border-radius: 0.5em;
@@ -252,7 +252,7 @@ p#hora-aproximada-conclusao-tarefa {
     font-family: sans-serif;
     font-weight: bold;
     color: var(--branco-forte);
-    box-shadow: 0 0 0.4em var(--preto-medio);
+    box-shadow: 0 0 0.4em var(--preto-medio-forte);
     background-color: var(--vermelho-claro);
     border: solid 3px var(--preto-forte);
     border-radius: 15%;
