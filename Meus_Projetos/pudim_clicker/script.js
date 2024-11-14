@@ -2,7 +2,9 @@
 //  localStorage.clear();
 
 // COLOCAR UPGRADES PRA O RESTAURANTE GOURMET (será?)
-// Colocar um upgrade que custa 1 TRILHÃO, que transforma toda produção em ∞ (infinito), pra isso é só aumentar um valor colossal, usando exponenciação (2³¹)
+// Colocar um upgrade que custa 1 TRILHÃO (inventa um novo), que só aparece após ganhar 10M
+// Ele vai transformar toda produção em ∞ (infinito), pra isso é só aumentar um valor colossal, usando exponenciação (2³¹)
+// *OBS: ∞ (infinito) é NaN, por incrível que pareça, então vc vai ter que na verdade só deixar todos os preços para 0 e fingir ter ∞.
 
 // document.querySelector("#botao-teste").onclick = () => {
 //     pudins = 0;
@@ -325,10 +327,10 @@ const listaPrecoMelhorias = [
     2_000_000,           // confeiteira_4
     15_000_000,          // confeiteira_5
     2_000,               // chef_1
-    15_000,              // chef_2
+    20_000,              // chef_2
     200_000,             // chef_3
     3_500,               // padaria_1
-    200_000,             // padaria_2
+    150_000,             // padaria_2
     75_000,              // confeitaria_1
     3_000_000,           // confeitaria_2
     1_500_000,           // supermercado_1
@@ -368,7 +370,7 @@ const listaDescricaoMelhorias = [
     "Pode ficar tranquilo(a), eles só servem de decoração.<br><br><br>Aumenta a produção das padarias em 2x",                     // padaria_1
     "Ficou careca de tanto estudar os pães.<br><br><br>Aumenta a produção das padarias em 4x",                                    // padaria_2
     "Diminuir o salário dos funcionários em 50%.<br><br><br>Aumenta a produção das confeitarias em 2x",                           // confeitaria_1
-    "Mais espaço significa mais clientes!<br><br><br>Aumenta a produção das confeitarias em 4x",                                                                                  // confeitaria_2
+    "Mais espaço significa mais clientes!<br><br><br>Aumenta a produção das confeitarias em 4x",                                  // confeitaria_2
     "Agora com produtos legalizados!!<br><br><br>Aumenta a produção dos supermercados em 2x",                                     // supermercado_1
     "Parceria com um dos mais fortes mercados do Brasil!<br><br><br>Aumenta a produção dos supermercados em 4x",                  // supermercado_2
     "Clica no Cookie...<br><br><br>Aumenta a produção das cafeterias em 2x",                                                      // cafeteria_1
