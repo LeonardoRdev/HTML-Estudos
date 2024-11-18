@@ -2,7 +2,7 @@
 //  localStorage.clear();
 
 // COLOCAR UPGRADES PRA O RESTAURANTE GOURMET (será?)
-// Colocar um upgrade que custa 1 TRILHÃO (inventa um novo), que só aparece após ganhar 10M
+// Colocar um upgrade que custa 1 TRILHÃO, e que só aparece após ganhar 10M
 // Ele vai transformar toda produção em ∞ (infinito), pra isso é só aumentar um valor colossal, usando exponenciação (2³¹)
 // *OBS: ∞ (infinito) é NaN, por incrível que pareça, então vc vai ter que na verdade só deixar todos os preços para 0 e fingir ter ∞.
 
@@ -11,7 +11,7 @@
 // }
 
 
-// formata os números grandes, exemplo: 10000 -> 10k 
+// formata os números grandes, exemplo: 10_000 -> 10k 
 const formatarNumero = Intl.NumberFormat("en", { notation: "compact"});
 
 
@@ -57,7 +57,8 @@ const listaUpgrades = [
     "confeitaria",
     "supermercado",
     "cafeteria",
-    "gourmet"
+    "gourmet",
+    "planeta"
 ];
 
 // Lista com todos os upgrades que aumentam o PPS (Pudim Por Segundo)
@@ -77,17 +78,19 @@ const listaPoderInicialUpgrades = [
     250,        // confeitaria  + PPS
     5_000,      // supermercado + PPS
     200_000,    // cafeteria    + PPS
-    1           // gourmet        PPC * Poder_gourmet (vai multiplicando por 2)
+    1,          // gourmet        PPC * Poder_gourmet (vai multiplicando por 2)
+    1           // planeta        PPC & PPS = ∞
 ];
 
 const listaPrecoInicialUpgrades = [
-    10,         // confeiteira
-    100,        // chef
-    500,        // padaria
-    15_000,     // confeitaria
-    250_000,    // supermercado
-    10_000_000, // cafeteria
-    1_000_000   // gourmet
+    10,                 // confeiteira
+    100,                // chef
+    500,                // padaria
+    15_000,             // confeitaria
+    250_000,            // supermercado
+    10_000_000,         // cafeteria
+    1_000_000,          // gourmet
+    1_000_000_000_000   // planeta
 ];
 
 const elementosUpgrade = {};
@@ -240,7 +243,7 @@ function clicarNoUpgrade(upgrade) {
 
 
         // Caso o UPGRADE for PPC
-        if (upgrade === "chef" || upgrade === "gourmet") {
+        if (upgrade === "chef" || upgrade === "gourmet" || upgrade === "planeta") {
 
             // Caso for GOURMET
             if (upgrade === "gourmet") {
@@ -251,16 +254,25 @@ function clicarNoUpgrade(upgrade) {
 
             // Recompensa fornecida pelo UPGRADE
             atualizarPudinsPorClique();
+
+            // Caso o UPGRADE for um PLANETA
+            if (upgrade === "planeta") {
+                // fazer dinheiro infinito
+                poderUpgrades["gourmet"] = 2 ** 1100;
+                poderUpgrades["cafeteria"] = 2 ** 1100;
+
+                // Deixar todos os preços para 0??
+            }
         }
 
         // Caso o UPGRADE for PPS
         else {    
-            // Atualizar texto do TOOLTIP
-            atualizarTooltipUpgrades(upgrade);
-    
             // Recompensa fornecida pelo UPGRADE
             atualizarPudinsPorSegundo();
         }
+
+        // Atualizar texto do TOOLTIP do UPGRADE
+        atualizarTooltipUpgrades(upgrade);
     }
 
 }
@@ -289,10 +301,6 @@ function atualizarPudinsPorClique() {
     // Atualiza o PPC (Poder Por Clique): 1 (base) + PPC do Chef * Poder do Gourmet (duplica o PPC)     
     poderDoClique = (1 + (poderUpgrades["chef"] * quantidadeUpgrade["chef"])) * poderUpgrades["gourmet"];
     console.log(`=======\n PPC ${poderDoClique}\n=======`);
-
-    // Atualizar texto do TOOLTIP
-    atualizarTooltipUpgrades("chef");
-    atualizarTooltipUpgrades("gourmet");
 }
 
 
@@ -560,6 +568,11 @@ function atualizarTooltipUpgrades(upgrade) {
 
     if (upgrade === "gourmet") {
         elementosUpgrade[upgrade].querySelector(".informacoes_upgrade").setAttribute("data-tooltip", `Duplica o PPC\n\nTotal: ${formatarNumero.format(poderDoClique)} PPC`);
+        return;
+    }
+
+    if (upgrade === "planeta") {
+        elementosUpgrade[upgrade].querySelector(".informacoes_upgrade").setAttribute("data-tooltip", `Você já tem tudo\n\nPudins x ∞`);
         return;
     }
 
