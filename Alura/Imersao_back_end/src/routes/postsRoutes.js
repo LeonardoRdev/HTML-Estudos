@@ -1,19 +1,40 @@
-// # Arquivo responsável por todas as ROTAS feitas no servidor
+// # Arquivo responsável por todas as rotas da aplicação. 
+// Aqui, definimos as rotas que o servidor irá responder,
+// como as rotas para listar, criar e fazer upload de posts.
 
 import express from "express";
-import listarPosts from "../controllers/postsController.js";
+import multer from "multer" // Multer -> Avisa o sistema que estamos enviando arquivos que não são somente caracteres
+import {listarPosts, postarNovoPost, uploadImagem} from "../controllers/postsController.js";
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/');
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+    }
+})
+
+// Cria uma instância do multer com a configuração de armazenamento
+const upload = multer({ dest: "./uploads" , storage})
 
 const routes = (app) => {
     // Avisa o express que ele pode CONVERTER tudo que se pareça com JSON em JSON
     app.use(express.json());
 
-    // Configura uma rota chamada "/posts" que possui todos os posts
+    // Rota para listar todos os posts
+    // GET /posts
     app.get("/posts", listarPosts);
 
-    app.get("/posts/:id", (req, res) => {
-        const index = buscarIDRequisicao(req.params.id);
-        res.status(200).json(posts[index]);
-    });
+    // Rota para criar um novo post
+    // POST /posts
+    app.post("/posts", postarNovoPost);
+
+    // Rota para fazer upload de uma imagem
+    // POST /upload
+    // O parâmetro 'imagem' indica o nome do campo no formulário
+    // que contém o arquivo a ser enviado
+    app.post("/upload", upload.single("imagem"), uploadImagem);
 }
 
 export default routes;

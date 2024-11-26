@@ -6,7 +6,7 @@ import conectarAoBanco from "../config/dbConfig.js";
 const conexao = await conectarAoBanco(process.env.STRING_CONEXAO);
 
 // Pega informações diretamente do Banco de Dados
-export default async function getTodosPosts() {
+export async function getTodosPosts() {
  
     // Definindo um OBJETO que representa o BANCO de DADOS
     const db = conexao.db("imersao-back-end");
@@ -16,4 +16,11 @@ export default async function getTodosPosts() {
 
     // Retornamos o conteúdo que encontrarmos dentro da coleção de "posts"
     return colecao.find().toArray();
+}
+
+export async function criarPost(novoPost) {
+    const db = conexao.db("imersao-back-end");
+    const colecao = db.collection("posts");
+
+    return colecao.insertOne(novoPost);
 }
