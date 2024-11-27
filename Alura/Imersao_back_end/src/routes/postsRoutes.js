@@ -4,11 +4,17 @@
 
 import express from "express";
 import multer from "multer" // Multer -> Avisa o sistema que estamos enviando arquivos que não são somente caracteres
-import {listarPosts, postarNovoPost, uploadImagem} from "../controllers/postsController.js";
+import {listarPosts, postarNovoPost, uploadImagem, atualizarNovoPost} from "../controllers/postsController.js";
+import cors from "cors";
+
+const corsOptions = {
+    origin: "htpp://localhost:8000",
+    optionsSuccessStatus: 200
+};
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'uploads/');
+        cb(null, 'Alura/Imersao_back_end/uploads/');
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname);
@@ -16,7 +22,7 @@ const storage = multer.diskStorage({
 })
 
 // Cria uma instância do multer com a configuração de armazenamento
-const upload = multer({ dest: "./uploads" , storage})
+const upload = multer({ dest: "Alura/Imersao_back_end/uploads" , storage})
 
 const routes = (app) => {
     // Avisa o express que ele pode CONVERTER tudo que se pareça com JSON em JSON
@@ -32,9 +38,13 @@ const routes = (app) => {
 
     // Rota para fazer upload de uma imagem
     // POST /upload
-    // O parâmetro 'imagem' indica o nome do campo no formulário
-    // que contém o arquivo a ser enviado
+    // O parâmetro 'imagem' indica o nome do campo no formulário, que contém o arquivo a ser enviado
     app.post("/upload", upload.single("imagem"), uploadImagem);
+
+    // Roda para ATUALIZAR um registro
+    app.put("/upload/:id", atualizarNovoPost)
+
+    app.use(cors(corsOptions));
 }
 
 export default routes;

@@ -1,7 +1,8 @@
 // # Arquivo responsável pelas requisições e respostas ao servidor
 
 import fs from "fs"; // Biblioteca nativa do node, faz com que a API conversar com os arquivos do novo computador
-import {getTodosPosts, criarPost} from "../models/postsModel.js";
+import {getTodosPosts, criarPost, atualizarPost} from "../models/postsModel.js";
+import gerarDescricaoComGemini from "../services/geminiService.js";
 
 export async function listarPosts(req, res) {
     const posts = await getTodosPosts();
@@ -37,9 +38,32 @@ export async function uploadImagem(req, res) {
         const postCriado = await criarPost(novoPost);
 
         // Vamos passar o endereço da imagem dentro da minha própria MÁQUINA (que só aceita .PNG por enquanto)
-        const imagemAtualizada = `uploads/${postCriado.insertedId}.png`;
+        const imagemAtualizada = `Alura/Imersao_back_end/uploads/${postCriado.insertedId}.png`;
         fs.renameSync(req.file.path, imagemAtualizada);
 
+        res.status(200).json(postCriado);
+    } catch(erro) {
+        console.error(`Deu o seguinte erro: ${erro.message}`);
+        res.status(500).json({"Erro":"Falha na requisição"});
+    }
+}
+
+export async function atualizarNovoPost(req, res) {
+    const id = req.params.id;
+    const urlImagem = `http://localhost:3000/${id}.png`;
+
+    try {
+        const imgBuffer = fs.readFileSync(`Alura/Imersao_back_end/uploads/${id}.png`);
+        const descricao = await gerarDescricaoComGemini(imgBuffer);
+
+        const post = {
+            imgUrl: urlImagem,
+            descricao: descricao,
+            alt: req.body.alt
+        };
+
+        // Vamos atulizar o post X, que possui o ID X
+        const postCriado = await atualizarPost(id, post);
         res.status(200).json(postCriado);
     } catch(erro) {
         console.error(`Deu o seguinte erro: ${erro.message}`);
