@@ -1,7 +1,7 @@
 // # Arquivo responsável pelas requisições e respostas ao servidor
 
 import fs from "fs"; // Biblioteca nativa do node, faz com que a API conversar com os arquivos do novo computador
-import {getTodosPosts, criarPost, atualizarPost} from "../models/postsModel.js";
+import {getTodosPosts, criarPost, atualizarPost, deletarPost} from "../models/postsModel.js";
 import gerarDescricaoComGemini from "../services/geminiService.js";
 
 export async function listarPosts(req, res) {
@@ -65,6 +65,19 @@ export async function atualizarNovoPost(req, res) {
         // Vamos atulizar o post X, que possui o ID X
         const postCriado = await atualizarPost(id, post);
         res.status(200).json(postCriado);
+    } catch(erro) {
+        console.error(`Deu o seguinte erro: ${erro.message}`);
+        res.status(500).json({"Erro":"Falha na requisição"});
+    }
+}
+
+export async function deletarNovoPost(req, res) {
+    // req.body -> é o conteúdo da requisição
+    const idPost = req.params.id;
+
+    try {
+        const postDeletado = await deletarPost(idPost);
+        res.status(200).json(postDeletado);
     } catch(erro) {
         console.error(`Deu o seguinte erro: ${erro.message}`);
         res.status(500).json({"Erro":"Falha na requisição"});

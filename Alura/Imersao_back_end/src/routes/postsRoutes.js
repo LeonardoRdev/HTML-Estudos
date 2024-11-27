@@ -4,8 +4,8 @@
 
 import express from "express";
 import multer from "multer" // Multer -> Avisa o sistema que estamos enviando arquivos que não são somente caracteres
-import {listarPosts, postarNovoPost, uploadImagem, atualizarNovoPost} from "../controllers/postsController.js";
-import cors from "cors";
+import {listarPosts, postarNovoPost, uploadImagem, atualizarNovoPost, deletarNovoPost} from "../controllers/postsController.js";
+import cors from "cors"; // Permite Requisições entre Origens Diferentes
 
 const corsOptions = {
     origin: "htpp://localhost:8000",
@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
 })
 
 // Cria uma instância do multer com a configuração de armazenamento
-const upload = multer({ dest: "Alura/Imersao_back_end/uploads" , storage})
+const upload = multer({ dest: "Alura/Imersao_back_end/uploads" , storage});
 
 const routes = (app) => {
     // Avisa o express que ele pode CONVERTER tudo que se pareça com JSON em JSON
@@ -42,7 +42,9 @@ const routes = (app) => {
     app.post("/upload", upload.single("imagem"), uploadImagem);
 
     // Roda para ATUALIZAR um registro
-    app.put("/upload/:id", atualizarNovoPost)
+    app.put("/upload/:id", atualizarNovoPost);
+
+    app.put("/delete/:id", deletarNovoPost);
 
     app.use(cors(corsOptions));
 }

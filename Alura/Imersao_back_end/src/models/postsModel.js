@@ -36,3 +36,12 @@ export async function atualizarPost(id, novoPost) {
     // Avisamos para o MONGO que é esse post que estamos querendo fazer a atualização, e mandamos o quais vão ser os dados atualizados
     return colecao.updateOne({_id: new ObjectId(objetoID)}, {$set: novoPost});
 }
+
+export async function deletarPost(post) {
+    const db = conexao.db("imersao-back-end");
+    const colecao = db.collection("posts");
+
+    return colecao.deleteOne({
+        _id: new ObjectId(post)
+    });
+}
