@@ -14,7 +14,7 @@ const corsOptions = {
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'Alura/Imersao_back_end/uploads/');
+        cb(null, 'uploads/');
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname);
@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
 })
 
 // Cria uma instância do multer com a configuração de armazenamento
-const upload = multer({ dest: "Alura/Imersao_back_end/uploads" , storage});
+const upload = multer({ dest: "uploads" , storage});
 
 const routes = (app) => {
     // Avisa o express que ele pode CONVERTER tudo que se pareça com JSON em JSON
@@ -41,7 +41,7 @@ const routes = (app) => {
     // O parâmetro 'imagem' indica o nome do campo no formulário, que contém o arquivo a ser enviado
     app.post("/upload", upload.single("imagem"), uploadImagem);
 
-    // Roda para ATUALIZAR um registro
+    // Rota para ATUALIZAR um registro
     app.put("/upload/:id", atualizarNovoPost);
 
     app.put("/delete/:id", deletarNovoPost);

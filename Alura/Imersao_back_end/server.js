@@ -5,7 +5,7 @@ import routes from "./src/routes/postsRoutes.js";
 const app = express();
 
 // Abre a pasta "uploads" para que ela possa eventualmente ser PÚBLICA (qualquer pessoa pode ver)
-app.use(express.static("./Alura/Imersao_back_end/uploads"));
+app.use(express.static("./uploads"));
 
 routes(app);
 

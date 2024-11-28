@@ -38,7 +38,7 @@ export async function uploadImagem(req, res) {
         const postCriado = await criarPost(novoPost);
 
         // Vamos passar o endereço da imagem dentro da minha própria MÁQUINA (que só aceita .PNG por enquanto)
-        const imagemAtualizada = `Alura/Imersao_back_end/uploads/${postCriado.insertedId}.png`;
+        const imagemAtualizada = `uploads/${postCriado.insertedId}.png`;
         fs.renameSync(req.file.path, imagemAtualizada);
 
         res.status(200).json(postCriado);
@@ -53,7 +53,7 @@ export async function atualizarNovoPost(req, res) {
     const urlImagem = `http://localhost:3000/${id}.png`;
 
     try {
-        const imgBuffer = fs.readFileSync(`Alura/Imersao_back_end/uploads/${id}.png`);
+        const imgBuffer = fs.readFileSync(`uploads/${id}.png`);
         const descricao = await gerarDescricaoComGemini(imgBuffer);
 
         const post = {
