@@ -1,46 +1,41 @@
 // # Arquivo responsável por fazer a conexão com o Banco de Dados
 
-import { ObjectId } from "mongodb";
-import conectarAoBanco from "../config/dbConfig.js";
+import { ObjectId } from "mongodb"; // Importa a função ObjectId para manipular IDs no formato MongoDB
+import conectarAoBanco from "../config/dbConfig.js"; // Função para conectar ao banco de dados
 
-// Conectando-se ao Banco de Dados e passando isso para uma variável
+// Conectando-se ao Banco de Dados usando uma string de conexão definida nas variáveis de ambiente
 const conexao = await conectarAoBanco(process.env.STRING_CONEXAO);
 
-// Pega informações diretamente do Banco de Dados
+// Função para buscar todos os posts no banco de dados
 export async function getTodosPosts() {
- 
-    // Definindo um OBJETO que representa o BANCO de DADOS
-    const db = conexao.db("imersao-back-end");
-
-    // Abre uma "coleção" dentro do banco, chamada "posts"
-    const colecao = db.collection("posts");
-
-    // Retornamos o conteúdo que encontrarmos dentro da coleção de "posts"
-    return colecao.find().toArray();
+    const db = conexao.db("imersao-back-end"); // Seleciona o banco de dados "imersao-back-end"
+    const colecao = db.collection("posts"); // Seleciona a coleção "posts" dentro do banco
+    return colecao.find().toArray(); // Busca todos os documentos na coleção e os retorna como um array
 }
 
+// Função para criar um novo post no banco de dados
 export async function criarPost(novoPost) {
-    const db = conexao.db("imersao-back-end");
-    const colecao = db.collection("posts");
-
-    return colecao.insertOne(novoPost);
+    const db = conexao.db("imersao-back-end"); // Seleciona o banco de dados "imersao-back-end"
+    const colecao = db.collection("posts"); // Seleciona a coleção "posts" dentro do banco
+    return colecao.insertOne(novoPost); // Insere um novo documento na coleção e retorna o resultado da operação
 }
 
+// Função para atualizar um post existente no banco de dados
 export async function atualizarPost(id, novoPost) {
-    const db = conexao.db("imersao-back-end");
-    const colecao = db.collection("posts");
+    const db = conexao.db("imersao-back-end"); // Seleciona o banco de dados "imersao-back-end"
+    const colecao = db.collection("posts"); // Seleciona a coleção "posts" dentro do banco
 
-    // Objeto para que o MONGO entenda o ID
-    const objetoID = ObjectId.createFromHexString(id);
-
-    // Avisamos para o MONGO que é esse post que estamos querendo fazer a atualização, e mandamos o quais vão ser os dados atualizados
-    return colecao.updateOne({_id: new ObjectId(objetoID)}, {$set: novoPost});
+    const objetoID = ObjectId.createFromHexString(id); // Converte o ID em string para o formato ObjectId
+    // Atualiza o documento que corresponde ao ID fornecido, substituindo os campos especificados no novoPost
+    return colecao.updateOne({ _id: new ObjectId(objetoID) }, { $set: novoPost });
 }
 
+// Função para deletar um post no banco de dados
 export async function deletarPost(post) {
-    const db = conexao.db("imersao-back-end");
-    const colecao = db.collection("posts");
+    const db = conexao.db("imersao-back-end"); // Seleciona o banco de dados "imersao-back-end"
+    const colecao = db.collection("posts"); // Seleciona a coleção "posts" dentro do banco
 
+    // Deleta o documento cujo _id corresponde ao ID fornecido
     return colecao.deleteOne({
         _id: new ObjectId(post)
     });
