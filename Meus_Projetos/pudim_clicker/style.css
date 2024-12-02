@@ -219,15 +219,16 @@ aside {
 }
 
 #upgrade_planeta {
-    background-image: url(imgs/upgrades/cafeteria.png);
+    background-image: url(imgs/upgrades/planeta.png);
 }
 
 .informacoes_upgrade {
     height: 100%;
+    width: 75%;
     padding: 0 0em 0 2em;
     display: flex;
     align-items: center;
-    gap: 0 4em;
+    gap: 0 3.8em;
 }
 
 .informacoes_upgrade p:first-child {
@@ -243,7 +244,14 @@ aside {
     pointer-events: none;
     bottom: 8%;
     left: 3%;
+    width: 71%;
+    overflow: hidden;
 }
+
+.descricao_upgrade {
+    padding-right: 5px;
+}
+
 
 /* FOOTER MELHORIAS */
 footer {
@@ -442,7 +450,7 @@ footer {
 }
 
 /* Tablets */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 885px) {
 
     /* Pudim */
     main {
@@ -492,7 +500,7 @@ footer {
 
     .informacoes_upgrade {
         font-size: 0.8em;
-        width: 170px;
+        width: 66%
     }
 
     #botao-responsividade {
@@ -533,10 +541,12 @@ footer {
         width: calc(100% + 25px);
     }
 
+
+
 }
 
 /* MOBILE Grande */
-@media only screen and (max-width: 425px) {
+@media only screen and (max-width: 515px) {
 
     /* Pudim */
     main {
@@ -562,6 +572,10 @@ footer {
         width: calc(300px + 150px);
     }
 
+    .informacoes_upgrade {
+        width: 70%;
+    }
+
     #upgrades {
         width: 250px;
     }
@@ -571,13 +585,36 @@ footer {
         font-size: 0.64em;
     }
 
-    .descricao_upgrade {
-        width: 45%;
+    .custo_upgrade {
+        width: 66%;
     }
+
+    /* MELHORIAS */
+    .informacoes_upgrade::after {
+        /* Seta > */
+        border:  13px solid transparent;
+        border-left-color: #8a4619;
+        top: 27px;
+    }
+    
 }
 
 /* MOBILE Médio */
-/* @media only screen and (max-width: 375px) {} */
+@media only screen and (max-width: 375px) {
+    .informacoes_upgrade::before {
+        /* Caixa com informações */
+        padding: 0.9em 0.2em;
+        font-size: 0.8em;
+        width: 8em;
+        height: 5em;
+    }
+    
+    .informacoes_upgrade::after {
+        /* Seta > */
+        border:  12px solid transparent;
+        border-left-color: #8a4619;
+    }
+}
 
 /* MOBILE Pequeno */
 /* @media only screen and (max-width: 320px) {} */

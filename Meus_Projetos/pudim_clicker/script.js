@@ -1,10 +1,8 @@
 // Descomentar para remover os arquivos locais (deletar o save)
-//  localStorage.clear();
+ localStorage.clear();
 
 // COLOCAR UPGRADES PRA O RESTAURANTE GOURMET (será?)
 // Colocar um upgrade que custa 1 TRILHÃO, e que só aparece após ganhar 10M
-// Ele vai transformar toda produção em ∞ (infinito), pra isso é só aumentar um valor colossal, usando exponenciação (2³¹)
-// *OBS: ∞ (infinito) é NaN, por incrível que pareça, então vc vai ter que na verdade só deixar todos os preços para 0 e fingir ter ∞.
 
 // document.querySelector("#botao-teste").onclick = () => {
 //     pudins = 0;
@@ -217,7 +215,7 @@ function clicarNoUpgrade(upgrade) {
         tocarAudio(audiosTocaveis["comprarUpgrade"]);
 
         quantidadeUpgrade[upgrade]++;
-        paragrafoQuantidadeUpgrades[upgrade].innerHTML = quantidadeUpgrade[upgrade];
+        paragrafoQuantidadeUpgrades[upgrade].innerHTML = formatarNumero.format(quantidadeUpgrade[upgrade]);
 
         // salva a quantidade de upgrades no computador para não perder o progresso
         localStorage.setItem(`upgrade_${upgrade} .quantidade_upgrade`, quantidadeUpgrade[upgrade]);
@@ -252,17 +250,22 @@ function clicarNoUpgrade(upgrade) {
                 localStorage.setItem(`poder_upgrade_${upgrade}`, poderUpgrades[upgrade]);
             }
 
-            // Recompensa fornecida pelo UPGRADE
-            atualizarPudinsPorClique();
-
             // Caso o UPGRADE for um PLANETA
             if (upgrade === "planeta") {
                 // fazer dinheiro infinito
                 poderUpgrades["gourmet"] = 2 ** 1100;
-                poderUpgrades["cafeteria"] = 2 ** 1100;
+                poderUpgrades["confeiteira"] = 1;
+
+                // Caso o jogador por algum motivo tenha 0 confeiteiras (senão dá bug)
+                quantidadeUpgrade["confeiteira"] = quantidadeUpgrade["confeiteira"] > 0 ? quantidadeUpgrade["confeiteira"] : 1;
+                poderUpgrades["confeiteira"] = 2 ** 1100;
+                atualizarPudinsPorSegundo();
 
                 // Deixar todos os preços para 0??
             }
+
+            // Recompensa fornecida pelo UPGRADE
+            atualizarPudinsPorClique();
         }
 
         // Caso o UPGRADE for PPS
