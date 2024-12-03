@@ -219,6 +219,7 @@ aside {
 }
 
 #upgrade_planeta {
+    display: none;
     background-image: url(imgs/upgrades/planeta.png);
 }
 
@@ -500,7 +501,11 @@ footer {
 
     .informacoes_upgrade {
         font-size: 0.8em;
-        width: 66%
+        width: 66%;
+    }
+
+    .custo_upgrade {
+        width: 62%;
     }
 
     #botao-responsividade {

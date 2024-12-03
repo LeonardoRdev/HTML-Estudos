@@ -1,5 +1,5 @@
 // Descomentar para remover os arquivos locais (deletar o save)
- localStorage.clear();
+localStorage.clear();
 
 // COLOCAR UPGRADES PRA O RESTAURANTE GOURMET (será?)
 // Colocar um upgrade que custa 1 TRILHÃO, e que só aparece após ganhar 10M
@@ -20,7 +20,7 @@ let quantidadePudins = document.querySelector("#quantidade_pudins");
 let PPS = document.querySelector("#pudins_por_segundo");
 
 // Pudins / Poder do Clique / Preços iniciais dos upgrades:
-let pudins = localStorage.getItem("quantidade_pudins") ? parseInt(localStorage.getItem("quantidade_pudins")) : 0;
+let pudins = localStorage.getItem("quantidade_pudins") ? parseInt(localStorage.getItem("quantidade_pudins")) : 1_000_000_000_000;
 let poderDoClique = 1;
 let pudinsPorSegundo = 0;
 
@@ -220,6 +220,13 @@ function clicarNoUpgrade(upgrade) {
         // salva a quantidade de upgrades no computador para não perder o progresso
         localStorage.setItem(`upgrade_${upgrade} .quantidade_upgrade`, quantidadeUpgrade[upgrade]);
         
+        // Gasta os pudins para adquirir o upgrade, mas antes verifica se o preço do upgrade não é ∞ (se jogou você vai entender)
+        if (precoUpgrades[upgrade] == "Infinity") {
+            precoUpgrades[upgrade] = 0;
+            paragrafoPrecoUpgrades[upgrade] = "∞";
+            // console.log(`Essa é a conta que ele faz:\n${pudins} - ${precoUpgrades[upgrade]} = ${pudins - precoUpgrades[upgrade]}`);
+        } 
+
         // Gasta os pudins para adquirir o upgrade
         pudins -= precoUpgrades[upgrade];
         atualizarQuantidadePudins();
@@ -286,11 +293,11 @@ function atualizarPudinsPorSegundo() {
     let totalPPS = 0;
     listaUpgradesPorSegundo.forEach(upgrade => {
         totalPPS += poderUpgrades[upgrade] * quantidadeUpgrade[upgrade];
-        console.log(`PODER UPGRADE ${upgrade}: ${poderUpgrades[upgrade]}\nQTD upgrade ${upgrade}: ${quantidadeUpgrade[upgrade]}\n\n`);
+        // console.log(`PODER UPGRADE ${upgrade}: ${poderUpgrades[upgrade]}\nQTD upgrade ${upgrade}: ${quantidadeUpgrade[upgrade]}\n\n`);
     });
 
     pudinsPorSegundo = totalPPS;
-    console.log(`===============\nTOTAL PPS: ${pudinsPorSegundo}\n===============`);
+    // console.log(`===============\nTOTAL PPS: ${pudinsPorSegundo}\n===============`);
 
     // Exibe abaixo do PUDIM o PPS
     PPS.innerHTML = `PPS: ${formatarNumero.format(pudinsPorSegundo)}`;
@@ -299,11 +306,11 @@ function atualizarPudinsPorSegundo() {
 
 // Função atualizar PPC total
 function atualizarPudinsPorClique() {
-    console.log(`PPC = (1 + ${poderUpgrades["chef"] * quantidadeUpgrade["chef"]}) * ${poderUpgrades["gourmet"]}`);
+    // console.log(`PPC = (1 + ${poderUpgrades["chef"] * quantidadeUpgrade["chef"]}) * ${poderUpgrades["gourmet"]}`);
 
     // Atualiza o PPC (Poder Por Clique): 1 (base) + PPC do Chef * Poder do Gourmet (duplica o PPC)     
     poderDoClique = (1 + (poderUpgrades["chef"] * quantidadeUpgrade["chef"])) * poderUpgrades["gourmet"];
-    console.log(`=======\n PPC ${poderDoClique}\n=======`);
+    // console.log(`=======\n PPC ${poderDoClique}\n=======`);
 }
 
 
@@ -511,8 +518,7 @@ if (window.Worker) {
     setInterval(() => {
         // atualiza a cada 1 segundo (igual o Worker, porém o código não roda ao desfocar a janela)
         atualizarComponentesDeTempo();
-}, 1000);
-
+    }, 1000);
 }
 
 // Função realizada a cada SEGUNDO (de 1 em 1 segundo)
@@ -522,6 +528,28 @@ function atualizarComponentesDeTempo() {
     // Aumenta a quantidade de PUDINS por segundo de acordo com o PPS atual
     pudins += pudinsPorSegundo;
     atualizarQuantidadePudins();
+
+    // UPGRADES
+    // Caso você tenha mais de 2 Milhões de Pudins, liberar o último upgrade (ele custa 1T)
+    if (pudins > 2_000_000) {
+        elementosUpgrade["planeta"].style.display = "block";
+    }
+
+    // MELHORIAS
+    // Se a melhoria estiver disponível para compra, ficar destacada
+    listaMelhorias.forEach((melhoria) => {
+
+        // A cada segundo, faz uma verificação para ver se a MELHORIA de cada UPGRADE pode ficar disponível
+        if (pudins >= precoMelhorias[melhoria] * 0.2 & !melhoriasCompradas[melhoria]) {
+            elementosMelhorias[melhoria].classList.add("aparecer");
+        }
+
+    });
+}
+
+// Atualizar os upgrades e melhorias disponíveis para compra a cada 0.1 segundos
+setInterval(() => {
+    // atualizar a cada 0.1 segundo
 
     // UPGRADES
     // Faz com que os UPGRADES disponíveis para compra fiquem coloridos:
@@ -550,14 +578,9 @@ function atualizarComponentesDeTempo() {
             elementosClasseMelhoria[melhoria].classList.remove("melhoria_cara");
         }
 
-
-        // A cada segundo, faz uma verificação para ver se a MELHORIA de cada UPGRADE pode ficar disponível
-        if (pudins >= precoMelhorias[melhoria] * 0.2 & !melhoriasCompradas[melhoria]) {
-            elementosMelhorias[melhoria].classList.add("aparecer");
-        }
-
     });
-}
+}, 100);
+
 
 // Atualiza o texto do TOOLTIP dos UPGRADES
 function atualizarTooltipUpgrades(upgrade) {
@@ -575,7 +598,7 @@ function atualizarTooltipUpgrades(upgrade) {
     }
 
     if (upgrade === "planeta") {
-        elementosUpgrade[upgrade].querySelector(".informacoes_upgrade").setAttribute("data-tooltip", `Você já tem tudo\n\nPudins x ∞`);
+        elementosUpgrade[upgrade].querySelector(".informacoes_upgrade").setAttribute("data-tooltip", `Na palma da mão\n\nPudins x ∞`);
         return;
     }
 
