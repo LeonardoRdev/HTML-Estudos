@@ -97,8 +97,61 @@ main {
     }
 }
 
-/* Upgrades */
 
+/* Botões */
+#botao-responsividade {
+    display: none;
+}
+
+#botao-configuracoes {
+    position: absolute;
+    top: 15px;
+    left: 25px;
+}
+
+.botao-abrir-menu img {
+    border: solid 3px #000;
+    padding: 4px;
+    border-radius: 50%;
+
+    width: 55px;
+    height: 55px;
+    transition: scale 0.15s;
+    background-color: #FFF;
+}
+
+.botao-abrir-menu img:hover {
+    cursor: pointer;
+    scale: 1.1;
+}
+
+.botao-abrir-menu img:active {
+    background-color: #2222;
+}
+
+.mostrar {
+    display: block;
+}
+
+/* Menu configurações */
+#menu-configuracoes {
+    /* display: none; */
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+    width: 40%;
+    text-align: center;
+    padding: 25px 50px;
+
+    background-color: #cfc2c1;
+}
+
+#botao-musica, #botao-som {
+    display: flex;
+    gap: 0.5em;
+}
+
+/* Upgrades */
 aside {
     position: fixed;
     right: 0;
@@ -107,10 +160,6 @@ aside {
     padding-left: 20em;
     height: 100vh;
     overflow-y: scroll;
-}
-
-#botao-responsividade {
-    display: none;
 }
 
 #upgrades {
@@ -467,10 +516,6 @@ footer {
     /* UPGRADES */
         /* Transforma os UPGRADES em um ícone */
 
-    .mostrar {
-        display: block;
-    }
-
     aside {
         display: none;
         flex-direction: column;
@@ -514,26 +559,6 @@ footer {
         z-index: 5;
         top: 15px;
         right: 25px;
-    }
-
-    #botao-responsividade img {
-        border: solid 3px #000;
-        padding: 4px;
-        border-radius: 50%;
-
-        width: 55px;
-        height: 55px;
-        transition: scale 0.15s;
-        background-color: #FFF;
-    }
-
-    #botao-responsividade img:hover {
-        cursor: pointer;
-        scale: 1.1;
-    }
-    
-    #botao-responsividade img:active {
-        background-color: #2222;
     }
 
     /* FOOTER MELHORIAS */

@@ -20,7 +20,7 @@ let quantidadePudins = document.querySelector("#quantidade_pudins");
 let PPS = document.querySelector("#pudins_por_segundo");
 
 // Pudins / Poder do Clique / Preços iniciais dos upgrades:
-let pudins = localStorage.getItem("quantidade_pudins") ? parseInt(localStorage.getItem("quantidade_pudins")) : 1_000_000_000_000;
+let pudins = localStorage.getItem("quantidade_pudins") ? parseInt(localStorage.getItem("quantidade_pudins")) : 0;
 let poderDoClique = 1;
 let pudinsPorSegundo = 0;
 
@@ -132,6 +132,10 @@ listaUpgrades.forEach(upgrade => {
 });
 
 
+// ========================
+// ======== BOTÕES ========
+// ======================== 
+
 // Responsividade
 const botaoResponsividade = document.querySelector("#botao-responsividade img");
 let menuDoBotaoResponsividadeAberto = false;
@@ -153,10 +157,31 @@ botaoResponsividade.onclick = () => {
     }
 }
 
+// Configurações
+const botaoConfiguracoes = document.querySelector("#botao-configuracoes img");
+let menuDoBotaoConfiguracoesAberto = false;
+botaoConfiguracoes.onclick = () => {
+    const menuConfiguracoes = document.querySelector("#menu-configuracoes");
+
+    if (menuDoBotaoConfiguracoesAberto) {
+        // Fechar a aba que o botão abre (sair)
+        menuConfiguracoes.classList.add("mostrar");
+
+        menuDoBotaoConfiguracoesAberto = false;
+    }
+
+    else {
+        // Abrir a aba do Botão (entrar)
+        menuConfiguracoes.classList.remove("mostrar");
+
+        menuDoBotaoConfiguracoesAberto = true;
+    }
+}
+
 
 // =======================
 // ======= FUNÇÕES =======
-// =======================
+// ======================= 
 
 // Clicar no PUDIM:
 divImagemPudins.addEventListener("click", (e) => {
