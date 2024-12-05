@@ -1,5 +1,5 @@
 // Descomentar para remover os arquivos locais (deletar o save)
-localStorage.clear();
+// localStorage.clear();
 
 // COLOCAR UPGRADES PRA O RESTAURANTE GOURMET (será?)
 // Colocar um upgrade que custa 1 TRILHÃO, e que só aparece após ganhar 10M
@@ -165,17 +165,47 @@ botaoConfiguracoes.onclick = () => {
 
     if (menuDoBotaoConfiguracoesAberto) {
         // Fechar a aba que o botão abre (sair)
-        menuConfiguracoes.classList.add("mostrar");
+        menuConfiguracoes.classList.remove("mostrar");
 
         menuDoBotaoConfiguracoesAberto = false;
     }
 
     else {
         // Abrir a aba do Botão (entrar)
-        menuConfiguracoes.classList.remove("mostrar");
+        menuConfiguracoes.classList.add("mostrar");
 
         menuDoBotaoConfiguracoesAberto = true;
     }
+}
+
+// Deletar Progresso
+const botaoDeletarProgresso = document.querySelector("#botao-reinciar-procresso");
+botaoDeletarProgresso.onclick = () => {
+    const opcoesDeSom = document.querySelector("#opcoes-de-som");
+    const divDeletarProgresso = document.querySelector("#deletar-progresso");
+    const confirmarExclusaoDeDados = document.querySelector("#confirmar-exclusao-de-dados");
+    const botaoConfirmarExclusaoDados = document.querySelector("#botao-confirmar-exclusao-dados");
+    const botaoCancelarExclusaoDados = document.querySelector("#botao-cancelar-exclusao-dados");
+
+    // Mostrar a tela de confirmação
+    opcoesDeSom.classList.add("esconder");
+    divDeletarProgresso.classList.add("esconder");
+    confirmarExclusaoDeDados.classList.add("mostrar");
+
+    // Botão não, fecha o menu de confirmação
+    botaoCancelarExclusaoDados.onclick = () => {
+        opcoesDeSom.classList.remove("esconder");
+        divDeletarProgresso.classList.remove("esconder");
+        confirmarExclusaoDeDados.classList.remove("mostrar");
+    }
+
+    // Botão sim, reinicia todo o progresso resetando os dados locais da página
+    botaoConfirmarExclusaoDados.onclick = () => {
+        localStorage.clear();
+        location.reload();
+    }
+
+
 }
 
 

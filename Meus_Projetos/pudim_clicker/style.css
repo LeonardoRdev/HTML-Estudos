@@ -129,13 +129,10 @@ main {
     background-color: #2222;
 }
 
-.mostrar {
-    display: block;
-}
 
 /* Menu configurações */
 #menu-configuracoes {
-    /* display: none; */
+    display: none;
     left: 50%;
     position: absolute;
     transform: translateX(-50%);
@@ -146,9 +143,25 @@ main {
     background-color: #cfc2c1;
 }
 
+#menu-configuracoes.mostrar, #confirmar-exclusao-de-dados.mostrar {
+    display: block;
+}
+
+.mostrar {
+    display: block;
+}
+
 #botao-musica, #botao-som {
     display: flex;
     gap: 0.5em;
+}
+
+#confirmar-exclusao-de-dados {
+    display: none;
+}
+
+.esconder {
+    display: none;
 }
 
 /* Upgrades */
