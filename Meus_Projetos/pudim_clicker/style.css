@@ -129,22 +129,145 @@ main {
     background-color: #2222;
 }
 
+#botao-reinciar-procresso {
+    padding: 15px 25px;
+    border-radius: 10px;
+    border: 3px solid #000;
+    background-color: #d44437;
+    color: #fff;
+    font-size: 1.2em;
+    transition: scale 0.15s;
+}
+
+#botao-reinciar-procresso:hover {
+    cursor: pointer;
+    scale: 1.05;
+}
+
+/* Opções de som */
+#opcoes-de-som {
+    display: flex;
+    flex-direction: column;
+    gap: 10px 0;
+}
+
+#opcoes-de-som div {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+#opcoes-de-som input[type="checkbox"] {
+    width: 35px;
+    height: 35px;
+    border: solid 2px #000;
+    background-color: #FFF;
+    appearance: none;
+}
+
+#opcoes-de-som input[type="checkbox"]:hover {
+    cursor: pointer;
+}
+
+#opcoes-de-som input[type="checkbox"]:checked {
+    background-color: #40e373;
+}
+
+#opcoes-de-som input[type="checkbox"]::before {
+    content: "";
+    position: absolute;
+    left: 12px;
+    top: 7px;
+    border: 3px solid transparent;
+    border-left: none;
+    border-top: none;
+    width: 9px;
+    height: 14px;
+    transform: rotate(45deg);
+}
+
+#opcoes-de-som input[type="checkbox"]:checked::before {
+    animation: animacaoCheckbox 0.3s;
+    border-color: #000;
+}
+
+@keyframes animacaoCheckbox {
+    0% {
+        scale: 0;
+    }
+
+    80% {
+        scale: 1.2;
+    }
+
+    100% {
+        scale: 1;
+    }
+}
+
+/* Botões confirmação */
+#botoes-confirmacao {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+}
+
+#botoes-confirmacao button {
+    padding: 10px 25px;
+    border-radius: 10px;
+    border: 3px solid #000;
+    font-size: 1.2em;
+    transition: scale 0.15s;
+}
+
+#botoes-confirmacao button:hover {
+    cursor: pointer;
+    scale: 1.1;
+}
+
+#botao-confirmar-exclusao-dados {
+    background-color: #40e373;
+}
+
+#botao-cancelar-exclusao-dados {
+    background-color: #CCC;
+}
+
+#confirmar-exclusao-de-dados {
+    margin: 30px 0;
+}
+
+#confirmar-exclusao-de-dados h4 {
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+
+#confirmar-exclusao-de-dados h4 b {
+    font-size: 1.15em;
+}
 
 /* Menu configurações */
 #menu-configuracoes {
     display: none;
     left: 50%;
     position: absolute;
+    z-index: 6;
     transform: translateX(-50%);
     width: 40%;
     text-align: center;
     padding: 25px 50px;
 
     background-color: #cfc2c1;
+    border: solid 4px #000;
+    border-radius: 15px;
 }
 
 #menu-configuracoes.mostrar, #confirmar-exclusao-de-dados.mostrar {
     display: block;
+}
+
+#menu-configuracoes h3 {
+    font-size: 2.4em;
 }
 
 .mostrar {
@@ -160,7 +283,7 @@ main {
     display: none;
 }
 
-.esconder {
+#opcoes-de-som.esconder, #deletar-progresso.esconder {
     display: none;
 }
 
