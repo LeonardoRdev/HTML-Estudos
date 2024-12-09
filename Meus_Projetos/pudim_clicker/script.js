@@ -2,7 +2,7 @@
 // localStorage.clear();
 
 // COLOCAR UPGRADES PRA O RESTAURANTE GOURMET (será?)
-// Colocar um upgrade que custa 1 TRILHÃO, e que só aparece após ganhar 10M
+// Slide para SONS e MÚSICA
 
 // document.querySelector("#botao-teste").onclick = () => {
 //     pudins = 0;
@@ -46,6 +46,23 @@ function tocarAudio(audio) {
         audio.currentTime = 0;
     }
 }
+
+// Musica de fundo
+const musicaDeFundo = new Audio();
+musicaDeFundo.src = `../Arquivos_pagina_inicial/audios/pudim_clicker/musicaDeFundo.mp3`;
+musicaDeFundo.loop = true;
+
+// Ativa a música somente ao interagir com a página (clicando)
+document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('click', () => {
+        if (musicaDeFundo.paused) {
+            musicaDeFundo.play()
+            .then(() => console.log("Música iniciada após recarregar."))
+            .catch((err) => console.error("Erro ao tocar música:", err));
+        }
+    });
+
+});
 
 // Variáveis dos upgrades: elemento, preço, texto do preço, texto da quantidade e quantidade:
 const listaUpgrades = [
@@ -175,6 +192,42 @@ botaoConfiguracoes.onclick = () => {
         menuConfiguracoes.classList.add("mostrar");
 
         menuDoBotaoConfiguracoesAberto = true;
+    }
+}
+
+// Check-boxs de SOM e MÚSICA
+// SOM
+const checkSom = document.querySelector("#check-som");
+checkSom.onchange = () => {
+    if (checkSom.checked) {
+        // Marcar o checkbox (marcado por padrão)
+        // Liga os sons da página
+        listaAudios.forEach((audio) => {
+            audiosTocaveis[audio].volume = 1;
+        });
+    }
+    else {
+        // Desmarcar o checkbox
+        // Desativa os sons da página
+        listaAudios.forEach((audio) => {
+            audiosTocaveis[audio].volume = 0;
+        });
+    }
+}
+
+// MÚSICA
+const checkMusica = document.querySelector("#check-musica");
+checkMusica.onchange = () => {
+    if (checkMusica.checked) {
+        // Marcar o checkbox (marcado por padrão)
+        // Liga a música da página
+        musicaDeFundo.volume = 1;
+
+    }
+    else {
+        // Desmarcar o checkbox
+        // Desativa a música da página
+        musicaDeFundo.volume = 0;
     }
 }
 
