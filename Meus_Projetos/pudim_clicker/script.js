@@ -195,15 +195,35 @@ botaoConfiguracoes.onclick = () => {
     }
 }
 
-// Check-boxs de SOM e MÚSICA
-// SOM
+// Sliders e Checkbox de SOM e MÚSICA
+// Variáveis
+volumeSliderMusica = document.querySelector("#volume-musica-slider");
+volumeSliderSom = document.querySelector("#volume-som-slider");
 const checkSom = document.querySelector("#check-som");
+const checkMusica = document.querySelector("#check-musica");
+
+// Funções
+volumeSliderMusica.oninput = () => {
+    if (checkMusica.checked) {
+        musicaDeFundo.volume = volumeSliderMusica.value;
+    }
+}
+
+volumeSliderSom.oninput = () => {
+    if (checkSom.checked) {
+        listaAudios.forEach((audio) => {
+            audiosTocaveis[audio].volume = volumeSliderSom.value;
+        });
+    }
+}
+
+// SOM
 checkSom.onchange = () => {
     if (checkSom.checked) {
         // Marcar o checkbox (marcado por padrão)
         // Liga os sons da página
         listaAudios.forEach((audio) => {
-            audiosTocaveis[audio].volume = 1;
+            audiosTocaveis[audio].volume = volumeSliderSom.value;
         });
     }
     else {
@@ -216,12 +236,11 @@ checkSom.onchange = () => {
 }
 
 // MÚSICA
-const checkMusica = document.querySelector("#check-musica");
 checkMusica.onchange = () => {
     if (checkMusica.checked) {
         // Marcar o checkbox (marcado por padrão)
         // Liga a música da página
-        musicaDeFundo.volume = 1;
+        musicaDeFundo.volume = volumeSliderMusica.value;
 
     }
     else {
@@ -230,6 +249,7 @@ checkMusica.onchange = () => {
         musicaDeFundo.volume = 0;
     }
 }
+
 
 // Deletar Progresso
 const botaoDeletarProgresso = document.querySelector("#botao-reinciar-procresso");
