@@ -203,13 +203,24 @@ const checkSom = document.querySelector("#check-som");
 const checkMusica = document.querySelector("#check-musica");
 
 // Funções
+// Sliders
 volumeSliderMusica.oninput = () => {
+    // Estilização do slider
+    let valorAudioAtual = volumeSliderMusica.value;
+    volumeSliderMusica.style.background = `linear-gradient(90deg, #e85a4e ${valorAudioAtual * 100}%, #FFF ${valorAudioAtual * 100}%)`;
+
+    // Lógica para não alterar o volume caso o checkbox esteja desativado
     if (checkMusica.checked) {
         musicaDeFundo.volume = volumeSliderMusica.value;
     }
 }
 
 volumeSliderSom.oninput = () => {
+    // Estilização do slider
+    let valorAudioAtual = volumeSliderSom.value;
+    volumeSliderSom.style.background = `linear-gradient(90deg, #e85a4e ${valorAudioAtual * 100}%, #FFF ${valorAudioAtual * 100}%)`;
+
+    // Lógica para não alterar o volume caso o checkbox esteja desativado
     if (checkSom.checked) {
         listaAudios.forEach((audio) => {
             audiosTocaveis[audio].volume = volumeSliderSom.value;
@@ -218,6 +229,7 @@ volumeSliderSom.oninput = () => {
 }
 
 // SOM
+// Check-boxs
 checkSom.onchange = () => {
     if (checkSom.checked) {
         // Marcar o checkbox (marcado por padrão)
