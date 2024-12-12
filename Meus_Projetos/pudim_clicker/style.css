@@ -137,6 +137,7 @@ main {
     color: #fff;
     font-size: 1.2em;
     transition: scale 0.15s;
+    box-shadow: 1px 2px 4px #000A;
 }
 
 #botao-reinciar-procresso:hover {
@@ -150,7 +151,6 @@ main {
     flex-direction: column;
     gap: 25px 0;
     padding: 5px 0 25px;
-    /* background-color: red; */
 }
 
 #controle-de-musica, #controle-de-som {
@@ -163,7 +163,6 @@ main {
 /* Sliders */
 .slider-audio {
     display: flex;
-    /* background-color: red; */
 }
 
 .slider-audio input {
@@ -173,7 +172,7 @@ main {
     background-color: #e85a4e;
     background: linear-gradient(90deg, #e85a4e 100%, #FFF 100%);
     border-radius: 205px;
-    /* box-shadow:  1px 2px 3px; */
+    box-shadow: 0px 1px 4px #0008;
 }
 
 .slider-audio input::-webkit-slider-thumb {
@@ -197,6 +196,7 @@ main {
     border: solid 2px #000;
     background-color: #FFF;
     appearance: none;
+    box-shadow: 1px 1px 4px #0008;
 }
 
 #opcoes-de-audio input[type="checkbox"]:hover {
@@ -252,6 +252,7 @@ main {
     border: 3px solid #000;
     font-size: 1.2em;
     transition: scale 0.15s;
+    box-shadow: 1px 2px 4px #000A;
 }
 
 #botoes-confirmacao button:hover {
@@ -284,10 +285,12 @@ main {
 #menu-configuracoes {
     display: none;
     left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
     position: absolute;
     z-index: 6;
-    transform: translateX(-50%);
     width: 40%;
+    min-width: 600px;
     text-align: center;
     padding: 25px 50px;
 
@@ -667,6 +670,12 @@ footer {
     #quantidade_pudins {
         font-size: 1.7em;
     }
+
+    /* Configurações */
+    #menu-configuracoes {
+        font-size: 0.9em;
+    }
+
 }
 
 /* Tablets */
@@ -681,6 +690,20 @@ footer {
 
     .imagem_pudim {
         height: 21.2vw;
+    }
+
+    /* Configurações */
+    #menu-configuracoes {
+        font-size: 0.8em;
+        min-width: 450px;
+    }
+
+    .slider-audio input {
+        width: 55%;
+    }
+
+    #botao-musica, #botao-som {
+        font-size: 1.2em;
     }
 
     /* UPGRADES */
@@ -741,8 +764,6 @@ footer {
         width: calc(100% + 25px);
     }
 
-
-
 }
 
 /* MOBILE Grande */
@@ -764,6 +785,25 @@ footer {
         margin-top: 43%;
     }
     
+    /* Configurações */
+    #menu-configuracoes {
+        font-size: 0.7em;
+        width: 90%;
+        min-width: 280px;
+    }
+
+    .slider-audio input {
+        width: 55%;
+    }
+
+    #botao-musica, #botao-som {
+        font-size: 1.2em;
+    }
+
+    #botao-reinciar-procresso {
+        padding: 15px 20px;
+    }
+
     /* UPGRADES */
     aside {
         top: 5px;
@@ -801,6 +841,11 @@ footer {
 
 /* MOBILE Médio */
 @media only screen and (max-width: 375px) {
+    /* Configurações */
+    .slider-audio input {
+        width: 75%;
+    }
+
     .informacoes_upgrade::before {
         /* Caixa com informações */
         padding: 0.9em 0.2em;

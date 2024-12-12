@@ -266,7 +266,7 @@ checkMusica.onchange = () => {
 // Deletar Progresso
 const botaoDeletarProgresso = document.querySelector("#botao-reinciar-procresso");
 botaoDeletarProgresso.onclick = () => {
-    const opcoesDeSom = document.querySelector("#opcoes-de-som");
+    const opcoesDeSom = document.querySelector("#opcoes-de-audio");
     const divDeletarProgresso = document.querySelector("#deletar-progresso");
     const confirmarExclusaoDeDados = document.querySelector("#confirmar-exclusao-de-dados");
     const botaoConfirmarExclusaoDados = document.querySelector("#botao-confirmar-exclusao-dados");
