@@ -324,6 +324,37 @@ main {
     display: none;
 }
 
+/* Botão fechar menu */
+.botao-fechar-menu {
+    background-color: #d82111;
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em; 
+    padding: 20px;
+    border-radius: 5px;
+    color: #FFF;
+    border: solid 3px #000;
+    cursor: pointer;
+    transition: scale 0.1s;
+    z-index: 1;
+}
+
+.botao-fechar-menu:hover {
+    scale: 1.05;
+}
+
+#fechar-upgrades {
+    right: 1px;
+    top: 10px;
+    display: none;
+}
+
 /* Upgrades */
 aside {
     position: fixed;
@@ -754,6 +785,11 @@ footer {
         right: 25px;
     }
 
+    #fechar-upgrades {
+        display: flex;
+        font-size: 1.6em;
+    }
+
     /* FOOTER MELHORIAS */
     footer {
         width: 100%;
@@ -829,6 +865,10 @@ footer {
         width: 66%;
     }
 
+    #fechar-upgrades {
+        display: none;
+    }
+
     /* MELHORIAS */
     .informacoes_upgrade::after {
         /* Seta > */
@@ -844,6 +884,12 @@ footer {
     /* Configurações */
     .slider-audio input {
         width: 75%;
+    }
+
+    /* Botão fechar menu */
+    .botao-fechar-menu {
+        padding: 0;
+        font-size: 1.8em;
     }
 
     .informacoes_upgrade::before {

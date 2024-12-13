@@ -154,10 +154,8 @@ listaUpgrades.forEach(upgrade => {
 // ======================== 
 
 // Responsividade
-const botaoResponsividade = document.querySelector("#botao-responsividade img");
-let menuDoBotaoResponsividadeAberto = false;
-botaoResponsividade.onclick = () => {
-    let aside = document.querySelector("aside");
+function abrirMenuUpgrades() {
+    const aside = document.querySelector("aside");
 
     if (menuDoBotaoResponsividadeAberto) {
         // Fechar a aba que o botão abre (sair)
@@ -174,10 +172,20 @@ botaoResponsividade.onclick = () => {
     }
 }
 
+const botaoResponsividade = document.querySelector("#botao-responsividade img");
+let menuDoBotaoResponsividadeAberto = false;
+botaoResponsividade.onclick = () => {
+    abrirMenuUpgrades();
+}
+
+// Botão fechar menu dos UPGRADES
+const botaoFecharUpgrades = document.querySelector("#fechar-upgrades");
+botaoFecharUpgrades.onclick = () => {
+    abrirMenuUpgrades();
+}
+
 // Configurações
-const botaoConfiguracoes = document.querySelector("#botao-configuracoes img");
-let menuDoBotaoConfiguracoesAberto = false;
-botaoConfiguracoes.onclick = () => {
+function abrirMenuConfiguracoes() {
     const menuConfiguracoes = document.querySelector("#menu-configuracoes");
 
     if (menuDoBotaoConfiguracoesAberto) {
@@ -193,6 +201,19 @@ botaoConfiguracoes.onclick = () => {
 
         menuDoBotaoConfiguracoesAberto = true;
     }
+}
+
+// Botão fechar menu das CONFIGURAÇÕES
+const botaoConfiguracoes = document.querySelector("#botao-configuracoes img");
+let menuDoBotaoConfiguracoesAberto = false;
+botaoConfiguracoes.onclick = () => {
+    abrirMenuConfiguracoes();
+}
+
+// Botão para fechar o menu de configurações
+const botaoFecharConfiguracoes = document.querySelector("#fechar-configuracoes");
+botaoFecharConfiguracoes.onclick = () => {
+    abrirMenuConfiguracoes();
 }
 
 // Sliders e Checkbox de SOM e MÚSICA
