@@ -5,13 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pudim Clicker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="icon" href="../../Meus_Projetos/Arquivos_pagina_inicial/imagens/icones/inicial.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../Arquivos_pagina_inicial/seta_voltar.css">
     <script src="script.js" defer></script>
 </head>
 
 <body>
 
+    <!-- Seta Voltar -->
+    <div id="seta-voltar-pagina">
+        <a href="../meus_projetos.html">
+            <img src="../Arquivos_pagina_inicial/imagens/seta_voltar.png" alt="Seta voltar página">
+        </a>
+    </div>
+
+    <!-- Pudim -->
     <main>
         <div id="pudins">
             <div id="pudim_feliz" class="imagem_pudim">
@@ -26,7 +38,7 @@
         </div>
     </main>
 
-    <!-- Botão responsivo -->
+    <!-- Botão responsivo dos upgrades -->
     <div id="botao-responsividade" class="botao-abrir-menu">
         <img src="imgs/icone_lojinha.png" alt="Icone de um mercadinho">
     </div>
@@ -36,10 +48,7 @@
         <img src="imgs/icone_configuracoes.png" alt="Icone de uma engrenagem">
     </div>
 
-    <div id="menu-confirmar-exclusao-progresso">
-        
-    </div>
-
+    <!-- Menu com as configurações -->
     <div id="menu-configuracoes">
         <div class="botao-fechar-menu" id="fechar-configuracoes">
             <p>X</p>
@@ -94,11 +103,13 @@
 
     <aside>
 
+        <!-- Upgrades na lateral direita (ou no ícone de lojinha, no caso de dispositivos menores) -->
         <div id="upgrades">
             <div class="botao-fechar-menu" id="fechar-upgrades">
                 <p>X</p>
             </div>
 
+            <!-- Upgrade PLANETA (Upgrade final!) -->
             <div class="upgrade" id="upgrade_planeta">
                 <div class="informacoes_upgrade">
                     <p class="quantidade_upgrade">0</p>
@@ -109,6 +120,7 @@
                 </div>
             </div>
 
+            <!-- Upgrade Confeiteira -->
             <div class="upgrade" id="upgrade_confeiteira">
                 <div class="informacoes_upgrade">
                     <p class="quantidade_upgrade">0</p>
@@ -119,6 +131,7 @@
                 </div>
             </div>
 
+            <!-- Upgrade Chef -->
             <div class="upgrade" id="upgrade_chef">
                 <div class="informacoes_upgrade">
                     <p class="quantidade_upgrade">0</p>
@@ -129,6 +142,7 @@
                 </div>
             </div>
 
+            <!-- Upgrade Padaria -->
             <div class="upgrade" id="upgrade_padaria">
                 <div class="informacoes_upgrade">
                     <p class="quantidade_upgrade">0</p>
@@ -139,6 +153,7 @@
                 </div>
             </div>
 
+            <!-- Upgrade Confeitaria (não é confeiteira) -->
             <div class="upgrade" id="upgrade_confeitaria">
                 <div class="informacoes_upgrade">
                     <p class="quantidade_upgrade">0</p>
@@ -149,6 +164,7 @@
                 </div>
             </div>
 
+            <!-- Upgrade Supermercado -->
             <div class="upgrade" id="upgrade_supermercado">
                 <div class="informacoes_upgrade">
                     <p class="quantidade_upgrade">0</p>
@@ -159,6 +175,7 @@
                 </div>
             </div>
 
+            <!-- Upgrade Cafeteria -->
             <div class="upgrade" id="upgrade_cafeteria">
                 <div class="informacoes_upgrade">
                     <p class="quantidade_upgrade">0</p>
@@ -169,6 +186,7 @@
                 </div>
             </div>
 
+            <!-- Upgrade Gourmet -->
             <div class="upgrade" id="upgrade_gourmet">
                 <div class="informacoes_upgrade">
                     <p class="quantidade_upgrade">0</p>
@@ -182,10 +200,7 @@
         </div>
     </aside>
 
-    <!-- Botão para zerar pudins: -->
-    <!-- <button id="botao-teste">Botão secreto secretacio</button> -->
-    <!-- Checa o comentário abaixo -->
-
+    <!-- Melhorias para os upgrades -->
     <footer>
         <div id="informacoes_melhorias">
             <div id="nome_preco_melhoria">
@@ -195,7 +210,7 @@
             <p id="descricao_melhoria">Descrição da melhoria...</p>
         </div>
 
-        <!-- Colocar melhorias de acordo com o preço -->
+        <!-- Melhorias ordenadas em ordem crescente, de acordo com o preço -->
         <div id="melhorias">
             <div class="item_melhoria" id="melhoria_confeiteira_1">
                 <div class="melhoria"></div>

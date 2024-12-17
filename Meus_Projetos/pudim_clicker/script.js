@@ -1,17 +1,5 @@
-// Descomentar para remover os arquivos locais (deletar o save)
-// localStorage.clear();
-
-// COLOCAR UPGRADES PRA O RESTAURANTE GOURMET (será?)
-// Slide para SONS e MÚSICA
-
-// document.querySelector("#botao-teste").onclick = () => {
-//     pudins = 0;
-// }
-
-
 // formata os números grandes, exemplo: 10_000 -> 10k 
 const formatarNumero = Intl.NumberFormat("en", { notation: "compact"});
-
 
 // Elementos do PUDIM
 let divImagemPudins = document.querySelector("#pudins");
@@ -23,6 +11,7 @@ let PPS = document.querySelector("#pudins_por_segundo");
 let pudins = localStorage.getItem("quantidade_pudins") ? parseInt(localStorage.getItem("quantidade_pudins")) : 0;
 let poderDoClique = 1;
 let pudinsPorSegundo = 0;
+
 
 // Lista com todos os audios
 listaAudios = [
@@ -63,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
 
 // Variáveis dos upgrades: elemento, preço, texto do preço, texto da quantidade e quantidade:
 const listaUpgrades = [
@@ -310,8 +300,6 @@ botaoDeletarProgresso.onclick = () => {
         localStorage.clear();
         location.reload();
     }
-
-
 }
 
 
@@ -361,6 +349,7 @@ function atualizarQuantidadePudins() {
 
     quantidadePudins.innerHTML = `Pudins: ${formatarNumero.format(pudins)}`;
 }
+
 
 // ==========================
 // ======== UPGRADES ========
@@ -448,7 +437,6 @@ function clicarNoUpgrade(upgrade) {
 
 }
 
-
 // Função atualizar PPS total
 function atualizarPudinsPorSegundo() {
     let totalPPS = 0;
@@ -463,7 +451,6 @@ function atualizarPudinsPorSegundo() {
     // Exibe abaixo do PUDIM o PPS
     PPS.innerHTML = `PPS: ${formatarNumero.format(pudinsPorSegundo)}`;
 }
-
 
 // Função atualizar PPC total
 function atualizarPudinsPorClique() {
