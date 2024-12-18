@@ -13,6 +13,12 @@ let poderDoClique = 1;
 let pudinsPorSegundo = 0;
 
 
+// Variáveis de checkbox e slider de sons
+const volumeSliderMusica = document.querySelector("#volume-musica-slider");
+const volumeSliderSom = document.querySelector("#volume-som-slider");
+const checkSom = document.querySelector("#check-som");
+const checkMusica = document.querySelector("#check-musica");
+
 // Lista com todos os audios
 listaAudios = [
     "clicarPudim",
@@ -25,6 +31,8 @@ const audiosTocaveis = {};
 listaAudios.forEach((audio) => {
     audiosTocaveis[audio] = new Audio();
     audiosTocaveis[audio].src = `../Arquivos_pagina_inicial/audios/pudim_clicker/${audio}.mp3`;
+    audiosTocaveis[audio].volume = volumeSliderSom.value;
+    volumeSliderSom.style.background = `linear-gradient(90deg, #e85a4e ${volumeSliderSom.value * 100}%, #FFF ${volumeSliderSom.value * 100}%)`;
 });
 
 function tocarAudio(audio) {
@@ -40,6 +48,9 @@ function tocarAudio(audio) {
 const musicaDeFundo = new Audio();
 musicaDeFundo.src = `../Arquivos_pagina_inicial/audios/pudim_clicker/musicaDeFundo.mp3`;
 musicaDeFundo.loop = true;
+musicaDeFundo.volume = volumeSliderMusica.value;
+volumeSliderMusica.style.background = `linear-gradient(90deg, #e85a4e ${volumeSliderMusica.value * 100}%, #FFF ${volumeSliderMusica.value * 100}%)`;
+
 
 // Ativa a música somente ao interagir com a página (clicando)
 document.addEventListener('DOMContentLoaded', () => {
@@ -82,7 +93,7 @@ const listaPoderInicialUpgrades = [
     20,         // padaria      + PSS
     250,        // confeitaria  + PPS
     5_000,      // supermercado + PPS
-    200_000,    // cafeteria    + PPS
+    500_000,    // cafeteria    + PPS
     1,          // gourmet        PPC * Poder_gourmet (vai multiplicando por 2)
     1           // planeta        PPC & PPS = ∞
 ];
@@ -123,6 +134,7 @@ listaUpgrades.forEach((upgrade, index) => {
     paragrafoQuantidadeUpgrades[upgrade] = elementoUpgrade.querySelector(`.quantidade_upgrade`);
 });
 
+
 // Recarrega os upgrades (caso recarregar a página)
 listaUpgrades.forEach(upgrade => {
     paragrafoQuantidadeUpgrades[upgrade].innerHTML = quantidadeUpgrade[upgrade];
@@ -130,6 +142,11 @@ listaUpgrades.forEach(upgrade => {
     atualizarQuantidadePudins();
     atualizarPudinsPorSegundo();
     atualizarPudinsPorClique();
+
+    // Se já tiver comprado um upgrade PLANETA
+    if (quantidadeUpgrade["planeta"] > 0) {
+        fazerPudinsInfinitos();
+    }
 
     // Ativar TOOLTIP do UPGRADE
     if (quantidadeUpgrade[upgrade] > 0) {
@@ -207,13 +224,6 @@ botaoFecharConfiguracoes.onclick = () => {
 }
 
 // Sliders e Checkbox de SOM e MÚSICA
-// Variáveis
-volumeSliderMusica = document.querySelector("#volume-musica-slider");
-volumeSliderSom = document.querySelector("#volume-som-slider");
-const checkSom = document.querySelector("#check-som");
-const checkMusica = document.querySelector("#check-musica");
-
-// Funções
 // Sliders
 volumeSliderMusica.oninput = () => {
     // Estilização do slider
@@ -239,7 +249,6 @@ volumeSliderSom.oninput = () => {
     }
 }
 
-// SOM
 // Check-boxs
 checkSom.onchange = () => {
     if (checkSom.checked) {
@@ -344,8 +353,15 @@ function atualizarQuantidadePudins() {
     // Gambiarra por conta do JavaScript, já que ele não calcula números flutuantes com precisão:
     pudins = Math.round(pudins * 10) / 10;
 
+    // *ele precisa desse if, porque no end-game o "infinity" quebra o localStorage se reiniciar a página 
+    if (pudins === Infinity) {
+        localStorage.setItem("quantidade_pudins", 0);
+    }
+    
     // salva os pudins no computador (para não perder o progresso)
-    localStorage.setItem("quantidade_pudins", pudins);
+    else {
+        localStorage.setItem("quantidade_pudins", pudins);
+    }
 
     quantidadePudins.innerHTML = `Pudins: ${formatarNumero.format(pudins)}`;
 }
@@ -409,16 +425,7 @@ function clicarNoUpgrade(upgrade) {
 
             // Caso o UPGRADE for um PLANETA
             if (upgrade === "planeta") {
-                // fazer dinheiro infinito
-                poderUpgrades["gourmet"] = 2 ** 1100;
-                poderUpgrades["confeiteira"] = 1;
-
-                // Caso o jogador por algum motivo tenha 0 confeiteiras (senão dá bug)
-                quantidadeUpgrade["confeiteira"] = quantidadeUpgrade["confeiteira"] > 0 ? quantidadeUpgrade["confeiteira"] : 1;
-                poderUpgrades["confeiteira"] = 2 ** 1100;
-                atualizarPudinsPorSegundo();
-
-                // Deixar todos os preços para 0??
+                fazerPudinsInfinitos();
             }
 
             // Recompensa fornecida pelo UPGRADE
@@ -454,13 +461,24 @@ function atualizarPudinsPorSegundo() {
 
 // Função atualizar PPC total
 function atualizarPudinsPorClique() {
-    // console.log(`PPC = (1 + ${poderUpgrades["chef"] * quantidadeUpgrade["chef"]}) * ${poderUpgrades["gourmet"]}`);
-
     // Atualiza o PPC (Poder Por Clique): 1 (base) + PPC do Chef * Poder do Gourmet (duplica o PPC)     
     poderDoClique = (1 + (poderUpgrades["chef"] * quantidadeUpgrade["chef"])) * poderUpgrades["gourmet"];
+
+    // console.log(`PPC = Poder do chef (${poderUpgrades["chef"] * quantidadeUpgrade["chef"]}) * Poder Gourmet (${poderUpgrades["gourmet"]})`);
     // console.log(`=======\n PPC ${poderDoClique}\n=======`);
 }
 
+// Função fazer pudins infinitos (upgrade PLANETA)
+function fazerPudinsInfinitos() {
+    // fazer dinheiro infinito
+    poderUpgrades["gourmet"] = 2 ** 1100;
+    poderUpgrades["confeiteira"] = 1;
+
+    // Caso o jogador por algum motivo tenha 0 confeiteiras (senão dá bug)
+    quantidadeUpgrade["confeiteira"] = quantidadeUpgrade["confeiteira"] > 0 ? quantidadeUpgrade["confeiteira"] : 1;
+    poderUpgrades["confeiteira"] = 2 ** 1100;
+    atualizarPudinsPorSegundo();
+}
 
 // =======================
 // ====== Melhorias ======
@@ -678,8 +696,8 @@ function atualizarComponentesDeTempo() {
     atualizarQuantidadePudins();
 
     // UPGRADES
-    // Caso você tenha mais de 2 Milhões de Pudins, liberar o último upgrade (ele custa 1T)
-    if (pudins > 2_000_000) {
+    // Caso você tenha mais de 2.5 Milhões de Pudins, liberar o último upgrade (ele custa 1T)
+    if (pudins > 2_500_000) {
         elementosUpgrade["planeta"].style.display = "block";
     }
 
@@ -733,18 +751,20 @@ setInterval(() => {
 // Atualiza o texto do TOOLTIP dos UPGRADES
 function atualizarTooltipUpgrades(upgrade) {
 
-    // Caso seja CHEF ou GOURMET
+    // TOLLTIPS ESPECIAIS
+    // Caso seja CHEF
     if (upgrade === "chef") {
         elementosUpgrade[upgrade].querySelector(".informacoes_upgrade").setAttribute("data-tooltip", `+${poderUpgrades[upgrade]} PPC\n\nTotal: ${formatarNumero.format(poderUpgrades[upgrade] * quantidadeUpgrade[upgrade])} PPC`);
-        elementosUpgrade["gourmet"].querySelector(".informacoes_upgrade").setAttribute("data-tooltip", `${poderDoClique} x 2\n\nTotal: ${formatarNumero.format(poderDoClique)} PPC`);
         return;
     }
 
+    // Caso seja GOURMET
     if (upgrade === "gourmet") {
         elementosUpgrade[upgrade].querySelector(".informacoes_upgrade").setAttribute("data-tooltip", `Duplica o PPC\n\nTotal: ${formatarNumero.format(poderDoClique)} PPC`);
         return;
     }
 
+    // Caso seja PLANETA
     if (upgrade === "planeta") {
         elementosUpgrade[upgrade].querySelector(".informacoes_upgrade").setAttribute("data-tooltip", `Na palma da mão\n\nPudins x ∞`);
         return;
