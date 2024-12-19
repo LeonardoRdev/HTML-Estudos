@@ -1,0 +1,66 @@
+/* Estilizações gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif
+}
+
+/* Configurações */
+.botao-configuracao {
+    position: absolute;
+    top: 0;
+}
+
+.botao-configuracao img {
+    width: 3.8em;
+    border: solid 0.2em #000;
+    border-radius: 50%;
+    margin: 2.5vh 0 0 2vw;
+    box-shadow: 2px 2px 3px #0008;
+    background-color: #FFF;
+    transition: scale 0.15s;
+}
+
+.botao-configuracao img:hover {
+    scale: 1.1;
+    cursor: pointer;
+}
+
+.botao-configuracao img:active {
+    background-color: #2222;
+}
+
+#botao-configuracao-lingua {
+    right: 40px;
+}
+
+#botao-configuracao-ajuda {
+    right: 120px;
+}
+
+
+/* Opções de dificuldade */
+#configuracao-dificuldade {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.botao-escolha-dificuldade {
+    padding: 20px 120px;
+    border: 3px solid #000;
+    background-color: #FFF;
+    font-size: 1.5em;
+    border-radius: 15px;
+    transition: scale 0.1s;
+}
+
+.botao-escolha-dificuldade:hover {
+    scale: 1.05;
+    cursor: pointer;
+}
