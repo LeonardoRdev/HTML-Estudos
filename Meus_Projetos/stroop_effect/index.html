@@ -11,7 +11,7 @@
     <link rel="icon" href="../../Meus_Projetos/Arquivos_pagina_inicial/imagens/icones/inicial.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../Arquivos_pagina_inicial/seta_voltar.css">
-    <script src="script.js"></script>
+    <script defer src="script.js"></script>
 </head>
 
 <body>
@@ -36,10 +36,14 @@
 
     <!-- Opções de Dificuldade -->
      <nav id="configuracao-dificuldade">
-        <button class="botao-escolha-dificuldade">Fácil</button>
-        <button class="botao-escolha-dificuldade">Médio</button>
-        <button class="botao-escolha-dificuldade">Díficil</button>
+        <button class="botao-escolha-dificuldade" id="botao-dificuldade-facil">Fácil</button>
+        <button class="botao-escolha-dificuldade" id="botao-dificuldade-medio">Médio</button>
+        <button class="botao-escolha-dificuldade" id="botao-dificuldade-dificil">Díficil</button>
      </nav>
+
+     <main>
+        <h3 id="palavra-da-vez"></h3>
+     </main>
 
 </body>
 

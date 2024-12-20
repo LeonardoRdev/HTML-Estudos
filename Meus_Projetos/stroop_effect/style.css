@@ -64,3 +64,15 @@
     scale: 1.05;
     cursor: pointer;
 }
+
+/* Palavra da vez */
+main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+#palavra-da-vez {
+    font-size: 2em;
+}
