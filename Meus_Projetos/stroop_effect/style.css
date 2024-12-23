@@ -16,7 +16,7 @@
     width: 3.8em;
     border: solid 0.2em #000;
     border-radius: 50%;
-    margin: 2.5vh 0 0 2vw;
+    margin: 2.5vh 0 0 0;
     box-shadow: 2px 2px 3px #0008;
     background-color: #FFF;
     transition: scale 0.15s;
@@ -74,5 +74,78 @@ main {
 }
 
 #palavra-da-vez {
-    font-size: 2em;
+    font-size: 4em;
+    text-shadow: 2px 2px 3px #000;
+    color: #000;
+}
+
+/* Botão de ajuda */
+#menu-de-ajuda {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    gap: 40px;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+
+    width: 50%;
+    /* height: 50%; */
+    border-radius: 30px;
+    padding: 25px;
+    background-color: #777A;
+    font-size: 1.5em;
+}
+
+#menu-de-ajuda b {
+    color: #ab29d6;
+}
+
+#exemplo-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 15px 0;
+    margin: 0 auto;
+    /* background-color: #0002; */
+    width: 60%;
+}
+
+#exemplo-menu div {
+    gap: 5%;
+    display: flex;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+#exemplo-menu div p {
+    width: 33.3%;
+    text-shadow: 2px 2px 3px #000;
+}
+
+#exemplo-menu div:nth-child(1) p:nth-child(1) {
+    color: #ff1212;
+}
+#exemplo-menu div:nth-child(1) p:nth-child(2) {
+    color: #faf32a;
+}
+#exemplo-menu div:nth-child(1) p:nth-child(3) {
+    color: #000;
+}
+
+#exemplo-menu div:nth-child(2) p:nth-child(1) {
+    color: #3cdb37;
+}
+#exemplo-menu div:nth-child(2) p:nth-child(2) {
+    color: #ab29d6;
+}
+#exemplo-menu div:nth-child(2) p:nth-child(3) {
+    color: #0c7ded;
+}
+
+#resposta-menu {
+    font-size: 0.8em;
+}
+
+#agora-voce-sabe-menu {
+    font-size: 0.9em;
 }
