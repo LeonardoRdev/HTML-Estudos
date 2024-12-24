@@ -26,7 +26,7 @@ const listaHexadecimalCores = [
     "#ff1212",  // Vermelho
     "#faf32a",  // Amarelo
     "#000",     // Preto
-    "#3cdb37", // Verde
+    "#3cdb37",  // Verde
     "#ab29d6",  // Roxo
     "#0c7ded",  // Azul
     "#ff0084",  // Rosa
@@ -48,7 +48,7 @@ botaoDificuldadeMedio.onclick = () => {
 }
 
 botaoDificuldadeDificil.onclick = () => {
-    iniciarJogo(0.5, 40);
+    iniciarJogo(0.7, 40);
 }
 
 // Função que inicia o "jogo"
@@ -99,6 +99,8 @@ function telaDoJogo(entrarNoJogo) {
 
 // Botão de ajuda "?"
 botaoAjuda.onclick = () => {
+    botaoAjuda.style.animation = "none";
+
     // Abrir menu
     if (divMenuAjuda.style.display == "flex") {
         divMenuAjuda.style.display = "none";

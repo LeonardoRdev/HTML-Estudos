@@ -31,14 +31,29 @@
     background-color: #2222;
 }
 
+#botao-configuracao-ajuda {
+    right: 120px;
+    animation: pulsar 4s infinite ease-in-out;
+    animation: name duration timing-function delay iteration-count direction ;
+}
+
+@keyframes pulsar {
+    0% {
+        scale: 1;
+    }
+
+    40% {
+        scale: 1.5;
+    }
+
+    100% {
+        scale: 1;
+    }
+}
+
 #botao-configuracao-lingua {
     right: 40px;
 }
-
-#botao-configuracao-ajuda {
-    right: 120px;
-}
-
 
 /* Opções de dificuldade */
 #configuracao-dificuldade {
@@ -90,11 +105,15 @@ main {
     transform: translateX(-50%) translateY(-50%);
 
     width: 50%;
-    /* height: 50%; */
     border-radius: 30px;
     padding: 25px;
     background-color: #777A;
     font-size: 1.5em;
+}
+
+#menu-de-ajuda h3 {
+    text-align: center;
+    font-size: 1.6em;
 }
 
 #menu-de-ajuda b {
