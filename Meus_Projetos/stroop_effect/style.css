@@ -51,6 +51,19 @@
     }
 }
 
+.bandeiras {
+    position: absolute;
+    right: 0;
+    opacity: 0;
+    transform: translateY(0);
+    transition: opacity 2s;
+}
+
+.bandeira-atual {
+    opacity: 1;
+    z-index: 2;
+}
+
 #botao-configuracao-lingua {
     right: 40px;
 }

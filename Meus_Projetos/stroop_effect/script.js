@@ -113,3 +113,56 @@ botaoAjuda.onclick = () => {
         divConfiguracaoDificuldade.style.display = "none";
     }
 }
+
+// Botão de lingua "bandeiras"
+const listaBandeiras = [
+    "brasil",
+    "espanha",
+    "japones",
+    "franca",
+    "arabe",
+    "china",
+    "eua"
+];
+
+const elementoBandeira = {};
+
+listaBandeiras.forEach((bandeira) => {
+    elementoBandeira[bandeira] = document.querySelector(`#bandeira-${bandeira}`);
+    elementoBandeira[bandeira].onclick = () => {
+        clicarNaBandeira(bandeira);
+    };
+
+    console.log(elementoBandeira[bandeira])
+});
+
+function clicarNaBandeira(bandeiraClicada) {
+    console.log(`Bandeira clicada = ${bandeiraClicada}`)
+    let bandeiraAtual = document.querySelector(".bandeira-atual");
+
+    let bandeiras = document.querySelectorAll(".bandeiras");
+    let translateY = 80;
+
+    bandeiras.forEach((bandeira) => {
+        if (!bandeira.classList.contains("bandeira-atual")) {
+            bandeira.style.opacity = "0";
+            bandeira.style.transform = `TranslateY(${0}px)`;
+
+            bandeira.style.opacity = "1";
+            bandeira.style.transform = `TranslateY(${translateY}px)`;
+            translateY += 80;
+        }
+    });
+}
+
+//    // Estilo inicial para garantir que a transição funcione
+//    bandeira.style.opacity = "0";
+//    bandeira.style.transform = `translateY(0)`;
+
+//    // Forçar reflow antes de aplicar o estilo final
+//    requestAnimationFrame(() => {
+//        bandeira.style.opacity = "1";
+//        bandeira.style.transform = `translateY(${translateY}px)`;
+//    });
+
+//    translateY += 80;
