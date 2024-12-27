@@ -23,7 +23,7 @@
 }
 
 .botao-configuracao img:hover {
-    scale: 1.1;
+    /* scale: 1.1; */
     cursor: pointer;
 }
 
@@ -56,7 +56,10 @@
     right: 0;
     opacity: 0;
     transform: translateY(0);
-    transition: opacity 2s;
+}
+
+#bandeira-brasil, #bandeira-espanha, #bandeira-japones, #bandeira-franca, #bandeira-arabe, #bandeira-china, #bandeira-eua {
+    transition: transform 1.5s, opacity 1s;
 }
 
 .bandeira-atual {

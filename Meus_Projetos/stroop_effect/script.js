@@ -138,31 +138,27 @@ listaBandeiras.forEach((bandeira) => {
 
 function clicarNaBandeira(bandeiraClicada) {
     console.log(`Bandeira clicada = ${bandeiraClicada}`)
-    let bandeiraAtual = document.querySelector(".bandeira-atual");
+    // Pega o nome da bandeira atual pelo ID
+    let elementoBandeiraAtual = document.querySelector(".bandeira-atual");
+    let nomeBandeiraAtual = elementoBandeiraAtual.id.split("-")[1];
 
+    // Caso não clique na bandeira já escolhida (caso escolha outra língua)
+    if (nomeBandeiraAtual != bandeiraClicada) {
+        elementoBandeiraAtual.classList.remove("bandeira-atual");
+        elementoBandeira[bandeiraClicada].classList.add("bandeira-atual");
+        console.log("nova escolha feita");
+    }
+    
+    // Animação de mostrar as bandeiras
     let bandeiras = document.querySelectorAll(".bandeiras");
-    let translateY = 80;
-
+    let translateY = 75;
+    
+    elementoBandeira[bandeiraClicada].style.transform = `TranslateY(${0}px)`
     bandeiras.forEach((bandeira) => {
         if (!bandeira.classList.contains("bandeira-atual")) {
-            bandeira.style.opacity = "0";
-            bandeira.style.transform = `TranslateY(${0}px)`;
-
             bandeira.style.opacity = "1";
             bandeira.style.transform = `TranslateY(${translateY}px)`;
-            translateY += 80;
+            translateY += 75;
         }
     });
 }
-
-//    // Estilo inicial para garantir que a transição funcione
-//    bandeira.style.opacity = "0";
-//    bandeira.style.transform = `translateY(0)`;
-
-//    // Forçar reflow antes de aplicar o estilo final
-//    requestAnimationFrame(() => {
-//        bandeira.style.opacity = "1";
-//        bandeira.style.transform = `translateY(${translateY}px)`;
-//    });
-
-//    translateY += 80;
