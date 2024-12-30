@@ -9,6 +9,7 @@ const setaVoltarPagina = document.querySelector("#seta-voltar-pagina");
 const headerConfiguracoes = document.querySelector("header");
 const botaoAjuda = document.querySelector("#botao-configuracao-ajuda");
 const divMenuAjuda = document.querySelector("#menu-de-ajuda");
+let menuLinguasAberto = false;
 
 // Lista com cores que apareceram (tanto seus nomes quantos as respectivas cores em hexadecimal)
 const listaNomeCores = [
@@ -131,9 +132,10 @@ listaBandeiras.forEach((bandeira) => {
     elementoBandeira[bandeira] = document.querySelector(`#bandeira-${bandeira}`);
     elementoBandeira[bandeira].onclick = () => {
         clicarNaBandeira(bandeira);
+        console.log(`===\n`)
     };
-
-    console.log(elementoBandeira[bandeira])
+    
+    // console.log(elementoBandeira[bandeira])
 });
 
 function clicarNaBandeira(bandeiraClicada) {
@@ -142,23 +144,51 @@ function clicarNaBandeira(bandeiraClicada) {
     let elementoBandeiraAtual = document.querySelector(".bandeira-atual");
     let nomeBandeiraAtual = elementoBandeiraAtual.id.split("-")[1];
 
-    // Caso não clique na bandeira já escolhida (caso escolha outra língua)
-    if (nomeBandeiraAtual != bandeiraClicada) {
-        elementoBandeiraAtual.classList.remove("bandeira-atual");
-        elementoBandeira[bandeiraClicada].classList.add("bandeira-atual");
-        console.log("nova escolha feita");
-    }
-    
-    // Animação de mostrar as bandeiras
     let bandeiras = document.querySelectorAll(".bandeiras");
     let translateY = 75;
-    
-    elementoBandeira[bandeiraClicada].style.transform = `TranslateY(${0}px)`
-    bandeiras.forEach((bandeira) => {
-        if (!bandeira.classList.contains("bandeira-atual")) {
-            bandeira.style.opacity = "1";
-            bandeira.style.transform = `TranslateY(${translateY}px)`;
-            translateY += 75;
+
+    // Caso não clique na bandeira já escolhida (caso escolha outra língua)
+    if (nomeBandeiraAtual != bandeiraClicada) {
+        console.log("NOVA BANDEIRA ESCOLHIDA");
+        elementoBandeiraAtual.classList.remove("bandeira-atual");
+        elementoBandeira[bandeiraClicada].classList.add("bandeira-atual");
+        // elementoBandeira[bandeiraClicada].style.transform = `TranslateY(${0}px)`;
+    }
+
+    // Caso escolha a bandeira já selecionada (caso escolha a mesma língua)
+    else {
+        console.log("Selecionou a bandeira atual")
+        // Abrir menu
+        if (menuLinguasAberto === false) {
+            console.log("Abriu o menu")
+            menuLinguasAberto = true;
+
+            // Animação de mostrar as bandeiras
+            elementoBandeira[bandeiraClicada].style.transform = `TranslateY(${0}px)`;
+
+            bandeiras.forEach((bandeira) => {
+                // Caso você tenha não tenha clicado na língua atual (abrir menu)
+                if (!bandeira.classList.contains("bandeira-atual")) {
+                    bandeira.style.opacity = "1";
+                    bandeira.style.transform = `TranslateY(${translateY}px)`;
+                    translateY += 75;
+                }
+            });
         }
-    });
+
+        // Fechar menu
+        else {
+            console.log("Fechou o menu")
+            menuLinguasAberto = false;
+            bandeiras.forEach((bandeira) => {
+                // Caso você tenha não tenha clicado na língua atual (abrir menu)
+                if (!bandeira.classList.contains("bandeira-atual")) {
+                    bandeira.style.opacity = "0";
+                    bandeira.style.transform = `TranslateY(${0}px)`;
+                }
+            });
+        }
+    }
+
+    console.log("Variável menu aberto = " + menuLinguasAberto)
 }
