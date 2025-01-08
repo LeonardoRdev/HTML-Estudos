@@ -1,9 +1,9 @@
 // FAZER:
-// Ao clicar em qualquer botão, iniciar o jogo. Trocar a seta de voltar página por uma de recarregar a página;
-// O primeiro timer do intervalo não mostra nenhuma palavra, só depois do "tempoEntrePalavras" passar;
-// Estilização: radiante circular com cinza no meio e branco dos lados;
+// Ao iniciar o jogo. Trocar a seta de voltar página por uma de recarregar a página;
+// O primeiro timer do intervalo não mostra nenhuma palavra, só depois do "tempoEntrePalavras" passar (isso sequer é um problema?);
+// Style: radiante circular com cinza no meio e branco dos lados;
 // "reroll" caso a próxima palavra tenha o mesmo nome e mesma cor da anterior (usar while);
-// Agora falta trocar o idioma do "ajuda" -> (?).
+// Responsividade.
 
 
 // Variáveis
@@ -14,18 +14,7 @@ const divMenuAjuda = document.querySelector("#menu-de-ajuda");
 let idiomaPagina = "brasil";
 let menuLinguasAberto = false;
 
-// Lista com cores que apareceram (tanto seus nomes quantos as respectivas cores em hexadecimal)
-// const listaNomeCores = [
-//     "VERMELHO",
-//     "AMARELO",
-//     "PRETO",
-//     "VERDE",
-//     "ROXO",
-//     "AZUL",
-//     "ROSA",
-//     "MARROM"
-// ];
-
+// Lista com cores que aparecerão (nome das cores)
 const listaNomeDificuldades = {
     brasil: ["Fácil", "Médio", "Difícil"],
     espanha: ["Fácil", "Medio", "Difícil"],
@@ -43,7 +32,7 @@ const listaNomePreparese = {
     franca: "PRÉPAREZ-VOUS",
     arabe: "استعد", // Ista'id
     china: "准备好", // Zhǔnbèi hǎo
-    eua: "PREPARE YOURSELF"
+    eua: "GET READY"
 };
 
 const listaNomeCores = {
@@ -56,7 +45,6 @@ const listaNomeCores = {
     eua: ["RED", "YELLOW", "BLACK", "GREEN", "PURPLE", "BLUE", "PINK", "BROWN"]
 };
 
-
 const listaHexadecimalCores = [
     "#ff1212",  // Vermelho
     "#faf32a",  // Amarelo
@@ -67,6 +55,102 @@ const listaHexadecimalCores = [
     "#ff0084",  // Rosa
     "#572d15"   // Marrom
 ];
+
+
+// Menu ajuda "?"
+const listaPalavrasTextoAjuda = {
+    brasil: [
+        "Explicando o Teste",  // 0
+        "O teste é o seguinte: vão aparecer alguns textos coloridos na tela, e o seu trabalho é falar, em voz alta, a <b>COR</b> em que o texto está escrito. É só isso! 🤠",  // 1
+        "Vamos para um exemplo, diga as seguintes cores em voz alta:",  // 2
+        "AMARELO",  // 3
+        "ROXO",  // 4
+        "PRETO",  // 5
+        "VERMELHO",  // 6
+        "AZUL",  // 7
+        "VERDE",  // 8
+        "A resposta seria: vermelho, amarelo, preto, verde, roxo, azul.",  // 9
+        "Agora você sabe como o efeito stroop funciona, mas será que tens o que é necessário para esmagares o meu teste??" // 10
+    ],
+    espanha: [
+        "Explicando la Prueba",  // 0
+        "La prueba es la siguiente: aparecerán algunos textos de colores en la pantalla, y tu tarea es decir, en voz alta, el <b>COLOR</b> en el que está escrito el texto. ¡Eso es todo! 🤠",  // 1
+        "Vamos con un ejemplo, di los siguientes colores en voz alta:",  // 2
+        "AMARILLO",  // 3
+        "MORADO",  // 4
+        "NEGRO",  // 5
+        "ROJO",  // 6
+        "AZUL",  // 7
+        "VERDE",  // 8
+        "La respuesta sería: rojo, amarillo, negro, verde, morado, azul.",  // 9
+        "Ahora sabes cómo funciona el efecto stroop, pero ¿tienes lo necesario para superar mi prueba??" // 10
+    ],
+    japones: [
+        "テストの説明",  // 0
+        "テストは次の通りです：画面にいくつかの色付きのテキストが表示されます。あなたの仕事は、そのテキストが書かれている <b>色</b> を声に出して言うことです。それだけです！🤠",  // 1
+        "例に進みましょう。次の色を声に出して言ってください:",  // 2
+        "黄色",  // 3
+        "紫",  // 4
+        "黒",  // 5
+        "赤",  // 6
+        "青",  // 7
+        "緑",  // 8
+        "答えは: 赤, 黄色, 黒, 緑, 紫, 青.",  // 9
+        "これでストループ効果の仕組みがわかりましたが、私のテストに挑戦する準備はできていますか??" // 10
+    ],
+    franca: [
+        "Explication du Test",  // 0
+        "Le test est le suivant : des textes colorés apparaîtront à l'écran, et votre tâche est de dire, à voix haute, la <b>COULEUR</b> dans laquelle le texte est écrit. C'est tout ! 🤠",  // 1
+        "Passons à un exemple, dites les couleurs suivantes à voix haute :",  // 2
+        "JAUNE",  // 3
+        "VIOLET",  // 4
+        "NOIR",  // 5
+        "ROUGE",  // 6
+        "BLEU",  // 7
+        "VERT",  // 8
+        "La réponse serait : rouge, jaune, noir, vert, violet, bleu.",  // 9
+        "Maintenant, vous savez comment fonctionne l'effet stroop, mais avez-vous ce qu'il faut pour réussir mon test ??" // 10
+    ],
+    arabe: [
+        "شرح الاختبار",  // 0
+        "الاختبار كالتالي: ستظهر بعض النصوص الملونة على الشاشة، ومهمتك هي قول <b>اللون</b> الذي كُتب به النص بصوت عالٍ. هذا كل شيء! 🤠",  // 1
+        "لنأخذ مثالًا، قل الألوان التالية بصوت عالٍ:",  // 2
+        "أصفر",  // 3
+        "أرجواني",  // 4
+        "أسود",  // 5
+        "أحمر",  // 6
+        "أزرق",  // 7
+        "أخضر",  // 8
+        "الإجابة ستكون: أحمر، أصفر، أسود، أخضر، أرجواني، أزرق.",  // 9
+        "الآن تعرف كيف يعمل تأثير ستروب، لكن هل لديك ما يلزم لتجاوز اختباري؟" // 10
+    ],
+    china: [
+        "测试说明",  // 0
+        "测试如下：屏幕上会出现一些彩色文本，你的任务是大声说出 <b>颜色</b> 的文本。就是这样！🤠",  // 1
+        "让我们看一个例子，请大声说出以下颜色：",  // 2
+        "黄色",  // 3
+        "紫色",  // 4
+        "黑色",  // 5
+        "红色",  // 6
+        "蓝色",  // 7
+        "绿色",  // 8
+        "答案是：红色、黄色、黑色、绿色、紫色、蓝色。",  // 9
+        "现在你知道斯特鲁普效应是如何工作的，但你有能力通过我的测试吗？？" // 10
+    ],
+    eua: [
+        "Explaining the Test",  // 0
+        "The test is as follows: some colored texts will appear on the screen, and your task is to say, out loud, the <b>COLOR</b> in which the text is written. That's it! 🤠",  // 1
+        "Let's go to an example, say the following colors out loud:",  // 2
+        "YELLOW",  // 3
+        "PURPLE",  // 4
+        "BLACK",  // 5
+        "RED",  // 6
+        "BLUE",  // 7
+        "GREEN",  // 8
+        "The answer would be: red, yellow, black, green, purple, blue.",  // 9
+        "Now you know how the stroop effect works, but do you have what it takes to crush my test??" // 10
+    ]
+};
 
 
 // Botões de dificuldade
@@ -250,4 +334,43 @@ function trocarIdioma(novoIdioma) {
     textoEscolhaDificuldade[0].innerHTML = listaNomeDificuldades[idiomaPagina][0];
     textoEscolhaDificuldade[1].innerHTML = listaNomeDificuldades[idiomaPagina][1];
     textoEscolhaDificuldade[2].innerHTML = listaNomeDificuldades[idiomaPagina][2];
+
+
+    // Altera o texto do menu ajuda "?"
+    // Variáveis
+    const titulo = divMenuAjuda.querySelector("h3");
+
+    const pExplicacao1 = divMenuAjuda.querySelector("#explicacao-1");
+    const pExplicacao2 = divMenuAjuda.querySelector("#explicacao-2");
+
+    const divExemplo1 = divMenuAjuda.querySelector("#div-exemplo-1");
+    const paragrafosDivExemplo1 = divExemplo1.querySelectorAll("p");
+    const p1DivExemplo1 = paragrafosDivExemplo1[0];
+    const p2DivExemplo1 = paragrafosDivExemplo1[1];
+    const p3DivExemplo1 = paragrafosDivExemplo1[2];
+
+    const divExemplo2 = divMenuAjuda.querySelector("#div-exemplo-2");
+    const paragrafosDivExemplo2 = divExemplo2.querySelectorAll("p");
+    const p1DivExemplo2 = paragrafosDivExemplo2[0];
+    const p2DivExemplo2 = paragrafosDivExemplo2[1];
+    const p3DivExemplo2 = paragrafosDivExemplo2[2];
+
+    const pRespostaMenu = divMenuAjuda.querySelector("#resposta-menu");
+    const pAgoraVoceSabeMenu = divMenuAjuda.querySelector("#agora-voce-sabe-menu");
+
+    // Trocando os textos
+    titulo.innerHTML = listaPalavrasTextoAjuda[idiomaPagina][0];
+    pExplicacao1.innerHTML = listaPalavrasTextoAjuda[idiomaPagina][1];
+    pExplicacao2.innerHTML = listaPalavrasTextoAjuda[idiomaPagina][2];
+
+    p1DivExemplo1.innerHTML = listaPalavrasTextoAjuda[idiomaPagina][3];
+    p2DivExemplo1.innerHTML = listaPalavrasTextoAjuda[idiomaPagina][4];
+    p3DivExemplo1.innerHTML = listaPalavrasTextoAjuda[idiomaPagina][5];
+
+    p1DivExemplo2.innerHTML = listaPalavrasTextoAjuda[idiomaPagina][6];
+    p2DivExemplo2.innerHTML = listaPalavrasTextoAjuda[idiomaPagina][7];
+    p3DivExemplo2.innerHTML = listaPalavrasTextoAjuda[idiomaPagina][8];
+    
+    pRespostaMenu.innerHTML = listaPalavrasTextoAjuda[idiomaPagina][9];
+    pAgoraVoceSabeMenu.innerHTML = listaPalavrasTextoAjuda[idiomaPagina][10];
 }
