@@ -181,17 +181,33 @@ function iniciarJogo(tempoEntrePalavras, quantidadePalavras) {
     const palavraDaVez = document.querySelector("#palavra-da-vez");
     palavraDaVez.innerHTML = listaNomePreparese[idiomaPagina];
 
+    let indicePalavraAleatoriaIntervaloPassado = "";
+    let indiceCorAleatoriaIntervaloPassado = "";
+    let indicePalavraAleatoria = "";
+    let indiceCorAleatoria = "";
 
     // Inicia o intervalo com as palavras
     const intervalo = setInterval(() => {
         // Lógica para alterar as palavras e cores
+        
+        // Sorteia a nova palavra e cor para que não seja indêntico ao do intervalo passado
+        do {
+            indicePalavraAleatoria = Math.floor(Math.random() * listaNomeCores[idiomaPagina].length);
+            indiceCorAleatoria = Math.floor(Math.random() * listaHexadecimalCores.length);
+        } while (indiceCorAleatoria === indiceCorAleatoriaIntervaloPassado && indicePalavraAleatoria === indicePalavraAleatoriaIntervaloPassado);
 
-        palavraDaVez.innerHTML = listaNomeCores[idiomaPagina][Math.floor(Math.random() * listaNomeCores[idiomaPagina].length)];
-        palavraDaVez.style.color = listaHexadecimalCores[Math.floor(Math.random() * listaHexadecimalCores.length)];
+        // Pega a palavra e cor do intervalo passado
+        indicePalavraAleatoriaIntervaloPassado = indicePalavraAleatoria;
+        indiceCorAleatoriaIntervaloPassado = indiceCorAleatoria;
+
+        // Altera de fato a palavra e a cor
+        palavraDaVez.innerHTML = listaNomeCores[idiomaPagina][indicePalavraAleatoria];
+        palavraDaVez.style.color = listaHexadecimalCores[indiceCorAleatoria];
 
         // Contagem das repetições
         repeticoes++;
-        console.log(`Repetições ${repeticoes}`)
+        // console.log(`Repetição: ${repeticoes}`);
+        // console.log(`indicePalavraAleatoria -> ${indicePalavraAleatoria}\nindiceCorAleatoria -> ${indiceCorAleatoria}\n=====================================\n`);
 
         // Termina o intervalo após x repetições
         if (repeticoes >= quantidadePalavras) {
