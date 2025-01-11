@@ -141,8 +141,9 @@ main {
     flex-direction: column;
     gap: 15px 0;
     margin: 0 auto;
-    /* background-color: #0002; */
     width: 60%;
+    
+    background-color: #0002;
 }
 
 #exemplo-menu div {
@@ -183,4 +184,65 @@ main {
 
 #agora-voce-sabe-menu {
     font-size: 0.9em;
+}
+
+
+
+
+/* Configurações de telas de diferentes tamanhos */
+
+/* 4K */
+@media only screen and (max-width: 2000px) {
+    #exemplo-menu {
+        width: 85%;
+    }
+}
+
+/* Laptop Large */
+@media only screen and (max-width: 1440px) {
+    #menu-de-ajuda {
+        width: 70%;
+    }
+}
+
+/* LAPTOP */
+@media only screen and (max-width: 1024px) {
+    #menu-de-ajuda {
+        font-size: 1.3em;
+    }
+
+    #exemplo-menu {
+        gap: 15px 0;
+        margin: 0 auto;
+        width: 90%;
+    }
+
+    #exemplo-menu div {
+        gap: 3%;
+        font-size: 1.1em;
+    }
+}
+
+/* TABLET */
+@media only screen and (max-width: 768px) {
+    #menu-de-ajuda {
+        width: 90%;
+        font-size: 1.15em;
+    }
+
+    #exemplo-menu div {
+        font-size: 0.95em;
+    }
+}
+
+/* MOBILE Large */
+@media only screen and (max-width: 425px) {
+    #menu-de-ajuda {
+        width: 90%;
+        font-size: 0.9em;
+    }
+
+    #exemplo-menu {
+        width: 100%;
+    }
 }

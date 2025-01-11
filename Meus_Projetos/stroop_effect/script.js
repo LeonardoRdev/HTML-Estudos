@@ -3,7 +3,7 @@
 // O primeiro timer do intervalo não mostra nenhuma palavra, só depois do "tempoEntrePalavras" passar (isso sequer é um problema?);
 // Style: radiante circular com cinza no meio e branco dos lados;
 // "reroll" caso a próxima palavra tenha o mesmo nome e mesma cor da anterior (usar while);
-// Responsividade.
+// Responsividade: Menu de línguas tem o z-index inferior ao do menu (resolver). Opção de dificuldade também precisa de ajustes.
 
 
 // Variáveis
