@@ -2,7 +2,6 @@
 // Ao iniciar o jogo. Trocar a seta de voltar página por uma de recarregar a página;
 // O primeiro timer do intervalo não mostra nenhuma palavra, só depois do "tempoEntrePalavras" passar (isso sequer é um problema?);
 // Style: radiante circular com cinza no meio e branco dos lados;
-// "reroll" caso a próxima palavra tenha o mesmo nome e mesma cor da anterior (usar while);
 // Responsividade: Menu de línguas tem o z-index inferior ao do menu (resolver). Opção de dificuldade também precisa de ajustes.
 
 
@@ -180,11 +179,16 @@ function iniciarJogo(tempoEntrePalavras, quantidadePalavras) {
     let repeticoes = 0;
     const palavraDaVez = document.querySelector("#palavra-da-vez");
     palavraDaVez.innerHTML = listaNomePreparese[idiomaPagina];
+    palavraDaVez.style.color = "#FFF";
 
     let indicePalavraAleatoriaIntervaloPassado = "";
     let indiceCorAleatoriaIntervaloPassado = "";
     let indicePalavraAleatoria = "";
     let indiceCorAleatoria = "";
+
+    // Estilização do fundo
+    let fundoTeste = document.querySelector("#fundo-teste");
+    fundoTeste.style.background = "radial-gradient(circle, #0004 3%, #0002 15%, transparent 30%)";
 
     // Inicia o intervalo com as palavras
     const intervalo = setInterval(() => {
@@ -214,6 +218,9 @@ function iniciarJogo(tempoEntrePalavras, quantidadePalavras) {
             clearInterval(intervalo);
             palavraDaVez.innerHTML = "";
             telaDoJogo(false);
+
+            // Estilização do fundo
+            body.style.backgroundColor = "transparent";
         }
 
     }, tempoEntrePalavras * 1000);
