@@ -64,6 +64,7 @@
 
 .bandeiras {
     position: absolute;
+    z-index: 2;
     right: 0;
     opacity: 0;
     transform: translateY(0);
@@ -110,6 +111,8 @@
 /* Palavra da vez */
 main {
     position: absolute;
+    text-align: center;
+    width: 100%;
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
@@ -244,6 +247,31 @@ main {
     #exemplo-menu div {
         font-size: 0.95em;
     }
+
+    /* Icone de línguas */
+    .botao-configuracao img {
+        width: 3.4em;
+        margin: 2.5vh 0 0 0;
+    }
+
+    #botao-configuracao-ajuda {
+        right: 95px;
+    }
+    #botao-configuracao-lingua {
+        right: 25px;
+    }
+
+    /* Botão escolha dificuldade */
+    .botao-escolha-dificuldade {
+        padding: 15px 100px;
+        font-size: 1.3em;
+        border-radius: 15px;
+    }
+    
+    /* Palavra da vez */
+    #palavra-da-vez {
+        font-size: 3em;
+    }
 }
 
 /* MOBILE Large */
@@ -255,5 +283,28 @@ main {
 
     #exemplo-menu {
         width: 100%;
+    }
+
+    /* Icone de línguas */
+    .botao-configuracao img {
+        width: 3em;
+        margin: 2.5vh 0 0 4vw;
+    }
+    #botao-configuracao-ajuda {
+        right: 80px;
+    }
+    #botao-configuracao-lingua {
+        right: 20px;
+    }
+
+    /* Botão escolha dificuldade */
+    .botao-escolha-dificuldade {
+        padding: 12px 80px;
+        font-size: 1.1em;
+    }
+
+    /* Palavra da vez */
+    #palavra-da-vez {
+        font-size: 2.5em;
     }
 }

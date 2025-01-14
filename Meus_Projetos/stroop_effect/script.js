@@ -1,8 +1,7 @@
 // FAZER:
 // Ao iniciar o jogo. Trocar a seta de voltar página por uma de recarregar a página;
 // O primeiro timer do intervalo não mostra nenhuma palavra, só depois do "tempoEntrePalavras" passar (isso sequer é um problema?);
-// Style: radiante circular com cinza no meio e branco dos lados;
-// Responsividade: Menu de línguas tem o z-index inferior ao do menu (resolver). Opção de dificuldade também precisa de ajustes.
+// Responsividade: Espaçamento nas bandeiras e animação do "?" está indo pra direta.
 
 
 // Variáveis
