@@ -45,7 +45,7 @@
 #botao-configuracao-ajuda {
     right: 120px;
     animation: pulsar 4s infinite ease-in-out;
-    animation: name duration timing-function delay iteration-count direction ;
+    transform-origin: center;
 }
 
 @keyframes pulsar {

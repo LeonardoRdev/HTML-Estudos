@@ -1,7 +1,5 @@
 // FAZER:
 // Ao iniciar o jogo. Trocar a seta de voltar página por uma de recarregar a página;
-// O primeiro timer do intervalo não mostra nenhuma palavra, só depois do "tempoEntrePalavras" passar (isso sequer é um problema?);
-// Responsividade: Espaçamento nas bandeiras e animação do "?" está indo pra direta.
 
 
 // Variáveis
@@ -9,6 +7,7 @@ const setaVoltarPagina = document.querySelector("#seta-voltar-pagina");
 const headerConfiguracoes = document.querySelector("header");
 const botaoAjuda = document.querySelector("#botao-configuracao-ajuda");
 const divMenuAjuda = document.querySelector("#menu-de-ajuda");
+let fundoTeste = document.querySelector("#fundo-teste");
 let idiomaPagina = "brasil";
 let menuLinguasAberto = false;
 
@@ -185,10 +184,6 @@ function iniciarJogo(tempoEntrePalavras, quantidadePalavras) {
     let indicePalavraAleatoria = "";
     let indiceCorAleatoria = "";
 
-    // Estilização do fundo
-    let fundoTeste = document.querySelector("#fundo-teste");
-    fundoTeste.style.background = "radial-gradient(circle, #0004 3%, #0002 15%, transparent 30%)";
-
     // Inicia o intervalo com as palavras
     const intervalo = setInterval(() => {
         // Lógica para alterar as palavras e cores
@@ -217,9 +212,6 @@ function iniciarJogo(tempoEntrePalavras, quantidadePalavras) {
             clearInterval(intervalo);
             palavraDaVez.innerHTML = "";
             telaDoJogo(false);
-
-            // Estilização do fundo
-            body.style.backgroundColor = "transparent";
         }
 
     }, tempoEntrePalavras * 1000);
@@ -232,6 +224,9 @@ function telaDoJogo(entrarNoJogo) {
         divConfiguracaoDificuldade.style.display = "none";
         setaVoltarPagina.style.display = "none";
         headerConfiguracoes.style.display = "none";
+
+        // Estilização do fundo
+        fundoTeste.style.background = "radial-gradient(circle, #0004 3%, #0002 15%, transparent 30%)";
     }
 
     // Caso termine o jogo
@@ -239,6 +234,9 @@ function telaDoJogo(entrarNoJogo) {
         divConfiguracaoDificuldade.style.display = "flex";
         setaVoltarPagina.style.display = "block";
         headerConfiguracoes.style.display = "block";
+
+        // Estilização do fundo
+        fundoTeste.style.background = "transparent";
     }
 }
 
@@ -332,8 +330,8 @@ function abrirMenuLinguas() {
     bandeiras.forEach((bandeira) => {
         // Exibir todas as bandeiras
         bandeira.style.opacity = "1";
-        bandeira.style.transform = `TranslateY(${translateY}px)`;
-        translateY += 75;
+        bandeira.style.transform = `TranslateY(${translateY}%)`;
+        translateY += 120; // % do espaçamento
     });
 }
 
