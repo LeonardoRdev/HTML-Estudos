@@ -1,5 +1,6 @@
 // FAZER:
-// Ao iniciar o jogo. Trocar a seta de voltar página por uma de recarregar a página;
+// Remover consoles.log;
+// Colocar o jogo na página de projetos (capa: Vermelho escrito em amarelo).
 
 
 // Variáveis
@@ -7,6 +8,7 @@ const setaVoltarPagina = document.querySelector("#seta-voltar-pagina");
 const headerConfiguracoes = document.querySelector("header");
 const botaoAjuda = document.querySelector("#botao-configuracao-ajuda");
 const divMenuAjuda = document.querySelector("#menu-de-ajuda");
+const botaoReiniciarTeste = document.querySelector("#botao-recarregar-teste");
 let fundoTeste = document.querySelector("#fundo-teste");
 let idiomaPagina = "brasil";
 let menuLinguasAberto = false;
@@ -20,7 +22,7 @@ const listaNomeDificuldades = {
     arabe: ["سهل", "متوسط", "صعب"], // Sahal, Mutawaset, Sa'b
     china: ["简单", "中等", "困难"], // Jiǎndān, Zhōngděng, Kùnnán
     eua: ["Easy", "Medium", "Hard"]
-}
+};
 
 const listaNomePreparese = {
     brasil: "PREPARE-SE",
@@ -176,7 +178,7 @@ function iniciarJogo(tempoEntrePalavras, quantidadePalavras) {
 
     let repeticoes = 0;
     const palavraDaVez = document.querySelector("#palavra-da-vez");
-    palavraDaVez.innerHTML = listaNomePreparese[idiomaPagina];
+    palavraDaVez.innerHTML = listaNomePreparese[idiomaPagina]; // "Se prepare"
     palavraDaVez.style.color = "#FFF";
 
     let indicePalavraAleatoriaIntervaloPassado = "";
@@ -186,8 +188,11 @@ function iniciarJogo(tempoEntrePalavras, quantidadePalavras) {
 
     // Inicia o intervalo com as palavras
     const intervalo = setInterval(() => {
-        // Lógica para alterar as palavras e cores
-        
+        // Exibir o botão de reiniciar teste
+        botaoReiniciarTeste.style.display = "block";
+
+        // #Lógica para alterar as palavras e cores
+
         // Sorteia a nova palavra e cor para que não seja indêntico ao do intervalo passado
         do {
             indicePalavraAleatoria = Math.floor(Math.random() * listaNomeCores[idiomaPagina].length);
@@ -204,15 +209,26 @@ function iniciarJogo(tempoEntrePalavras, quantidadePalavras) {
 
         // Contagem das repetições
         repeticoes++;
-        // console.log(`Repetição: ${repeticoes}`);
+        console.log(`Repetição: ${repeticoes}`);
         // console.log(`indicePalavraAleatoria -> ${indicePalavraAleatoria}\nindiceCorAleatoria -> ${indiceCorAleatoria}\n=====================================\n`);
 
         // Termina o intervalo após x repetições
         if (repeticoes >= quantidadePalavras) {
+            finalizarIntervalo();
+        }
+
+        // Também termina o intervalo ao clicar no botão de reiniciar teste
+        botaoReiniciarTeste.onclick = () => {
+            finalizarIntervalo();
+        }
+
+        // Função para finalizar o intervalo
+        function finalizarIntervalo() {
             clearInterval(intervalo);
             palavraDaVez.innerHTML = "";
             telaDoJogo(false);
         }
+
 
     }, tempoEntrePalavras * 1000);
 }
@@ -234,6 +250,7 @@ function telaDoJogo(entrarNoJogo) {
         divConfiguracaoDificuldade.style.display = "flex";
         setaVoltarPagina.style.display = "block";
         headerConfiguracoes.style.display = "block";
+        botaoReiniciarTeste.style.display = "none";
 
         // Estilização do fundo
         fundoTeste.style.background = "transparent";
@@ -276,7 +293,7 @@ listaBandeiras.forEach((bandeira) => {
     elementoBandeira[bandeira] = document.querySelector(`#bandeira-${bandeira}`);
     elementoBandeira[bandeira].onclick = () => {
         clicarNaBandeira(elementoBandeira[bandeira]);
-        console.log(`=-==-==-=-==-==-=-==\n`)
+        console.log(`=-==-==-=-==-==-=-==\n`);
     };
 });
 
@@ -289,7 +306,7 @@ function clicarNaBandeira(elementoBandeiraClicada) {
         escolherNovaLingua(elementoBandeiraClicada);
         fecharMenuLinguas();
     }
-    
+
     // *abrir menu
     else {
         // Se o menu estiver fechado, abrir o menu com as línguas.
@@ -297,7 +314,7 @@ function clicarNaBandeira(elementoBandeiraClicada) {
         abrirMenuLinguas();
     }
 
-    console.log(`Menu aberto? -> ${menuLinguasAberto}`)
+    console.log(`Menu aberto? -> ${menuLinguasAberto}`);
 }
 
 
@@ -305,7 +322,7 @@ function clicarNaBandeira(elementoBandeiraClicada) {
 function fecharMenuLinguas() {
     let bandeiras = document.querySelectorAll(".bandeiras");
     let translateY = 0;
-    
+
     bandeiras.forEach((bandeira) => {
         // Esconder as bandeiras
         bandeira.style.opacity = "0";
@@ -315,7 +332,7 @@ function fecharMenuLinguas() {
     // Exibir somente a bandeira escolhida
     let elementoBandeiraAtual = document.querySelector(".bandeira-atual");
     elementoBandeiraAtual.style.opacity = "1";
-    
+
     // Função para trocar o idioma da página
     let nomeBandeiraClicada = elementoBandeiraAtual.id.split("-")[1];
     trocarIdioma(nomeBandeiraClicada);
@@ -339,7 +356,7 @@ function abrirMenuLinguas() {
 // FUNÇÃO DE ESCOLHER OUTRO IDIOMA
 function escolherNovaLingua(elementoBandeiraEscolhida) {
     let elementoBandeiraAtual = document.querySelector(".bandeira-atual");
-    console.log(`Elemento: ${elementoBandeiraEscolhida}`)
+    console.log(`Elemento: ${elementoBandeiraEscolhida}`);
     elementoBandeiraAtual.classList.remove("bandeira-atual");
     elementoBandeiraEscolhida.classList.add("bandeira-atual");
 }
@@ -390,7 +407,7 @@ function trocarIdioma(novoIdioma) {
     p1DivExemplo2.innerHTML = listaPalavrasTextoAjuda[idiomaPagina][6];
     p2DivExemplo2.innerHTML = listaPalavrasTextoAjuda[idiomaPagina][7];
     p3DivExemplo2.innerHTML = listaPalavrasTextoAjuda[idiomaPagina][8];
-    
+
     pRespostaMenu.innerHTML = listaPalavrasTextoAjuda[idiomaPagina][9];
     pAgoraVoceSabeMenu.innerHTML = listaPalavrasTextoAjuda[idiomaPagina][10];
 }

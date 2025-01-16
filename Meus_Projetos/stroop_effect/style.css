@@ -83,6 +83,15 @@
     right: 40px;
 }
 
+#botao-recarregar-teste {
+    display: none;
+    left: 40px;
+}
+
+#botao-recarregar-teste img {
+    border: 4px solid #000;
+}
+
 /* Opções de dificuldade */
 #configuracao-dificuldade {
     position: absolute;
@@ -260,6 +269,9 @@ main {
     #botao-configuracao-lingua {
         right: 25px;
     }
+    #botao-recarregar-teste {
+        left: 25px;
+    }
 
     /* Botão escolha dificuldade */
     .botao-escolha-dificuldade {
@@ -295,6 +307,9 @@ main {
     }
     #botao-configuracao-lingua {
         right: 20px;
+    }
+    #botao-recarregar-teste {
+        left: 20px;
     }
 
     /* Botão escolha dificuldade */
