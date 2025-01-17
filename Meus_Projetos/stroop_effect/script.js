@@ -1,8 +1,3 @@
-// FAZER:
-// Remover consoles.log;
-// Colocar o jogo na página de projetos (capa: Vermelho escrito em amarelo).
-
-
 // Variáveis
 const setaVoltarPagina = document.querySelector("#seta-voltar-pagina");
 const headerConfiguracoes = document.querySelector("header");
@@ -209,8 +204,6 @@ function iniciarJogo(tempoEntrePalavras, quantidadePalavras) {
 
         // Contagem das repetições
         repeticoes++;
-        console.log(`Repetição: ${repeticoes}`);
-        // console.log(`indicePalavraAleatoria -> ${indicePalavraAleatoria}\nindiceCorAleatoria -> ${indiceCorAleatoria}\n=====================================\n`);
 
         // Termina o intervalo após x repetições
         if (repeticoes >= quantidadePalavras) {
@@ -293,7 +286,6 @@ listaBandeiras.forEach((bandeira) => {
     elementoBandeira[bandeira] = document.querySelector(`#bandeira-${bandeira}`);
     elementoBandeira[bandeira].onclick = () => {
         clicarNaBandeira(elementoBandeira[bandeira]);
-        console.log(`=-==-==-=-==-==-=-==\n`);
     };
 });
 
@@ -313,8 +305,6 @@ function clicarNaBandeira(elementoBandeiraClicada) {
         menuLinguasAberto = true;
         abrirMenuLinguas();
     }
-
-    console.log(`Menu aberto? -> ${menuLinguasAberto}`);
 }
 
 
@@ -356,7 +346,6 @@ function abrirMenuLinguas() {
 // FUNÇÃO DE ESCOLHER OUTRO IDIOMA
 function escolherNovaLingua(elementoBandeiraEscolhida) {
     let elementoBandeiraAtual = document.querySelector(".bandeira-atual");
-    console.log(`Elemento: ${elementoBandeiraEscolhida}`);
     elementoBandeiraAtual.classList.remove("bandeira-atual");
     elementoBandeiraEscolhida.classList.add("bandeira-atual");
 }
