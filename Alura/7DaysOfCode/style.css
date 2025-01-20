@@ -33,3 +33,16 @@ div#aulas-alura a:hover {
     text-decoration: underline;
     scale: 1.1;
 }
+
+/* Configurações de telas de diferentes tamanhos */
+
+/* MOBILE Large */
+@media only screen and (max-width: 425px) {
+    h1 {
+        font-size: 2.4rem;
+    }
+
+    div#aulas-alura a {
+        font-size: 1.7rem;
+    }
+}

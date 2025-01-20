@@ -57,3 +57,42 @@
     font-size: 1.5rem;
     font-weight: 500;
 }
+
+/* Configurações de telas de diferentes tamanhos */
+
+/* MOBILE Large */
+@media only screen and (max-width: 425px) {
+    #titulo-pagina h1, #titulo-pagina h2 {
+        font-size: 1.7rem;
+    }
+
+    #containerComProjetos {
+        gap: 40px;
+    }
+
+    .divProjeto img {
+        width: 16rem;
+        height: 9rem;
+    }
+
+    .divProjeto p {
+        margin-top: 0.4rem;
+        font-size: 1.3rem;
+    }
+}
+
+/* MOBILE Small */
+@media only screen and (max-width: 320px) {
+    #titulo-pagina h1, #titulo-pagina h2 {
+        font-size: 1.5rem;
+    }
+
+    .divProjeto img {
+        width: 14rem;
+        height: 8rem;
+    }
+
+    .divProjeto p {
+        font-size: 1.2rem;
+    }
+}
