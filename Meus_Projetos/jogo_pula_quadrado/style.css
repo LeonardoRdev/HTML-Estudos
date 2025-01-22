@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000C;
+}
+
+#jogo {
+    width: 1000px;
+    height: 400px;
+    border: solid 4px #000;
+    background-color: #FFF;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    /* overflow: hidden; */
+}
+
+#personagem {
+    width: 60px;
+    height: 150px;
+    background-color: brown;
+    position: relative;
+    left: 12%;
+    top: 100%;
+    transform: translateX(-12%) translateY(-100%);
+
+    animation: pularPersonagem 0.75s infinite linear;
+}
+
+@keyframes pularPersonagem {
+    0% {
+        top: 100%;
+    }
+
+    30% {
+        top: 70%;
+    }
+
+    70% {
+        top: 75%;
+    }
+
+    100% {
+        top: 100%;
+    }
+}
+
+#obstaculo {
+    width: 60px;
+    height: 60px;
+    background-color: coral;
+    position: relative;
+    left: 108%;
+    top: 55%;
+    transform: translateX(-100%) translateY(-55%);
+
+    animation: deslizarObstaculo 2s linear infinite;
+}
+
+@keyframes deslizarObstaculo {
+    0% {
+        left: 108%;
+    }
+
+    100% {
+        left: -3%;
+    }
+}
