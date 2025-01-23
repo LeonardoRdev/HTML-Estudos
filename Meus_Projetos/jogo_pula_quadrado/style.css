@@ -17,7 +17,7 @@ body {
     left: 50%;
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 
 #personagem {
@@ -28,8 +28,10 @@ body {
     left: 12%;
     top: 100%;
     transform: translateX(-12%) translateY(-100%);
+}
 
-    animation: pularPersonagem 0.75s infinite linear;
+.animacaoPular {
+    animation: pularPersonagem 0.75s linear;
 }
 
 @keyframes pularPersonagem {
@@ -59,7 +61,7 @@ body {
     top: 55%;
     transform: translateX(-100%) translateY(-55%);
 
-    animation: deslizarObstaculo 2s linear infinite;
+    animation: deslizarObstaculo 1.2s linear infinite;
 }
 
 @keyframes deslizarObstaculo {
