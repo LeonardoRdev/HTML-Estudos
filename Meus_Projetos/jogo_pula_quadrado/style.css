@@ -61,7 +61,7 @@ body {
     top: 55%;
     transform: translateX(-100%) translateY(-55%);
 
-    animation: deslizarObstaculo 1.2s linear infinite;
+    animation: deslizarObstaculo 2s linear infinite;
 }
 
 @keyframes deslizarObstaculo {
