@@ -60,7 +60,9 @@ body {
     left: 108%;
     top: 55%;
     transform: translateX(-100%) translateY(-55%);
+}
 
+.animacaoDeslizar {
     animation: deslizarObstaculo 2s linear infinite;
 }
 
