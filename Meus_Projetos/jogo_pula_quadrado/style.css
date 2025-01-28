@@ -20,6 +20,28 @@ body {
     overflow: hidden;
 }
 
+#seta-recarregar {
+    position: relative;
+    width: 80px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-80%);
+    display: none;
+}
+
+#seta-recarregar img {
+    background-color: gray;
+    padding: 5px;
+    border-radius: 25%;
+    width: 80px;
+    border: solid 4px #000;
+    transition: scale 0.2s;
+}
+
+#seta-recarregar img:hover {
+    cursor: pointer;
+    scale: 1.05;
+}
+
 #personagem {
     width: 60px;
     height: 150px;
