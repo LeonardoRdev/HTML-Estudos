@@ -1,11 +1,13 @@
 // Ao reiniciar jogo, clicar na seta de reiniciar faz o personagem já começar pulando.
 // Se segurar pra pular, ele demora aqueles 1 seg antes de pular infinito, resolver.
+// Dificultar o jogo a cada x segundos.
 // Adicionar sons.
 
 const divJogo = document.querySelector("#jogo");
 const personagem = document.querySelector("#personagem");
 const obstaculo = document.querySelector("#obstaculo");
 obstaculo.classList.add("animacaoDeslizar");
+const classeAnimacaoDeslizar = document.querySelector(".animacaoDeslizar");
 const setaRecarregar = document.querySelector("#seta-recarregar");
 // setaRecarregar.style.display = "none";
 let gameOver = false;
@@ -45,7 +47,30 @@ function pularPersonagem() {
 iniciarJogo();
 
 function iniciarJogo() {
+    let variavelControleTempo = 0;
+    classeAnimacaoDeslizar.style.animation = "deslizarObstaculo 2s linear infinite";
+
     let intervaloDoDeslizamento = setInterval(() => {
+        variavelControleTempo++;
+
+        console.log(variavelControleTempo)
+        // Vai alterando a velocidade do obstaculo conforme o tempo for passando
+        if (variavelControleTempo > 600) {
+            classeAnimacaoDeslizar.style.animation = "deslizarObstaculo 1s linear infinite";
+        }
+
+        if (variavelControleTempo > 1600) {
+            classeAnimacaoDeslizar.style.animation = "deslizarObstaculo 1.5s linear infinite";
+        }
+
+        if (variavelControleTempo > 1920) {
+            classeAnimacaoDeslizar.style.animation = "deslizarObstaculo 3s linear infinite";
+        }
+
+        if (variavelControleTempo > 2440) {
+            classeAnimacaoDeslizar.style.animation = "deslizarObstaculo 2s linear infinite";
+        }
+        
         let divJogoX = divJogo.getBoundingClientRect().left;
         let divJogoY = divJogo.getBoundingClientRect().top;
 
@@ -61,6 +86,8 @@ function iniciarJogo() {
 
         // Se encostar no obstaculo (tanto por cima quanto dos lados)
         if (obstaculoX < personagemX + personagemWidth && obstaculoX > personagemX - personagemWidth && parseFloat(personagemY + personagemHeight) > obstaculoY) {
+            classeAnimacaoDeslizar.style.animation = "none";
+            // alert("TÁ RORANDO")
             // "pausa" o jogo no frame da derrota
             obstaculo.classList.remove("animacaoDeslizar");
             obstaculo.style.left = `${obstaculoX - divJogoX + obstaculoWidth - 2}px`; // Esse "- 2" é por conta da hitbox que tem alguns px a mais do que aparenta, então ficaria um espaço em branco meio paia
@@ -76,16 +103,16 @@ function iniciarJogo() {
             // Parar de enviar obstaculos
             clearInterval(intervaloDoDeslizamento);
         }
-    }, 1);
+    }, 10);
 }
 
 
 function recarregarJogo() {
     obstaculo.classList.add("animacaoDeslizar");
-    obstaculo.style.left = "108%"
+    obstaculo.style.left = "108%";
 
     personagem.style.backgroundColor = "brown";
-    personagem.style.top = "100%"
+    personagem.style.top = "100%";
 
     gameOver = false;
     setaRecarregar.style.display = "none";
