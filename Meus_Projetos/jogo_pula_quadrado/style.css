@@ -85,7 +85,7 @@ body {
 }
 
 .animacaoDeslizar {
-    animation: deslizarObstaculo 2s linear infinite;
+    animation: deslizarObstaculo 2s linear;
 }
 
 @keyframes deslizarObstaculo {

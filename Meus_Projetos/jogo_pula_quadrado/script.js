@@ -1,6 +1,7 @@
 // Ao reiniciar jogo, clicar na seta de reiniciar faz o personagem já começar pulando.
 // Se segurar pra pular, ele demora aqueles 1 seg antes de pular infinito, resolver.
 // Dificultar o jogo a cada x segundos.
+// Pontos ao pular o obstaculo.
 // Adicionar sons.
 
 const divJogo = document.querySelector("#jogo");
@@ -10,6 +11,7 @@ obstaculo.classList.add("animacaoDeslizar");
 const classeAnimacaoDeslizar = document.querySelector(".animacaoDeslizar");
 const setaRecarregar = document.querySelector("#seta-recarregar");
 // setaRecarregar.style.display = "none";
+let nivelObstaculo = 0;
 let gameOver = false;
 
 setaRecarregar.onclick = () => {
@@ -28,7 +30,6 @@ window.onkeydown = (teclaPressionada) => {
 }
 
 function pularPersonagem() {
-    console.log(`Pular personagem\nGAME OVER -> ${gameOver}`)
     if (!gameOver) { // Caso o jogo ainda não tenha acabado
         // Iniciar animação de pulo somente se o personagem já não estiver pulando
         if (!personagem.classList.contains("animacaoPular")) {
@@ -48,29 +49,37 @@ iniciarJogo();
 
 function iniciarJogo() {
     let variavelControleTempo = 0;
-    classeAnimacaoDeslizar.style.animation = "deslizarObstaculo 2s linear infinite";
 
     let intervaloDoDeslizamento = setInterval(() => {
         variavelControleTempo++;
 
         console.log(variavelControleTempo)
+
         // Vai alterando a velocidade do obstaculo conforme o tempo for passando
-        if (variavelControleTempo > 600) {
-            classeAnimacaoDeslizar.style.animation = "deslizarObstaculo 1s linear infinite";
+
+        switch (nivelObstaculo) {
+            case 0:
+                console.log(`INICIANDO O NÍVEL ${nivelObstaculo}`)
+                nivelObstaculo+= 0.1
+                mudarVelociadeAnimacao(2, 3);
+                break;
+            case 1:
+                console.log(`INICIANDO O NÍVEL ${nivelObstaculo}`)
+                mudarVelociadeAnimacao(1, 6);
+                break;
+            case 2:
+                console.log(`INICIANDO O NÍVEL ${nivelObstaculo}`)
+                mudarVelociadeAnimacao(0.5, 5);
+                break;
+            default:
+                console.log(`DEFAULT`)
+                // mudarVelociadeAnimacao(2, 7)
         }
 
-        if (variavelControleTempo > 1600) {
-            classeAnimacaoDeslizar.style.animation = "deslizarObstaculo 1.5s linear infinite";
-        }
+        // obstaculo.classList.remove("animacaoDeslizar")
+        // void obstaculo.offsetWidth; // Hack para forçar o reflow
+        // obstaculo.classList.add("animacaoDeslizar");
 
-        if (variavelControleTempo > 1920) {
-            classeAnimacaoDeslizar.style.animation = "deslizarObstaculo 3s linear infinite";
-        }
-
-        if (variavelControleTempo > 2440) {
-            classeAnimacaoDeslizar.style.animation = "deslizarObstaculo 2s linear infinite";
-        }
-        
         let divJogoX = divJogo.getBoundingClientRect().left;
         let divJogoY = divJogo.getBoundingClientRect().top;
 
@@ -82,7 +91,7 @@ function iniciarJogo() {
         let obstaculoY = obstaculo.getBoundingClientRect().top;
         let obstaculoX = obstaculo.getBoundingClientRect().left;
         let obstaculoWidth = obstaculo.getBoundingClientRect().width;
-
+        // console.log(`OBSCTACULO X: ${obstaculoX}`)
 
         // Se encostar no obstaculo (tanto por cima quanto dos lados)
         if (obstaculoX < personagemX + personagemWidth && obstaculoX > personagemX - personagemWidth && parseFloat(personagemY + personagemHeight) > obstaculoY) {
@@ -103,7 +112,7 @@ function iniciarJogo() {
             // Parar de enviar obstaculos
             clearInterval(intervaloDoDeslizamento);
         }
-    }, 10);
+    }, 1000); // 10
 }
 
 
@@ -118,4 +127,23 @@ function recarregarJogo() {
     setaRecarregar.style.display = "none";
 
     iniciarJogo();
+}
+
+function mudarVelociadeAnimacao(TempoAnimacao, quantidadeMaximaRepeticao) {
+    let quantiadeRepetida = 0;
+
+    let intervaloNovaVelocidade = setInterval(() => {
+        obstaculo.classList.remove("animacaoDeslizar")
+        void obstaculo.offsetWidth; // Hack para forçar o reflow
+        classeAnimacaoDeslizar.style.animation = `deslizarObstaculo ${TempoAnimacao}s linear`;
+        obstaculo.classList.add("animacaoDeslizar");
+        quantiadeRepetida++;
+        if (quantiadeRepetida === quantidadeMaximaRepeticao) {
+            console.warn("intervalo limpado");
+            nivelObstaculo+= 0.9;
+            clearInterval(intervaloNovaVelocidade);
+        }
+
+        console.log("Mais um obstaculo!")
+    }, TempoAnimacao * 1000); // Repetir
 }
