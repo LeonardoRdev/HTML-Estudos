@@ -8,6 +8,24 @@ body {
     background-color: #000C;
 }
 
+main {
+    width: 1000px;
+    height: 400px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+#pontos {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) translateY(-150%);
+    font-size: 3em;
+    font-weight: 700;
+    color: #FFF; 
+}
+
 #jogo {
     width: 1000px;
     height: 400px;
