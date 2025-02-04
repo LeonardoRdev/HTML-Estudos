@@ -37,7 +37,7 @@ window.onkeydown = (teclaPressionada) => {
 
 function pularPersonagem() {
     if (!gameOver) { // Caso o jogo ainda não tenha acabado
-        console.log("RODANDO PULO.........")
+        // console.log("RODANDO PULO.........")
         // Iniciar animação de pulo somente se o personagem já não estiver pulando
         if (!personagem.classList.contains("animacaoPular")) {
             personagem.classList.add("animacaoPular");
@@ -62,17 +62,51 @@ function iniciarJogo() {
     let velocidadeObstaculoDevagar = "deslizarObstaculo 3s linear";         // Muito Devagar
     let velocidadeObstaculoMuitoDevagar = "deslizarObstaculo 4s linear";    // Quase pouco rápido
 
-    let listaVelocidades = [velocidadeObstaculoRapido, velocidadeObstaculoPadrao, velocidadeObstaculoPadraoRapido, velocidadeObstaculoDevagar, velocidadeObstaculoMuitoDevagar]; // Lista com os "leveis" (cada level muda a velocidade dos obstaculos)
-    // let velocidadAleatoria = Math.floor(Math.random() * listaVelocidades.length);
-    // let velocidadeObstaculo = listaVelocidades[velocidadAleatoria];
+    // let listaVelocidades = [velocidadeObstaculoRapido, velocidadeObstaculoPadrao, velocidadeObstaculoPadraoRapido, velocidadeObstaculoDevagar, velocidadeObstaculoMuitoDevagar];
+    let listaVelocidades = ["velocidadeRapida", "velocidadePadrao", "velocidadePadraoRapida", "velocidadeDevagar", "velocidadeMuitoDevagar"];
+    let listaDificuldades = {
+        "velocidadeRapida": {
+            "velocidade": velocidadeObstaculoRapido,
+            "qtdVezes": 8
+        },
 
+        "velocidadePadrao": {
+            "velocidade": velocidadeObstaculoPadrao,
+            "qtdVezes": 3
+        },
+
+        "velocidadePadraoRapida": {
+            "velocidade": velocidadeObstaculoPadraoRapido,
+            "qtdVezes": 5
+        },
+
+        "velocidadeDevagar": {
+            "velocidade": velocidadeObstaculoDevagar,
+            "qtdVezes": 3
+        },
+
+        "velocidadeMuitoDevagar": {
+            "velocidade": velocidadeObstaculoMuitoDevagar,
+            "qtdVezes": 1
+        },
+    };
+
+    let velocidadeAleatoria = Math.floor(Math.random() * listaVelocidades.length);
+    let qtdVezesRepetir = listaDificuldades[listaVelocidades[velocidadeAleatoria]]["qtdVezes"];
+    let velocidadeObstaculo = listaDificuldades[listaVelocidades[velocidadeAleatoria]]["velocidade"];
+    // console.log(listaDificuldades[listaVelocidades[velocidadeAleatoria]]["qtdVezes"])
+    
+    // let velocidadeObstaculo = listaVelocidades[velocidadAleatoria];
+    
     let variavelPulosBemSucedidos = 0;
+    let repetirAnimacaoXVezes = variavelPulosBemSucedidos + qtdVezesRepetir;
+
     pontos.innerHTML = `${variavelPulosBemSucedidos}`; // Reseta a pontuação pra 0;
     classeAnimacaoDeslizar.style.animation = "deslizarObstaculo 2s linear"; // O primeiro obstaculo é sempre igual
 
     let intervaloDoDeslizamento = setInterval(() => {
 
-        obstaculo.onanimationend = () => {
+        obstaculo.onanimationend = function finalizarAnimacaoDeslizar() {
             variavelPulosBemSucedidos++;
             pontos.innerHTML = `${variavelPulosBemSucedidos}`; // Aumenta a pontuação a cada pulo pulado (kkkkk)
             console.log(`Pulos bem sucedidos: ${variavelPulosBemSucedidos}`);
@@ -81,39 +115,69 @@ function iniciarJogo() {
             classeAnimacaoDeslizar.offsetWidth; // Força o navegador a reconhecer que houve uma mudança de estilo, garantindo que a animação reinicie corretamente. 
 
             // Vai alterando a velocidade do obstaculo conforme o tempo for passando
-
             // PROBLEMA: CADA OBSTACULO ESTÁ ATUALMENTE VINDO ALEATÓRIO, JÁ QUE A CADA EXECUÇÃO É ALEATORIZADO UMA NOVA VELOCIDADE
-            if (variavelPulosBemSucedidos < 2) { // Muda a velocidade do obstaculo até a condição não ser verdadeira
-                let velocidadAleatoria = Math.floor(Math.random() * listaVelocidades.length);
-                let velocidadeObstaculo = listaVelocidades[velocidadAleatoria];
+
+            // console.log(`RepetirxVezes FORA = ${repetirAnimacaoXVezes}`);
+            if (variavelPulosBemSucedidos < repetirAnimacaoXVezes) {
+
 
                 classeAnimacaoDeslizar.style.animation = velocidadeObstaculo;
             }
 
-            else if (variavelPulosBemSucedidos < 10) {
-                let velocidadAleatoria = Math.floor(Math.random() * listaVelocidades.length);
-                let velocidadeObstaculo = listaVelocidades[velocidadAleatoria];
+            else { // Trocar para outro nível de dificuldade aleatório
+                console.log("NOVA VELOCIDADE DE OBSTACULO:\n");
+                velocidadeAleatoria = Math.floor(Math.random() * listaVelocidades.length);
 
-                classeAnimacaoDeslizar.style.animation = velocidadeObstaculo;
+                qtdVezesRepetir = listaDificuldades[listaVelocidades[velocidadeAleatoria]]["qtdVezes"];
+                repetirAnimacaoXVezes = variavelPulosBemSucedidos + qtdVezesRepetir;
+
+                velocidadeObstaculo = listaDificuldades[listaVelocidades[velocidadeAleatoria]]["velocidade"];
+                // console.log(`RepetirxVezes = ${variavelPulosBemSucedidos} + ${qtdVezesRepetir}`)
+                // console.log(`RepetirxVezes = ${repetirAnimacaoXVezes}`);
+                // console.log(`velocidadeAleatória = ${velocidadeAleatoria}`);
+                console.log(`Até o round: = ${repetirAnimacaoXVezes}`);
+                console.log(`Velocidade:  = ${velocidadeObstaculo}`);
+
+                variavelPulosBemSucedidos--;
+                // Diminiu 1 dos pulos bem sucedidos, pois esse trecho de código só roda caso não tenha nenhuma animação definida para o obstaculo, logo ele adiciona +2 pulos sucedidos na tela de "carregamento"
+                // Basicamente: recarrega a função com outra animação, e por isso o -1, já que nenhum obstaculo foi pulado, porém o contador aumentou (e agora diminiu pelo variavelPulosBemSucedidos--)
+                finalizarAnimacaoDeslizar();
             }
 
-            else if (variavelPulosBemSucedidos < 13) {
-                let velocidadAleatoria = Math.floor(Math.random() * listaVelocidades.length);
-                let velocidadeObstaculo = listaVelocidades[velocidadAleatoria];
 
-                classeAnimacaoDeslizar.style.animation = velocidadeObstaculo;
-            }
 
-            else if (variavelPulosBemSucedidos < 14) {
-                let velocidadAleatoria = Math.floor(Math.random() * listaVelocidades.length);
-                let velocidadeObstaculo = listaVelocidades[velocidadAleatoria];
 
-                classeAnimacaoDeslizar.style.animation = velocidadeObstaculo;
-            }
+            // if (variavelPulosBemSucedidos < 2) { // Muda a velocidade do obstaculo até a condição não ser verdadeira
+            //     let velocidadAleatoria = Math.floor(Math.random() * listaVelocidades.length);
+            //     let velocidadeObstaculo = listaVelocidades[velocidadAleatoria];
 
-            else if (variavelPulosBemSucedidos >= 14) { // Continua infinitamente em uma boa velocidade
-                classeAnimacaoDeslizar.style.animation = "deslizarObstaculo 1.5s linear";
-            }
+            //     classeAnimacaoDeslizar.style.animation = velocidadeObstaculo;
+            // }
+
+            // else if (variavelPulosBemSucedidos < 10) {
+            //     let velocidadAleatoria = Math.floor(Math.random() * listaVelocidades.length);
+            //     let velocidadeObstaculo = listaVelocidades[velocidadAleatoria];
+
+            //     classeAnimacaoDeslizar.style.animation = velocidadeObstaculo;
+            // }
+
+            // else if (variavelPulosBemSucedidos < 13) {
+            //     let velocidadAleatoria = Math.floor(Math.random() * listaVelocidades.length);
+            //     let velocidadeObstaculo = listaVelocidades[velocidadAleatoria];
+
+            //     classeAnimacaoDeslizar.style.animation = velocidadeObstaculo;
+            // }
+
+            // else if (variavelPulosBemSucedidos < 14) {
+            //     let velocidadAleatoria = Math.floor(Math.random() * listaVelocidades.length);
+            //     let velocidadeObstaculo = listaVelocidades[velocidadAleatoria];
+
+            //     classeAnimacaoDeslizar.style.animation = velocidadeObstaculo;
+            // }
+
+            // else if (variavelPulosBemSucedidos >= 14) { // Continua infinitamente em uma boa velocidade
+            //     classeAnimacaoDeslizar.style.animation = "deslizarObstaculo 1.5s linear";
+            // }
         }
 
 
