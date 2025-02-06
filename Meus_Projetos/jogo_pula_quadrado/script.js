@@ -2,7 +2,7 @@
 
 // Ao reiniciar jogo, clicar na seta de reiniciar faz o personagem já começar pulando.
 // Se segurar pra pular, ele demora aqueles 1 seg antes de pular infinito, resolver.
-// Dificultar o jogo a cada x segundos. Fazer ser aleatório, replayability
+// Caixinha de reiniciar pode ser selecionavel.
 // Colocar moedas aleatórias?
 // Adicionar sons.
 
@@ -13,22 +13,20 @@ const obstaculo = document.querySelector("#obstaculo");
 obstaculo.classList.add("animacaoDeslizar");
 const classeAnimacaoDeslizar = document.querySelector(".animacaoDeslizar");
 const setaRecarregar = document.querySelector("#seta-recarregar");
-// setaRecarregar.style.display = "none";
 let gameOver = false;
 
-setaRecarregar.onclick = () => {
-    recarregarJogo();
-}
 
 window.onclick = () => {
-    pularPersonagem();
-}
-
-window.onkeydown = (teclaPressionada) => {
     if (setaRecarregar.style.display == "block") {
         recarregarJogo();
     }
 
+    else {
+        pularPersonagem();
+    }
+}
+
+window.onkeydown = (teclaPressionada) => {
     // O pulo pode ser iniciado clicar "Espaço, W, Z, ou seta pra cima"
     if (teclaPressionada.code === "Space" || teclaPressionada.code === "KeyW" || teclaPressionada.code === "ArrowUp" || teclaPressionada.code === "KeyZ") {
         pularPersonagem();
@@ -37,12 +35,13 @@ window.onkeydown = (teclaPressionada) => {
 
 function pularPersonagem() {
     if (!gameOver) { // Caso o jogo ainda não tenha acabado
-        // console.log("RODANDO PULO.........")
+        console.log("INICIANDO PULO")
         // Iniciar animação de pulo somente se o personagem já não estiver pulando
         if (!personagem.classList.contains("animacaoPular")) {
             personagem.classList.add("animacaoPular");
 
             let intervaloDoPulo = setInterval(() => {
+                console.log("FINALIZANDO ANIMAÇÃO DO PULO")
                 // Remove a animação de pular após o tempo dela acabar (0.75s)
                 personagem.classList.remove("animacaoPular");
                 clearInterval(intervaloDoPulo);
@@ -94,22 +93,19 @@ function iniciarJogo() {
     let velocidadeAleatoria = Math.floor(Math.random() * listaVelocidades.length);
     let qtdVezesRepetir = listaDificuldades[listaVelocidades[velocidadeAleatoria]]["qtdVezes"];
     let velocidadeObstaculo = listaDificuldades[listaVelocidades[velocidadeAleatoria]]["velocidade"];
-    // console.log(listaDificuldades[listaVelocidades[velocidadeAleatoria]]["qtdVezes"])
-    
-    // let velocidadeObstaculo = listaVelocidades[velocidadAleatoria];
-    
+
     let variavelPulosBemSucedidos = 0;
     let repetirAnimacaoXVezes = variavelPulosBemSucedidos + qtdVezesRepetir;
 
-    pontos.innerHTML = `${variavelPulosBemSucedidos}`; // Reseta a pontuação pra 0;
-    classeAnimacaoDeslizar.style.animation = "deslizarObstaculo 2s linear"; // O primeiro obstaculo é sempre igual
+    pontos.innerHTML = `${variavelPulosBemSucedidos}`; // Reseta a pontuação pra 0 toda vez que inicia um novo jogo.
+    classeAnimacaoDeslizar.style.animation = "deslizarObstaculo 1s linear"; // O primeiro obstaculo é sempre igual (por minha escolha, talvez eu mude no futuro, aí é só apagar essa linha)
 
     let intervaloDoDeslizamento = setInterval(() => {
 
         obstaculo.onanimationend = function finalizarAnimacaoDeslizar() {
             variavelPulosBemSucedidos++;
             pontos.innerHTML = `${variavelPulosBemSucedidos}`; // Aumenta a pontuação a cada pulo pulado (kkkkk)
-            console.log(`Pulos bem sucedidos: ${variavelPulosBemSucedidos}`);
+            // console.log(`Pulos bem sucedidos: ${variavelPulosBemSucedidos}`);
 
             classeAnimacaoDeslizar.style.animation = "none";
             classeAnimacaoDeslizar.offsetWidth; // Força o navegador a reconhecer que houve uma mudança de estilo, garantindo que a animação reinicie corretamente. 
@@ -117,7 +113,6 @@ function iniciarJogo() {
             // Vai alterando a velocidade do obstaculo conforme o tempo for passando
             // PROBLEMA: CADA OBSTACULO ESTÁ ATUALMENTE VINDO ALEATÓRIO, JÁ QUE A CADA EXECUÇÃO É ALEATORIZADO UMA NOVA VELOCIDADE
 
-            // console.log(`RepetirxVezes FORA = ${repetirAnimacaoXVezes}`);
             if (variavelPulosBemSucedidos < repetirAnimacaoXVezes) {
 
 
@@ -125,59 +120,21 @@ function iniciarJogo() {
             }
 
             else { // Trocar para outro nível de dificuldade aleatório
-                console.log("NOVA VELOCIDADE DE OBSTACULO:\n");
+                // console.log("NOVA VELOCIDADE DE OBSTACULO:\n");
                 velocidadeAleatoria = Math.floor(Math.random() * listaVelocidades.length);
 
                 qtdVezesRepetir = listaDificuldades[listaVelocidades[velocidadeAleatoria]]["qtdVezes"];
                 repetirAnimacaoXVezes = variavelPulosBemSucedidos + qtdVezesRepetir;
 
                 velocidadeObstaculo = listaDificuldades[listaVelocidades[velocidadeAleatoria]]["velocidade"];
-                // console.log(`RepetirxVezes = ${variavelPulosBemSucedidos} + ${qtdVezesRepetir}`)
-                // console.log(`RepetirxVezes = ${repetirAnimacaoXVezes}`);
-                // console.log(`velocidadeAleatória = ${velocidadeAleatoria}`);
-                console.log(`Até o round: = ${repetirAnimacaoXVezes}`);
-                console.log(`Velocidade:  = ${velocidadeObstaculo}`);
+                // console.log(`Até o round: = ${repetirAnimacaoXVezes}`);
+                // console.log(`Velocidade:  = ${velocidadeObstaculo}`);
 
                 variavelPulosBemSucedidos--;
                 // Diminiu 1 dos pulos bem sucedidos, pois esse trecho de código só roda caso não tenha nenhuma animação definida para o obstaculo, logo ele adiciona +2 pulos sucedidos na tela de "carregamento"
                 // Basicamente: recarrega a função com outra animação, e por isso o -1, já que nenhum obstaculo foi pulado, porém o contador aumentou (e agora diminiu pelo variavelPulosBemSucedidos--)
                 finalizarAnimacaoDeslizar();
             }
-
-
-
-
-            // if (variavelPulosBemSucedidos < 2) { // Muda a velocidade do obstaculo até a condição não ser verdadeira
-            //     let velocidadAleatoria = Math.floor(Math.random() * listaVelocidades.length);
-            //     let velocidadeObstaculo = listaVelocidades[velocidadAleatoria];
-
-            //     classeAnimacaoDeslizar.style.animation = velocidadeObstaculo;
-            // }
-
-            // else if (variavelPulosBemSucedidos < 10) {
-            //     let velocidadAleatoria = Math.floor(Math.random() * listaVelocidades.length);
-            //     let velocidadeObstaculo = listaVelocidades[velocidadAleatoria];
-
-            //     classeAnimacaoDeslizar.style.animation = velocidadeObstaculo;
-            // }
-
-            // else if (variavelPulosBemSucedidos < 13) {
-            //     let velocidadAleatoria = Math.floor(Math.random() * listaVelocidades.length);
-            //     let velocidadeObstaculo = listaVelocidades[velocidadAleatoria];
-
-            //     classeAnimacaoDeslizar.style.animation = velocidadeObstaculo;
-            // }
-
-            // else if (variavelPulosBemSucedidos < 14) {
-            //     let velocidadAleatoria = Math.floor(Math.random() * listaVelocidades.length);
-            //     let velocidadeObstaculo = listaVelocidades[velocidadAleatoria];
-
-            //     classeAnimacaoDeslizar.style.animation = velocidadeObstaculo;
-            // }
-
-            // else if (variavelPulosBemSucedidos >= 14) { // Continua infinitamente em uma boa velocidade
-            //     classeAnimacaoDeslizar.style.animation = "deslizarObstaculo 1.5s linear";
-            // }
         }
 
 
@@ -197,7 +154,7 @@ function iniciarJogo() {
         // Se encostar no obstaculo (tanto por cima quanto dos lados)
         if (obstaculoX < personagemX + personagemWidth && obstaculoX > personagemX - personagemWidth && parseFloat(personagemY + personagemHeight) > obstaculoY) {
             classeAnimacaoDeslizar.style.animation = "none";
-            // alert("TÁ RORANDO")
+
             // "pausa" o jogo no frame da derrota
             obstaculo.classList.remove("animacaoDeslizar");
             obstaculo.style.left = `${obstaculoX - divJogoX + obstaculoWidth - 2}px`; // Esse "- 2" é por conta da hitbox que tem alguns px a mais do que aparenta, então ficaria um espaço em branco meio paia
