@@ -1,9 +1,39 @@
 // BUG: Se você clicar muito desesperadamente pra reiniciar o jogo, o boneco fica meio que resetando o pulo.
 
-// Ao reiniciar jogo, clicar na seta de reiniciar faz o personagem já começar pulando.
 // Se segurar pra pular, ele demora aqueles 1 seg antes de pular infinito, resolver.
 // Caixinha de reiniciar pode ser selecionavel.
 // Colocar moedas aleatórias?
+// Adicionar 10% de chance do audio de encostar ser o "OMAGAHH"
+
+// Áudios
+listaAudios = [
+    "pular",
+    "encostar"
+];
+
+const audiosTocaveis = {};
+
+listaAudios.forEach((audio) => {
+    audiosTocaveis[audio] = new Audio();
+    audiosTocaveis[audio].src = `../Arquivos_pagina_inicial/audios/jogo_pula_quadrado/${audio}.mp3`;
+})
+
+function tocarAudio(nomeAudio) {
+    const audio = audiosTocaveis[nomeAudio];
+
+    audio.play();
+
+    console.log(audio)
+    if (nomeAudio === "encostar") {
+        audiosTocaveis["pular"].pause();
+    }
+
+    // Caso o áudio for solicitado novamente antes de acabar, reiniciar
+    if(audio.currentTime != 0) {
+        audio.currentTime = 0;
+    }
+}
+
 // Adicionar sons.
 
 const pontos = document.querySelector("#pontos");
@@ -35,10 +65,12 @@ window.onkeydown = (teclaPressionada) => {
 
 function pularPersonagem() {
     if (!gameOver) { // Caso o jogo ainda não tenha acabado
-        console.log("INICIANDO PULO")
+        // console.log("INICIANDO PULO")
+        
         // Iniciar animação de pulo somente se o personagem já não estiver pulando
         if (!personagem.classList.contains("animacaoPular")) {
             personagem.classList.add("animacaoPular");
+            tocarAudio("pular");
 
             let intervaloDoPulo = setInterval(() => {
                 console.log("FINALIZANDO ANIMAÇÃO DO PULO")
@@ -165,6 +197,7 @@ function iniciarJogo() {
 
             setaRecarregar.style.display = "block";
 
+            tocarAudio("encostar");
             gameOver = true;
 
             // Parar de enviar obstaculos
