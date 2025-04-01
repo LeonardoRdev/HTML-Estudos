@@ -8,7 +8,8 @@
 // Áudios
 listaAudios = [
     "pular",
-    "encostar"
+    "encostar",
+    "omagah"
 ];
 
 const audiosTocaveis = {};
@@ -19,14 +20,21 @@ listaAudios.forEach((audio) => {
 })
 
 function tocarAudio(nomeAudio) {
-    const audio = audiosTocaveis[nomeAudio];
+    let audio = audiosTocaveis[nomeAudio];
 
-    audio.play();
-
-    console.log(audio)
     if (nomeAudio === "encostar") {
         audiosTocaveis["pular"].pause();
+
+        // Adiciona 20% de chance do áudio de encostar ser o "omagah"
+        let numeroAleatorio = Math.floor(Math.random() * 10 + 1);
+        
+        if (numeroAleatorio > 8) {
+            audio = audiosTocaveis["omagah"];
+            audio.volume = 0.3
+        }
     }
+
+    audio.play();
 
     // Caso o áudio for solicitado novamente antes de acabar, reiniciar
     if(audio.currentTime != 0) {
