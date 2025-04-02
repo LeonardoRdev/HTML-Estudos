@@ -3,7 +3,7 @@
 // Se segurar pra pular, ele demora aqueles 1 seg antes de pular infinito, resolver.
 // Caixinha de reiniciar pode ser selecionavel.
 // Colocar moedas aleatórias?
-// Adicionar 10% de chance do audio de encostar ser o "OMAGAHH"
+// adicionar som ao ganhar ponto
 
 // Áudios
 listaAudios = [
@@ -79,11 +79,18 @@ function pularPersonagem() {
         if (!personagem.classList.contains("animacaoPular")) {
             personagem.classList.add("animacaoPular");
             tocarAudio("pular");
+            personagem.style.backgroundImage = "url(img/personagem_pulando.png)";
 
             let intervaloDoPulo = setInterval(() => {
                 console.log("FINALIZANDO ANIMAÇÃO DO PULO")
                 // Remove a animação de pular após o tempo dela acabar (0.75s)
                 personagem.classList.remove("animacaoPular");
+
+                // Retorna o personagem ao estado "feliz" após encostar no chão em segurança
+                if (!gameOver) {
+                    personagem.style.backgroundImage = "url(img/personagem_feliz.png)";
+                }
+                
                 clearInterval(intervaloDoPulo);
             }, 750);
         }
@@ -199,7 +206,7 @@ function iniciarJogo() {
             obstaculo.classList.remove("animacaoDeslizar");
             obstaculo.style.left = `${obstaculoX - divJogoX + obstaculoWidth - 2}px`; // Esse "- 2" é por conta da hitbox que tem alguns px a mais do que aparenta, então ficaria um espaço em branco meio paia
 
-            personagem.style.backgroundColor = "black";
+            personagem.style.backgroundImage = `url(img/personagem_morrido.png)`;
             personagem.classList.remove("animacaoPular");
             personagem.style.top = `${personagemY - divJogoY + personagemHeight - 4}px`;
 
@@ -219,7 +226,7 @@ function recarregarJogo() {
     obstaculo.classList.add("animacaoDeslizar");
     obstaculo.style.left = "108%";
 
-    personagem.style.backgroundColor = "brown";
+    personagem.style.backgroundImage = `url(img/personagem_feliz.png)`;
     personagem.style.top = "100%";
 
     gameOver = false;

@@ -63,7 +63,7 @@ main {
 #personagem {
     width: 60px;
     height: 150px;
-    background-color: brown;
+    background-image: url(img/personagem_feliz.png);
     position: relative;
     left: 12%;
     top: 100%;
@@ -95,7 +95,7 @@ main {
 #obstaculo {
     width: 60px;
     height: 60px;
-    background-color: coral;
+    background-image: url(img/obstaculo.png);
     position: relative;
     left: 108%;
     top: 55%;
