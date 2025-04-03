@@ -8,6 +8,7 @@
 
 /* Div | Seta Voltar */
 #seta-voltar-pagina {
+    user-select: none;
     position: sticky;
     top: 0;
 }

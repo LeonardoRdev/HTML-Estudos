@@ -8,6 +8,10 @@ body {
     background-color: #000C;
 }
 
+.nao-selecionavel {
+    user-select: none;
+}
+
 main {
     width: 1000px;
     height: 400px;
@@ -23,7 +27,7 @@ main {
     transform: translateX(-50%) translateY(-150%);
     font-size: 3em;
     font-weight: 700;
-    color: #FFF; 
+    color: #FFF;
 }
 
 #jogo {

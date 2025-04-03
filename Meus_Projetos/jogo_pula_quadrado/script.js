@@ -1,9 +1,7 @@
-// BUG: Se você clicar muito desesperadamente pra reiniciar o jogo, o boneco fica meio que resetando o pulo.
-
 // Se segurar pra pular, ele demora aqueles 1 seg antes de pular infinito, resolver.
-// Caixinha de reiniciar pode ser selecionavel.
-// Colocar moedas aleatórias?
-// adicionar som ao ganhar ponto
+// Adicionar moedas colecionáveis?
+// adicionar som ao ganhar ponto.
+
 
 // Áudios
 listaAudios = [
@@ -27,7 +25,7 @@ function tocarAudio(nomeAudio) {
 
         // Adiciona 20% de chance do áudio de encostar ser o "omagah"
         let numeroAleatorio = Math.floor(Math.random() * 10 + 1);
-        
+
         if (numeroAleatorio > 8) {
             audio = audiosTocaveis["omagah"];
             audio.volume = 0.3
@@ -37,13 +35,12 @@ function tocarAudio(nomeAudio) {
     audio.play();
 
     // Caso o áudio for solicitado novamente antes de acabar, reiniciar
-    if(audio.currentTime != 0) {
+    if (audio.currentTime != 0) {
         audio.currentTime = 0;
     }
 }
 
-// Adicionar sons.
-
+// Definindo variáveis
 const pontos = document.querySelector("#pontos");
 const divJogo = document.querySelector("#jogo");
 const personagem = document.querySelector("#personagem");
@@ -52,6 +49,7 @@ obstaculo.classList.add("animacaoDeslizar");
 const classeAnimacaoDeslizar = document.querySelector(".animacaoDeslizar");
 const setaRecarregar = document.querySelector("#seta-recarregar");
 let gameOver = false;
+let intervaloDoPulo;
 
 
 window.onclick = () => {
@@ -71,17 +69,18 @@ window.onkeydown = (teclaPressionada) => {
     }
 }
 
+
 function pularPersonagem() {
     if (!gameOver) { // Caso o jogo ainda não tenha acabado
         // console.log("INICIANDO PULO")
-        
+
         // Iniciar animação de pulo somente se o personagem já não estiver pulando
         if (!personagem.classList.contains("animacaoPular")) {
             personagem.classList.add("animacaoPular");
             tocarAudio("pular");
             personagem.style.backgroundImage = "url(img/personagem_pulando.png)";
 
-            let intervaloDoPulo = setInterval(() => {
+            intervaloDoPulo = setInterval(() => {
                 console.log("FINALIZANDO ANIMAÇÃO DO PULO")
                 // Remove a animação de pular após o tempo dela acabar (0.75s)
                 personagem.classList.remove("animacaoPular");
@@ -90,7 +89,7 @@ function pularPersonagem() {
                 if (!gameOver) {
                     personagem.style.backgroundImage = "url(img/personagem_feliz.png)";
                 }
-                
+
                 clearInterval(intervaloDoPulo);
             }, 750);
         }
@@ -158,11 +157,7 @@ function iniciarJogo() {
             classeAnimacaoDeslizar.offsetWidth; // Força o navegador a reconhecer que houve uma mudança de estilo, garantindo que a animação reinicie corretamente. 
 
             // Vai alterando a velocidade do obstaculo conforme o tempo for passando
-            // PROBLEMA: CADA OBSTACULO ESTÁ ATUALMENTE VINDO ALEATÓRIO, JÁ QUE A CADA EXECUÇÃO É ALEATORIZADO UMA NOVA VELOCIDADE
-
             if (variavelPulosBemSucedidos < repetirAnimacaoXVezes) {
-
-
                 classeAnimacaoDeslizar.style.animation = velocidadeObstaculo;
             }
 
@@ -223,6 +218,7 @@ function iniciarJogo() {
 
 
 function recarregarJogo() {
+    clearInterval(intervaloDoPulo);
     obstaculo.classList.add("animacaoDeslizar");
     obstaculo.style.left = "108%";
 
