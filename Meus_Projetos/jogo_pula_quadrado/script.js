@@ -41,13 +41,13 @@ function tocarAudio(nomeAudio) {
 }
 
 // Definindo variáveis
-const pontos = document.querySelector("#pontos");
-const divJogo = document.querySelector("#jogo");
+const classeAnimacaoDeslizar = document.querySelector(".animacaoDeslizar");
+const textoDificuldadeAtual = document.querySelector("#dificuldade-atual");
+const setaRecarregar = document.querySelector("#seta-recarregar");
 const personagem = document.querySelector("#personagem");
 const obstaculo = document.querySelector("#obstaculo");
-obstaculo.classList.add("animacaoDeslizar");
-const classeAnimacaoDeslizar = document.querySelector(".animacaoDeslizar");
-const setaRecarregar = document.querySelector("#seta-recarregar");
+const pontos = document.querySelector("#pontos");
+const divJogo = document.querySelector("#jogo");
 let gameOver = false;
 let intervaloDoPulo;
 
@@ -101,20 +101,15 @@ iniciarJogo();
 
 function iniciarJogo() {
     // DIFICULDADES:
-    let velocidadeObstaculoRapido = "deslizarObstaculo 0.8s linear";        // Padrão
-    let velocidadeObstaculoPadrao = "deslizarObstaculo 2s linear";          // Rápido
-    let velocidadeObstaculoPadraoRapido = "deslizarObstaculo 1.4s linear";  // Devagar
-    let velocidadeObstaculoDevagar = "deslizarObstaculo 3s linear";         // Muito Devagar
-    let velocidadeObstaculoMuitoDevagar = "deslizarObstaculo 4s linear";    // Quase pouco rápido
+    let velocidadeObstaculoPadrao = "deslizarObstaculo 2s linear";           // Padrão
+    let velocidadeObstaculoPadraoRapido = "deslizarObstaculo 1.4s linear";   // Padrão + Rápido
+    let velocidadeObstaculoRapido = "deslizarObstaculo 0.8s linear";         // Rápido
+    let velocidadeObstaculoMuitoRapido = "deslizarObstaculo 0.4s 1s linear"; // Muito rápido
+    let velocidadeObstaculoDevagar = "deslizarObstaculo 3s linear";          // Devagar
+    let velocidadeObstaculoMuitoDevagar = "deslizarObstaculo 4s linear";     // Muito Devagar
 
-    // let listaVelocidades = [velocidadeObstaculoRapido, velocidadeObstaculoPadrao, velocidadeObstaculoPadraoRapido, velocidadeObstaculoDevagar, velocidadeObstaculoMuitoDevagar];
-    let listaVelocidades = ["velocidadeRapida", "velocidadePadrao", "velocidadePadraoRapida", "velocidadeDevagar", "velocidadeMuitoDevagar"];
+    let listaVelocidades = ["velocidadePadrao", "velocidadePadraoRapida", "velocidadeRapida", "velocidadeMuitoRapida", "velocidadeDevagar", "velocidadeMuitoDevagar"];
     let listaDificuldades = {
-        "velocidadeRapida": {
-            "velocidade": velocidadeObstaculoRapido,
-            "qtdVezes": 8
-        },
-
         "velocidadePadrao": {
             "velocidade": velocidadeObstaculoPadrao,
             "qtdVezes": 3
@@ -123,6 +118,16 @@ function iniciarJogo() {
         "velocidadePadraoRapida": {
             "velocidade": velocidadeObstaculoPadraoRapido,
             "qtdVezes": 5
+        },
+
+        "velocidadeRapida": {
+            "velocidade": velocidadeObstaculoRapido,
+            "qtdVezes": 8
+        },
+
+        "velocidadeMuitoRapida": {
+            "velocidade": velocidadeObstaculoMuitoRapido,
+            "qtdVezes": 1
         },
 
         "velocidadeDevagar": {
@@ -159,9 +164,23 @@ function iniciarJogo() {
             // Vai alterando a velocidade do obstaculo conforme o tempo for passando
             if (variavelPulosBemSucedidos < repetirAnimacaoXVezes) {
                 classeAnimacaoDeslizar.style.animation = velocidadeObstaculo;
+
+                // Exibe a dificuldade do obstáculo atual
+                const listaIconeDificuldade = {
+                    [listaVelocidades[0]]: "⚡", 
+                    [listaVelocidades[1]]: "⚡⚡", 
+                    [listaVelocidades[2]]: "⚡⚡⚡", 
+                    [listaVelocidades[3]]: "⚡⚡⚡⚡⚡", 
+                    [listaVelocidades[4]]: "🐢", 
+                    [listaVelocidades[5]]: "🐢🐢🐢", 
+                }
+
+                textoDificuldadeAtual.innerHTML = `${listaIconeDificuldade[listaVelocidades[velocidadeAleatoria]]}`;
             }
 
             else { // Trocar para outro nível de dificuldade aleatório
+
+                
                 // console.log("NOVA VELOCIDADE DE OBSTACULO:\n");
                 velocidadeAleatoria = Math.floor(Math.random() * listaVelocidades.length);
 
@@ -219,6 +238,8 @@ function iniciarJogo() {
 
 function recarregarJogo() {
     clearInterval(intervaloDoPulo);
+    textoDificuldadeAtual.innerHTML = `🤠`;
+
     obstaculo.classList.add("animacaoDeslizar");
     obstaculo.style.left = "108%";
 
