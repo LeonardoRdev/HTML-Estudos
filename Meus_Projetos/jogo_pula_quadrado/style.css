@@ -112,11 +112,13 @@ main {
 
 @keyframes deslizarObstaculo {
     0% {
-        left: 108%;
+        /* left: 108%; */
+        left: 1080px;
     }
 
     100% {
-        left: -3%;
+        /* left: -3%; */
+        left: -30px;
     }
 }
 
@@ -128,4 +130,14 @@ main {
     font-size: 3em;
     font-weight: 700;
     color: #FFF;
+}
+
+@media only screen and (max-width: 1250px) {
+    main {
+        width: 80vw;
+    }
+
+    #jogo {
+        width: 80vw;
+    }
 }

@@ -1,6 +1,6 @@
-// Se segurar pra pular, ele demora aqueles 1 seg antes de pular infinito, resolver.
-// Adicionar moedas colecionáveis?
-// adicionar som ao ganhar ponto.
+// Se segurar pra pular, ele demora aqueles 1 seg antes de pular infinito.
+// Animação no plano de fundo do jogo.
+// adicionar som ao ganhar ponto?
 
 
 // Áudios
@@ -180,7 +180,7 @@ function iniciarJogo() {
 
             else { // Trocar para outro nível de dificuldade aleatório
 
-                
+
                 // console.log("NOVA VELOCIDADE DE OBSTACULO:\n");
                 velocidadeAleatoria = Math.floor(Math.random() * listaVelocidades.length);
 
