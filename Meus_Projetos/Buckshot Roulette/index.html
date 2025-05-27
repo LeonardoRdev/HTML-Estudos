@@ -11,7 +11,9 @@
 
 <body>
 
-    <header></header>
+    <header>
+        <button id="reiniciar-rodada">Reiniciar</button>
+    </header>
 
     <main>
         <!--  v Munição Rodada v  -->
@@ -19,14 +21,14 @@
 
 
             <div id="verdadeiro-falso">
-                <div class="qtd-municao">
+                <div id="div-qtd-municao-verdadeiro" class="div-qtd-municao">
                     <div class="selecionar-qtd verdadeiro">1</div>
                     <div class="selecionar-qtd verdadeiro">2</div>
                     <div class="selecionar-qtd verdadeiro">3</div>
                     <div class="selecionar-qtd verdadeiro">4</div>
                 </div>
 
-                <div class="qtd-municao">
+                <div id="div-qtd-municao-falso" class="div-qtd-municao">
                     <div class="selecionar-qtd falso">1</div>
                     <div class="selecionar-qtd falso">2</div>
                     <div class="selecionar-qtd falso">3</div>
@@ -35,9 +37,9 @@
             </div>
 
 
-            <div id="total-e-chance">
-                <p>8</p>
-                <p>50%</p>
+            <div id="pente-espingarda">
+                <p id="qtd-restante">0</p>
+                <p id="chance-verdadeiro">0%</p>
             </div>
 
         </div>
@@ -46,8 +48,8 @@
         <div id="acao-rodade">
             <h2>Bala disparada</h2>
             <div id="acoes">
-                <button class="verdadeiro">Verdadeira</button>
-                <button class="falso">Falsa</button>
+                <button id="bala-disparada-verdadeira" class="verdadeiro">Verdadeira</button>
+                <button id="bala-disparada-falsa" class="falso">Falsa</button>
             </div>
         </div>
 

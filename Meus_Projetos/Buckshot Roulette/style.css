@@ -13,7 +13,6 @@
     background-color: gray;
 }
 
-
 /* Sutaruto */
 #municao-rodada {
     display: flex;
@@ -31,7 +30,7 @@
     gap: 2em;
 }
 
-.qtd-municao {
+.div-qtd-municao {
     display: flex;
     border: solid 2px #000;
 }
@@ -47,8 +46,8 @@
     cursor: pointer;
 }
 
-/* Total e Chance */
-#total-e-chance {
+/* Informações do pente */
+#pente-espingarda {
     display: flex;
     flex-direction: column;
     text-align: center;
