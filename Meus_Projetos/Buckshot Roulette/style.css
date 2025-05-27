@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.verdadeiro {
+    background-color: red;
+}
+
+.falso {
+    background-color: gray;
+}
+
+
+/* Sutaruto */
+#municao-rodada {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+}
+
+#verdadeiro-falso {
+    margin-top: 10vh;
+
+
+    display: flex;
+    /*   justify-content: center; */
+    gap: 2em;
+}
+
+.qtd-municao {
+    display: flex;
+    border: solid 2px #000;
+}
+
+.selecionar-qtd {
+    padding: 1em 1.3em;
+    border: solid 2px #000;
+    font-size: 1.3em;
+}
+
+.selecionar-qtd:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+/* Total e Chance */
+#total-e-chance {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 1.5em;
+    /*   align-items: center; */
+}
