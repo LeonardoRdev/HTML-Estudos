@@ -6,14 +6,40 @@
 }
 
 .verdadeiro {
-    background-color: red;
+    background-color: #ed2828;
 }
 
 .falso {
-    background-color: gray;
+    background-color: #8a8787;
 }
 
-/* Sutaruto */
+button {
+    border-radius: 5%;
+    border: solid 3px #000;
+}
+
+
+/* Botão Reiniciar */
+header {
+    margin-top: 5vh;
+    display: flex;
+    padding: 0 2em;
+    /*   justify-content: center; */
+}
+
+#reiniciar-rodada {
+    background-color: lightgreen;
+    padding: 0.5em 0.8em;
+    font-size: 1em;
+}
+
+#reiniciar-rodada:hover {
+    cursor: pointer;
+    scale: 1.05
+}
+
+
+/* Muninção da Rodada */
 #municao-rodada {
     display: flex;
     flex-direction: column;
@@ -38,7 +64,7 @@
 .selecionar-qtd {
     padding: 1em 1.3em;
     border: solid 2px #000;
-    font-size: 1.3em;
+    font-size: 1.4em;
 }
 
 .selecionar-qtd:hover {
@@ -51,6 +77,42 @@
     display: flex;
     flex-direction: column;
     text-align: center;
-    font-size: 1.5em;
+    font-size: 1.6em;
     /*   align-items: center; */
+}
+
+#qtd-restante {
+    font-size: 1.6em;
+    border-bottom: solid 2px #000;
+    margin-bottom: 0.2em;
+}
+
+/* Ação Rodada */
+#acao-rodada {
+    margin-top: 5vh;
+
+
+    text-align: center;
+}
+
+#acao-rodada h2 {
+    font-size: 1.8em;
+    margin-bottom: 0.7em;
+}
+
+#acoes {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+}
+
+#acoes button {
+    min-width: 130px;
+    font-size: 1.2em;
+    padding: 1em;
+}
+
+#acoes button:hover {
+    cursor: pointer;
+    scale: 1.05
 }
