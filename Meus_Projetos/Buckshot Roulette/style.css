@@ -1,3 +1,4 @@
+/* Variáveis Globais */
 * {
     margin: 0;
     padding: 0;
@@ -24,6 +25,7 @@ button {
 }
 
 
+
 /* Botão Reiniciar */
 header {
     margin-top: 5vh;
@@ -44,12 +46,19 @@ header {
 }
 
 
+
+/* =================================
+                MAIN
+   ================================= */
 main {
     /*   background-color: #333; */
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-around;
+    padding: 0 45px;
+    gap: 20px;
 }
+
 
 
 /* Muninção da Rodada */
@@ -84,6 +93,8 @@ main {
     opacity: 0.8;
     cursor: pointer;
 }
+
+
 
 /* Informações do pente */
 #pente-espingarda {
@@ -131,29 +142,96 @@ main {
 }
 
 
-/* Rodadas Celular */
+/* =================================
+      Registro Rodadas / CELULAR 
+   ================================= */
+/* Rodada Atual */
+#rodada-atual {
+    text-align: end;
+}
 
+/* Rodadas Celular */
 #celular {
     width: 300px;
+    height: 100%;
     border: solid 5px #000;
-    border-bottom: 0;
+    border-radius: 5px;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    gap: 0px;
+    grid-template-rows: repeat(8, 1fr);
+    position: relative;
+}
+
+.rodadas-celular {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    border: solid 3px #000;
+    border-width: 3px 0;
+
+    opacity: 15%;
+}
+
+.rodadas-celular:first-child {
+    border-width: 0 0 3px;
+}
+
+.rodadas-celular:last-child {
+    border-width: 3px 0 0;
+}
+
+.rodadas-celular:hover {
+    opacity: 100%;
+}
+
+.numero-rodada-celular {
+    font-size: 2em;
+    position: absolute;
+    left: -38px;
+}
+
+.celular-diz {
+    min-width: 50px;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.celular-diz:hover {
+    cursor: pointer;
+    border: solid 2px #FFF;
+    font-size: 1.15em;
+}
+
+.celular-diz::after {
+    font-size: 1.4em;
+    font-weight: 700;
+}
+
+.celular-diz-verdadeiro {
+    background-color: var(--cor-verdadeiro);
+}
+
+.celular-diz-verdadeiro::after {
+    content: "V";
+}
+
+.celular-diz-falso {
+    background-color: var(--cor-falso);
+}
+
+.celular-diz-falso::after {
+    content: "F";
+}
+
+.rodada-celular-definida {
+    grid-column: 1/3;
+}
 
 
-    .rodadas-celular {
-        display: flex;
-        border: solid 3px #000;
 
-        .celular-diz-verdadeiro {
-            background-color: var(--cor-verdadeiro);
-            width: 50%;
-        }
-
-        .celular-diz-falso {
-            background-color: var(--cor-falso);
-            width: 50%;
-        }
-    }
+/* Variáveis Globais */
+.esconder {
+    display: none;
 }
